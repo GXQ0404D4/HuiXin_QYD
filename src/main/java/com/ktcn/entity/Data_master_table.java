@@ -8,4 +8,5 @@ public class Data_master_table {
 	
 	private long dmt_id;
 	
+	
 }

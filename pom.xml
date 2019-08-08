@@ -121,14 +121,14 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         </dependency>
         <!-- json依赖结束 -->
         <!-- 日志依赖 -->
-        <dependency>
-	      <groupId>org.slf4j</groupId>
-	      <artifactId>slf4j-api</artifactId>
-	      </dependency>
-	    <dependency>
-	      <groupId>org.slf4j</groupId>
-	      <artifactId>slf4j-log4j12</artifactId>
-	      </dependency>
+<!--         <dependency> -->
+<!-- 	      <groupId>org.slf4j</groupId> -->
+<!-- 	      <artifactId>slf4j-api</artifactId> -->
+<!-- 	      </dependency> -->
+<!-- 	    <dependency> -->
+<!-- 	      <groupId>org.slf4j</groupId> -->
+<!-- 	      <artifactId>slf4j-log4j12</artifactId> -->
+<!-- 	      </dependency> -->
 	    <!-- 日志依赖结束 -->
 	    <dependency>
 			<groupId>org.springframework.boot</groupId>

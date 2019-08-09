@@ -1,6 +1,7 @@
 package com.ktcn.entity;
 
 import java.util.Date;
+import java.util.List;
 
 /*
  * 用户表
@@ -48,7 +49,7 @@ public class Tb_user {
 	public void setAccount(String account) {
 		this.account = account;
 	}
-	public String getPassword() {
+	public  String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
@@ -107,6 +108,10 @@ public class Tb_user {
 		return "Tb_user [user_id=" + user_id + ", account=" + account + ", password=" + password + ", name=" + name
 				+ ", sex=" + sex + ", age=" + age + ", phone=" + phone + ", user_name=" + user_name + ", working_group="
 				+ working_group + ", createTime=" + createTime + ", state=" + state + "]";
+	}
+	public void setRoleStrlist(List<String> roleStrlist) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

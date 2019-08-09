@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ktcn.aspect.SysLog;
 import com.ktcn.entity.Tb_user;
 import com.ktcn.service.TestService;
 
@@ -17,6 +18,7 @@ public class Test {
 	Logger logger = LoggerFactory.getLogger(Test.class);
 	@Resource
 	TestService testService;
+	@SysLog(logModule = "系统模块",logName = "跳转主页")
 	@RequestMapping("test")
 	public String test() {
 		logger.info("进入测试方法");

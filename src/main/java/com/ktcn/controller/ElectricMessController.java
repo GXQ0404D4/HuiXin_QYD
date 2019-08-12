@@ -34,23 +34,17 @@ public class ElectricMessController {
 	public List<Electric_massage> ElectricityReportt() {
 		// 查询全部电量报表信息
 		List<Electric_massage> electric = electricMessService.findAll();
-		for (Electric_massage e : electric) {
-			System.out.println(e);
-		}
 		return electric;
 	}
 	// 按照时间区间查询电量报表信息
 	@RequestMapping("ElectricityReport_time")
 	public List<Electric_massage> ElectricityReport_time(String current_timeA, String current_timeB) {
-		System.out.println(current_timeA+"---"+current_timeB);
 		// 查询全部电量报表信息
 		List<Electric_massage> electric = electricMessService.findAllByTime(current_timeA,current_timeB);
-		for (Electric_massage e : electric) {
-			System.out.println(e);
-		}
 		return electric;
 	}
 	
+	// Excel导出电量报表数据
 	@RequestMapping(value="ElectricityReport_export")
 	public void ElectricityReport_export(HttpServletRequest request,HttpServletResponse response,Electric_massage isEntity){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

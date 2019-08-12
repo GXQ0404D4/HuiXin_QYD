@@ -21,7 +21,6 @@ public interface ElectricMessDao {
 	@Select("SELECT * FROM electric_massage ORDER BY `current_time` DESC")
 	List<Electric_massage> findAll();
 	// 根据时间区间查询电量报表信息
-//	@Select("SELECT * FROM electric_massage WHERE `current_time` BETWEEN '${current_timeA}' AND '${current_timeB}'")
 	@SelectProvider(method = "findAllByTime", type = ElectricSQL.class)
 	List<Electric_massage> findAllByTime(@Param("current_timeA") String current_timeA, @Param("current_timeB")String current_timeB);
 	

@@ -1,5 +1,9 @@
 package com.ktcn.aspect;
 
+import java.lang.reflect.Method;
+import java.net.InetAddress;
+import java.util.Date;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -8,8 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Method;
-import java.net.InetAddress;
+import com.ktcn.entity.Log;
 
 /**
  * 注解切入类
@@ -46,6 +49,10 @@ public class LogAspect {
             Class targetClass = Class.forName(targetName);
             // 通过类对象获取类中所有的方法
             Method[] methods = targetClass.getMethods();
+            // 获取一个日志类对象
+            Log log = new Log();
+            // 获取当前时间
+            Date date = new Date();
             // 遍历所有的方法
             for (Method method : methods) {
                 // 判断哪一个是当前调用AOP的方法
@@ -54,9 +61,12 @@ public class LogAspect {
                     if (clazzs.length == arguments.length) {
                         logModule = method.getAnnotation(SysLog.class).logModule();
                         logName = method.getAnnotation(SysLog.class).logName();
+                        log.setOperModel(logModule);
+                        log.setOperName(logName);
                         logger.info("操作模块:" + logModule);
                         logger.info("操作内容:" + logName);
                         logger.info("ip地址: "+ip);
+                        logger.info(log.toString());
                     }
                 }
             }

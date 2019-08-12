@@ -78,6 +78,8 @@ public class ShiroConfiguration {
         filterChainDefinitionManager.put("/Login", "anon");//anon 可以理解为不拦截
         filterChainDefinitionManager.put("/index", "anon");//anon 可以理解为不拦截
         filterChainDefinitionManager.put("/test", "anon");//anon 可以理解为不拦截
+        filterChainDefinitionManager.put("/ElectricityReport_select", "anon");//anon 可以理解为不拦截
+        filterChainDefinitionManager.put("/*", "anon");//anon 可以理解为不拦截
         filterChainDefinitionManager.put("/statistic/**",  "anon");//静态资源不拦截
         filterChainDefinitionManager.put("/**",  "authc,roles[user]");//其他资源全部拦截
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionManager);

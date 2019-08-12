@@ -30,8 +30,8 @@ public class ElectricMessController {
 	@Resource
 	private ElectricMessService electricMessService;
 	// 查询请求
-	@RequestMapping("ElectricityReport_select")
-	public List<Electric_massage> ElectricityReport_select() {
+	@RequestMapping("ElectricityReport")
+	public List<Electric_massage> ElectricityReportt() {
 		// 查询全部电量报表信息
 		List<Electric_massage> electric = electricMessService.findAll();
 		for (Electric_massage e : electric) {

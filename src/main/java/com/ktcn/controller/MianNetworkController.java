@@ -15,45 +15,44 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ktcn.entity.Compressor_report;
-import com.ktcn.service.ComReportService;
+import com.ktcn.entity.Mian_network;
+import com.ktcn.service.MianNetworkService;
 
 /*
- * 空压机报表控制类
+ * 总管网报表控制层
  */
 @RestController
-public class ComReportController {
+public class MianNetworkController {
 	@Resource
-	private ComReportService comReportService;
+	private MianNetworkService mianNetworkService;
 	
-	// 查询全部空压机报表数据
-	@RequestMapping("CompressorReport")
-	public List<Compressor_report> CompressorReport() {
-		// 查询全部空压机报表信息
-		List<Compressor_report> Cm_report = comReportService.findAll();
-		return Cm_report;
+	// 查询全部总管网信息
+	@RequestMapping("TotalReport")
+	public List<Mian_network> TotalReport() {
+		// 查询全部总管网信息
+		List<Mian_network> network = mianNetworkService.findAll();
+		return network;
 	}
-	
-	// 按照时间区间查询空压机报表数据
-	@RequestMapping("compressor_time")
-	public List<Compressor_report> compressor_time(String current_timeA, String current_timeB){
-		// 根据时间区间查询空压机报表信息
-		List<Compressor_report> Cm_report = comReportService.findAllByTime(current_timeA,current_timeB);
-		return Cm_report;
+	// 按照时间区间查询电量报表信息
+	@RequestMapping("TotalReport_time")
+	public List<Mian_network> TotalReport_time(String current_timeA, String current_timeB) {
+		// 查询全部电量报表信息
+		List<Mian_network> network = mianNetworkService.findAllByTime(current_timeA,current_timeB);
+		return network;
 	}
 	
 	// Excel导出空压机报表数据
-	@RequestMapping(value="compressor_export")
-	public void compressor_export(HttpServletRequest request,HttpServletResponse response,Compressor_report isEntity){
+	@RequestMapping(value="TotalReport_export")
+	public void TotalReport_export(HttpServletRequest request,HttpServletResponse response,Mian_network isEntity){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		StringBuffer sbBuffer = new StringBuffer();
-		sbBuffer.append("空压机报表_");
+		sbBuffer.append("总管网报表_");
 		sbBuffer.append(format.format(new Date()));
 		sbBuffer.append(".xls");
 		String fileName =  sbBuffer.toString();
 		
 	    //excel 写入数据 service层 TODO 这个自己注入进来
-	    HSSFWorkbook wb = comReportService.downloadExcel(isEntity);
+	    HSSFWorkbook wb = mianNetworkService.downloadExcel(isEntity);
 	    
 	    this.setResponseHeader(response, fileName);
 	    try {
@@ -81,4 +80,5 @@ public class ComReportController {
             //TODO 处理异常
         }
     }
+	
 }

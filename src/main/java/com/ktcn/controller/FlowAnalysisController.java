@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ktcn.entity.Electric_massage;
 import com.ktcn.entity.Mian_network;
 import com.ktcn.service.FlowAnalysisService;
 

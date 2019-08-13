@@ -20,11 +20,11 @@ public interface CoulometryDao {
 	// 查询当天24小时的电量曲线信息
 	@Select("SELECT * FROM `electric_massage` WHERE date(`electric_massage`.`current_time`) = curdate();")
 	List<Electric_massage> findByNowDate();
-	// 查询30天流量曲线
-	@Select("SELECT * FROM `electric_massage` WHERE date_sub(curdate(), interval 30 day) <= date(`current_time`)")
+	// 查询本月流量曲线
+	@Select("SELECT * FROM `electric_massage` WHERE date_format( `current_time`, '%Y%m' ) = date_format(curdate( ) , '%Y%m' )")
 	List<Electric_massage> findByNowMonth();
-	// 根据机器查询30天流量曲线
-	@Select("SELECT * FROM `electric_massage` WHERE date_sub(curdate(), interval 30 day) <= date(`current_time`) AND machine = #{machine}")
+	// 根据机器查询本月流量曲线
+	@Select("SELECT * FROM `electric_massage` WHERE date_format( `current_time`, '%Y%m' ) = date_format(curdate( ) , '%Y%m' ) AND machine = #{machine}")
 	List<Electric_massage> findByMachine(@Param("machine") String machine);
 	// 按照时间区间查询
 	@SelectProvider(method = "findByTime",type =CoulometrySQL.class)

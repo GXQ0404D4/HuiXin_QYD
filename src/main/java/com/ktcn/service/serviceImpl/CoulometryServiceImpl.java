@@ -23,12 +23,12 @@ public class CoulometryServiceImpl implements CoulometryService {
 	public List<Electric_massage> findByNowDate() {
 		return coulometryDao.findByNowDate();
 	}
-	// 查询30天流量曲线
+	// 查询本月流量曲线
 	@Override
 	public List<Electric_massage> findByNowMonth() {
 		return coulometryDao.findByNowMonth();
 	}
-	// 根据机器查询30天流量曲线
+	// 根据机器查询本月流量曲线
 	@Override
 	public List<Electric_massage> findByMachine(String machine) {
 		return coulometryDao.findByMachine(machine);

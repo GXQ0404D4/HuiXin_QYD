@@ -18,13 +18,14 @@ import com.ktcn.service.CoulometryService;
 public class CoulometryController {
 	@Resource
 	private CoulometryService coulometryService;
+	
 	// 查询全部方法
 //	@RequestMapping(value="ElectricityAnalysis",headers="Accept=application/json",produces="application/json;charset=UTF-8")
 	@RequestMapping("ElectricityAnalysis")
 	public List<List> ElectricityAnalysis() {
 		// 24小时电量曲线信息
 		List<Electric_massage> electricA = this.findByNowDate();
-		// 查询30天流量曲线
+		// 查询本月流量曲线
 		List<Electric_massage> electricB = this.findByNowMonth();
 		// 新建一个list存储两组数据
 		List<List> list = new ArrayList<List>();
@@ -40,21 +41,21 @@ public class CoulometryController {
 		}
 		return electricA;
 	}
-	// 查询30天流量曲线
+	// 查询本月流量曲线
 	public List<Electric_massage> findByNowMonth() {
 		List<Electric_massage> electricB = coulometryService.findByNowMonth();
 		for (Electric_massage e : electricB) {
-			System.out.println("近30天信息"+e);
+			System.out.println("近本月信息"+e);
 		}
 		return electricB;
 	}
 	
-	// 根据机器查询30天流量曲线
+	// 根据机器查询本月流量曲线
 	@RequestMapping("Ect_machine")
 	public List<Electric_massage> Ect_machine(String machine) {
 		List<Electric_massage> electricB = coulometryService.findByMachine(machine);
 		for (Electric_massage e : electricB) {
-			System.out.println("按照机器名称查询近30天信息"+e);
+			System.out.println("按照机器名称查询近本月信息"+e);
 		}
 		return electricB;
 	}
@@ -62,10 +63,10 @@ public class CoulometryController {
 	// 按照时间区间查询
 	@RequestMapping("Ect_Time")
 	public List<Electric_massage> Ect_Time(String TimeA, String TimeB) {
-		List<Electric_massage> electric = coulometryService.findByTime(TimeA,TimeB);
-		for (Electric_massage e : electric) {
+		List<Electric_massage> electricB = coulometryService.findByTime(TimeA,TimeB);
+		for (Electric_massage e : electricB) {
 			System.out.println("按照时间区间获取: "+e);
 		}
-		return electric;
+		return electricB;
 	}
 }

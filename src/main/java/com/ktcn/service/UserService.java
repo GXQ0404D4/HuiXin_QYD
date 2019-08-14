@@ -16,5 +16,7 @@ public interface UserService {
 	List<Tb_user> findUserByVague(String vague);
 	// 修改用户信息
 	void updateUserById(Tb_user user);
+	// 用户注册功能
+	void addUser(Tb_user user);
 
 }

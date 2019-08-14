@@ -1,5 +1,6 @@
 package com.ktcn.service.serviceImpl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -37,6 +38,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateUserById(Tb_user user) {
 		userDao.updateUserById(user);
+	}
+	// 用户注册功能
+	@Override
+	public void addUser(Tb_user user) {
+		user.setCreateTime(new Date());
+		System.out.println("serviceImpl");
+		System.out.println(user);
+		userDao.addUser(user);
 	}
 	
 }

@@ -2,6 +2,7 @@ package com.ktcn.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -28,5 +29,8 @@ public interface UserDao {
 	// 修改用户信息
 	@Update("UPDATE tb_user SET user_name=#{user.user_name},working_group=#{user.working_group} WHERE user_id=#{user.user_id}")
 	void updateUserById(@Param("user") Tb_user user);
+	// 用户注册功能
+	@Insert("INSERT INTO tb_user VALUES (NULL,#{user.account},#{user.password},#{user.name},#{user.sex},#{user.age},#{user.phone},#{user.user_name},#{user.working_group},#{user.createTime},0)")
+	void addUser(@Param("user") Tb_user user);
 	
 }

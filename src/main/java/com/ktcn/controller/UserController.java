@@ -49,4 +49,16 @@ public class UserController {
 		return user;
 	}
 	
+	// 用户注册功能
+	@RequestMapping("HomePage")
+	public String HomePage(Tb_user user, String password1) {
+		System.out.println(user);
+		System.out.println(password1);
+		if (password1.equals(user.getPassword())) {
+			userService.addUser(user);
+		} else {
+			return "两次密码输入不一致";
+		}
+		return "success";
+	}
 }

@@ -70,7 +70,7 @@ public class ShiroConfiguration {
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        Map<String, String> filterChainDefinitionManager = new LinkedHashMap();
+        Map<String, String> filterChainDefinitionManager = new LinkedHashMap<String, String>();
        /* filterChainDefinitionManager.put("/logout", "logout");
         filterChainDefinitionManager.put("/user/**", "authc,role_name[系统管理员]");
         filterChainDefinitionManager.put("/index/**", "authc,role_name[查询管理员]");

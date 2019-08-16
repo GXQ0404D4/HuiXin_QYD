@@ -29,9 +29,9 @@ public class Export {
 	    		return true;
 	    	}
 	    	if(obj instanceof Map){
-	    		return ((Map) obj).isEmpty();
+	    		return ((Map<?, ?>) obj).isEmpty();
 	    	}else if(obj instanceof List){
-	    		return ((List) obj).isEmpty();
+	    		return ((List<?>) obj).isEmpty();
 	    	}
 	    	return obj.toString().isEmpty();
 	  }

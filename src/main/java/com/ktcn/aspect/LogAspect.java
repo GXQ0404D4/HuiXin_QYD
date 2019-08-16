@@ -46,7 +46,7 @@ public class LogAspect {
             // 获取所有参数
             Object[] arguments = joinPoint.getArgs();
             // 通过类全限定名获取此类的对象
-            Class targetClass = Class.forName(targetName);
+            Class<?> targetClass = Class.forName(targetName);
             // 通过类对象获取类中所有的方法
             Method[] methods = targetClass.getMethods();
             // 获取一个日志类对象

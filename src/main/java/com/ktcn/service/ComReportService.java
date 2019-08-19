@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import com.ktcn.entity.Compressor_report;
-import com.ktcn.entity.Electric_massage;
 
 /*
  * 空压机报表业务层

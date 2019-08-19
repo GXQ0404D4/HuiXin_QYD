@@ -2,6 +2,7 @@ package com.ktcn.common;
 
 public class ByteUtils {
 	
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		byte[] sdfsd={(byte) 28.8,(byte) 58.6,(byte) 78.9};
 		byte asd=(byte)99.99;

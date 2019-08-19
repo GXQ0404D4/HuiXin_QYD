@@ -176,6 +176,13 @@
 		<!-- <scope>test</scope> -->
 		<!-- </dependency> -->
 		<!--utgard end -->
+		
+		<!-- lombok依赖 -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
 	</dependencies>
 
 	<build>

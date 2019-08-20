@@ -22,8 +22,8 @@ public class Login_Controller {
 	@RequestMapping("/Login")
 	public String login(HttpServletRequest request, @RequestParam ("password") String password, @RequestParam ("account")String account) throws Exception{
 	    System.out.println("HomeController.login()"+password+account);
-	    Object md5utils = MD5utils.Md5utils(password, account);
-	    System.out.println(md5utils+"加密后密码++++++"+md5utils.toString());
+	    //Object md5utils = MD5utils.Md5utils(password, account);
+	    //System.out.println(md5utils+"加密后密码++++++"+md5utils.toString());
 	    
         Subject subject = SecurityUtils.getSubject();
         //数据库的密码我进行了Md5加密。如果没有进行加密的无需这个

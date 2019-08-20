@@ -1,10 +1,10 @@
-/*package com.ktcn.common;
+package com.ktcn.common;
 
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -23,53 +23,51 @@ import org.openscada.opc.lib.da.Item;
 import org.openscada.opc.lib.da.ItemState;
 import org.openscada.opc.lib.da.Server;
 import org.openscada.opc.lib.da.SyncAccess;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
+import com.ktcn.entity.Opc_address;
+import com.ktcn.utils.OPCAddress;
+import com.ktcn.utils.OPCConfig;
 
-public class UtgardTutorial1 {
+@Component
+public class UtgardTutorial1 implements Runnable,CommandLineRunner{
 
 	public static void main(String[] args) throws Exception {
 		
 		Runnable runnable = new Runnable() {
-			public void run() {
-				// task to run goes here
-				System.out.println("Hello !!");
-		
-		
-		// 连接信息
-		final ConnectionInformation ci = new ConnectionInformation();
-		// 获取IP地址
-		String ip = null;
-		try {
-			ip = InetAddress.getLocalHost().getHostAddress();
-		} catch (UnknownHostException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		ci.setHost(ip); // 电脑IP
-		ci.setDomain(""); // 域，为空就行
-		ci.setUser("OPCServer"); // 电脑上自己建好的用户名
-		ci.setPassword("122360"); // 密码
-
-		// 使用KEPServer的配置
-		ci.setClsid("7BC0CC8E-482C-47CA-ABDC-0FE7F9C6E729"); // KEPServer的注册表ID，可以在“组件服务”里看到
-
-		// 提取采集short数据
+		public void run() {
+		//获取本机电脑信息  kepserver信息
+				ConnectionInformation ci = OPCConfig.getConnectionInformation();
+		// 获取数据库存储的OPCaddress 地址详细
+				OPCAddress OPCAddress = new OPCAddress();
+				List<Opc_address> address = OPCAddress.GetAllAddress();		
+				for (Opc_address ADD : address) {
+					String tag_name = ADD.getTag_name();
+					System.out.println(tag_name);
+				}
+				
+				
 		ArrayList<Short> sl = new ArrayList<Short>();
 		ArrayList<Float> fl = new ArrayList<Float>();
 
 		ArrayList<String> str2 = new ArrayList<String>();
-		str2.add("总功率");
-		str2.add("总电量");
-		str2.add("主机压力2");
-		str2.add("主机压力");
-		str2.add("主机温度");
-		str2.add("主机温度2");
-		str2.add("整数1");
-		str2.add("整数2");
-		str2.add("整数3");
-		str2.add("油压");
-		str2.add("测试数据");
-		str2.add("测试数据2");
+		str2.add("1#A相电压");
+		str2.add("1#A相电流");
+		str2.add("1#主机温度");
+		str2.add("1#冷却剂温度");
+		str2.add("1#分离前压力");
+		str2.add("1#加载压力");
+		str2.add("1#加载时间");
+		str2.add("1#卸载压力");
+		str2.add("1#报警号");
+		str2.add("1#排气压力");
+		str2.add("1#排气温度");
+		str2.add("1#控制状态字");
+		str2.add("1#正向有功总电能");
+		str2.add("1#警告号");
+		str2.add("1#运行时间");
+		str2.add("1#远程功能开关");
 
 		for (int i = 0; i < str2.size(); i++) {
 			String address1 = str2.get(i);
@@ -206,4 +204,16 @@ public class UtgardTutorial1 {
 		service.scheduleAtFixedRate(runnable, 0, 20	, TimeUnit.SECONDS);
 		
 	}
-}*/
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+}

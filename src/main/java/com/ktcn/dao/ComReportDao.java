@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.SelectProvider;
 import org.springframework.stereotype.Repository;
 
 import com.ktcn.dao.providerSQL.ComReportSQL;
-import com.ktcn.dao.providerSQL.ElectricSQL;
 import com.ktcn.entity.Compressor_report;
 
 /*

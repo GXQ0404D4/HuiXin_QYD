@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.dao.MianNetworkDao;
-import com.ktcn.entity.Compressor_report;
 import com.ktcn.entity.Mian_network;
 import com.ktcn.service.MianNetworkService;
 import com.ktcn.utils.Export;

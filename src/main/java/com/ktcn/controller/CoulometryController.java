@@ -21,6 +21,7 @@ public class CoulometryController {
 	
 	// 查询全部方法
 //	@RequestMapping(value="ElectricityAnalysis",headers="Accept=application/json",produces="application/json;charset=UTF-8")
+	@SuppressWarnings("rawtypes")
 	@RequestMapping("ElectricityAnalysis")
 	public List<List> ElectricityAnalysis() {
 		// 24小时电量曲线信息

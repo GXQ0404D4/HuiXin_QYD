@@ -20,6 +20,7 @@ public class FlowAnalysisController {
 	private FlowAnalysisService flowAnalysisService;
 	
 	// 查询全部方法
+	@SuppressWarnings("rawtypes")
 	@RequestMapping("FlowAnalysis")
 	public List<List> FlowAnalysis() {
 		// 24小时电量曲线信息

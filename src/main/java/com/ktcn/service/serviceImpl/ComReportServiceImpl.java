@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.dao.ComReportDao;
 import com.ktcn.entity.Compressor_report;
-import com.ktcn.entity.Electric_massage;
 import com.ktcn.service.ComReportService;
 import com.ktcn.utils.Export;
 /*

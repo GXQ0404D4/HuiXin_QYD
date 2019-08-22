@@ -1,4 +1,4 @@
-package com.ktcn.common;
+/*package com.ktcn.common;
 
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
@@ -38,8 +38,8 @@ public class test implements Runnable,CommandLineRunner{
 		t.start();
 			}
 	public static void getdata(){
-		/*Runnable runnable = new Runnable() {
-		public void run() {*/
+		Runnable runnable = new Runnable() {
+		public void run() {
 		//获取本机电脑信息  kepserver信息
 				ConnectionInformation ci = OPCConfig.getConnectionInformation();
 		// 获取数据库存储的OPCaddress 地址详细
@@ -224,4 +224,4 @@ public class test implements Runnable,CommandLineRunner{
 		// TODO Auto-generated method stub
 		
 	}
-}
+}*/

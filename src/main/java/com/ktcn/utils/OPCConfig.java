@@ -21,6 +21,7 @@ import org.openscada.opc.lib.common.ConnectionInformation;
  *
  */
 public class OPCConfig {
+
     private static OPCConfig OPCCONFIG=new OPCConfig();
 	
 	private OPCConfig(){}
@@ -62,11 +63,11 @@ public class OPCConfig {
 		return ci;
      }
 	//获取properties 文件内容
-	 public static void getPropertiesFromResourceBundleInputStream() throws IOException {	
+	/* public static void getPropertiesFromResourceBundleInputStream() throws IOException {	
 		 InputStream in = new BufferedInputStream(new FileInputStream("src/main/resources/config.properties"));
 		 Properties p = new Properties();
 		 p.load(in);
 		 System.out.println(p.getProperty("password"));
 	        
-	 }
+	 }*/
 }

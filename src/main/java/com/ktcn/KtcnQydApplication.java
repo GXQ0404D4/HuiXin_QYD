@@ -1,9 +1,15 @@
 package com.ktcn;
 
+import java.util.List;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableScheduling;
+
+import com.ktcn.controller.Test;
+import com.ktcn.entity.Opc_address;
+import com.ktcn.service.OPCAddressService;
+import com.ktcn.service.serviceImpl.OPCAddressServiceImpl;
 
 @SpringBootApplication
 @EnableScheduling
@@ -24,6 +30,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class KtcnQydApplication{
 
 	public static void main(String[] args) {
-		SpringApplication.run(KtcnQydApplication.class, args);
+		SpringApplication.run(KtcnQydApplication.class, args);	
+		
 	}
 }

@@ -7,10 +7,13 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import com.ktcn.entity.Opc_address;
-@Mapper
 @Repository
+@Mapper
 public interface OPCAddressDao {
-	@Select("SELECT * FROM opc_address")
-	List<Opc_address> GetALLAddress();
+	
+	@Select("SELECT tag_name FROM opc_address")
+	public List<Opc_address> GetALLAddress();
+	
+	
 
 }

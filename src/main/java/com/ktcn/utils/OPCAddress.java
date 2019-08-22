@@ -2,39 +2,32 @@ package com.ktcn.utils;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.ktcn.dao.OPCAddressDao;
 import com.ktcn.entity.Opc_address;
 import com.ktcn.service.OPCAddressService;
-@Controller
+import com.ktcn.service.serviceImpl.OPCAddressServiceImpl;
+@RestController
 public class OPCAddress {
-	/*private  static OPCAddress OPCADDRESS= new OPCAddress();
-	
-	public OPCAddress(){}
-	
-	@SuppressWarnings("unused")
-	private final static OPCAddress getOPCADDRESS(){
 		
-		return OPCADDRESS;		
-	}*/
-	
 	@Autowired
-	private   OPCAddressService OPCAddressServiceImpl;
+    OPCAddressService OPCAddressServiceImpl;
 	
-	@ResponseBody
 	@RequestMapping("/opcaddress")
-	public final   List<Opc_address> GetAllAddress(){
-		//查询所有opc地址 		
-		List<Opc_address> getALLAddress = OPCAddressServiceImpl.GetAllAddress();
-		for (Opc_address opc_address : getALLAddress) {
-			String tag_name = opc_address.getTag_name();
-			System.out.println(tag_name+"tag_name");
-		}
+	public List<Opc_address> GetAllAddress(){	
+		/*List<Opc_address> allAddress = OPCAddressServiceImpl.GetAllAddress();*/
 		
-		return getALLAddress;
+		/*for (Opc_address address : allAddress) {
+			String name = address.getTag_name();
+			System.out.println(name);
+		}*/
+		//查询所有点位值	
+		return OPCAddressServiceImpl.GetAllAddress();
 		
 	}
 	

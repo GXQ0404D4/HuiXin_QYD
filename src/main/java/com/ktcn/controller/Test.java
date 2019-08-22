@@ -13,8 +13,8 @@ import com.ktcn.service.Login_Service;
 public class Test {
 	Logger logger = LoggerFactory.getLogger(Test.class);
 	@Autowired 
-	Login_Service login_serviceimp;
-	
+	private Login_Service login_serviceimp;
+
 	@RequestMapping("test")
 	public String test() {
 		logger.info("进入测试方法");

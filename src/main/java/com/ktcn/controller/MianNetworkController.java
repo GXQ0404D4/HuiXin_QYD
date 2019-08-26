@@ -25,7 +25,6 @@ import com.ktcn.service.MianNetworkService;
 public class MianNetworkController {
 	@Resource
 	private MianNetworkService mianNetworkService;
-	
 	// 查询全部总管网信息
 	@RequestMapping("TotalReport")
 	public List<Mian_network> TotalReport() {

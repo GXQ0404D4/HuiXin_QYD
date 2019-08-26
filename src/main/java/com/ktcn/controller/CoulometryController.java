@@ -18,6 +18,25 @@ import com.ktcn.service.CoulometryService;
 public class CoulometryController {
 	@Resource
 	private CoulometryService coulometryService;
+	/* MySQL获取当天每个小时数据语句
+	 * SELECT HOUR(e.t_time) as Hour,sum(e.num) as Sum
+	FROM test_time e
+	WHERE e.t_date = (SELECT date_format(now(),'%Y-%m-%d'))
+	GROUP BY HOUR(e.t_time) ORDER BY Hour(e.t_time);
+	 */
+	/* MySQL获取当月每个小时数据语句
+	 * SELECT HOUR(e.t_time) as Hour,sum(e.num) as Sum
+	FROM test_time e
+	WHERE date_format( e.t_date, '%Y%m' ) = date_format(curdate( ) , '%Y%m' )
+	GROUP BY HOUR(e.t_time) ORDER BY Hour(e.t_time);
+	 */
+	/* MySQL根据时间区间获取每小时数据语句
+	 * SELECT t_date,HOUR(e.t_time) as Hour,sum(e.num) as Sum
+	FROM test_time e
+	WHERE
+	t_date BETWEEN '1970-01-01' AND '2020-01-01' 
+	GROUP BY HOUR(e.t_time) ORDER BY Hour(e.t_time);
+	 */
 	
 	// 查询全部方法
 //	@RequestMapping(value="ElectricityAnalysis",headers="Accept=application/json",produces="application/json;charset=UTF-8")

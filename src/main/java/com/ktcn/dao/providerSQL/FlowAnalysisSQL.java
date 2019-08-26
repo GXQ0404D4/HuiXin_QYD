@@ -43,7 +43,7 @@ public class FlowAnalysisSQL {
 					WHERE(s);
 				}
 			}
-		}.toString();
+		}.toString()+"GROUP BY HOUR(e.t_time) ORDER BY Hour(e.t_time)";
 		return sql;
 	}
 }

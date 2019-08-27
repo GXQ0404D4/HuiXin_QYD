@@ -19,6 +19,7 @@ public class OPCAddress {
     OPCAddressService OPCAddressServiceImpl;
 	
 	@RequestMapping("/opcaddress")
+	
 	public List<Opc_address> GetAllAddress(){	
 		/*List<Opc_address> allAddress = OPCAddressServiceImpl.GetAllAddress();*/
 		
@@ -27,7 +28,10 @@ public class OPCAddress {
 			System.out.println(name);
 		}*/
 		//查询所有点位值	
-		return OPCAddressServiceImpl.GetAllAddress();
+		List<Opc_address> getAllAddress = OPCAddressServiceImpl.GetAllAddress();
+		System.out.println(getAllAddress);
+		
+		return getAllAddress;
 		
 	}
 	

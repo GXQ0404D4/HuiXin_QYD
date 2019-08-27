@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-/*
- * 监控页面持久层
+/**
+ *历史数据持久层
+ *
  */
 @Mapper
 @Repository
-public interface MonitoringDao {
-
-	
+public interface DataMasterTable {
+  
 	void OpcDataMasterInsert(ArrayList<Boolean> sl, ArrayList<Float> fl);
+
 }

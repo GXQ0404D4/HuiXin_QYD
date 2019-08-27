@@ -39,9 +39,9 @@ import com.ktcn.utils.OPCConfig;
 @Component
 @Order(value = 2)
 public class UtgardTutorial1 implements CommandLineRunner {
-	private static final int PERIOD = 50;
+	private static final int PERIOD = 1000;
 
-	private static final int SLEEP = 1;
+	private static final int SLEEP = 50;
 	// 获取连接池信息
 	//private static final ConnectionInformation ci = OPCConfig.getConnectionInformation();
 	
@@ -51,16 +51,16 @@ public class UtgardTutorial1 implements CommandLineRunner {
 	OPCAddress opcaddress;
 
 	public void run(String... args) throws Exception {
-     /*Runnable runnable = new Runnable() {
-			public void run() {	*/		
+     Runnable runnable = new Runnable() {
+			public void run() {			
 		
 		         System.out.println("进入run方法"); 
 				// 获取连接池信息
 				ConnectionInformation ci = OPCConfig.getConnectionInformation();
 				
-				Data_master_table master_table = new Data_master_table();
+				//Data_master_table master_table = new Data_master_table();
 				
-				System.out.println("new 主数据表类"); 		
+				//System.out.println("new 主数据表类"); 		
 				
 				Map <String,Object> map= new HashMap<String,Object>();
 				// 获取所有点位值
@@ -77,7 +77,7 @@ public class UtgardTutorial1 implements CommandLineRunner {
 						JISystem.setJavaCoClassAutoCollection(false);
 						server.connect();
 						// ms，启动一个异步的access用来读取地址上的值，线程池每500ms读值一次
-						final AccessBase access = new Async20Access(server, PERIOD, false); // 使用Async20Access类隔时间段地进行异步读取数据，它实现了IOPCDataCallback接口，					
+						final AccessBase access = new Async20Access(server, PERIOD, true); // 使用Async20Access类隔时间段地进行异步读取数据，它实现了IOPCDataCallback接口，					
 						// 这是个回调函数，就是读到值后执行这个打印，是用匿名类写的，当然也可以写到外面去
 						access.addItem(itemId, new DataCallback() {
 							@Override
@@ -134,10 +134,10 @@ public class UtgardTutorial1 implements CommandLineRunner {
 					}
 				}
 			}
-		/*};
+		};
 		ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
 		// 第二个参数为首次执行的延时时间，第三个参数为定时执行的间隔时间
-		service.scheduleAtFixedRate(runnable, 0, 1000, TimeUnit.SECONDS);*/
+		service.scheduleAtFixedRate(runnable, 0, 1000, TimeUnit.SECONDS);
 
-	//}
+	}
 }

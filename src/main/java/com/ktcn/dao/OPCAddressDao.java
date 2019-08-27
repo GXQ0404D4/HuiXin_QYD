@@ -11,7 +11,7 @@ import com.ktcn.entity.Opc_address;
 @Mapper
 public interface OPCAddressDao {
 	
-	@Select("SELECT tag_name FROM opc_address")
+	@Select("SELECT * FROM opc_address")
 	public List<Opc_address> GetALLAddress();
 	
 	

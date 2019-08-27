@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.entity.Maintenance;
 import com.ktcn.service.MaintenanceService;
+import com.ktcn.utils.MD5Util;
 
 /*
  * 维保记录控制层
@@ -21,8 +22,12 @@ public class MaintenanceController {
 	// 新增维保计划
 	@RequestMapping("MtcApply")
 	public String MtcApply(Maintenance maintenance) {
-		maintenanceService.addMaintenance(maintenance);
-		return "success";
+		if (MD5Util.getMaintenanceCode().equals(maintenance.getMt_num())) {
+			maintenanceService.addMaintenance(maintenance);
+			return "success";
+		} else {
+			return "error";
+		}
 	}
 	
 	// 查看维保计划

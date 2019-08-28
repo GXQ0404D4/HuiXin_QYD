@@ -15,7 +15,7 @@ public class MaintenanceSQL {
 			// 编写拼接SQL代码块
 			{
 				SELECT("*");
-				FROM("`maintenance`");
+				FROM("`maintenance` WHERE data_state=1");
 				if (timeA!=null && !"".equals(timeA) && timeB!=null && !"".equals(timeB)) {
 					// 任务名称
 					String s = "`mt_time` BETWEEN '"+ timeA +"' AND '"+ timeB +"'";

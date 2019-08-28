@@ -18,4 +18,5 @@ public class Maintenance {
 	private String mt_personnel;// 维保人员
 	private String mt_num;		// 维保码
 	private int mt_state;		// 机器状态
+	private int data_state;		// 数据状态码 0:可修改 1:不可修改
 }

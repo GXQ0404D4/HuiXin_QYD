@@ -3,6 +3,7 @@ package com.ktcn.service;
 import java.util.List;
 
 import com.ktcn.entity.Production_plan;
+import com.ktcn.entity.Tb_user;
 
 /*
  * 生产管理业务层
@@ -15,7 +16,7 @@ public interface ProductionService {
 	// 生产管理时间区间查询
 	List<Production_plan> findByTime(String pdt_selecttimeA, String pdt_selecttimeB);
 	// 新增生产管理
-	void addProduction(Production_plan production);
+	void addProduction(Production_plan production, Tb_user user);
 	// 生产管理汇报
 	void ProToReport(Production_plan production);
 	// 生产管理审批

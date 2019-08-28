@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ktcn.dao.providerSQL.ProductionSQL;
 import com.ktcn.entity.Production_plan;
+import com.ktcn.entity.Tb_user;
 
 /*
  * 生产管理表持久类
@@ -29,14 +30,14 @@ public interface ProductionDao {
 	@SelectProvider(method = "findByTime",type = ProductionSQL.class)
 	List<Production_plan> findByTime(@Param("pdt_selecttimeA") String pdt_selecttimeA, @Param("pdt_selecttimeB") String pdt_selecttimeB);
 	// 新增生产管理
-	@Insert("INSERT INTO production_plan (id,pdt_time,pdt_content,pdt_people,pdt_state,op_state) "
-			+ "VALUES (NULL,#{production.pdt_time},#{production.pdt_content},#{production.pdt_people},#{production.pdt_state},0)")
-	void addProduction(@Param("production") Production_plan production);
+	@Insert("INSERT INTO production_plan (id,pdt_time,pdt_content,pdt_people_id,pdt_people,pdt_state,op_state,data_state) "
+			+ "VALUES (NULL,#{production.pdt_time},#{production.pdt_content},#{user.user_id},#{user.name},#{production.pdt_state},0,0)")
+	void addProduction(@Param("production") Production_plan production,@Param("user") Tb_user user);
 	// 生产管理汇报
 	@Update("UPDATE production_plan SET pdt_report=#{production.pdt_report},pdt_Executor=#{production.pdt_Executor},op_state=1 WHERE id=#{production.id}")
 	void ProToReport(@Param("production") Production_plan production);
 	// 生产管理审批
-	@Update("UPDATE production_plan SET op_state=2 WHERE id=#{id}")
+	@Update("UPDATE production_plan SET op_state=2,data_state=1 WHERE id=#{id}")
 	void ProToApprove(@Param("id") int id);
 	
 }

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.dao.ProductionDao;
 import com.ktcn.entity.Production_plan;
+import com.ktcn.entity.Tb_user;
 import com.ktcn.service.ProductionService;
 /*
  * 生产管理业务层实现类
@@ -36,9 +37,9 @@ public class ProductionServiceImpl implements ProductionService {
 	}
 	// 新增生产管理
 	@Override
-	public void addProduction(Production_plan production) {
+	public void addProduction(Production_plan production, Tb_user user) {
 		production.setPdt_time(new Date());
-		productionDao.addProduction(production);
+		productionDao.addProduction(production,user);
 	}
 	// 生产管理汇报
 	@Override

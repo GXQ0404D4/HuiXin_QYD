@@ -17,6 +17,9 @@ import com.ktcn.entity.Tb_user;
 @Mapper
 @Repository
 public interface UserDao {
+	// 用户登录验证
+	@Select("SELECT * FROM `tb_user` WHERE account = #{user.account} AND `password` = #{user.password}")
+	Tb_user login(@Param("user") Tb_user user);
 	// 查看现有全部用户
 	@Select("SELECT * FROM `tb_user` WHERE state=0 ORDER BY createTime DESC")
 	List<Tb_user> findAllUser();
@@ -32,5 +35,8 @@ public interface UserDao {
 	// 用户注册功能
 	@Insert("INSERT INTO tb_user VALUES (NULL,#{user.account},#{user.password},#{user.name},#{user.sex},#{user.age},#{user.phone},#{user.user_name},#{user.working_group},#{user.createTime},0)")
 	void addUser(@Param("user") Tb_user user);
+	// 修改用户密码
+	@Update("UPDATE tb_user SET password=#{user.password} WHERE user_id=#{user.user_id}")
+	void ChangePassword(@Param("user") Tb_user user);
 	
 }

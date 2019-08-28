@@ -3,12 +3,14 @@ package com.ktcn.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.entity.Error_recording;
+import com.ktcn.entity.Tb_user;
 import com.ktcn.service.FaultRecordService;
 
 /*
@@ -42,25 +44,28 @@ public class FaultRecordController {
 	
 	// 新增故障记录
 	@RequestMapping(value="FaultRecord",method = RequestMethod.POST)
-	public String addFaultRecord(Error_recording error_recording){
-		System.out.println(error_recording);
-		faultRecordService.addFaultRecord(error_recording);
+	public String addFaultRecord(Error_recording error_recording, HttpServletRequest request){
+		// 获取当前登录用户信息
+		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+		// 调用新增故障记录方法
+		faultRecordService.addFaultRecord(error_recording,user);
 		return "success";
 	}
 	
 	// 删除故障记录
 	@RequestMapping(value="FaultRecord",method = RequestMethod.DELETE)
 	public String deleteFaultRecord(int id){
-		System.out.println(id);
 		faultRecordService.deleteFaultRecord(id);
 		return "success";
 	}
 	
 	// 修改故障记录
 	@RequestMapping(value="FaultRecord",method = RequestMethod.PUT)
-	public String updateFaultRecord(Error_recording error_recording){
-		System.out.println(error_recording);
-		faultRecordService.updateFaultRecord(error_recording);
+	public String updateFaultRecord(Error_recording error_recording, HttpServletRequest request){
+		// 获取当前登录用户
+		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+		// 调用修改故障记录方法
+		faultRecordService.updateFaultRecord(error_recording,user);
 		return "success";
 	}
 }

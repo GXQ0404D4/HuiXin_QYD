@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ktcn.dao.providerSQL.FaultRecordSQL;
 import com.ktcn.entity.Error_recording;
+import com.ktcn.entity.Tb_user;
 
 /*
  * 故障记录持久层
@@ -30,13 +31,13 @@ public interface FaultRecordDao {
 	@Select("SELECT * FROM `error_recording` WHERE fault_machine = #{fault_machine} ORDER BY time DESC")
 	List<Error_recording> findByName(@Param("fault_machine") String fault_machine);
 	// 新增故障记录
-	@Insert("INSERT INTO `error_recording` (fault_id,time,fault_machine,fault_picture,falut_Reporter,falut_state) VALUES (NULL,#{error_recording.time},#{error_recording.fault_machine},#{error_recording.fault_picture},#{error_recording.falut_Reporter},#{error_recording.falut_state})")
-	void addFaultRecord(@Param("error_recording") Error_recording error_recording);
+	@Insert("INSERT INTO `error_recording` (fault_id,time,fault_machine,fault_picture,falut_Reporter,falut_state) VALUES (NULL,#{error_recording.time},#{error_recording.fault_machine},#{error_recording.fault_picture},#{user.name},#{error_recording.falut_state})")
+	void addFaultRecord(@Param("error_recording") Error_recording error_recording, @Param("user") Tb_user user);
 	// 删除故障记录
 	@Delete("DELETE FROM `error_recording` WHERE fault_id = #{id}")
 	void deleteFaultRecord(@Param("id") int id);
 	// 修改故障记录
-	@Update("UPDATE `error_recording` SET falut_people=#{error_recording.falut_people},Repair_time=#{error_recording.Repair_time},falut_summary=#{error_recording.falut_summary} WHERE fault_id=#{error_recording.fault_id}")
-	void updateFaultRecord(@Param("error_recording") Error_recording error_recording);
+	@Update("UPDATE `error_recording` SET falut_people=#{user.name},Repair_time=#{error_recording.Repair_time},falut_summary=#{error_recording.falut_summary},falut_state=1 WHERE fault_id=#{error_recording.fault_id}")
+	void updateFaultRecord(@Param("error_recording") Error_recording error_recording,@Param("user") Tb_user user);
 
 }

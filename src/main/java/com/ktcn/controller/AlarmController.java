@@ -28,7 +28,6 @@ public class AlarmController {
 	// 修改报警设置
 	@RequestMapping("Alarmseteings_update")
 	public String Alarmseteings_update(Alarmseteings alarm) {
-		System.out.println(alarm);
 		alarmService.updateAlarm(alarm);
 		return "success";
 	}

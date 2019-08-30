@@ -14,11 +14,13 @@ public class OPCAddressServiceImpl implements OPCAddressService{
 	
 	@Autowired (required=true)
     OPCAddressDao opcaddressdao;
-	
-	
-	public List<Opc_address> GetAllAddress() {	
-	
-		return opcaddressdao.GetALLAddress();
+
+	@Override
+	public List<String> GetAllAddress() {
+		// TODO Auto-generated method stub
+		 return opcaddressdao.GetALLAddress();
 	}
+
+	
 
 }

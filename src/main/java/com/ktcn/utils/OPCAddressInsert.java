@@ -22,16 +22,12 @@ public class OPCAddressInsert {
 	public void GetOPCInsert(Map<String, Float> map1, Map<String, Boolean> map2){
     	
 		System.out.println("######################################################################################################################+++++ 进入到MAP 集合传递层"+map1.get("1#排气温度"));
-<<<<<<< HEAD
 		System.out.println(map2.toString());	
 		//Data_master_table data_master_table = new Data_master_table();
-=======
 		System.out.println(map1.toString());		
->>>>>>> branch 'master' of https://github.com/qiuxinquan1014/Ktcn_QYD.git
 			          
 		System.out.println("data master table "+map1.get("1#排气温度"));
 		
-<<<<<<< HEAD
 		/*Float float1 = map1.get("1#A相电压");
 		Float float2 = map1.get("1#A相电流");
 		Float float3 = map1.get("1#加载时间");
@@ -115,7 +111,6 @@ public class OPCAddressInsert {
       		System.out.println(DataMasterTable+"123456");*/
       		
 //      		DataMasterTable.OpcDataMasterInsert(f1,f2,f3,f4);
-=======
 		   Float float1 = map1.get("AI-1#有功功率");
 	        Float float2 = map1.get("AI-2#有功功率");
 	        Float float3 = map1.get("AI-3#有功功率");
@@ -189,7 +184,6 @@ public class OPCAddressInsert {
         data_master_table.setCumulative_flow(map1.get("累积流量"));
 					
       	
->>>>>>> branch 'master' of https://github.com/qiuxinquan1014/Ktcn_QYD.git
      		DataMasterTable.OpcDataMasterInsert(data_master_table);
 	
 	}

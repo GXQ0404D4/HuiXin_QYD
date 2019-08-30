@@ -12,16 +12,10 @@ import lombok.Data;
  * @author Administrator
  *
  */
-<<<<<<< HEAD
-
-/*@Component
-@ConfigurationProperties(prefix = "oss")*/
-=======
 
 
 @Component
 @ConfigurationProperties(prefix = "oss")
->>>>>>> branch 'master' of https://github.com/qiuxinquan1014/Ktcn_QYD.git
 @Data
 public class Data_master_table {
 	
@@ -78,10 +72,5 @@ public class Data_master_table {
 	private float Active_Service_Rate2;	// AI-2#有功功率
 	private float Active_Service_Rate3;	// AI-3#有功功率
 	private float pressure;				// 压力
-<<<<<<< HEAD
 	private float Cumulative_flow;		// 累积流量
-	
-=======
-	private float Cumulative_flow;		// 累积流量
->>>>>>> branch 'master' of https://github.com/qiuxinquan1014/Ktcn_QYD.git
 }

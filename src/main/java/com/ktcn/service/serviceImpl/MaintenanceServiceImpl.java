@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.dao.MaintenanceDao;
 import com.ktcn.entity.Maintenance;
+import com.ktcn.entity.Tb_user;
 import com.ktcn.service.MaintenanceService;
 /*
  * 维保记录业务层实现类
@@ -22,9 +23,9 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
 	// 新增维保计划
 	@Override
-	public void addMaintenance(Maintenance maintenance) {
+	public void addMaintenance(Maintenance maintenance, Tb_user user) {
 		maintenance.setMt_plan_time(new Date());
-		maintenanceDao.addMaintenance(maintenance);
+		maintenanceDao.addMaintenance(maintenance,user);
 	}
 	// 查看维保计划
 	@Override

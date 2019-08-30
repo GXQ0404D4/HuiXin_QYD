@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.dao.FaultRecordDao;
 import com.ktcn.entity.Error_recording;
+import com.ktcn.entity.Tb_user;
 import com.ktcn.service.FaultRecordService;
 /*
  * 故障记录业务层实现类
@@ -36,9 +37,9 @@ public class FaultRecordServiceImpl implements FaultRecordService {
 	}
 	// 新增故障记录
 	@Override
-	public void addFaultRecord(Error_recording error_recording) {
+	public void addFaultRecord(Error_recording error_recording, Tb_user user) {
 		error_recording.setTime(new Date());
-		faultRecordDao.addFaultRecord(error_recording);
+		faultRecordDao.addFaultRecord(error_recording,user);
 	}
 	// 删除故障记录
 	@Override
@@ -47,8 +48,8 @@ public class FaultRecordServiceImpl implements FaultRecordService {
 	}
 	// 修改故障记录
 	@Override
-	public void updateFaultRecord(Error_recording error_recording) {
+	public void updateFaultRecord(Error_recording error_recording, Tb_user user) {
 		error_recording.setRepair_time(new Date());
-		faultRecordDao.updateFaultRecord(error_recording);
+		faultRecordDao.updateFaultRecord(error_recording,user);
 	}
 }

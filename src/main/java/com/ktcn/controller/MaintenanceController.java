@@ -3,12 +3,15 @@ package com.ktcn.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.entity.Maintenance;
+import com.ktcn.entity.Tb_user;
 import com.ktcn.service.MaintenanceService;
+import com.ktcn.utils.MD5Util;
 
 /*
  * 维保记录控制层
@@ -20,9 +23,17 @@ public class MaintenanceController {
 	
 	// 新增维保计划
 	@RequestMapping("MtcApply")
-	public String MtcApply(Maintenance maintenance) {
-		maintenanceService.addMaintenance(maintenance);
-		return "success";
+	public String MtcApply(Maintenance maintenance, HttpServletRequest request) {
+		// 判断用户输入维保码是否有效
+		if (MD5Util.getMaintenanceCode().equals(maintenance.getMt_num())) {
+			// 获取当前用户
+			Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+			// 调用新增维保计划方法
+			maintenanceService.addMaintenance(maintenance,user);
+			return "success";
+		} else {
+			return "error";
+		}
 	}
 	
 	// 查看维保计划

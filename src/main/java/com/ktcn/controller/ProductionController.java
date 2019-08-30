@@ -3,11 +3,13 @@ package com.ktcn.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.entity.Production_plan;
+import com.ktcn.entity.Tb_user;
 import com.ktcn.service.ProductionService;
 
 /*
@@ -41,22 +43,33 @@ public class ProductionController {
 	
 	// 新增生产管理
 	@RequestMapping("Prodaction")
-	public String Prodaction(Production_plan production) {
-		productionService.addProduction(production);
+	public String Prodaction(Production_plan production, HttpServletRequest request) {
+		// 获取当前登录用户
+		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+		// 调用新增生产管理方法
+		productionService.addProduction(production,user);
 		return "success";
 	}
 	
 	// 生产管理汇报
 	@RequestMapping("ProToReport")
-	public String ProToReport(Production_plan production) {
+	public String ProToReport(Production_plan production, HttpServletRequest request) {
+		// 调用生产管理汇报方法
 		productionService.ProToReport(production);
 		return "success";
 	}
 	
 	// 生产管理审批
 	@RequestMapping("ProToApprove")
-	public String ProToApprove(int id) {
-		productionService.ProToApprove(id);
-		return "success";
+	public String ProToApprove(int id, int pdt_people_id, HttpServletRequest request) {
+		// 获取当前登录用户
+		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+		// 判断此信息是否是当前用户发布的,是则执行,不是则返回error
+		if (user.getUser_id() == pdt_people_id) {
+			// 判断成功则调用生产管理审批方法
+			productionService.ProToApprove(id);
+			return "success";
+		}
+		return "error";
 	}
 }

@@ -1,15 +1,9 @@
 package com.ktcn;
 
-import java.util.List;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
-
-import com.ktcn.controller.Test;
-import com.ktcn.entity.Opc_address;
-import com.ktcn.service.OPCAddressService;
-import com.ktcn.service.serviceImpl.OPCAddressServiceImpl;
 
 @SpringBootApplication
 @EnableScheduling

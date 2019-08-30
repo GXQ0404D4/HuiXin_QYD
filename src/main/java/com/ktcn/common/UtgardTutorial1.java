@@ -1,4 +1,5 @@
-/*package com.ktcn.common;
+
+package com.ktcn.common;
 
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
@@ -36,8 +37,8 @@ import com.ktcn.utils.OPCAddress;
 import com.ktcn.utils.OPCAddressInsert;
 import com.ktcn.utils.OPCConfig;
 
-@Component
-@Order(value = 2)
+/*@Component
+@Order(value = 2)*/
 public class UtgardTutorial1 implements CommandLineRunner {
 	private static final int PERIOD = 200;
 
@@ -46,7 +47,6 @@ public class UtgardTutorial1 implements CommandLineRunner {
 	private static final ConnectionInformation ci = OPCConfig.getConnectionInformation();
 	
 	Data_master_table datamaster =new Data_master_table();
-	datamaster.
 	
 	// 获取地址值 的controller类
 	@Autowired
@@ -84,10 +84,7 @@ public class UtgardTutorial1 implements CommandLineRunner {
 						// 这是个回调函数，就是读到值后执行这个打印，是用匿名类写的，当然也可以写到外面去
 						access.addItem(itemId, new DataCallback() {
 							@Override
-							public void changed(Item item, ItemState itemState) {
-                             	Float value = itemState.getValue();							
-								map1.put(Address, value);
-								
+							public void changed(Item item, ItemState itemState) {                             								
 								int type = 0;
 			                    try {
 			                        type = itemState.getValue().getType(); // 类型实际是数字，用常量定义的
@@ -141,9 +138,7 @@ public class UtgardTutorial1 implements CommandLineRunner {
 						String format1 = date1.format(new Date(System.currentTimeMillis()));						
 						System.out.println(format1 + "+++++++++++++++++++++++++++++++++++采集结束时间数据");
 						
-						if (i == 93) {
-							//System.out.println("hahahahahahahahahahahahahahahahahahahahahahahahahahahah");
-							//OPCAddressInsert opcAddressInsert = new OPCAddressInsert();
+						if (i == 94) {
 							opcaddressinsert.GetOPCInsert(map1,map2);
 						}
 					} catch (final JIException e) {
@@ -178,4 +173,5 @@ public class UtgardTutorial1 implements CommandLineRunner {
 		service.scheduleAtFixedRate(runnable, 0, 1, TimeUnit.SECONDS);
 
 	}
-}*/
+}
+

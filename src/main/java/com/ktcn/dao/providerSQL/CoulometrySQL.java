@@ -14,26 +14,26 @@ public class CoulometrySQL {
 		String sql = new SQL() {
 			// 编写拼接SQL代码块
 			{
-				SELECT("*");
-				FROM("`electric_massage`");
+				SELECT("MONTH(e.`current_time`) as vMonth,DAY(e.`current_time`) as vDay,HOUR(e.`current_time`) as vTime,sum(e.electric_quantity) as vValue");
+				FROM("`electric_massage` e");
 				if (timeA!=null && !"".equals(timeA) && timeB!=null && !"".equals(timeB)) {
 					// 任务名称
 					String s = "`current_time` BETWEEN '"+ timeA +"' AND '"+ timeB +"'";
 					WHERE(s);
-				}
-				if (timeA!=null && !"".equals(timeA)) {
+				} else 
+				if (timeB==null && "".equals(timeB)) {
 					Date date = new Date();
 					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					String nowDate = format.format(date);
 					// 任务名称
 					String s = "`current_time` BETWEEN '"+ timeA +"' AND '"+ nowDate +"'";
 					WHERE(s);
-				}
+				} else 
 				if (timeB!=null && !"".equals(timeB)) {
 					// 任务名称
 					String s = "`current_time` BETWEEN '1970-01-01 00:00:00' AND '"+ timeB +"'";
 					WHERE(s);
-				}
+				} else 
 				if (timeA==null && "".equals(timeA) && timeB==null && "".equals(timeB)) {
 					Date date = new Date();
 					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -43,7 +43,7 @@ public class CoulometrySQL {
 					WHERE(s);
 				}
 			}
-		}.toString();
+		}.toString()+" GROUP BY MONTH(e.`current_time`),DAY(e.`current_time`),Hour(e.`current_time`) ";
 		return sql;
 	}
 }

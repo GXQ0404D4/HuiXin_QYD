@@ -20,7 +20,6 @@ import com.ktcn.utils.MD5Util;
 public class MaintenanceController {
 	@Resource
 	private MaintenanceService maintenanceService;
-	
 	// 新增维保计划
 	@RequestMapping("MtcApply")
 	public String MtcApply(Maintenance maintenance, HttpServletRequest request) {

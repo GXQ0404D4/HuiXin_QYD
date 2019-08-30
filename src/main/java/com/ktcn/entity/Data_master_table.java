@@ -9,6 +9,9 @@ import lombok.Data;
  * @author Administrator
  *
  */
+
+/*@Component
+@ConfigurationProperties(prefix = "oss")*/
 @Data
 public class Data_master_table {
 	
@@ -35,7 +38,7 @@ public class Data_master_table {
 	private float Coolant_temperature_2;// 2#冷却剂温度
 	private float Sump_Pressure_2;		// 2#分离前压力
 	private float Loading_pressure_2;	// 2#加载压力
-	private Date Loading_time_2;		// 2#加载时间
+	private float Loading_time_2;		// 2#加载时间
 	private float Unloading_pressure_2;	// 2#卸载压力
 	private int Alarm_number_2;			// 2#报警号
 	private float Exhaust_pressure_2;	//2#排气压力
@@ -43,7 +46,7 @@ public class Data_master_table {
 	private int Control_state_2;		// 2#控制状态字
 	private float total_energy_2;		// 2#正向有功总电能
 	private int Warning_sign_2;			// 2#警告号
-	private Date Running_time_2;		// 2#运行时间
+	private float Running_time_2;		// 2#运行时间
 	private int Remote_switch_2;		// 2#远程功能开关 
 	private float VoltageA_3;			// 3#A相电压
 	private float Electric_currentA_3;	// 3#A相电流
@@ -66,4 +69,5 @@ public class Data_master_table {
 	private float Active_Service_Rate3;	// AI-3#有功功率
 	private float pressure;				// 压力
 	private float Cumulative_flow;		// 累积流量
+	
 }

@@ -30,24 +30,4 @@ public class KtcnQydApplication{
 		SpringApplication.run(KtcnQydApplication.class, args);	
 	}
 	
-<<<<<<< HEAD
-=======
-	/*
-	  * 解决跨域问题
-	  */
-	 private CorsConfiguration buildConfig() {
-	  CorsConfiguration corsConfiguration = new CorsConfiguration();
-	  corsConfiguration.addAllowedOrigin("*");
-	  corsConfiguration.addAllowedHeader("*");
-	  corsConfiguration.addAllowedMethod("*");
-	  return corsConfiguration;
-	 }
-	 
-	 public CorsFilter corsFilter() {
-	  System.out.println("=====设置跨域过滤器=====");
-	  UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-	  source.registerCorsConfiguration("/**", buildConfig());
-	  return new CorsFilter(source);
-	 }
->>>>>>> branch 'master' of https://github.com/qiuxinquan1014/Ktcn_QYD.git
 }

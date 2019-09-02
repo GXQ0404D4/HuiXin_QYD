@@ -15,14 +15,7 @@ import com.ktcn.entity.Data_master_table;
 @Repository
 @ComponentScan(basePackages ="com.ktcn.dao.DataMasterTable")
 public interface DataMasterTable {
-<<<<<<< HEAD
-=======
-  	
->>>>>>> branch 'master' of https://github.com/qiuxinquan1014/Ktcn_QYD.git
+
 	void OpcDataMasterInsert(Data_master_table data_master_table);
-<<<<<<< HEAD
-=======
 
-
->>>>>>> branch 'master' of https://github.com/qiuxinquan1014/Ktcn_QYD.git
 }

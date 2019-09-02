@@ -6,9 +6,9 @@
   <!-- 指明映射的dao数据层 -->
 <mapper namespace="com.ktcn.dao.OPCSwitch_output_Dao" >
 
-<update id="OPCswitch_output_update" parameterMap="">
+<update id="OPCswitch_output_update" parameterType="java.util.Map" >
 
-
+   
 </update>
 
 

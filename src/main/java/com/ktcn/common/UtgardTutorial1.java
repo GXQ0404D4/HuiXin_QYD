@@ -3,7 +3,6 @@ package com.ktcn.common;
 
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -32,13 +31,12 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import com.ktcn.entity.Data_master_table;
-import com.ktcn.entity.Opc_address;
 import com.ktcn.utils.OPCAddress;
 import com.ktcn.utils.OPCAddressInsert;
 import com.ktcn.utils.OPCConfig;
 
-/*@Component
-@Order(value = 2)*/
+@Component
+@Order(value = 2)
 public class UtgardTutorial1 implements CommandLineRunner {
 	private static final int PERIOD = 200;
 

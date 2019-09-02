@@ -17,7 +17,7 @@
                D:/logs2/%d{yyyy-MM-dd}/%d{yyyy-MM-dd}.log
             </FileNamePattern>
      <!-- 日志文件保留天数 -->
-            <maxHistory>60</maxHistory>
+            <maxHistory>30</maxHistory>
         </rollingPolicy>
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>
@@ -25,8 +25,26 @@
             </Pattern>
         </layout>
     </appender>
+    <!-- 只筛选ERROR信息 -->
+    <appender name="file_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Prudent>true</Prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>D:/logs/error/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+        <!-- 日志文件保留天数 -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    <!-- INFO信息后台打印输入, ERROR信息写入日志文件保存至本地 -->
     <root level="INFO">
         <appender-ref ref="console" />
-        <appender-ref ref="logFile" />
+        <appender-ref ref="file_error" />
     </root>
 </configuration>

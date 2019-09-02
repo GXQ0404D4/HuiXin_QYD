@@ -2,6 +2,8 @@ package com.ktcn.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 /*
@@ -10,6 +12,7 @@ import lombok.Data;
 @Data
 public class Production_plan {
 	private int id;				// 主键
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date pdt_time;		// 生产管理时间
 	private String pdt_content;	// 生产管理内容
 	private int pdt_people_id;	// 布置人ID

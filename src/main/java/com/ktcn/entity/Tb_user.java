@@ -2,6 +2,8 @@ package com.ktcn.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 /*
@@ -18,6 +20,7 @@ public class Tb_user {
 	private String phone;		// 联系电话
 	private String user_name;	// 职位
 	private String working_group;// 工组
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createTime;	// 用户创建时间
 	private int state;			// 状态码
 }

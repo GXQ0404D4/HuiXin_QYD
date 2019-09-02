@@ -2,6 +2,8 @@ package com.ktcn.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 /*
  * 电量报表
@@ -19,6 +21,8 @@ public class Electric_massage {
 	private float instantaneous_power;// 瞬时功率
 	private float electric_quantity;// 电量
 	private float power_factor;		// 功率因数
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date current_time;		// 当前时间
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date current_date;		// 存入日期
 }

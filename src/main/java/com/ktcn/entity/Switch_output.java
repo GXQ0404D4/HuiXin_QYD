@@ -2,6 +2,8 @@ package com.ktcn.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 /*
@@ -14,5 +16,6 @@ public class Switch_output {
 	private int switch_ouput;
 	private int state;
 	private String introduce;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date time;
 }

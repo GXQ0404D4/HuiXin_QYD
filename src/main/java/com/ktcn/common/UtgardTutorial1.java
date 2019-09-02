@@ -36,17 +36,17 @@ import com.ktcn.entity.Opc_address;
 import com.ktcn.utils.OPCAddress;
 import com.ktcn.utils.OPCAddressInsert;
 import com.ktcn.utils.OPCConfig;
-
-/*@Component
+/*
+@Component
 @Order(value = 2)*/
 public class UtgardTutorial1 implements CommandLineRunner {
-	private static final int PERIOD = 200;
+	private static final int PERIOD = 10;
 
-	private static final int SLEEP = 15;
+	private static final long SLEEP = 5;
 	// 获取连接池信息
 	private static final ConnectionInformation ci = OPCConfig.getConnectionInformation();
 	
-	Data_master_table datamaster =new Data_master_table();
+	//Data_master_table datamaster =new Data_master_table();
 	
 	// 获取地址值 的controller类
 	@Autowired
@@ -61,6 +61,7 @@ public class UtgardTutorial1 implements CommandLineRunner {
 				     									
 				Map <String,Float> map1= new HashMap<String,Float>();
 				Map <String,Boolean> map2= new HashMap<String,Boolean>();
+				Map <String,Long> map3= new HashMap<String,Long>();
 				//Map <String,Object> map2= new HashMap<String,Object>();
 				// 获取所有点位值
 
@@ -91,9 +92,9 @@ public class UtgardTutorial1 implements CommandLineRunner {
 			                    } catch (JIException e) {
 			                        e.printStackTrace();
 			                    }
-			                    System.out.println("监控项的数据类型是：-----" + type);
+			                    /*System.out.println("监控项的数据类型是：-----" + type);
 			                    System.out.println("监控项的时间戳是：-----" + itemState.getTimestamp().getTime());
-			                    System.out.println("监控项的详细信息是：-----" + itemState);
+			                    System.out.println("监控项的详细信息是：-----" + itemState);*/
 			 
 			                    // 如果读到是boolean类型的值
 			                    if (type == JIVariant.VT_BOOL) {
@@ -104,7 +105,7 @@ public class UtgardTutorial1 implements CommandLineRunner {
 			                        } catch (JIException e) {
 			                            e.printStackTrace();
 			                        }
-			                        System.out.println("-----boolean类型值： " + n); 
+			                       // System.out.println("-----boolean类型值： " + n); 
 			                    }
 			 
 			                    // 如果读到是Float类型的值
@@ -116,33 +117,48 @@ public class UtgardTutorial1 implements CommandLineRunner {
 			                        } catch (JIException e) {
 			                            e.printStackTrace();
 			                        } // 按字符串读取		                       
-			                        System.out.println("-----float类型值： " + value); 
+			                       // System.out.println("-----float类型值： " + value); 
 			                    }
+			                    
+			                    // 如果读到是long类型的值
+			                    if(type == JIVariant.VT_I4) {  // 字符串的类型是8
+			                        Long value = null;
+			                        try {
+			                            value = (long) itemState.getValue().getObjectAsInt();
+			                            map3.put(Address.toString(), value);
+			                        } catch (JIException e) {
+			                            e.printStackTrace();
+			                        } // 按字符串读取		                       
+			                       // System.out.println("-#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$#$s----shrot类型值： " + value); 
+			                    }
+			                    
+			                    
+			                    
 							
 															
 							}
 						});
 						// start reading，开始读值
 						access.bind();
-						SimpleDateFormat date = new SimpleDateFormat("yyyy年MM月dd日：HH:mm:ss---SSS(毫秒)");						
+						/*SimpleDateFormat date = new SimpleDateFormat("yyyy年MM月dd日：HH:mm:ss---SSS(毫秒)");						
 						String format = date.format(new Date(System.currentTimeMillis()));								
 						System.out.println(map1 + "+++++++++++++++++++++++++++++++++++采集Float数据集合");
-						System.out.println(format + "+++++++++++++++++++++++++++++++++++采集开始时间数据");
+						System.out.println(format + "+++++++++++++++++++++++++++++++++++采集开始时间数据");*/
 						// wait a little bit，有个10秒延时(1000 1秒可用)
 						Thread.sleep(SLEEP);
 						
 						
 						// stop reading，停止读取
 						access.unbind();
-						SimpleDateFormat date1 = new SimpleDateFormat("yyyy年MM月dd日：HH:mm:ss---SSS(毫秒)");
+					/*	SimpleDateFormat date1 = new SimpleDateFormat("yyyy年MM月dd日：HH:mm:ss---SSS(毫秒)");
 						String format1 = date1.format(new Date(System.currentTimeMillis()));						
-						System.out.println(format1 + "+++++++++++++++++++++++++++++++++++采集结束时间数据");
+						System.out.println(format1 + "+++++++++++++++++++++++++++++++++++采集结束时间数据");*/
 						
-						if (i == 94) {
-							opcaddressinsert.GetOPCInsert(map1,map2);
+						if (i == 93) {
+							opcaddressinsert.GetOPCInsert(map1,map2,map3);
 						}
 					} catch (final JIException e) {
-						System.out.println(String.format("%08X: %s", e.getErrorCode(), server.getErrorMessage(e.getErrorCode())));
+						//System.out.println(String.format("%08X: %s", e.getErrorCode(), server.getErrorMessage(e.getErrorCode())));
 					} catch (IllegalArgumentException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

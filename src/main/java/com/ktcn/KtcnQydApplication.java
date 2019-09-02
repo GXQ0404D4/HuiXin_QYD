@@ -4,6 +4,9 @@ package com.ktcn;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 @SpringBootApplication
 @EnableScheduling
@@ -27,4 +30,22 @@ public class KtcnQydApplication{
 		SpringApplication.run(KtcnQydApplication.class, args);	
 		
 	}
+	
+	/*
+	  * 解决跨域问题
+	  */
+	 private CorsConfiguration buildConfig() {
+	  CorsConfiguration corsConfiguration = new CorsConfiguration();
+	  corsConfiguration.addAllowedOrigin("*");
+	  corsConfiguration.addAllowedHeader("*");
+	  corsConfiguration.addAllowedMethod("*");
+	  return corsConfiguration;
+	 }
+	 
+	 public CorsFilter corsFilter() {
+	  System.out.println("=====设置跨域过滤器=====");
+	  UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	  source.registerCorsConfiguration("/**", buildConfig());
+	  return new CorsFilter(source);
+	 }
 }

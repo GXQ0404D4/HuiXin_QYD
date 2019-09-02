@@ -44,8 +44,25 @@
                     Active_Service_Rate2,
                     Active_Service_Rate3,
                     pressure,
-                    Cumulative_flow
-           
+                    Cumulative_flow,
+                    Loading_time_1,
+                    Alarm_number_1,
+                    Control_state_1,
+                    Warning_sign_1,
+                    Running_time_1,
+                    Remote_switch_1,
+                    Loading_time_2,
+                    <!-- Alarm_number_2, -->
+                    Control_state_2,
+                    Warning_sign_2,
+                    Running_time_2,
+                    Remote_switch_2,
+                    Loading_time_3,
+                   <!--  Alarm_number_3, -->
+                    Control_state_3,
+                   <!--  Warning_sign_3, -->
+                    Running_time_3,
+                    Remote_switch_3
                     ) 
    VALUES (NULL,
 		   #{VoltageA_1},
@@ -82,23 +99,28 @@
 		   #{Active_Service_Rate2},			  
 		   #{Active_Service_Rate3},			  
 		   #{pressure},			  
-		   #{Cumulative_flow}			  
-		  		   
+		   #{Cumulative_flow},
+		   #{Loading_time_1},
+		   #{Alarm_number_1},
+		   #{Control_state_1},
+		   #{Warning_sign_1},
+		   #{Running_time_1},
+		   #{Remote_switch_1},
+		   #{Loading_time_2},
+		  <!--  #{Alarm_number_2}, -->
+		   #{Control_state_2},
+		   #{Warning_sign_2},
+		   #{Running_time_2},
+		   #{Remote_switch_2},
+		   #{Loading_time_3},
+		  <!--  #{Alarm_number_3}, -->
+		   #{Control_state_3},
+		  <!--  #{Warning_sign_3}, -->
+		   #{Running_time_3},
+		   #{Remote_switch_3}		   			  		  		   
 		   );
 
 </insert>
-  <!--  Sump_Pressure_1,
-                    Loading_pressure_1,
-                    Unloading_pressure_1,
-                    Exhaust_pressure_1,
-                    Exhaust_temperature_1,
-                    Total_energy_1
- -->
-<!--  #{Sump_Pressure_1},
-		   #{Loading_pressure_1},
-		   #{Unloading_pressure_1},
-		   #{Exhaust_pressure_1},
-		   #{Exhaust_temperature_1},
-		   #{Total_energy_1} -->
+                  
 
 </mapper>

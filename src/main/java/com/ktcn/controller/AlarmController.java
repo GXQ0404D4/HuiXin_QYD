@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ktcn.aspect.SysLog;
 import com.ktcn.entity.Alarmseteings;
 import com.ktcn.service.AlarmService;
 
@@ -20,6 +21,7 @@ public class AlarmController {
 	
 	// 查看报警设置
 	@RequestMapping("Alarmseteings")
+	@SysLog(logModule = "报警控制", logName = "查看")
 	public List<Alarmseteings> Alarmseteings(){
 		List<Alarmseteings> alarmseteings = alarmService.findAll();
 		return alarmseteings;

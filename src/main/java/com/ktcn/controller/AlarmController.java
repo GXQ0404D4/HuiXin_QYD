@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ktcn.aspect.SysLog;
 import com.ktcn.entity.Alarmseteings;
@@ -18,13 +19,12 @@ import com.ktcn.service.AlarmService;
 public class AlarmController {
 	@Resource
 	private AlarmService alarmService;
-	
 	// 查看报警设置
 	@RequestMapping("Alarmseteings")
 	@SysLog(logModule = "报警设置", logName = "查看")
-	public List<Alarmseteings> Alarmseteings(){
-		List<Alarmseteings> alarmseteings = alarmService.findAll();
-		return alarmseteings;
+	public List<Alarmseteings> Alarmseteings(ModelAndView model) {
+			List<Alarmseteings> alarmseteings = alarmService.findAll();
+			return alarmseteings;
 	}
 	
 	// 修改报警设置
@@ -34,4 +34,5 @@ public class AlarmController {
 		alarmService.updateAlarm(alarm);
 		return "success";
 	}
+	
 }

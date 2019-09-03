@@ -1,18 +1,12 @@
 package com.ktcn.utils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.dao.DataMasterTable;
 import com.ktcn.entity.Data_master_table;
-import com.ktcn.entity.Switch_output;
-import com.ktcn.service.OPCSwitch_output_Service;
 
 /**
 * @Title: OPCAddressInsert.java
@@ -21,25 +15,27 @@ import com.ktcn.service.OPCSwitch_output_Service;
 * @author GXQ
 * @version V1.0
 */
+@Component
 public class OPCAddressInsert {
 	
     @Autowired
-    DataMasterTable DataMasterTable;
-    @Autowired
-    Data_master_table data_master_table;
-    @Autowired
-    OPCSwitch_output_Service opcswitch_output_service;
-    
+    private DataMasterTable DataMasterTable;
+	
+	@Autowired 
+	private Data_master_table data_master_table;
+	 
+   // @Autowired
+   //OPCSwitch_output_Service opcswitch_output_service;
     
 	public void GetOPCInsert(Map<String, Float> map1, Map<String, Boolean> map2, Map<String, Long> map3){
     	
-		
 		/*Switch_output 数据*/
 		//opcswitch_output_service.OPCswitch_output_update(map2);
 		/*data_master_table 数据*/
+		
 		data_master_table.setVoltageA_1(map1.get("1#A相电压"));
-        data_master_table.setElectric_currentA_1(map1.get("1#A相电流"));
-        data_master_table.setHost_temperature_1(map1.get("1#主机温度"));
+		data_master_table.setElectric_currentA_1(map1.get("1#A相电流"));
+		data_master_table.setHost_temperature_1(map1.get("1#主机温度"));
         data_master_table.setCoolant_temperature_1(map1.get("1#冷却剂温度"));     
         data_master_table.setSump_Pressure_1(map1.get("1#分离前压力"));
         data_master_table.setLoading_time_1(map1.get("1#加载时间"));
@@ -87,13 +83,14 @@ public class OPCAddressInsert {
         //data_master_table.setWarning_sign_3(map3.get("3#警告号"));
         data_master_table.setRunning_time_3(map1.get("3#运行时间"));
         data_master_table.setRemote_switch_3(map3.get("3#远程功能开关"));
-                   
+         
         data_master_table.setActive_Service_Rate1(map1.get("AI-1#有功功率"));
         data_master_table.setActive_Service_Rate2(map1.get("AI-2#有功功率"));      
         data_master_table.setActive_Service_Rate3(map1.get("AI-3#有功功率"));      
         data_master_table.setPressure(map1.get("压力"));
         data_master_table.setCumulative_flow(map1.get("累积流量"));
-					     	
+        
+			     	
      	DataMasterTable.OpcDataMasterInsert(data_master_table);
 	
 	}

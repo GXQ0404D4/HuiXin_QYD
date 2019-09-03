@@ -62,6 +62,7 @@ public class ProductionController {
 	@RequestMapping("ProToReport")
 	@SysLog(logModule = "生产管理", logName = "汇报")
 	public String ProToReport(Production_plan production, HttpServletRequest request) {
+		System.out.println(production);
 		// 调用生产管理汇报方法
 		productionService.ProToReport(production);
 		return "success";

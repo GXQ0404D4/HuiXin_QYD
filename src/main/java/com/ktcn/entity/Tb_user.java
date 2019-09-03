@@ -23,4 +23,5 @@ public class Tb_user {
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createTime;	// 用户创建时间
 	private int state;			// 状态码
+	private int userPower;		// 权限码
 }

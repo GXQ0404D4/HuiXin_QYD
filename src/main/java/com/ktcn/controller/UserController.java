@@ -21,7 +21,7 @@ public class UserController {
 	@Resource
 	private UserService userService;
 	
-	// 登录方法(备用)
+	// 登录方法
 	@RequestMapping("login")
 	@SysLog(logModule = "用户管理", logName = "登录")
 	public String login(Tb_user user, HttpServletRequest request) {

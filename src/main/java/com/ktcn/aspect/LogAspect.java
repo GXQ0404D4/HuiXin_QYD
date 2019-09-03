@@ -85,9 +85,9 @@ public class LogAspect {
                         log.setOperModel(logModule);
                         log.setOperName(logName);
                         log.setUserIp(ip);
-                        logger.info("日志信息"+log.toString());
-                        logger.info("用户信息"+user.toString());
-                        logger.info("操作用户IP"+ip);
+                        logger.info("日志信息: "+log.toString());
+                        logger.info("用户信息: "+user.toString());
+                        logger.info("操作用户IP: "+ip);
                         logService.addUserLog(log);
                     }
                 }

@@ -16,7 +16,7 @@ import com.ktcn.entity.Log;
 @Mapper
 public interface LogDao {
 	// 添加操作日志
-	@Insert("INSERT INTO log VALUES (NULL,#{log.user_id},#{log.user},#{log.operTime},#{log.operModel},#{log.operName})")
+	@Insert("INSERT INTO log VALUES (NULL,#{log.user_id},#{log.user},#{log.operTime},#{log.operModel},#{log.operName},#{log.userIp})")
 	void addUserLog(@Param("log") Log log);
 	
 }

@@ -24,6 +24,9 @@ public class UserServiceImpl implements UserService {
 	// 用户登录验证
 	@Override
 	public Tb_user login(Tb_user user) {
+		// 密码加密
+		user.setPassword(MD5Util.encodeByMd5_32(user.getPassword()));
+		// 调用登录方法
 		return userDao.login(user);
 	}
 	// 查看现有全部用户

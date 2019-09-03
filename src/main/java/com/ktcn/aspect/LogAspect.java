@@ -1,6 +1,7 @@
 package com.ktcn.aspect;
 
 import java.lang.reflect.Method;
+import java.net.InetAddress;
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -53,7 +54,7 @@ public class LogAspect {
         	user.setUser_id(123);
         	user.setName("日志测试用户");
             // 获取ip地址
-//            String ip = InetAddress.getLocalHost().toString();
+            String ip = InetAddress.getLocalHost().toString();
             String logModule = null;
             String logName = null;
             // 获取类的全限定名
@@ -83,8 +84,10 @@ public class LogAspect {
                         log.setOperTime(new Date());
                         log.setOperModel(logModule);
                         log.setOperName(logName);
+                        log.setUserIp(ip);
                         logger.info("日志信息"+log.toString());
                         logger.info("用户信息"+user.toString());
+                        logger.info("操作用户IP"+ip);
                         logService.addUserLog(log);
                     }
                 }

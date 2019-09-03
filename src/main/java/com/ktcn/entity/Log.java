@@ -18,4 +18,5 @@ public class Log {
 	private Date operTime;		// 操作时间
 	private String operModel;	// 操作模块
 	private String operName	;	// 操作功能
+	private String userIp;		// 用户ip
 }

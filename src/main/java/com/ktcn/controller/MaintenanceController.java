@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ktcn.aspect.SysLog;
 import com.ktcn.entity.Maintenance;
 import com.ktcn.entity.Tb_user;
 import com.ktcn.service.MaintenanceService;
@@ -22,6 +23,7 @@ public class MaintenanceController {
 	private MaintenanceService maintenanceService;
 	// 新增维保计划
 	@RequestMapping("MtcApply")
+	@SysLog(logModule = "维保记录", logName = "新增维保计划")
 	public String MtcApply(Maintenance maintenance, HttpServletRequest request) {
 		// 判断用户输入维保码是否有效
 		if (MD5Util.getMaintenanceCode().equals(maintenance.getMt_num())) {
@@ -37,6 +39,7 @@ public class MaintenanceController {
 	
 	// 查看维保计划
 	@RequestMapping("MtcPlan")
+	@SysLog(logModule = "维保记录", logName = "查看维保计划")
 	public List<Maintenance> MtcPlan() {
 		List<Maintenance> maintenance = maintenanceService.findAll();
 		return maintenance;
@@ -44,6 +47,7 @@ public class MaintenanceController {
 	
 	// 执行维保计划
 	@RequestMapping("executeMtcPlan")
+	@SysLog(logModule = "维保记录", logName = "执行维保计划")
 	public String executeMtcPlan(Maintenance maintenance) {
 		maintenanceService.updateMaintenance(maintenance);
 		return "success";
@@ -51,6 +55,7 @@ public class MaintenanceController {
 	
 	// 查看全部维保记录
 	@RequestMapping("MtcRecords")
+	@SysLog(logModule = "维保记录", logName = "查看维保记录")
 	public List<Maintenance> MtcRecords() {
 		List<Maintenance> maintenance = maintenanceService.findAllOrdList();
 		return maintenance;
@@ -58,6 +63,7 @@ public class MaintenanceController {
 	
 	// 按时间区间查看维保记录
 	@RequestMapping("MtcRecords_time")
+	@SysLog(logModule = "维保记录", logName = "时间区间查看维保记录")
 	public List<Maintenance> MtcRecords_time(String TimeA, String TimeB) {
 		List<Maintenance> maintenance = maintenanceService.findByTime(TimeA,TimeB);
 		return maintenance;

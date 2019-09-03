@@ -15,6 +15,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ktcn.aspect.SysLog;
 import com.ktcn.entity.Electric_massage;
 import com.ktcn.service.ElectricMessService;
 
@@ -27,6 +28,7 @@ public class ElectricMessController {
 	private ElectricMessService electricMessService;
 	// 查询请求
 	@RequestMapping("ElectricityReport")
+	@SysLog(logModule = "电量报表", logName = "查看")
 	public List<Electric_massage> ElectricityReportt() {
 		// 查询全部电量报表信息
 		List<Electric_massage> electric = electricMessService.findAll();
@@ -34,6 +36,7 @@ public class ElectricMessController {
 	}
 	// 按照时间区间查询电量报表信息
 	@RequestMapping("ElectricityReport_time")
+	@SysLog(logModule = "电量报表", logName = "时间区间查看")
 	public List<Electric_massage> ElectricityReport_time(String current_timeA, String current_timeB) {
 		// 查询全部电量报表信息
 		List<Electric_massage> electric = electricMessService.findAllByTime(current_timeA,current_timeB);
@@ -42,6 +45,7 @@ public class ElectricMessController {
 	
 	// Excel导出电量报表数据
 	@RequestMapping(value="ElectricityReport_export")
+	@SysLog(logModule = "电量报表", logName = "导出Excel")
 	public void ElectricityReport_export(HttpServletRequest request,HttpServletResponse response,Electric_massage isEntity){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		StringBuffer sbBuffer = new StringBuffer();

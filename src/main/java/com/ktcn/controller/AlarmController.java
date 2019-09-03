@@ -21,7 +21,7 @@ public class AlarmController {
 	
 	// 查看报警设置
 	@RequestMapping("Alarmseteings")
-	@SysLog(logModule = "报警控制", logName = "查看")
+	@SysLog(logModule = "报警设置", logName = "查看")
 	public List<Alarmseteings> Alarmseteings(){
 		List<Alarmseteings> alarmseteings = alarmService.findAll();
 		return alarmseteings;
@@ -29,6 +29,7 @@ public class AlarmController {
 	
 	// 修改报警设置
 	@RequestMapping("Alarmseteings_update")
+	@SysLog(logModule = "报警设置", logName = "修改")
 	public String Alarmseteings_update(Alarmseteings alarm) {
 		alarmService.updateAlarm(alarm);
 		return "success";

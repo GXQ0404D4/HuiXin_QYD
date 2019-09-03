@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ktcn.aspect.SysLog;
 import com.ktcn.entity.Compressor_report;
 import com.ktcn.service.ComReportService;
 
@@ -30,6 +31,7 @@ public class ComReportController {
 	
 	// 查询全部空压机报表数据
 	@RequestMapping("CompressorReport")
+	@SysLog(logModule = "空压机报表", logName = "查看全部")
 	public List<Compressor_report> CompressorReport() {
 		// 查询全部空压机报表信息
 		List<Compressor_report> Cm_report = comReportService.findAll();
@@ -38,6 +40,7 @@ public class ComReportController {
 	
 	// 按照时间区间查询空压机报表数据
 	@RequestMapping("compressor_time")
+	@SysLog(logModule = "空压机报表", logName = "时间区间查看")
 	public List<Compressor_report> compressor_time(String current_timeA, String current_timeB){
 		// 根据时间区间查询空压机报表信息
 		List<Compressor_report> Cm_report = comReportService.findAllByTime(current_timeA,current_timeB);
@@ -46,6 +49,7 @@ public class ComReportController {
 	
 	// Excel导出空压机报表数据
 	@RequestMapping(value="compressor_export")
+	@SysLog(logModule = "空压机报表", logName = "导出Excel")
 	public void compressor_export(HttpServletRequest request,HttpServletResponse response,Compressor_report isEntity){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		StringBuffer sbBuffer = new StringBuffer();

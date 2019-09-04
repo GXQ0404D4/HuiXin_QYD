@@ -69,7 +69,7 @@ public class UserController {
 	}
 	
 	// 删除用户
-	@RequestMapping(value = "UserManagement",method = RequestMethod.DELETE)
+	@RequestMapping(value = "UserManagementDelete")
 	@SysLog(logModule = "用户管理", logName = "删除")
 	public String deleteUserById(int id, HttpServletRequest request){
 		// 获取当前登录用户
@@ -90,7 +90,7 @@ public class UserController {
 	}
 	
 	// 修改用户信息
-	@RequestMapping(value = "UserManagement",method = RequestMethod.PUT)
+	@RequestMapping(value = "UserManagementPut")
 	@SysLog(logModule = "用户管理", logName = "修改")
 	public String updateUserById(@RequestBody Map<String,String> map, HttpServletRequest request){
 		// 获取当前登录用户

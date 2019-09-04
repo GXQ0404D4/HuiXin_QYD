@@ -72,7 +72,7 @@ public class FaultRecordController {
 	}
 	
 	// 删除故障记录
-	@RequestMapping(value="FaultRecord",method = RequestMethod.DELETE)
+	@RequestMapping(value="FaultRecordDelete")
 	@SysLog(logModule = "故障记录", logName = "删除故障记录")
 	public String deleteFaultRecord(int id,HttpServletRequest request){
 		// 获取当前登录用户信息
@@ -93,7 +93,7 @@ public class FaultRecordController {
 	}
 	
 	// 修改故障记录
-	@RequestMapping(value="FaultRecord",method = RequestMethod.PUT)
+	@RequestMapping(value="FaultRecordPut")
 	@SysLog(logModule = "故障记录", logName = "修改故障记录")
 	public String updateFaultRecord(HttpServletRequest request,@RequestBody Map<String,String> map){
 		// 获取当前登录用户

@@ -50,7 +50,8 @@ public class ComReportController {
 	// Excel导出空压机报表数据
 	@RequestMapping(value="compressor_export")
 	@SysLog(logModule = "空压机报表", logName = "导出Excel")
-	public void compressor_export(HttpServletRequest request,HttpServletResponse response,Compressor_report isEntity){
+	public void compressor_export(HttpServletRequest request,HttpServletResponse response){
+		Compressor_report isEntity = new Compressor_report();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		StringBuffer sbBuffer = new StringBuffer();
 		sbBuffer.append("空压机报表_");

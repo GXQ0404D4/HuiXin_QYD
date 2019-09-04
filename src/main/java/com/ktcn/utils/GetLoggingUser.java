@@ -18,7 +18,6 @@ public class GetLoggingUser {
 	// 获取当前登录用户方法
 	public static Tb_user getLoggingUser() {
 		 HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		 System.out.println(request);
 		// 写入一个user
 		request.getSession().setAttribute("nowuser", new Tb_user());
 		// 获取登录用户, 并返回

@@ -1,6 +1,7 @@
 package com.ktcn.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -31,11 +32,11 @@ public interface ProductionDao {
 	List<Production_plan> findByTime(@Param("pdt_selecttimeA") String pdt_selecttimeA, @Param("pdt_selecttimeB") String pdt_selecttimeB);
 	// 新增生产管理
 	@Insert("INSERT INTO production_plan (id,pdt_time,pdt_content,pdt_people_id,pdt_people,pdt_state,op_state,data_state) "
-			+ "VALUES (NULL,#{production.pdt_time},#{production.pdt_content},#{user.user_id},#{user.name},#{production.pdt_state},0,0)")
-	void addProduction(@Param("production") Production_plan production,@Param("user") Tb_user user);
+			+ "VALUES (NULL,#{map.pdt_time},#{map.pdt_content},#{user.user_id},#{user.name},#{map.pdt_state},0,0)")
+	void addProduction(@Param("map") Map<String, String> map,@Param("user") Tb_user user);
 	// 生产管理汇报
-	@Update("UPDATE production_plan SET pdt_report=#{production.pdt_report},pdt_Executor=#{production.pdt_Executor},op_state=1 WHERE id=#{production.id}")
-	void ProToReport(@Param("production") Production_plan production);
+	@Update("UPDATE production_plan SET pdt_report=#{map.pdt_report},pdt_Executor=#{user.name},op_state=1 WHERE id=#{map.id}")
+	void ProToReport(@Param("map") Map<String, String> map,@Param("user") Tb_user user);
 	// 生产管理审批
 	@Update("UPDATE production_plan SET op_state=2,data_state=1 WHERE id=#{id}")
 	void ProToApprove(@Param("id") int id);

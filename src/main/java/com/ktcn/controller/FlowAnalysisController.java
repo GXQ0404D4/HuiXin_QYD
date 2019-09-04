@@ -58,7 +58,6 @@ public class FlowAnalysisController {
 	@RequestMapping("FlowAnalysis_Time")
 	@SysLog(logModule = "流量曲线分析", logName = "时间区间查看")
 	public List<V_chart> FlowAnalysis_Time(String TimeA, String TimeB) {
-		System.out.println("双时间方法"+TimeA+TimeB);
 		List<V_chart> z_network = flowAnalysisService.findByTime(TimeA,TimeB);
 		return z_network;
 	}

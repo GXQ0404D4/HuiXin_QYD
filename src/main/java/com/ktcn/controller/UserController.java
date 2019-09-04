@@ -1,10 +1,12 @@
 package com.ktcn.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,9 +26,9 @@ public class UserController {
 	// 登录方法
 	@RequestMapping("login")
 	@SysLog(logModule = "用户管理", logName = "登录")
-	public String login(Tb_user user, HttpServletRequest request) {
+	public String login(@RequestBody Map<String,String> map, HttpServletRequest request) {
 		// 用户验证方法
-		user = userService.login(user);
+		Tb_user user = userService.login(map);
 		if (user!=null) {
 			// 登录成功将用户信息存在session域中
 			request.getSession().setAttribute("nowuser", user);
@@ -64,8 +66,8 @@ public class UserController {
 	// 修改用户信息
 	@RequestMapping(value = "UserManagement",method = RequestMethod.PUT)
 	@SysLog(logModule = "用户管理", logName = "修改")
-	public String updateUserById(Tb_user user){
-		userService.updateUserById(user);
+	public String updateUserById(@RequestBody Map<String,String> map){
+		userService.updateUserById(map);
 		return "success";
 	}
 	
@@ -88,10 +90,10 @@ public class UserController {
 	// 用户注册功能
 	@RequestMapping("HomePage")
 	@SysLog(logModule = "用户管理", logName = "注册")
-	public String HomePage(Tb_user user, String password1) {
+	public String HomePage(@RequestBody Map<String,String> map, String password1) {
 		// 比较两次密码输入是否相同
-		if (password1.equals(user.getPassword())) {
-			userService.addUser(user);
+		if (password1.equals(map.get("password"))) {
+			userService.addUser(map);
 		} else {
 			return "两次密码输入不一致";
 		}

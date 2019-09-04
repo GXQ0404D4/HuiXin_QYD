@@ -1,6 +1,7 @@
 package com.ktcn.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -18,8 +19,8 @@ import com.ktcn.entity.Tb_user;
 @Repository
 public interface UserDao {
 	// 用户登录验证
-	@Select("SELECT * FROM `tb_user` WHERE account = #{user.account} AND `password` = #{user.password}")
-	Tb_user login(@Param("user") Tb_user user);
+	@Select("SELECT * FROM `tb_user` WHERE account = #{map.account} AND `password` = #{map.password}")
+	Tb_user login(@Param("user") Map<String, String> map);
 	// 查看现有全部用户
 	@Select("SELECT * FROM `tb_user` WHERE state=0 ORDER BY createTime DESC")
 	List<Tb_user> findAllUser();
@@ -30,11 +31,11 @@ public interface UserDao {
 	@Select("SELECT * FROM `tb_user` WHERE account LIKE '%${vague}%' OR name LIKE '%${vague}%' OR user_name LIKE '%${vague}%' OR working_group LIKE '%${vague}%'")
 	List<Tb_user> findUserByVague(@Param("vague") String vague);
 	// 修改用户信息
-	@Update("UPDATE tb_user SET user_name=#{user.user_name},working_group=#{user.working_group} WHERE user_id=#{user.user_id}")
-	void updateUserById(@Param("user") Tb_user user);
+	@Update("UPDATE tb_user SET user_name=#{map.user_name},working_group=#{map.working_group} WHERE user_id=#{map.user_id}")
+	void updateUserById(@Param("map") Map<String, String> map);
 	// 用户注册功能
-	@Insert("INSERT INTO tb_user VALUES (NULL,#{user.account},#{user.password},#{user.name},#{user.sex},#{user.age},#{user.phone},#{user.user_name},#{user.working_group},#{user.createTime},0)")
-	void addUser(@Param("user") Tb_user user);
+	@Insert("INSERT INTO tb_user VALUES (NULL,#{map.account},#{map.password},#{map.name},#{map.sex},#{map.age},#{map.phone},#{map.user_name},#{map.working_group},#{map.createTime},0)")
+	void addUser(@Param("map") Map<String, String> map);
 	// 修改用户密码
 	@Update("UPDATE tb_user SET password=#{user.password} WHERE user_id=#{user.user_id}")
 	void ChangePassword(@Param("user") Tb_user user);

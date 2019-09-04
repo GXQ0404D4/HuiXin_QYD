@@ -21,7 +21,6 @@ public class CoulometryController {
 	@Resource
 	private CoulometryService coulometryService;
 	// 查询全部方法
-//	@RequestMapping(value="ElectricityAnalysis",headers="Accept=application/json",produces="application/json;charset=UTF-8")
 	@SuppressWarnings("rawtypes")
 	@RequestMapping("ElectricityAnalysis")
 	@SysLog(logModule = "电量曲线分析", logName = "全部查看")

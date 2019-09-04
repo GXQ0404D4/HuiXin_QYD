@@ -1,12 +1,13 @@
 package com.ktcn.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.ktcn.aspect.SysLog;
 import com.ktcn.entity.Alarmseteings;
@@ -22,7 +23,7 @@ public class AlarmController {
 	// 查看报警设置
 	@RequestMapping("Alarmseteings")
 	@SysLog(logModule = "报警设置", logName = "查看")
-	public List<Alarmseteings> Alarmseteings(ModelAndView model) {
+	public List<Alarmseteings> Alarmseteings() {
 			List<Alarmseteings> alarmseteings = alarmService.findAll();
 			return alarmseteings;
 	}
@@ -30,8 +31,9 @@ public class AlarmController {
 	// 修改报警设置
 	@RequestMapping("Alarmseteings_update")
 	@SysLog(logModule = "报警设置", logName = "修改")
-	public String Alarmseteings_update(Alarmseteings alarm) {
-		alarmService.updateAlarm(alarm);
+	public String Alarmseteings_update(@RequestBody Map<String,String> map) {
+		// 调用方法
+		alarmService.updateAlarm(map);
 		return "success";
 	}
 	

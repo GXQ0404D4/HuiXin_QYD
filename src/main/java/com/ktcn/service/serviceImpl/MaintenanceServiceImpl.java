@@ -1,7 +1,9 @@
 package com.ktcn.service.serviceImpl;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -23,9 +25,9 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 
 	// 新增维保计划
 	@Override
-	public void addMaintenance(Maintenance maintenance, Tb_user user) {
-		maintenance.setMt_plan_time(new Date());
-		maintenanceDao.addMaintenance(maintenance,user);
+	public void addMaintenance(Map<String, String> map, Tb_user user) {
+		map.put("", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+		maintenanceDao.addMaintenance(map,user);
 	}
 	// 查看维保计划
 	@Override
@@ -34,9 +36,9 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 	}
 	// 执行维保计划
 	@Override
-	public void updateMaintenance(Maintenance maintenance) {
-		maintenance.setMt_time(new Date());
-		maintenanceDao.updateMaintenance(maintenance);
+	public void updateMaintenance(Map<String, String> map) {
+		map.put("mt_time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+		maintenanceDao.updateMaintenance(map);
 	}
 	// 查看全部维保记录
 	@Override

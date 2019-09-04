@@ -1,7 +1,9 @@
 package com.ktcn.service.serviceImpl;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -37,14 +39,15 @@ public class ProductionServiceImpl implements ProductionService {
 	}
 	// 新增生产管理
 	@Override
-	public void addProduction(Production_plan production, Tb_user user) {
-		production.setPdt_time(new Date());
-		productionDao.addProduction(production,user);
+	public void addProduction(Map<String, String> map, Tb_user user) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		map.put("pdt_time", format.format(new Date()));
+		productionDao.addProduction(map,user);
 	}
 	// 生产管理汇报
 	@Override
-	public void ProToReport(Production_plan production) {
-		productionDao.ProToReport(production);
+	public void ProToReport(Map<String, String> map, Tb_user user) {
+		productionDao.ProToReport(map,user);
 	}
 	// 生产管理审批
 	@Override

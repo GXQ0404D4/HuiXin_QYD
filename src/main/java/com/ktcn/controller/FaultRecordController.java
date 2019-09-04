@@ -1,10 +1,12 @@
 package com.ktcn.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,11 +51,18 @@ public class FaultRecordController {
 	// 新增故障记录
 	@RequestMapping(value="FaultRecord",method = RequestMethod.POST)
 	@SysLog(logModule = "故障记录", logName = "新增故障记录")
-	public String addFaultRecord(Error_recording error_recording, HttpServletRequest request){
+	public String addFaultRecord(HttpServletRequest request,@RequestBody Map<String,String> map){
+		
 		// 获取当前登录用户信息
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+		// 开发使用, 上线删除
+		if (user == null) {
+			user = new Tb_user();
+			user.setUser_id(111);
+			user.setName("测试用户名称");
+		}
 		// 调用新增故障记录方法
-		faultRecordService.addFaultRecord(error_recording,user);
+		faultRecordService.addFaultRecord(map,user);
 		return "success";
 	}
 	
@@ -68,11 +77,17 @@ public class FaultRecordController {
 	// 修改故障记录
 	@RequestMapping(value="FaultRecord",method = RequestMethod.PUT)
 	@SysLog(logModule = "故障记录", logName = "修改故障记录")
-	public String updateFaultRecord(Error_recording error_recording, HttpServletRequest request){
+	public String updateFaultRecord(HttpServletRequest request,@RequestBody Map<String,String> map){
 		// 获取当前登录用户
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+		// 开发使用, 上线删除
+		if (user == null) {
+			user = new Tb_user();
+			user.setUser_id(111);
+			user.setName("测试用户名称");
+		}
 		// 调用修改故障记录方法
-		faultRecordService.updateFaultRecord(error_recording,user);
+		faultRecordService.updateFaultRecord(map,user);
 		return "success";
 	}
 }

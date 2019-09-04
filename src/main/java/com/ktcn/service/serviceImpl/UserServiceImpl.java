@@ -1,7 +1,9 @@
 package com.ktcn.service.serviceImpl;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -23,11 +25,11 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 	// 用户登录验证
 	@Override
-	public Tb_user login(Tb_user user) {
+	public Tb_user login(Map<String, String> map) {
 		// 密码加密
-		user.setPassword(MD5Util.encodeByMd5_32(user.getPassword()));
+		map.put("password", MD5Util.encodeByMd5_32(map.get("password")));
 		// 调用登录方法
-		return userDao.login(user);
+		return userDao.login(map);
 	}
 	// 查看现有全部用户
 	@Override
@@ -46,17 +48,17 @@ public class UserServiceImpl implements UserService {
 	}
 	// 修改用户信息
 	@Override
-	public void updateUserById(Tb_user user) {
-		userDao.updateUserById(user);
+	public void updateUserById(Map<String, String> map) {
+		userDao.updateUserById(map);
 	}
 	// 用户注册功能
 	@Override
-	public void addUser(Tb_user user) {
+	public void addUser(Map<String, String> map) {
 		// 获取当前时间
-		user.setCreateTime(new Date());
+		map.put("createTime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		// 对用户密码进行MD5加密
-		user.setPassword(MD5Util.encodeByMd5_32(user.getPassword()));
-		userDao.addUser(user);
+		map.put("password", MD5Util.encodeByMd5_32(map.get("password")));
+		userDao.addUser(map);
 	}
 	// 修改用户密码
 	@Override
@@ -64,6 +66,12 @@ public class UserServiceImpl implements UserService {
 		if (newpassword1.equals(newpassword2)) {
 			if (request.getSession().getAttribute("nowuser").toString().equals(MD5Util.encodeByMd5_32(password))) {
 				Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+				// 开发使用, 上线删除
+				if (user == null) {
+					user = new Tb_user();
+					user.setUser_id(111);
+					user.setName("测试用户名称");
+				}
 				user.setPassword(MD5Util.encodeByMd5_32(password));
 				userDao.ChangePassword(user);
 			}

@@ -1,6 +1,7 @@
 package com.ktcn.service.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -25,7 +26,7 @@ public class AlarmServiceImpl implements AlarmService {
 	}
 	// 修改报警设置
 	@Override
-	public void updateAlarm(Alarmseteings alarm) {
-		alarmDao.updateAlarm(alarm);
+	public void updateAlarm(Map<String, String> map) {
+		alarmDao.updateAlarm(map);
 	}
 }

@@ -1,7 +1,9 @@
 package com.ktcn.service.serviceImpl;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -37,9 +39,9 @@ public class FaultRecordServiceImpl implements FaultRecordService {
 	}
 	// 新增故障记录
 	@Override
-	public void addFaultRecord(Error_recording error_recording, Tb_user user) {
-		error_recording.setTime(new Date());
-		faultRecordDao.addFaultRecord(error_recording,user);
+	public void addFaultRecord(Map<String, String> map, Tb_user user) {
+		map.put("time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+		faultRecordDao.addFaultRecord(map,user);
 	}
 	// 删除故障记录
 	@Override
@@ -48,8 +50,8 @@ public class FaultRecordServiceImpl implements FaultRecordService {
 	}
 	// 修改故障记录
 	@Override
-	public void updateFaultRecord(Error_recording error_recording, Tb_user user) {
-		error_recording.setRepair_time(new Date());
-		faultRecordDao.updateFaultRecord(error_recording,user);
+	public void updateFaultRecord(Map<String, String> map, Tb_user user) {
+		map.put("repair_time", new SimpleDateFormat("yyyy-MM--dd HH:mm:ss").format(new Date()));
+		faultRecordDao.updateFaultRecord(map,user);
 	}
 }

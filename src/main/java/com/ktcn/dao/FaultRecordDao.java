@@ -1,6 +1,7 @@
 package com.ktcn.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -31,13 +32,13 @@ public interface FaultRecordDao {
 	@Select("SELECT * FROM `error_recording` WHERE fault_machine = #{fault_machine} ORDER BY time DESC")
 	List<Error_recording> findByName(@Param("fault_machine") String fault_machine);
 	// 新增故障记录
-	@Insert("INSERT INTO `error_recording` (fault_id,time,fault_machine,fault_picture,falut_Reporter,falut_state) VALUES (NULL,#{error_recording.time},#{error_recording.fault_machine},#{error_recording.fault_picture},#{user.name},#{error_recording.falut_state})")
-	void addFaultRecord(@Param("error_recording") Error_recording error_recording, @Param("user") Tb_user user);
+	@Insert("INSERT INTO `error_recording` (fault_id,time,fault_machine,fault_picture,falut_Reporter,falut_state) VALUES (NULL,#{map.time},#{map.fault_machine},#{map.fault_picture},#{user.name},#{map.falut_state})")
+	void addFaultRecord(@Param("map") Map<String, String> map, @Param("user") Tb_user user);
 	// 删除故障记录
 	@Delete("DELETE FROM `error_recording` WHERE fault_id = #{id}")
 	void deleteFaultRecord(@Param("id") int id);
 	// 修改故障记录
-	@Update("UPDATE `error_recording` SET falut_people=#{user.name},Repair_time=#{error_recording.Repair_time},falut_summary=#{error_recording.falut_summary},falut_state=1 WHERE fault_id=#{error_recording.fault_id}")
-	void updateFaultRecord(@Param("error_recording") Error_recording error_recording,@Param("user") Tb_user user);
+	@Update("UPDATE `error_recording` SET falut_people=#{user.name},Repair_time=#{map.Repair_time},falut_summary=#{map.falut_summary},falut_state=1 WHERE fault_id=#{map.fault_id}")
+	void updateFaultRecord(@Param("map") Map<String, String> map,@Param("user") Tb_user user);
 
 }

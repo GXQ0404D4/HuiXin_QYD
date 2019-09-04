@@ -1,10 +1,12 @@
 package com.ktcn.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,13 +26,19 @@ public class MaintenanceController {
 	// 新增维保计划
 	@RequestMapping("MtcApply")
 	@SysLog(logModule = "维保记录", logName = "新增维保计划")
-	public String MtcApply(Maintenance maintenance, HttpServletRequest request) {
+	public String MtcApply(@RequestBody Map<String,String> map, HttpServletRequest request) {
 		// 判断用户输入维保码是否有效
-		if (MD5Util.getMaintenanceCode().equals(maintenance.getMt_num())) {
+		if (MD5Util.getMaintenanceCode().equals(map.get("mt_num"))) {
 			// 获取当前用户
 			Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+			// 开发使用, 上线删除
+			if (user == null) {
+				user = new Tb_user();
+				user.setUser_id(111);
+				user.setName("测试用户名称");
+			}
 			// 调用新增维保计划方法
-			maintenanceService.addMaintenance(maintenance,user);
+			maintenanceService.addMaintenance(map,user);
 			return "success";
 		} else {
 			return "error";
@@ -48,8 +56,8 @@ public class MaintenanceController {
 	// 执行维保计划
 	@RequestMapping("executeMtcPlan")
 	@SysLog(logModule = "维保记录", logName = "执行维保计划")
-	public String executeMtcPlan(Maintenance maintenance) {
-		maintenanceService.updateMaintenance(maintenance);
+	public String executeMtcPlan(Map<String,String> map) {
+		maintenanceService.updateMaintenance(map);
 		return "success";
 	}
 	

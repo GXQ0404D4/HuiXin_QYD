@@ -1,6 +1,7 @@
 package com.ktcn.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -20,10 +21,10 @@ public interface AlarmDao {
 	@Select("SELECT * FROM `alarmseteings`")
 	List<Alarmseteings> findAll();
 	// 修改报警设置
-	@Update("UPDATE `alarmseteings` SET position_name=#{alarm.position_name},"
-			+ "`describe`=#{alarm.describe},measured_value=#{alarm.measured_value},"
-			+ "company=#{alarm.company},upperlimit=#{alarm.upperlimit},"
-			+ "lowerlimit=#{alarm.lowerlimit},ULrange=#{alarm.ULrange},LLlimit=#{alarm.LLlimit} WHERE ala_id=#{alarm.ala_id}")
-	void updateAlarm(@Param("alarm") Alarmseteings alarm);
+	@Update("UPDATE `alarmseteings` SET position_name=#{map.position_name},"
+			+ "`describe`=#{map.describe},measured_value=#{map.measured_value},"
+			+ "company=#{map.company},upperlimit=#{map.upperlimit},"
+			+ "lowerlimit=#{map.lowerlimit},ULrange=#{map.ULrange},LLlimit=#{map.LLlimit} WHERE ala_id=#{map.ala_id}")
+	void updateAlarm(@Param("map") Map<String, String> map);
 
 }

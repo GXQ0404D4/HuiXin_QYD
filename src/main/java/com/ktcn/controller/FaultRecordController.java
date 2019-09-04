@@ -60,18 +60,36 @@ public class FaultRecordController {
 			user = new Tb_user();
 			user.setUser_id(111);
 			user.setName("测试用户名称");
+			user.setUserPower(2);
 		}
-		// 调用新增故障记录方法
-		faultRecordService.addFaultRecord(map,user);
-		return "success";
+		if (user.getUserPower() == 2) {
+			// 调用新增故障记录方法
+			faultRecordService.addFaultRecord(map,user);
+			return "success";
+		} else {
+			return null;
+		}
 	}
 	
 	// 删除故障记录
 	@RequestMapping(value="FaultRecord",method = RequestMethod.DELETE)
 	@SysLog(logModule = "故障记录", logName = "删除故障记录")
-	public String deleteFaultRecord(int id){
-		faultRecordService.deleteFaultRecord(id);
-		return "success";
+	public String deleteFaultRecord(int id,HttpServletRequest request){
+		// 获取当前登录用户信息
+		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+		// 开发使用, 上线删除
+		if (user == null) {
+			user = new Tb_user();
+			user.setUser_id(111);
+			user.setName("测试用户名称");
+			user.setUserPower(2);
+		}
+		if (user.getUserPower() == 2) {
+			faultRecordService.deleteFaultRecord(id);
+			return "success";
+		} else {
+			return null;
+		}
 	}
 	
 	// 修改故障记录
@@ -85,9 +103,14 @@ public class FaultRecordController {
 			user = new Tb_user();
 			user.setUser_id(111);
 			user.setName("测试用户名称");
+			user.setUserPower(1);
 		}
-		// 调用修改故障记录方法
-		faultRecordService.updateFaultRecord(map,user);
-		return "success";
+		if (user.getUserPower() == 1 || user.getUserPower() == 2) {
+			// 调用修改故障记录方法
+			faultRecordService.updateFaultRecord(map,user);
+			return "success";
+		} else {
+			return null;
+		}
 	}
 }

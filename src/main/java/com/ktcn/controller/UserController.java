@@ -29,7 +29,7 @@ public class UserController {
 	public String login(@RequestBody Map<String,String> map, HttpServletRequest request) {
 		// 用户验证方法
 		Tb_user user = userService.login(map);
-		if (user!=null) {
+		if (user != null) {
 			// 登录成功将用户信息存在session域中
 			request.getSession().setAttribute("nowuser", user);
 			return "success";
@@ -50,33 +50,85 @@ public class UserController {
 	// 查看现有全部用户
 	@RequestMapping(value = "UserManagement",method = RequestMethod.GET)
 	@SysLog(logModule = "用户管理", logName = "查看")
-	public List<Tb_user> UserManagement(){
-		List<Tb_user> user = userService.findAllUser();
-		return user;
+	public List<Tb_user> UserManagement(HttpServletRequest request){
+		// 获取当前登录用户
+		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+		// 开发使用, 上线删除
+		if (user == null) {
+			user = new Tb_user();
+			user.setUser_id(1);
+			user.setName("测试用户名称");
+			user.setUserPower(4);
+		}
+		if (user.getUserPower() == 4) {
+			List<Tb_user> list = userService.findAllUser();
+			return list;
+		} else {
+			return null;
+		}
 	}
 	
 	// 删除用户
 	@RequestMapping(value = "UserManagement",method = RequestMethod.DELETE)
 	@SysLog(logModule = "用户管理", logName = "删除")
-	public String deleteUserById(int id){
-		userService.deleteUserById(id);
-		return "success";
+	public String deleteUserById(int id, HttpServletRequest request){
+		// 获取当前登录用户
+		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+		// 开发使用, 上线删除
+		if (user == null) {
+			user = new Tb_user();
+			user.setUser_id(1);
+			user.setName("测试用户名称");
+			user.setUserPower(4);
+		}
+		if (user.getUserPower() == 4) {
+			userService.deleteUserById(id);
+			return "success";
+		} else {
+			return null;
+		}
 	}
 	
 	// 修改用户信息
 	@RequestMapping(value = "UserManagement",method = RequestMethod.PUT)
 	@SysLog(logModule = "用户管理", logName = "修改")
-	public String updateUserById(@RequestBody Map<String,String> map){
-		userService.updateUserById(map);
-		return "success";
+	public String updateUserById(@RequestBody Map<String,String> map, HttpServletRequest request){
+		// 获取当前登录用户
+		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+		// 开发使用, 上线删除
+		if (user == null) {
+			user = new Tb_user();
+			user.setUser_id(1);
+			user.setName("测试用户名称");
+			user.setUserPower(4);
+		}
+		if (user.getUserPower() == 4) {
+			userService.updateUserById(map);
+			return "success";
+		} else {
+			return null;
+		}
 	}
 	
 	// 条件查询用户
 	@RequestMapping("Userquery")
 	@SysLog(logModule = "用户管理", logName = "条件查询")
-	public List<Tb_user> Userquery(String vague){
-		List<Tb_user> user = userService.findUserByVague(vague);
-		return user;
+	public List<Tb_user> Userquery(String vague, HttpServletRequest request){
+		// 获取当前登录用户
+		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+		// 开发使用, 上线删除
+		if (user == null) {
+			user = new Tb_user();
+			user.setUser_id(1);
+			user.setName("测试用户名称");
+			user.setUserPower(4);
+		}
+		if (user.getUserPower() == 4) {
+			List<Tb_user> list = userService.findUserByVague(vague);
+			return list;
+		} else {
+			return null;
+		}
 	}
 	
 	// 修改用户密码
@@ -90,13 +142,26 @@ public class UserController {
 	// 用户注册功能
 	@RequestMapping("HomePage")
 	@SysLog(logModule = "用户管理", logName = "注册")
-	public String HomePage(@RequestBody Map<String,String> map, String password1) {
-		// 比较两次密码输入是否相同
-		if (password1.equals(map.get("password"))) {
-			userService.addUser(map);
-		} else {
-			return "两次密码输入不一致";
+	public String HomePage(@RequestBody Map<String,String> map, String password1, HttpServletRequest request) {
+		// 获取当前登录用户
+		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+		// 开发使用, 上线删除
+		if (user == null) {
+			user = new Tb_user();
+			user.setUser_id(1);
+			user.setName("测试用户名称");
+			user.setUserPower(4);
 		}
-		return "success";
+		if (user.getUserPower() == 4) {
+			// 比较两次密码输入是否相同
+			if (password1.equals(map.get("password"))) {
+				userService.addUser(map);
+			} else {
+				return "两次密码输入不一致";
+			}
+			return "success";
+		} else {
+			return null;
+		}
 	}
 }

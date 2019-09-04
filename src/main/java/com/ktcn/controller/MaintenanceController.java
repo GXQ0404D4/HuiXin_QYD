@@ -36,10 +36,15 @@ public class MaintenanceController {
 				user = new Tb_user();
 				user.setUser_id(111);
 				user.setName("测试用户名称");
+				user.setUserPower(2);
 			}
-			// 调用新增维保计划方法
-			maintenanceService.addMaintenance(map,user);
-			return "success";
+			if (user.getUserPower() ==2) {
+				// 调用新增维保计划方法
+				maintenanceService.addMaintenance(map,user);
+				return "success";
+			} else {
+				return null;
+			}
 		} else {
 			return "error";
 		}
@@ -56,9 +61,22 @@ public class MaintenanceController {
 	// 执行维保计划
 	@RequestMapping("executeMtcPlan")
 	@SysLog(logModule = "维保记录", logName = "执行维保计划")
-	public String executeMtcPlan(Map<String,String> map) {
-		maintenanceService.updateMaintenance(map);
-		return "success";
+	public String executeMtcPlan(Map<String,String> map,HttpServletRequest request) {
+		// 获取当前用户
+		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+		// 开发使用, 上线删除
+		if (user == null) {
+			user = new Tb_user();
+			user.setUser_id(111);
+			user.setName("测试用户名称");
+			user.setUserPower(1);
+		}
+		if (user.getUserPower() == 1 || user.getUserPower() == 2) {
+			maintenanceService.updateMaintenance(map);
+			return "success";
+		} else {
+			return null;
+		}
 	}
 	
 	// 查看全部维保记录

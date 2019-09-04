@@ -61,10 +61,15 @@ public class ProductionController {
 			user = new Tb_user();
 			user.setUser_id(111);
 			user.setName("测试用户名称");
+			user.setUserPower(2);
 		}
-		// 调用新增生产管理方法
-		productionService.addProduction(map,user);
-		return "success";
+		if (user.getUserPower() == 2) {
+			// 调用新增生产管理方法
+			productionService.addProduction(map,user);
+			return "success";
+		} else {
+			return null;
+		}
 	}
 	
 	// 生产管理汇报
@@ -78,11 +83,15 @@ public class ProductionController {
 			user = new Tb_user();
 			user.setUser_id(111);
 			user.setName("测试用户名称");
+			user.setUserPower(1);
 		}
-		
-		// 调用生产管理汇报方法
-		productionService.ProToReport(map,user);
-		return "success";
+		if (user.getUserPower() == 1 || user.getUserPower() == 2) {
+			// 调用生产管理汇报方法
+			productionService.ProToReport(map,user);
+			return "success";
+		} else {
+			return null;
+		}
 	}
 	
 	// 生产管理审批
@@ -96,13 +105,16 @@ public class ProductionController {
 			user = new Tb_user();
 			user.setUser_id(1);
 			user.setName("测试用户名称");
+			user.setUserPower(2);
 		}
-		// 判断此信息是否是当前用户发布的,是则执行,不是则返回error
-		if (user.getUser_id() == pdt_people_id) {
-			// 判断成功则调用生产管理审批方法
-			productionService.ProToApprove(id);
-			return "success";
+		if (user.getUserPower() == 2) {
+			// 判断此信息是否是当前用户发布的,是则执行,不是则返回error
+			if (user.getUser_id() == pdt_people_id) {
+				// 判断成功则调用生产管理审批方法
+				productionService.ProToApprove(id);
+				return "success";
+			}
 		}
-		return "error";
+		return null;
 	}
 }

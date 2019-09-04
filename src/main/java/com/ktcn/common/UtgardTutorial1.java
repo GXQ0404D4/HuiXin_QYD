@@ -11,6 +11,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import javax.annotation.Resource;
+
 import org.jinterop.dcom.common.JIException;
 import org.jinterop.dcom.common.JISystem;
 import org.jinterop.dcom.core.JIVariant;
@@ -37,8 +39,8 @@ import com.ktcn.utils.OPCAddress;
 import com.ktcn.utils.OPCAddressInsert;
 import com.ktcn.utils.OPCConfig;
 
-//@Component
-//@Order(value = 2)
+/*@Component
+@Order(value = 2)*/
 public class UtgardTutorial1 implements CommandLineRunner {
 	private static final int PERIOD = 10;
 
@@ -54,6 +56,8 @@ public class UtgardTutorial1 implements CommandLineRunner {
 	
 	@Autowired
 	OPCAddressInsert opcaddressinsert;
+	
+	//OPCAddressInsert a = new OPCAddressInsert();
 
 	public void run(String... args) throws Exception {
      Runnable runnable = new Runnable() {
@@ -66,7 +70,7 @@ public class UtgardTutorial1 implements CommandLineRunner {
 				List<String> allAddress = opcaddress.GetAllAddress();				
 				for (int i = 0; i < allAddress.size(); i++) {			    
 					String Address = allAddress.get(i);						
-					//String Address = address.getTag_name();												
+																	
 				    final String itemId = "Siemens Ethernet.S7-200 SMART." + Address;
 					final Server server = new Server(ci, Executors.newSingleThreadScheduledExecutor());					
 					try {						// 连接到服务
@@ -90,7 +94,7 @@ public class UtgardTutorial1 implements CommandLineRunner {
 			                    System.out.println("监控项的详细信息是：-----" + itemState);
 			 
 			                    // 如果读到是boolean类型的值
-			                    if (type == JIVariant.VT_BOOL) {
+			                    if (type == JIVariant.VT_BOOL || type == JIVariant.VT_EMPTY) {
 			                        Boolean n = null;
 			                        try {
 			                            n = itemState.getValue().getObjectAsBoolean();
@@ -102,7 +106,7 @@ public class UtgardTutorial1 implements CommandLineRunner {
 			                    }
 			 
 			                    // 如果读到是Float类型的值
-			                    if(type == JIVariant.VT_R4) {  // 字符串的类型是8
+			                    if(type == JIVariant.VT_R4 || type == JIVariant.VT_EMPTY) {  
 			                        Float value = null;
 			                        try {
 			                            value = itemState.getValue().getObjectAsFloat();
@@ -113,7 +117,7 @@ public class UtgardTutorial1 implements CommandLineRunner {
 			                        System.out.println("-----float类型值： " + value); 
 			                    }			                    
 			                    // 如果读到是long类型的值
-			                    if(type == JIVariant.VT_I4) {  // 字符串的类型是8
+			                    if(type == JIVariant.VT_I4 || type == JIVariant.VT_EMPTY) {  
 			                        Long value = null;
 			                        try {
 			                            value = (long) itemState.getValue().getObjectAsInt();

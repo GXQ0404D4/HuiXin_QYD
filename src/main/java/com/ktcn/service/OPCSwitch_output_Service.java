@@ -1,6 +1,10 @@
 package com.ktcn.service;
 
+import java.util.List;
 import java.util.Map;
+
+import com.ktcn.entity.Switch_output;
+import com.ktcn.entity.Switch_output_value;
 
 /**
 * @Title: OPCSwitch_output.java
@@ -12,5 +16,10 @@ import java.util.Map;
 */
 public interface OPCSwitch_output_Service {
 
-	void OPCswitch_output_update(Map<String, Boolean> map2);
+	void getswitch(Switch_output_value switch1);
+
+	//List<Switch_output> getswitch(long l1, long l2, long l3);
+
+	
+
 }

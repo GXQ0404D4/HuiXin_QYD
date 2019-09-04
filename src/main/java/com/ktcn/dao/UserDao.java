@@ -31,10 +31,10 @@ public interface UserDao {
 	@Select("SELECT * FROM `tb_user` WHERE account LIKE '%${vague}%' OR name LIKE '%${vague}%' OR user_name LIKE '%${vague}%' OR working_group LIKE '%${vague}%'")
 	List<Tb_user> findUserByVague(@Param("vague") String vague);
 	// 修改用户信息
-	@Update("UPDATE tb_user SET user_name=#{map.user_name},working_group=#{map.working_group} WHERE user_id=#{map.user_id}")
+	@Update("UPDATE tb_user SET user_name=#{map.user_name},working_group=#{map.working_group},#{map.userPower} WHERE user_id=#{map.user_id}")
 	void updateUserById(@Param("map") Map<String, String> map);
 	// 用户注册功能
-	@Insert("INSERT INTO tb_user VALUES (NULL,#{map.account},#{map.password},#{map.name},#{map.sex},#{map.age},#{map.phone},#{map.user_name},#{map.working_group},#{map.createTime},0)")
+	@Insert("INSERT INTO tb_user VALUES (NULL,#{map.account},#{map.password},#{map.name},#{map.sex},#{map.age},#{map.phone},#{map.user_name},#{map.working_group},#{map.createTime},0,#{map.userPower})")
 	void addUser(@Param("map") Map<String, String> map);
 	// 修改用户密码
 	@Update("UPDATE tb_user SET password=#{user.password} WHERE user_id=#{user.user_id}")

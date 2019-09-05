@@ -24,6 +24,6 @@ public interface UserService {
 	// 用户注册功能
 	void addUser(Map<String, String> map);
 	// 修改用户密码
-	String ChangePassword(String password, String newpassword1, String newpassword2, HttpServletRequest request);
+	String ChangePassword(Map<String, String> map, HttpServletRequest request);
 
 }

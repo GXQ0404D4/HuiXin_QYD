@@ -19,8 +19,8 @@ import com.ktcn.entity.Tb_user;
 @Repository
 public interface UserDao {
 	// 用户登录验证
-	@Select("SELECT * FROM `tb_user` WHERE account = #{map.account} AND `password` = #{map.password}")
-	Tb_user login(@Param("user") Map<String, String> map);
+	@Select("SELECT * FROM `tb_user` WHERE account = #{map.account} AND `password` = #{map.password} AND `state` = 0")
+	Tb_user login(@Param("map") Map<String, String> map);
 	// 查看现有全部用户
 	@Select("SELECT * FROM `tb_user` WHERE state=0 ORDER BY createTime DESC")
 	List<Tb_user> findAllUser();

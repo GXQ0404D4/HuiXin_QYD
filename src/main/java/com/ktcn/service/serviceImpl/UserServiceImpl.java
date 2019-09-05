@@ -28,6 +28,8 @@ public class UserServiceImpl implements UserService {
 	public Tb_user login(Map<String, String> map) {
 		// 密码加密
 		map.put("password", MD5Util.encodeByMd5_32(map.get("password")));
+		System.out.println("加密后");
+		System.out.println("账号： "+map.get("account")+"\n"+"密码： "+map.get("password"));
 		// 调用登录方法
 		return userDao.login(map);
 	}
@@ -62,23 +64,23 @@ public class UserServiceImpl implements UserService {
 	}
 	// 修改用户密码
 	@Override
-	public String ChangePassword(String password, String newpassword1, String newpassword2, HttpServletRequest request) {
-		if (newpassword1.equals(newpassword2)) {
-			if (request.getSession().getAttribute("nowuser").toString().equals(MD5Util.encodeByMd5_32(password))) {
+	public String ChangePassword(Map<String,String> map, HttpServletRequest request) {
+		if (map.get("Newpassword1").equals(map.get("Newpassword2"))) {
+//			if (request.getSession().getAttribute("nowuser").toString().equals(MD5Util.encodeByMd5_32(map.get("password")))) {
 				Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
 				// 开发使用, 上线删除
 				if (user == null) {
 					user = new Tb_user();
-					user.setUser_id(111);
+					user.setUser_id(1);
 					user.setName("测试用户名称");
 				}
-				user.setPassword(MD5Util.encodeByMd5_32(password));
+				user.setPassword(MD5Util.encodeByMd5_32(map.get("password")));
 				userDao.ChangePassword(user);
-			}
+//			}
+			return "success";
 		} else {
 			return "error";
 		}
-		return null;
 	}
 	
 }

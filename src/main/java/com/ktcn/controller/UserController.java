@@ -27,8 +27,10 @@ public class UserController {
 	@RequestMapping("login")
 	@SysLog(logModule = "用户管理", logName = "登录")
 	public String login(@RequestBody Map<String,String> map, HttpServletRequest request) {
+		System.out.println("账号： "+map.get("account")+"\n"+"密码： "+map.get("password"));
 		// 用户验证方法
 		Tb_user user = userService.login(map);
+		System.out.println(user);
 		if (user != null) {
 			// 登录成功将用户信息存在session域中
 			request.getSession().setAttribute("nowuser", user);
@@ -134,8 +136,8 @@ public class UserController {
 	// 修改用户密码
 	@RequestMapping("ChangePassword")
 	@SysLog(logModule = "用户管理", logName = "密码修改")
-	public String ChangePassword(String password, String Newpassword1, String Newpassword2, HttpServletRequest request) {
-		String str = userService.ChangePassword(password,Newpassword1,Newpassword2,request);
+	public String ChangePassword(@RequestBody Map<String,String> map, HttpServletRequest request) {
+		String str = userService.ChangePassword(map,request);
 		return str;
 	}
 	
@@ -159,6 +161,8 @@ public class UserController {
 			} else {
 				return "两次密码输入不一致";
 			}
+			// 清空session
+	        request.getSession().invalidate();
 			return "success";
 		} else {
 			return null;

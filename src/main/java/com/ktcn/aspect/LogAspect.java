@@ -88,10 +88,9 @@ public class LogAspect {
                         log.setOperTime(new Date());
                         log.setOperModel(logModule);
                         log.setOperName(logName);
-                        log.setUserIp(ip);
-                        logger.info("日志信息: "+log.toString());
-                        logger.info("用户信息: "+user.toString());
-                        logger.info("操作用户IP: "+ip);
+                        // 写入客户机ip
+                        log.setUserIp(this.getIpAddr(request));
+                        logger.info("访问ip: "+this.getIpAddr(request));
                         logService.addUserLog(log);
                     }
                 }
@@ -100,4 +99,25 @@ public class LogAspect {
             logger.error("日志获取错误");
         }
     }
+    
+    
+    public String getIpAddr(HttpServletRequest request) {
+	//处理代理访问获取不到真正的ip问题的        
+	String ip = request.getHeader("x-forwarded-for");
+	        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+	//获取代理中中的ip
+	            ip = request.getHeader("PRoxy-Client-IP");
+	        }
+	        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+	//获取代理中中的ip
+
+	            ip = request.getHeader("WL-Proxy-Client-IP");
+	        }
+	        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+	//非代理的情况获取ip
+	            ip = request.getRemoteAddr();
+	        }
+	        
+	        return ip;
+	    }
 }

@@ -4,6 +4,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import lombok.Data;
+
+/**
+* @Title: Switch_output_value.java
+* @Package com.ktcn.entity
+* @Description: TODOswtich_output 采集数据存放类
+* @author GXQ
+* @date 2019年9月5日
+* @version V1.0
+*/
 @Component
 @ConfigurationProperties(prefix = "oss")
 @Data

@@ -12,8 +12,6 @@ import lombok.Data;
 /*
  * 开关量输出
  */
-@Component
-@ConfigurationProperties(prefix = "oss")
 @Data
 public class Switch_output {
 	private int output_id;		// 主键

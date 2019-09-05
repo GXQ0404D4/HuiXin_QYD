@@ -53,7 +53,7 @@
 			<!-- <exclusions> <exclusion> <groupId>org.springframework.boot</groupId> 
 				<artifactId>spring-boot-starter-tomcat</artifactId> </exclusion> </exclusions> -->
 		</dependency>
-		
+
 		<!-- mybatis核心包 -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
@@ -130,6 +130,9 @@
 			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
 		<!--utgard -->
+		      
+		
+
 		<dependency>
 			<groupId>org.openscada.external</groupId>
 			<artifactId>org.openscada.external.jcifs</artifactId>
@@ -182,6 +185,8 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-core</artifactId>
 		</dependency>
+
+
 		<!-- lombok依赖 -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>

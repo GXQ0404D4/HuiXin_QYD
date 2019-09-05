@@ -39,8 +39,8 @@ import com.ktcn.utils.OPCAddress;
 import com.ktcn.utils.OPCAddressInsert;
 import com.ktcn.utils.OPCConfig;
 
-/*@Component
-@Order(value = 2)*/
+@Component
+@Order(value = 2)
 public class UtgardTutorial1 implements CommandLineRunner {
 	private static final int PERIOD = 10;
 
@@ -57,7 +57,6 @@ public class UtgardTutorial1 implements CommandLineRunner {
 	@Autowired
 	OPCAddressInsert opcaddressinsert;
 	
-	//OPCAddressInsert a = new OPCAddressInsert();
 
 	public void run(String... args) throws Exception {
      Runnable runnable = new Runnable() {
@@ -145,7 +144,7 @@ public class UtgardTutorial1 implements CommandLineRunner {
 						String format1 = date1.format(new Date(System.currentTimeMillis()));						
 						System.out.println(format1 + "+++++++++++++++++++++++++++++++++++采集结束时间数据");
 						
-						if (i == 93) {
+						if (i == 95) {
 							opcaddressinsert.GetOPCInsert(map1,map2,map3);
 						}
 					} catch (final JIException e) {

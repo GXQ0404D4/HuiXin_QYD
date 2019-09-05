@@ -9,8 +9,6 @@ import lombok.Data;
  */
 @Data
 public class V_chart {
-	private String vMonth;
-	private String vDay;
 	private String vTime;
 	private float vValue;
 }

@@ -17,7 +17,7 @@ public class FlowAnalysisSQL {
 		String sql = new SQL() {
 			// 编写拼接SQL代码块
 			{
-				SELECT("MONTH(e.`current_time`) as vMonth,DAY(e.`current_time`) as vDay,HOUR(e.`current_time`) as vTime,sum(e.Instantaneous_flow) as vValue");
+				SELECT("DATE_FORMAT(e.`current_time`,'%Y-%m-%d %H:00') as vTime,sum(e.Instantaneous_flow) as vValue");
 				FROM("mian_network e");
 				if (timeA!=null && !"".equals(timeA) && timeB!=null && !"".equals(timeB)) {
 					// 任务名称

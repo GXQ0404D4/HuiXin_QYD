@@ -25,13 +25,13 @@ public interface FlowAnalysisDao {
 	 * SELECT t_date,HOUR(e.t_time) as Hour,sum(e.num) as Sum FROM test_time e WHERE t_date BETWEEN '1970-01-01' AND '2020-01-01' GROUP BY HOUR(e.t_time) ORDER BY Hour(e.t_time);
 	 */
 	// 查询当天24小时的流量曲线信息,MySQL获取当天每个小时数据语句
-	@Select("SELECT HOUR(e.`current_time`) as vTime,sum(e.Instantaneous_flow) as vValue FROM mian_network e WHERE e.`current_date` = (SELECT date_format(now(),'%Y-%m-%d')) GROUP BY HOUR(e.`current_time`) ORDER BY Hour(e.`current_time`)")
+	@Select("SELECT DATE_FORMAT(e.`current_time`,'%Y-%m-%d %H:00') as vTime FROM mian_network e WHERE e.`current_date` = (SELECT date_format(now(),'%Y-%m-%d')) GROUP BY HOUR(e.`current_time`) ORDER BY Hour(e.`current_time`)")
 	List<V_chart> findByNowDate();
 	// 查询当前月流量曲线
-	@Select("SELECT DAY(e.`current_time`) as vDay,HOUR(e.`current_time`) as vTime,sum(e.Instantaneous_flow) as vValue FROM mian_network e WHERE date_format( e.`current_date`, '%Y%m' ) = date_format(curdate( ) , '%Y%m' ) GROUP BY DAY(e.`current_time`),Hour(e.`current_time`) ORDER BY DAY(e.`current_time`),Hour(e.`current_time`)")
+	@Select("SELECT DATE_FORMAT(e.`current_time`,'%Y-%m-%d %H:00') as vTime,sum(e.Instantaneous_flow) as vValue FROM mian_network e WHERE date_format( e.`current_date`, '%Y%m' ) = date_format(curdate( ) , '%Y%m' ) GROUP BY DAY(e.`current_time`),Hour(e.`current_time`) ORDER BY DAY(e.`current_time`),Hour(e.`current_time`)")
 	List<V_chart> findByNowMonth();
 	// 根据机器查询本月流量曲线
-	@Select("SELECT DAY(e.`current_time`) as vDay,HOUR(e.`current_time`) as vTime,sum(e.Instantaneous_flow) as vValue FROM mian_network e WHERE date_format( e.`current_date`, '%Y%m' ) = date_format(curdate( ) , '%Y%m' ) AND machine = #{machine} GROUP BY DAY(e.`current_time`),Hour(e.`current_time`) ORDER BY DAY(e.`current_time`),Hour(e.`current_time`)")
+	@Select("SELECT DATE_FORMAT(e.`current_time`,'%Y-%m-%d %H:00') as vTime,sum(e.Instantaneous_flow) as vValue FROM mian_network e WHERE date_format( e.`current_date`, '%Y%m' ) = date_format(curdate( ) , '%Y%m' ) AND machine = #{machine} GROUP BY DAY(e.`current_time`),Hour(e.`current_time`) ORDER BY DAY(e.`current_time`),Hour(e.`current_time`)")
 	List<V_chart> findByMachine(@Param("machine") String machine);
 	// 按照时间区间查询
 	@SelectProvider(method = "findByTime",type = FlowAnalysisSQL.class)

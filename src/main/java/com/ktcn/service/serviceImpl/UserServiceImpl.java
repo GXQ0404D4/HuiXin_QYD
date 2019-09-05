@@ -28,8 +28,6 @@ public class UserServiceImpl implements UserService {
 	public Tb_user login(Map<String, String> map) {
 		// 密码加密
 		map.put("password", MD5Util.encodeByMd5_32(map.get("password")));
-		System.out.println("加密后");
-		System.out.println("账号： "+map.get("account")+"\n"+"密码： "+map.get("password"));
 		// 调用登录方法
 		return userDao.login(map);
 	}

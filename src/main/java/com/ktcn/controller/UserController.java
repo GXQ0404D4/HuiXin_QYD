@@ -1,5 +1,6 @@
 package com.ktcn.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,17 +27,18 @@ public class UserController {
 	// 登录方法
 	@RequestMapping("login")
 	@SysLog(logModule = "用户管理", logName = "登录")
-	public String login(@RequestBody Map<String,String> map, HttpServletRequest request) {
-		System.out.println("账号： "+map.get("account")+"\n"+"密码： "+map.get("password"));
+	public Map<String,String> login(@RequestBody Map<String,String> map, HttpServletRequest request) {
+		Map<String,String> data = new HashMap<String,String>();
 		// 用户验证方法
 		Tb_user user = userService.login(map);
-		System.out.println(user);
 		if (user != null) {
 			// 登录成功将用户信息存在session域中
 			request.getSession().setAttribute("nowuser", user);
-			return "success";
+			data.put("code", "0000");
+			return data;
 		} else {
-			return "error";
+			data.put("code", "0001");
+			return data;
 		}
 	}
 	

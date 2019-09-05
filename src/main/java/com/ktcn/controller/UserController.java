@@ -142,7 +142,7 @@ public class UserController {
 	// 用户注册功能
 	@RequestMapping("HomePage")
 	@SysLog(logModule = "用户管理", logName = "注册")
-	public String HomePage(@RequestBody Map<String,String> map, String password1, HttpServletRequest request) {
+	public String HomePage(@RequestBody Map<String,String> map, HttpServletRequest request) {
 		// 获取当前登录用户
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
 		// 开发使用, 上线删除
@@ -154,7 +154,7 @@ public class UserController {
 		}
 		if (user.getUserPower() == 4) {
 			// 比较两次密码输入是否相同
-			if (password1.equals(map.get("password"))) {
+			if (map.get("password1").equals(map.get("password"))) {
 				userService.addUser(map);
 			} else {
 				return "两次密码输入不一致";

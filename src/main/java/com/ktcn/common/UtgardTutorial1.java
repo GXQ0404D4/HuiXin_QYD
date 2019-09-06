@@ -2,7 +2,6 @@ package com.ktcn.common;
 
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -25,20 +24,17 @@ import org.openscada.opc.lib.da.DuplicateGroupException;
 import org.openscada.opc.lib.da.Item;
 import org.openscada.opc.lib.da.ItemState;
 import org.openscada.opc.lib.da.Server;
-import org.openscada.opc.lib.da.SyncAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import com.ktcn.entity.Data_master_table;
-import com.ktcn.entity.Opc_address;
 import com.ktcn.utils.OPCAddress;
 import com.ktcn.utils.OPCAddressInsert;
 import com.ktcn.utils.OPCConfig;
 
-//@Component
-//@Order(value = 2)
+/*@Component
+@Order(value = 2)*/
 public class UtgardTutorial1 implements CommandLineRunner {
 	private static final int PERIOD = 10;
 
@@ -46,14 +42,13 @@ public class UtgardTutorial1 implements CommandLineRunner {
 	// 获取连接池信息
 	private static final ConnectionInformation ci = OPCConfig.getConnectionInformation();
 	
-	//Data_master_table datamaster =new Data_master_table();
-	
 	// 获取地址值 的controller类
 	@Autowired
 	OPCAddress opcaddress;
 	
 	@Autowired
 	OPCAddressInsert opcaddressinsert;
+		
 
 	public void run(String... args) throws Exception {
      Runnable runnable = new Runnable() {
@@ -66,7 +61,7 @@ public class UtgardTutorial1 implements CommandLineRunner {
 				List<String> allAddress = opcaddress.GetAllAddress();				
 				for (int i = 0; i < allAddress.size(); i++) {			    
 					String Address = allAddress.get(i);						
-					//String Address = address.getTag_name();												
+																	
 				    final String itemId = "Siemens Ethernet.S7-200 SMART." + Address;
 					final Server server = new Server(ci, Executors.newSingleThreadScheduledExecutor());					
 					try {						// 连接到服务
@@ -90,7 +85,7 @@ public class UtgardTutorial1 implements CommandLineRunner {
 			                    System.out.println("监控项的详细信息是：-----" + itemState);
 			 
 			                    // 如果读到是boolean类型的值
-			                    if (type == JIVariant.VT_BOOL) {
+			                    if (type == JIVariant.VT_BOOL || type == JIVariant.VT_EMPTY) {
 			                        Boolean n = null;
 			                        try {
 			                            n = itemState.getValue().getObjectAsBoolean();
@@ -102,7 +97,7 @@ public class UtgardTutorial1 implements CommandLineRunner {
 			                    }
 			 
 			                    // 如果读到是Float类型的值
-			                    if(type == JIVariant.VT_R4) {  // 字符串的类型是8
+			                    if(type == JIVariant.VT_R4 || type == JIVariant.VT_EMPTY) {  
 			                        Float value = null;
 			                        try {
 			                            value = itemState.getValue().getObjectAsFloat();
@@ -113,7 +108,7 @@ public class UtgardTutorial1 implements CommandLineRunner {
 			                        System.out.println("-----float类型值： " + value); 
 			                    }			                    
 			                    // 如果读到是long类型的值
-			                    if(type == JIVariant.VT_I4) {  // 字符串的类型是8
+			                    if(type == JIVariant.VT_I4 || type == JIVariant.VT_EMPTY) {  
 			                        Long value = null;
 			                        try {
 			                            value = (long) itemState.getValue().getObjectAsInt();
@@ -141,7 +136,7 @@ public class UtgardTutorial1 implements CommandLineRunner {
 						String format1 = date1.format(new Date(System.currentTimeMillis()));						
 						System.out.println(format1 + "+++++++++++++++++++++++++++++++++++采集结束时间数据");
 						
-						if (i == 93) {
+						if (i == 95) {							
 							opcaddressinsert.GetOPCInsert(map1,map2,map3);
 						}
 					} catch (final JIException e) {

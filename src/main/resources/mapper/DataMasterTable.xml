@@ -6,6 +6,64 @@
   <!-- 指明映射的dao数据层 -->
 <mapper namespace="com.ktcn.dao.DataMasterTable" >
 
+<update id="UpdateRealTime" parameterType="com.ktcn.entity.Data_master_table">
+    UPDATE real_time_data SET
+     VoltageA_1 =#{VoltageA_1},
+      Electric_currentA_1 =#{Electric_currentA_1},
+     Host_temperature_1 =#{Host_temperature_1},
+     Coolant_temperature_1 =#{Coolant_temperature_1},
+     Sump_Pressure_1 =#{Sump_Pressure_1},
+     Loading_pressure_1 =#{Loading_pressure_1}, 
+     Loading_time_1 =#{Loading_time_1},
+     Unloading_pressure_1 =#{Unloading_pressure_1},
+     Alarm_number_1 =#{Alarm_number_1},
+     Exhaust_pressure_1 =#{Exhaust_pressure_1},
+     Exhaust_temperature_1 =#{Exhaust_temperature_1},
+     Control_state_1=#{Control_state_1},
+     total_energy_1=#{total_energy_1},
+     Warning_sign_1=#{Warning_sign_1},
+     Running_time_1=#{Running_time_1},
+     Remote_switch_1=#{Remote_switch_1},
+     VoltageA_2=#{VoltageA_2},
+     Electric_currentA_2=#{Electric_currentA_2},
+     Host_temperature_2=#{Host_temperature_2},
+     Coolant_temperature_2=#{Coolant_temperature_2},
+     Sump_Pressure_2=#{Sump_Pressure_2},
+     Loading_pressure_2=#{Loading_pressure_2},
+     Loading_time_2=#{Loading_time_2},  
+     Unloading_pressure_2=#{Unloading_pressure_2},
+     Alarm_number_2=#{Alarm_number_2}, 
+     Exhaust_pressure_2=#{Exhaust_pressure_2},
+     Exhaust_temperature_2=#{Exhaust_temperature_2},
+     Control_state_2=#{Control_state_2},
+     total_energy_2=#{total_energy_2},
+     Warning_sign_2=#{Warning_sign_2},
+     Running_time_2=#{Running_time_2},
+     Remote_switch_2=#{Remote_switch_2}, 
+     VoltageA_3=#{VoltageA_3},
+     Electric_currentA_3=#{Electric_currentA_3},
+     Host_temperature_3=#{Host_temperature_3},
+     Coolant_temperature_3=#{Coolant_temperature_3},
+     Sump_Pressure_3=#{Sump_Pressure_3},
+     Loading_pressure_3=#{Loading_pressure_3},
+     Loading_time_3=#{Loading_time_3},
+     Unloading_pressure_3=#{Unloading_pressure_3},
+     Alarm_number_3=#{Alarm_number_3},
+     Exhaust_pressure_3=#{Exhaust_pressure_3},
+     Exhaust_temperature_3=#{Exhaust_temperature_3},
+     Control_state_3=#{Control_state_3},
+     total_energy_3=#{total_energy_3},
+     Warning_sign_3=#{Warning_sign_3},
+     Running_time_3=#{Running_time_3},
+     Remote_switch_3=#{Remote_switch_3},
+     Active_Service_Rate1=#{Active_Service_Rate1},
+     Active_Service_Rate2=#{Active_Service_Rate2},
+     Active_Service_Rate3=#{Active_Service_Rate3},
+     pressure=#{pressure},
+     Cumulative_flow=#{Cumulative_flow} WHERE dmt_id=1;
+      
+</update>
+
 <insert id="OpcDataMasterInsert" parameterType="com.ktcn.entity.Data_master_table">
 
   INSERT INTO data_master_table
@@ -52,15 +110,15 @@
                     Running_time_1,
                     Remote_switch_1,
                     Loading_time_2,
-                    <!-- Alarm_number_2, -->
+                    Alarm_number_2,
                     Control_state_2,
                     Warning_sign_2,
                     Running_time_2,
                     Remote_switch_2,
                     Loading_time_3,
-                   <!--  Alarm_number_3, -->
+                    Alarm_number_3,
                     Control_state_3,
-                   <!--  Warning_sign_3, -->
+                    Warning_sign_3,
                     Running_time_3,
                     Remote_switch_3
                     ) 
@@ -107,15 +165,15 @@
 		   #{Running_time_1},
 		   #{Remote_switch_1},
 		   #{Loading_time_2},
-		  <!--  #{Alarm_number_2}, -->
+		   #{Alarm_number_2},
 		   #{Control_state_2},
 		   #{Warning_sign_2},
 		   #{Running_time_2},
 		   #{Remote_switch_2},
 		   #{Loading_time_3},
-		  <!--  #{Alarm_number_3}, -->
+		   #{Alarm_number_3},
 		   #{Control_state_3},
-		  <!--  #{Warning_sign_3}, -->
+		   #{Warning_sign_3},
 		   #{Running_time_3},
 		   #{Remote_switch_3}		   			  		  		   
 		   );

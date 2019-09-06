@@ -17,8 +17,7 @@ import lombok.Data;
 @Component
 @ConfigurationProperties(prefix = "oss")
 @Data
-public class Data_master_table {
-	
+public class Data_master_table {	
 	private long dmt_id;				// 主键
 	private float VoltageA_1;			// 1#A相电压
 	private float Electric_currentA_1;	// 1#A相电流
@@ -28,12 +27,12 @@ public class Data_master_table {
 	private float Loading_pressure_1;	// 1#加载压力
 	private float Loading_time_1;		// 1#加载时间
 	private float Unloading_pressure_1;	// 1#卸载压力
-	private long Alarm_number_1;			// 1#报警号
+	private long Alarm_number_1;		// 1#报警号
 	private float Exhaust_pressure_1;	// 1#排气压力
 	private float Exhaust_temperature_1;// 1#排气温度
 	private long Control_state_1;		// 1#控制状态字
 	private float total_energy_1;		// 1#正向有功总电能
-	private long Warning_sign_1;			// 1#警告号
+	private long Warning_sign_1;		// 1#警告号
 	private float Running_time_1;		// 1#运行时间
 	private long Remote_switch_1;		// 1#远程功能开关 
 	private float VoltageA_2;			// 2#A相电压
@@ -67,7 +66,7 @@ public class Data_master_table {
 	private float total_energy_3;		// 3#正向有功总电能
 	private long Warning_sign_3;			// 3#警告号
 	private float Running_time_3;		// 3#运行时间
-	private long Remote_switch_3	;		// 3#远程功能开关 
+	private long Remote_switch_3;		// 3#远程功能开关 
 	private float Active_Service_Rate1;	// AI-1#有功功率
 	private float Active_Service_Rate2;	// AI-2#有功功率
 	private float Active_Service_Rate3;	// AI-3#有功功率

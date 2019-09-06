@@ -12,13 +12,11 @@ import lombok.Data;
 /*
  * 开关量输出
  */
-@Component
-@ConfigurationProperties(prefix = "oss")
 @Data
 public class Switch_output {
 	private int output_id;		// 主键
 	private String switch_name;
-	private int switch_ouput;
+	private int switch_ouput_data;
 	private int state;
 	private String introduce;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

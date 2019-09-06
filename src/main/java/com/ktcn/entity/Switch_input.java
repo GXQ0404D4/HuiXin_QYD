@@ -11,9 +11,9 @@ import lombok.Data;
  */
 @Data
 public class Switch_input {
-	private int iput_id;		// 主键
+	private int input_id;		// 主键
 	private String switch_name;
-	private int switch_input;
+	private int switch_input_data;
 	private int state;
 	private String introduce;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

@@ -22,6 +22,10 @@ public interface DataMasterTable {
     /*data_master_table 数据主表信息存入 */
 	void OpcDataMasterInsert(Data_master_table data_master_table);
 	
+	/*realtimedata 实时数据库修改*/
+	//@Update(" UPDATE real_time_data  SET VoltageA_1 = #{data_master_table.VoltageA_1} WHERE dmt_id=1")
+	void UpdateRealTime(Data_master_table data_master_table);
+	
 	
 	/*switch_output 开关输入输入信息修改*/
 	@Update("UPDATE switch_output SET switch_ouput_data = CASE  output_id "
@@ -47,6 +51,9 @@ public interface DataMasterTable {
 			+ "WHEN 28 THEN #{switch2.i28} WHEN 29 THEN #{switch2.i29} WHEN 30 THEN #{switch2.i30} "			
 			+ "END WHERE input_id IN (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30)")
 	void getswitcInput(@Param("switch2") Switch_input_value switch2);
+
+
+
 	
 	
 

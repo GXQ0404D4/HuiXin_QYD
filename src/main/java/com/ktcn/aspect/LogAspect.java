@@ -89,6 +89,7 @@ public class LogAspect {
                         log.setOperModel(logModule);
                         log.setOperName(logName);
                         // 写入客户机ip
+                        log.setUserIp("111");
                         log.setUserIp(this.getIpAddr(request));
                         logger.info("访问ip: "+this.getIpAddr(request));
                         logService.addUserLog(log);

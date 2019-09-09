@@ -43,7 +43,7 @@ public class ElectricMessController {
 		return electric;
 	}
 	
-	// Excel导出电量报表数据
+	// Excel导出电量报表数据  http://222.128.102.213:9090/ElectricityReport_export
 	@RequestMapping(value="ElectricityReport_export")
 	@SysLog(logModule = "电量报表", logName = "导出Excel")
 	public void ElectricityReport_export(HttpServletRequest request,HttpServletResponse response,Electric_massage isEntity){

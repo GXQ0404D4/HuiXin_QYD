@@ -23,7 +23,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class KtcnQydApplication{
 
 	public static void main(String[] args) {
-		SpringApplication.run(KtcnQydApplication.class, args);	
+		SpringApplication.run(KtcnQydApplication.class, args);
 	}
 	
 }

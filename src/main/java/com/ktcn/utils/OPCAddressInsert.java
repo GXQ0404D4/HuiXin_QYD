@@ -92,6 +92,8 @@ public void GetOPCInsert(Map<String, Float> map1, Map<String, Boolean> map2, Map
         data_master_table.setActive_Service_Rate3(map1.get("AI-3#有功功率"));
         //data_master_table.setPressure(map1.get("压力"));
         //data_master_table.setCumulative_flow(map1.get("累积流量"));
+        //data_master_table.setCompensated_flow(map1.get("累积流量"));
+        
         DataMasterTable.UpdateRealTime(data_master_table);
         System.out.println(data_master_table+"###############################");
 		

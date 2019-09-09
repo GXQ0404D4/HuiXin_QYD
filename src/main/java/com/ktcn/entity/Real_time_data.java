@@ -58,6 +58,7 @@ public class Real_time_data {
 	private float Active_Service_Rate3;//Active_Service_Rate3
 	private float pressure;//pressure
 	private float Cumulative_flow;//Cumulative_flow
+	private float Compensated_flow;//Compensated_flow 
 	
 
 	

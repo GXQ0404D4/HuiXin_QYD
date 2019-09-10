@@ -170,4 +170,17 @@ public class UserController {
 			return null;
 		}
 	}
+	
+	/**
+	 * 获取当前登录用户信息
+	 */
+	@RequestMapping("getNowUser")
+	public Map<String,Object> getNowUser(HttpServletRequest request){
+		// 新建一个map集合用于存放返回信息
+		Map<String,Object> map = new HashMap<String,Object>();
+		// 写入返回信息
+		map.put("code", "0000");
+		map.put("user", (Tb_user) request.getSession().getAttribute("nowuser"));
+		return map;
+	}
 }

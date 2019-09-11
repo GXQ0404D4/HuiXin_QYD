@@ -91,14 +91,10 @@ public void GetOPCInsert(Map<String, Float> map1, Map<String, Boolean> map2, Map
         data_master_table.setActive_Service_Rate2(map1.get("AI-2#有功功率"));      
         data_master_table.setActive_Service_Rate3(map1.get("AI-3#有功功率"));
         data_master_table.setPressure(map1.get("压力"));
-<<<<<<< HEAD
         data_master_table.setCumulative_flow(map1.get("累积流量"));
         data_master_table.setCompensated_flow(map1.get("补偿后流量"));
         
         System.out.println(data_master_table);
-=======
-       // data_master_table.setCumulative_flow(map1.get("累积流量"));
->>>>>>> branch 'master' of https://github.com/qiuxinquan1014/Ktcn_QYD.git
         DataMasterTable.UpdateRealTime(data_master_table);
         System.out.println(data_master_table+"###############################");
 		
@@ -155,21 +151,14 @@ public void GetOPCInsert(Map<String, Float> map1, Map<String, Boolean> map2, Map
         data_master_table.setActive_Service_Rate2(map1.get("AI-2#有功功率"));      
         data_master_table.setActive_Service_Rate3(map1.get("AI-3#有功功率"));
         data_master_table.setPressure(map1.get("压力"));
-<<<<<<< HEAD
         data_master_table.setCumulative_flow(map1.get("累积流量"));
         data_master_table.setCompensated_flow(map1.get("补偿后流量"));
-=======
-        //data_master_table.setCumulative_flow(map1.get("累积流量"));
->>>>>>> branch 'master' of https://github.com/qiuxinquan1014/Ktcn_QYD.git
         
         System.out.println(data_master_table);
      	DataMasterTable.OpcDataMasterInsert(data_master_table);
      	System.out.println(data_master_table+"data_master_table");
-<<<<<<< HEAD
      		
-=======
-     /*	
->>>>>>> branch 'master' of https://github.com/qiuxinquan1014/Ktcn_QYD.git
+     	
      	switch_output_value.setS1(map2.get("DO-1#KYJQD"));
 		switch_output_value.setS2(map2.get("DO-1#KYJTZ"));
 		switch_output_value.setS3(map2.get("DO-1#LGJQD"));
@@ -229,8 +218,5 @@ public void GetOPCInsert(Map<String, Float> map1, Map<String, Boolean> map2, Map
 		
 	
 	}
-
 	
-	
-
-}
+}	

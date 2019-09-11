@@ -17,7 +17,7 @@ import com.ktcn.entity.Mian_network;
 @Repository
 public interface MianNetworkDao {
 	// 查询全部总管网信息
-	@Select("SELECT * FROM mian_network ORDER BY `current_time` DESC")
+	@Select("SELECT * FROM mian_network ORDER BY `current_time` DESC limit 0,50")
 	List<Mian_network> findAll();
 	// 查询全部电量报表信息
 	@SelectProvider(method = "findAllByTime", type = MianNetworkSQL.class)

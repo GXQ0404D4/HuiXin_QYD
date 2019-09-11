@@ -18,7 +18,7 @@ import com.ktcn.entity.Electric_massage;
 @Repository
 public interface ElectricMessDao {
 	// 查询全部电量报表信息
-	@Select("SELECT * FROM electric_massage ORDER BY `current_time` DESC")
+	@Select("SELECT * FROM electric_massage ORDER BY `current_time` DESC limit 0,50")
 	List<Electric_massage> findAll();
 	// 根据时间区间查询电量报表信息
 	@SelectProvider(method = "findAllByTime", type = ElectricSQL.class)

@@ -60,7 +60,9 @@
      Active_Service_Rate2=#{Active_Service_Rate2},
      Active_Service_Rate3=#{Active_Service_Rate3},
      pressure=#{pressure},
-     Cumulative_flow=#{Cumulative_flow} WHERE dmt_id=1;
+     Cumulative_flow=#{Cumulative_flow}, 
+     Compensated_flow=#{Compensated_flow} 
+     WHERE dmt_id=1;
       
 </update>
 
@@ -103,6 +105,7 @@
                     Active_Service_Rate3,
                     pressure,
                     Cumulative_flow,
+                    Compensated_flow,
                     Loading_time_1,
                     Alarm_number_1,
                     Control_state_1,
@@ -158,6 +161,7 @@
 		   #{Active_Service_Rate3},			  
 		   #{pressure},			  
 		   #{Cumulative_flow},
+		   #{Compensated_flow},
 		   #{Loading_time_1},
 		   #{Alarm_number_1},
 		   #{Control_state_1},

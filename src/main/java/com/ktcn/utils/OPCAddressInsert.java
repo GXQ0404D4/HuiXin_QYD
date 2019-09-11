@@ -90,15 +90,16 @@ public void GetOPCInsert(Map<String, Float> map1, Map<String, Boolean> map2, Map
         data_master_table.setActive_Service_Rate1(map1.get("AI-1#有功功率"));
         data_master_table.setActive_Service_Rate2(map1.get("AI-2#有功功率"));      
         data_master_table.setActive_Service_Rate3(map1.get("AI-3#有功功率"));
-        //data_master_table.setPressure(map1.get("压力"));
-        //data_master_table.setCumulative_flow(map1.get("累积流量"));
-        //data_master_table.setCompensated_flow(map1.get("累积流量"));
+        data_master_table.setPressure(map1.get("压力"));
+        data_master_table.setCumulative_flow(map1.get("累积流量"));
+        data_master_table.setCompensated_flow(map1.get("补偿后流量"));
         
+        System.out.println(data_master_table);
         DataMasterTable.UpdateRealTime(data_master_table);
         System.out.println(data_master_table+"###############################");
 		
 
-		/*data_master_table.setVoltageA_1(map1.get("1#A相电流"));
+		data_master_table.setVoltageA_1(map1.get("1#A相电流"));
 		data_master_table.setElectric_currentA_1(map1.get("1#A相电压"));
 		data_master_table.setHost_temperature_1(map1.get("1#主机温度"));
         data_master_table.setCoolant_temperature_1(map1.get("1#冷却剂温度"));     
@@ -149,12 +150,14 @@ public void GetOPCInsert(Map<String, Float> map1, Map<String, Boolean> map2, Map
         data_master_table.setActive_Service_Rate1(map1.get("AI-1#有功功率"));
         data_master_table.setActive_Service_Rate2(map1.get("AI-2#有功功率"));      
         data_master_table.setActive_Service_Rate3(map1.get("AI-3#有功功率"));
-        //data_master_table.setPressure(map1.get("压力"));
-        //data_master_table.setCumulative_flow(map1.get("累积流量"));
+        data_master_table.setPressure(map1.get("压力"));
+        data_master_table.setCumulative_flow(map1.get("累积流量"));
+        data_master_table.setCompensated_flow(map1.get("补偿后流量"));
         
+        System.out.println(data_master_table);
      	DataMasterTable.OpcDataMasterInsert(data_master_table);
-     	System.out.println(data_master_table+"data_master_table");*/
-     /*	
+     	System.out.println(data_master_table+"data_master_table");
+     		
      	switch_output_value.setS1(map2.get("DO-1#KYJQD"));
 		switch_output_value.setS2(map2.get("DO-1#KYJTZ"));
 		switch_output_value.setS3(map2.get("DO-1#LGJQD"));
@@ -167,9 +170,14 @@ public void GetOPCInsert(Map<String, Float> map1, Map<String, Boolean> map2, Map
 		switch_output_value.setS10(map2.get("DO-3#KYJTZ"));
 		switch_output_value.setS11(map2.get("DO-3#LGJQD"));
 		switch_output_value.setS12(map2.get("DO-3#LGJTZ"));		
+		switch_output_value.setS13(map2.get("DO-1#KYJZD/SD"));		
+		switch_output_value.setS14(map2.get("DO-2#KYJZD/SD"));		
+		switch_output_value.setS15(map2.get("DO-3#KYJZD/SD"));		
 		//Switch_output 数据
 		DataMasterTable.getswitchOutput(switch_output_value);
 		
+		
+		//update zidu
 		//switch_input 数据
 		switch_input_value.setI1(map2.get("2#KYJJZ/XZ"));
 		switch_input_value.setI2(map2.get("3#KYJJZ/XZ"));
@@ -201,8 +209,12 @@ public void GetOPCInsert(Map<String, Float> map1, Map<String, Boolean> map2, Map
 		switch_input_value.setI28(map2.get("DI-3#LGJGDYBJ"));
 		switch_input_value.setI29(map2.get("DI-3#LGJGZ"));
 		switch_input_value.setI30(map2.get("DI-3#LGJYX"));
+		switch_input_value.setI31(map2.get("DI-2#KYJJZ/XZ"));
+		switch_input_value.setI32(map2.get("DI-3#KYJJZ/XZ"));
 		//switch_input 数据
-		DataMasterTable.getswitcInput(switch_input_value);*/
+		System.out.println(switch_input_value);
+		DataMasterTable.getswitcInput(switch_input_value);
+		
 	
 	}
 

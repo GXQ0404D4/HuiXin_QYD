@@ -10,7 +10,7 @@ import lombok.Data;
  * 开关量输入
  */
 @Data
-public class Switch_input {
+public class Switch_input  {
 	private int input_id;		// 主键
 	private String switch_name;
 	private int switch_input_data;

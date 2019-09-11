@@ -72,4 +72,5 @@ public class Data_master_table {
 	private float Active_Service_Rate3;	// AI-3#有功功率
 	private float pressure;				// 压力
 	private float Cumulative_flow;		// 累积流量
+	private float Compensated_flow;   //补偿后流量
 }

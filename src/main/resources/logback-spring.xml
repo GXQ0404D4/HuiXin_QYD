@@ -8,29 +8,29 @@
         </encoder>
     </appender>
     
-    <!--按天生成日志-->
-    <appender name="logFile"  class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <Prudent>true</Prudent>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-     <!--配置生成日志的文件路径-->
-            <FileNamePattern>
-               D:/QYD/logs2/%d{yyyy-MM-dd}/%d{yyyy-MM-dd}.log
-            </FileNamePattern>
-     <!-- 日志文件保留天数 -->
-            <maxHistory>30</maxHistory>
-        </rollingPolicy>
-        <layout class="ch.qos.logback.classic.PatternLayout">
-            <Pattern>
-                %d{yyyy-MM-dd HH:mm:ss} - [系统日志信息] -%msg%n
-            </Pattern>
-        </layout>
-    </appender>
+<!--     按天生成日志 -->
+<!--     <appender name="logFile"  class="ch.qos.logback.core.rolling.RollingFileAppender"> -->
+<!--         <Prudent>true</Prudent> -->
+<!--         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy"> -->
+<!--      配置生成日志的文件路径 -->
+<!--             <FileNamePattern> -->
+<!--                D:/QYD/logs/%d{yyyy-MM-dd}/%d{yyyy-MM-dd}.log -->
+<!--             </FileNamePattern> -->
+<!--      日志文件保留天数 -->
+<!--             <maxHistory>30</maxHistory> -->
+<!--         </rollingPolicy> -->
+<!--         <layout class="ch.qos.logback.classic.PatternLayout"> -->
+<!--             <Pattern> -->
+<!--                 %d{yyyy-MM-dd HH:mm:ss} - [系统日志信息] -%msg%n -->
+<!--             </Pattern> -->
+<!--         </layout> -->
+<!--     </appender> -->
     <!-- 只筛选ERROR信息 -->
     <appender name="file_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <Prudent>true</Prudent>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>
-            	D:/QYD/logs/error/error.%d{yyyy-MM-dd}.log
+            	D:/QYD_system/logs/error/error.%d{yyyy-MM-dd}.log
             </fileNamePattern>
         <!-- 日志文件保留天数 -->
             <maxHistory>30</maxHistory>

@@ -15,8 +15,8 @@ public class Alarmseteings {
 	private String measured_value;  // 实测值
 	private String company;         // 单位
 	private int ala_state;			// 状态
-	private String upperlimit;      // 上限
-	private String lowerlimit;      // 下限
-	private String ULrange;         // 量程比例
-	private String LLlimit;         // 量程零点
+	private float upperlimit;      // 上限
+	private float lowerlimit;      // 下限
+	private float ULrange;         // 量程比例
+	private float LLlimit;         // 量程零点
 }

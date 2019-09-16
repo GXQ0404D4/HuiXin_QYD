@@ -14,7 +14,7 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
      <!--配置生成日志的文件路径-->
             <FileNamePattern>
-               D:/logs2/%d{yyyy-MM-dd}/%d{yyyy-MM-dd}.log
+               D:/QYD/logs2/%d{yyyy-MM-dd}/%d{yyyy-MM-dd}.log
             </FileNamePattern>
      <!-- 日志文件保留天数 -->
             <maxHistory>30</maxHistory>
@@ -29,12 +29,17 @@
     <appender name="file_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <Prudent>true</Prudent>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>D:/logs/error/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>
+            	D:/QYD/logs/error/error.%d{yyyy-MM-dd}.log
+            </fileNamePattern>
         <!-- 日志文件保留天数 -->
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
-            <pattern>${log.pattern}</pattern>
+        	<Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} - [系统日志信息] -%msg%n
+            </Pattern>
+<!--             <pattern>${log.pattern}</pattern> -->
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>

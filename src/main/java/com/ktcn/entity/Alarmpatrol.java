@@ -2,6 +2,8 @@ package com.ktcn.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 /**
@@ -17,6 +19,7 @@ public class Alarmpatrol {
 	private String measured_value;	// 实测值
 	private float upDiff;			// 上限差值(上限值减实测值,负值为异常)
 	private float lowDiff;			// 下限差值(下限值减实测值,负值为异常)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date ap_time;			// 报警时间
 	private int ap_state;			// 状态码
 }

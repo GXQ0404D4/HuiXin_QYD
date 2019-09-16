@@ -50,12 +50,6 @@ public class LogAspect {
         try {
         	// 获取当前登录人信息
         	Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-        	// 开发使用, 上线删除
-    		if (user == null) {
-    			user = new Tb_user();
-    			user.setUser_id(111);
-    			user.setName("测试用户名称");
-    		}
     		
             // 获取ip地址
             String ip = InetAddress.getLocalHost().toString();

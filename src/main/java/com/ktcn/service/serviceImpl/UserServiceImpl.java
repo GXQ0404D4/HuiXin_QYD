@@ -66,12 +66,6 @@ public class UserServiceImpl implements UserService {
 		if (map.get("Newpassword1").equals(map.get("Newpassword2"))) {
 //			if (request.getSession().getAttribute("nowuser").toString().equals(MD5Util.encodeByMd5_32(map.get("password")))) {
 				Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-				// 开发使用, 上线删除
-				if (user == null) {
-					user = new Tb_user();
-					user.setUser_id(1);
-					user.setName("测试用户名称");
-				}
 				user.setPassword(MD5Util.encodeByMd5_32(map.get("password")));
 				userDao.ChangePassword(user);
 //			}

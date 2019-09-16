@@ -55,13 +55,6 @@ public class FaultRecordController {
 		
 		// 获取当前登录用户信息
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-		// 开发使用, 上线删除
-		if (user == null) {
-			user = new Tb_user();
-			user.setUser_id(111);
-			user.setName("测试用户名称");
-			user.setUserPower(2);
-		}
 		if (user.getUserPower() == 2) {
 			// 调用新增故障记录方法
 			faultRecordService.addFaultRecord(map,user);
@@ -77,13 +70,6 @@ public class FaultRecordController {
 	public String deleteFaultRecord(int id,HttpServletRequest request){
 		// 获取当前登录用户信息
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-		// 开发使用, 上线删除
-		if (user == null) {
-			user = new Tb_user();
-			user.setUser_id(111);
-			user.setName("测试用户名称");
-			user.setUserPower(2);
-		}
 		if (user.getUserPower() == 2) {
 			faultRecordService.deleteFaultRecord(id);
 			return "success";
@@ -98,13 +84,6 @@ public class FaultRecordController {
 	public String updateFaultRecord(HttpServletRequest request,@RequestBody Map<String,String> map){
 		// 获取当前登录用户
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-		// 开发使用, 上线删除
-		if (user == null) {
-			user = new Tb_user();
-			user.setUser_id(111);
-			user.setName("测试用户名称");
-			user.setUserPower(1);
-		}
 		if (user.getUserPower() == 1 || user.getUserPower() == 2) {
 			// 调用修改故障记录方法
 			faultRecordService.updateFaultRecord(map,user);

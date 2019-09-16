@@ -57,13 +57,6 @@ public class UserController {
 	public List<Tb_user> UserManagement(HttpServletRequest request){
 		// 获取当前登录用户
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-		// 开发使用, 上线删除
-		if (user == null) {
-			user = new Tb_user();
-			user.setUser_id(1);
-			user.setName("测试用户名称");
-			user.setUserPower(4);
-		}
 		if (user.getUserPower() == 4) {
 			List<Tb_user> list = userService.findAllUser();
 			return list;
@@ -78,13 +71,6 @@ public class UserController {
 	public String deleteUserById(int id, HttpServletRequest request){
 		// 获取当前登录用户
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-		// 开发使用, 上线删除
-		if (user == null) {
-			user = new Tb_user();
-			user.setUser_id(1);
-			user.setName("测试用户名称");
-			user.setUserPower(4);
-		}
 		if (user.getUserPower() == 4) {
 			userService.deleteUserById(id);
 			return "success";
@@ -99,13 +85,6 @@ public class UserController {
 	public String updateUserById(@RequestBody Map<String,String> map, HttpServletRequest request){
 		// 获取当前登录用户
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-		// 开发使用, 上线删除
-		if (user == null) {
-			user = new Tb_user();
-			user.setUser_id(1);
-			user.setName("测试用户名称");
-			user.setUserPower(4);
-		}
 		if (user.getUserPower() == 4) {
 			userService.updateUserById(map);
 			return "success";
@@ -120,13 +99,6 @@ public class UserController {
 	public List<Tb_user> Userquery(String vague, HttpServletRequest request){
 		// 获取当前登录用户
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-		// 开发使用, 上线删除
-		if (user == null) {
-			user = new Tb_user();
-			user.setUser_id(1);
-			user.setName("测试用户名称");
-			user.setUserPower(4);
-		}
 		if (user.getUserPower() == 4) {
 			List<Tb_user> list = userService.findUserByVague(vague);
 			return list;
@@ -149,13 +121,6 @@ public class UserController {
 	public String HomePage(@RequestBody Map<String,String> map, HttpServletRequest request) {
 		// 获取当前登录用户
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-		// 开发使用, 上线删除
-		if (user == null) {
-			user = new Tb_user();
-			user.setUser_id(1);
-			user.setName("测试用户名称");
-			user.setUserPower(4);
-		}
 		if (user.getUserPower() == 4) {
 			// 比较两次密码输入是否相同
 			if (map.get("password1").equals(map.get("password"))) {

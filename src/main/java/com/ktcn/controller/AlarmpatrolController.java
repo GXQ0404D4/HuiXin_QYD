@@ -31,7 +31,7 @@ public class AlarmpatrolController {
 		List<Alarmpatrol> list = alarmpatrolService.apFindAll();
 		// 写入返回信息
 		map.put("code", "0000");
-		map.put("message",list);
+		map.put("data",list);
 		
 		return map;
 	}
@@ -45,7 +45,7 @@ public class AlarmpatrolController {
 		List<Alarmpatrol> list = alarmpatrolService.apFindByTime(TimeA,TimeB);
 		// 写入返回信息
 		map.put("code", "0000");
-		map.put("message",list);
+		map.put("data",list);
 		
 		return map;
 	}

@@ -27,6 +27,7 @@ public interface ApMonitoringDao {
 	// 查看报警设置表
 	@Select("SELECT * FROM `alarmseteings`")
 	List<Alarmseteings> findAll();
+	
 	// 报警信息写入数据库方法
 	@Insert({"<script> insert into `alarmpatrol` " +
             "values " +
@@ -35,17 +36,5 @@ public interface ApMonitoringDao {
             "#{Alarmpatrol.lowDiff},#{Alarmpatrol.ap_time},#{Alarmpatrol.ap_state})"+
             "</foreach> </script>"})
 	void writeAlarmpatrol(@Param("list") List<Alarmpatrol> list);
-	
-	// 将报警信息写入数据库表中
-	/*
-	@Insert({"<script> insert into user_coupon(user_id,coupon_id,total_count," +
-            "memo,start_time,end_time,create_time,type) " +
-            "values " +
-            "<foreach collection=\"list\" item=\"item\" index=\"index\"  separator=\",\"> "+
-            "(#{item.userId},#{item.couponId},#{item.totalCount}," +
-            "#{item.memo},#{item.startTime},#{item.endTime},#{item.createTime},#{item.type})"+
-            "</foreach> </script>"})
-    Integer saveUserCouponList(@Param("list") List<Map<String, Object>> list);
-    */
 	
 }

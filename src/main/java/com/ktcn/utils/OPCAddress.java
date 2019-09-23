@@ -24,6 +24,11 @@ public class OPCAddress {
 		return OPCAddressServiceImpl.GetAllAddress();
 		
 	}
+	
+	public List<String> GetSwitchAddress(){
+		return OPCAddressServiceImpl.GetSwtichAddress();
+		
+	}
 		
 
 }

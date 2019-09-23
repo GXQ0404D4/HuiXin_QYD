@@ -45,33 +45,27 @@ public interface MonitoringDao {
 	Real_time_data KYJ3GetData();
 	
 	
-	
-    
-		
-	/*@Select("SELECT * FROM switch_input WHERE switch_name in('DI-1#KYJBD/YC','DI-1#KYJBJGZ','DI-1#KYJJX','DI-1#KYJJZ/XZ','DI-1#KYJTJGZ','DI-1#KYJYX') UNION "
-			+ "SELECT * FROM switch_output WHERE switch_name IN ('DO-1#KYJZD/SD','DO-1#KYJQD','DO-1#KYJTZ')")*/
 	@Select("SELECT switch_input_data FROM switch_input"
 			+ " WHERE switch_name in('DI-1#KYJBD/YC','DI-1#KYJBJGZ','DI-1#KYJJX','DI-1#KYJJZ/XZ','DI-1#KYJTJGZ','DI-1#KYJYX')")
 	List<Switch_input> GetKYJSwtichInput();
 
-	@Select("SELECT switch_ouput_data FROM switch_output WHERE switch_name IN ('DO-1#KYJZD/SD','DO-1#KYJQD','DO-1#KYJTZ')")
+	@Select("SELECT switch_ouput_data FROM switch_output WHERE switch_name IN ('DO-1#KYJZD/SD')")
 	List<Switch_output> GetKYJSwtichOutput();
-	
-	
-	
+			
     
 	@Select("SELECT switch_input_data FROM switch_input"
 			+ " WHERE switch_name in('DI-2#KYJBD/YC','DI-2#KYJBJGZ','DI-2#KYJJX','DI-2#KYJJZ/XZ','DI-2#KYJTJGZ','DI-2#KYJYX')")
 	List<Switch_input> GetKYJSwtichInput2();
 
-	@Select("SELECT switch_ouput_data FROM switch_output WHERE switch_name IN ('DO-2#KYJZD/SD','DO-2#KYJQD','DO-2#KYJTZ')")
+	@Select("SELECT switch_ouput_data FROM switch_output WHERE switch_name IN ('DO-2#KYJZD/SD')")
 	List<Switch_output> GetKYJSwtichOutput2();
+	
 
 	@Select("SELECT switch_input_data FROM switch_input"
 			+ " WHERE switch_name in('DI-3#KYJBD/YC','DI-3#KYJBJGZ','DI-3#KYJJX','DI-3#KYJJZ/XZ','DI-3#KYJTJGZ','DI-3#KYJYX')")
 	List<Switch_input> GetKYJSwtichInput3();
     
-	@Select("SELECT switch_ouput_data FROM switch_output WHERE switch_name IN ('DO-3#KYJZD/SD','DO-3#KYJQD','DO-3#KYJTZ')")
+	@Select("SELECT switch_ouput_data FROM switch_output WHERE switch_name IN ('DO-3#KYJZD/SD')")
 	List<Switch_output> GetKYJSwtichOutput3();
     
 	

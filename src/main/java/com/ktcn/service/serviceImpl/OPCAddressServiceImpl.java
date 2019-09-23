@@ -21,6 +21,14 @@ public class OPCAddressServiceImpl implements OPCAddressService{
 		 return opcaddressdao.GetALLAddress();
 	}
 
+	@Override
+	public List<String> GetSwtichAddress() {
+		// TODO Auto-generated method stub
+		return opcaddressdao.GetSwitchAddress();
+	}
+	
+	
+
 	
 
 }

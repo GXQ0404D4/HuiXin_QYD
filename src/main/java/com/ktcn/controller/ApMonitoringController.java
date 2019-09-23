@@ -28,7 +28,8 @@ public class ApMonitoringController {
     @Scheduled(cron = "*/1 * * * * ?")
     private void process(){
         // 监控数据, 将报警信息写入数据库
-        apMonitoringService.writeAlarmpatrol();
+    	// 该功能开发环境隐藏, 生产环境放开
+//        apMonitoringService.writeAlarmpatrol();
     }
     
     // 前端调用报警巡查方法

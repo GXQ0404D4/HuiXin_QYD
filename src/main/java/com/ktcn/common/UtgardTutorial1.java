@@ -33,8 +33,8 @@ import com.ktcn.utils.OPCAddress;
 import com.ktcn.utils.OPCAddressInsert;
 import com.ktcn.utils.OPCConfig;
 
-@Component
-@Order(value = 2)
+/*@Component
+@Order(value = 1)*/
 public class UtgardTutorial1 implements CommandLineRunner {
 	private static final int PERIOD = 10;
 

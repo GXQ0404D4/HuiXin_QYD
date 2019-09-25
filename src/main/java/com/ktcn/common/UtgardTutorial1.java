@@ -33,8 +33,8 @@ import com.ktcn.utils.OPCAddress;
 import com.ktcn.utils.OPCAddressInsert;
 import com.ktcn.utils.OPCConfig;
 
-/*@Component
-@Order(value = 1)*/
+@Component
+@Order(value = 1)
 public class UtgardTutorial1 implements CommandLineRunner {
 	private static final int PERIOD = 10;
 
@@ -84,8 +84,8 @@ public class UtgardTutorial1 implements CommandLineRunner {
 			                    System.out.println("监控项的时间戳是：-----" + itemState.getTimestamp().getTime());
 			                    System.out.println("监控项的详细信息是：-----" + itemState);
 			 
-			                    // 如果读到是boolean类型的值
-			                    if (type == JIVariant.VT_BOOL || type == JIVariant.VT_EMPTY) {
+			                    // 如果读到是boolean类型的值 || type == JIVariant.VT_EMPTY
+			                    if (type == JIVariant.VT_BOOL ) {
 			                        Boolean n = null;
 			                        try {
 			                            n = itemState.getValue().getObjectAsBoolean();
@@ -94,8 +94,19 @@ public class UtgardTutorial1 implements CommandLineRunner {
 			                            e.printStackTrace();
 			                        }
 			                        System.out.println("-----boolean类型值： " + n); 
+			                        
 			                    }
-			 
+                                System.out.println(JIVariant.VT_BOOL+"JIVariant.VT_BOOL..boolean");
+                                System.out.println(JIVariant.VT_EMPTY+"JIVariant.VT_EMPTY..等于0时");
+                                System.out.println(type+"字段类型数字");
+			                   /* try {
+									Thread.sleep(10000);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}*/
+			                    
+			                    
 			                    // 如果读到是Float类型的值
 			                    if(type == JIVariant.VT_R4 || type == JIVariant.VT_EMPTY) {  
 			                        Float value = null;
@@ -124,7 +135,9 @@ public class UtgardTutorial1 implements CommandLineRunner {
 						access.bind();
 						SimpleDateFormat date = new SimpleDateFormat("yyyy年MM月dd日：HH:mm:ss---SSS(毫秒)");						
 						String format = date.format(new Date(System.currentTimeMillis()));								
-						System.out.println(map1 + "+++++++++++++++++++++++++++++++++++采集Float数据集合");
+						System.out.println(map1 + "+++++++++++++++++++++++++++++++++++采集1111111111111数据集合");
+						System.out.println(map2 + "+++++++++++++++++++++++++++++++++++采集2222222222222数据集合");
+						System.out.println(map3 + "+++++++++++++++++++++++++++++++++++采集3333333333333数据集合");
 						System.out.println(format + "+++++++++++++++++++++++++++++++++++采集开始时间数据");
 						// wait a little bit，有个10秒延时(1000 1秒可用)
 						Thread.sleep(SLEEP);
@@ -136,7 +149,7 @@ public class UtgardTutorial1 implements CommandLineRunner {
 						String format1 = date1.format(new Date(System.currentTimeMillis()));						
 						System.out.println(format1 + "+++++++++++++++++++++++++++++++++++采集结束时间数据");
 						
-						if (i == 102) {							
+						if (i == 103) {							
 							opcaddressinsert.GetOPCInsert(map1,map2,map3);
 						}
 					} catch (final JIException e) {

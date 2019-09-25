@@ -98,7 +98,6 @@ public void GetOPCInsert(Map<String, Float> map1, Map<String, Boolean> map2, Map
         DataMasterTable.UpdateRealTime(data_master_table);
         System.out.println(data_master_table+"###############################");
 		
-
 		data_master_table.setVoltageA_1(map1.get("1#A相电流"));
 		data_master_table.setElectric_currentA_1(map1.get("1#A相电压"));
 		data_master_table.setHost_temperature_1(map1.get("1#主机温度"));
@@ -175,8 +174,8 @@ public void GetOPCInsert(Map<String, Float> map1, Map<String, Boolean> map2, Map
 		switch_output_value.setS14(map2.get("DO-2#KYJZD/SD"));		
 		switch_output_value.setS15(map2.get("DO-3#KYJZD/SD"));		
 		//Switch_output 数据
+		System.out.println(switch_output_value);
 		DataMasterTable.getswitchOutput(switch_output_value);
-		
 		
 		//update zidu
 		//switch_input 数据
@@ -216,7 +215,15 @@ public void GetOPCInsert(Map<String, Float> map1, Map<String, Boolean> map2, Map
 		System.out.println(switch_input_value);
 		DataMasterTable.getswitcInput(switch_input_value);
 		
+		/*try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	*/
+		
 	
 	}
 	
-}	
+}	

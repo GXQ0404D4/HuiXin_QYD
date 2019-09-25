@@ -39,17 +39,6 @@ public interface DataMasterTable {
 	
 	
 	/*switch_input 开关输入输入信息修改*/
-	/*@Update("UPDATE switch_input SET switch_input_data = CASE  input_id "
-			+ "WHEN 1 THEN #{switch2.i1} WHEN 2 THEN #{switch2.i2} WHEN 3 THEN #{switch2.i3}  WHEN 4 THEN #{switch2.i4}"
-			+ "WHEN 5 THEN #{switch2.i5} WHEN 6 THEN #{switch2.i6} WHEN 7 THEN #{switch2.i7} WHEN 8 THEN #{switch2.i8}"
-			+ "WHEN 9 THEN #{switch2.i9} WHEN 10 THEN #{switch2.i10} WHEN 11 THEN #{switch2.i11} WHEN 12 THEN #{switch2.i12}"
-			+ "WHEN 13 THEN #{switch2.i13} WHEN 14 THEN #{switch2.i14} WHEN 15 THEN #{switch2.i15} WHEN 16 THEN #{switch2.i16}"
-			+ "WHEN 17 THEN #{switch2.i17} WHEN 18 THEN #{switch2.i18} WHEN 19 THEN #{switch2.i19} WHEN 20 THEN #{switch2.i20}"
-			+ "WHEN 21 THEN #{switch2.i21} WHEN 22 THEN #{switch2.i22} WHEN 23 THEN #{switch2.i23} WHEN 24 THEN #{switch2.i24}"
-			+ "WHEN 25 THEN #{switch2.i25} WHEN 26 THEN #{switch2.i26} WHEN 27 THEN #{switch2.i27} WHEN 28 THEN #{switch2.i28}"
-			+ "WHEN 29 THEN #{switch2.i29} WHEN 30 THEN #{switch2.i30}"
-			+ "WHEN 31 THEN #{switch2.i31} WHEN 32 THEN #{switch2.i32}"
-			+ "END WHERE input_id IN (1,2,3,4)")*/
 	@Update("UPDATE switch_input SET switch_input_data = CASE  input_id "
 			+ "WHEN 1 THEN #{switch2.i1} WHEN 2 THEN #{switch2.i2} WHEN 3 THEN #{switch2.i3} WHEN 4 THEN #{switch2.i4} WHEN 5 THEN #{switch2.i5} "
 			+ "WHEN 6 THEN #{switch2.i6} WHEN 7 THEN #{switch2.i7} WHEN 8 THEN #{switch2.i8} WHEN 9 THEN #{switch2.i9} WHEN 10 THEN #{switch2.i10} "

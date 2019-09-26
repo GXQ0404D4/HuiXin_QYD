@@ -26,6 +26,11 @@ public class MonitoringController {
 	
 	static Map<String,Object> map=new HashMap<String,Object>();
 	
+	private static String BDYC="DIKYJBDYC";
+	private static String ZDSD="DOKYJZDSD";
+	private static String KYJQD="KYJQD";
+	private static String KYJTZ="KYJTZ";
+	
 	//监控主角页面数据获取
 	@RequestMapping("MonitorHomePage")
 	public Map<String,Object> OPCRealTimeData(){
@@ -57,27 +62,27 @@ public class MonitoringController {
 	    //键位判断传递
 		if (YCBD1 !=0) {
 			if (KYJZDSD1!=1) {
-				map.put("DI-1#KYJBD/YC", 1);
-				map.put("DO-1#KYJZD/SD", 0);
-				map.put("KYJQD1", 0);
-				map.put("KYJTZ1", 0);				  
+				map.put(BDYC, 1);
+				map.put(ZDSD, 0);
+				map.put(KYJQD, 0);
+				map.put(KYJTZ, 0);				  
 			} else {
-				map.put("DI-1#KYJBD/YC", 1);
-				map.put("DO-1#KYJZD/SD", 1);
+				map.put(BDYC, 1);
+				map.put(ZDSD, 1);
 				if(KYJYX1 ==0){
-				map.put("KYJQD1", 1);
-				map.put("KYJTZ1", 0);	
+				map.put(KYJQD, 1);
+				map.put(KYJTZ, 0);	
 				}
 				if(KYJYX1 ==1){
-				map.put("KYJQD1", 0);
-				map.put("KYJTZ1", 1);	
+				map.put(KYJQD, 0);
+				map.put(KYJTZ, 1);	
 				}				
 			}			
 		} else {
-			map.put("DI-1#KYJBD/YC", 0);
-			map.put("DO-1#KYJZD/SD", 0);
-			map.put("KYJQD1", 0);
-			map.put("KYJTZ1", 0);
+			map.put(BDYC, 0);
+			map.put(ZDSD, 0);
+			map.put(KYJQD, 0);
+			map.put(KYJTZ, 0);
 		}			
 		//传递按钮状态参数
 		map.put("getKYJSwtichInput",SwitchInputList1);
@@ -105,27 +110,27 @@ public class MonitoringController {
 		//键位判断传递
 				if (YCBD2 !=0) {
 					if (KYJZDSD2 !=1) {
-						map.put("DI-2#KYJBD/YC", 1);
-						map.put("DO-2#KYJZD/SD", 0);
-						map.put("KYJQD2", 0);
-						map.put("KYJTZ2", 0);				  
+						map.put(BDYC, 1);
+						map.put(ZDSD, 0);
+						map.put(KYJQD, 0);
+						map.put(KYJTZ, 0);				  
 					} else {
-						map.put("DI-2#KYJBD/YC", 1);
-						map.put("DO-2#KYJZD/SD", 1);
+						map.put(BDYC, 1);
+						map.put(ZDSD, 1);
 						if(KYJYX2 ==0){
-							map.put("KYJQD2", 1);
-							map.put("KYJTZ2", 0);	
+							map.put(KYJQD, 1);
+							map.put(KYJTZ, 0);	
 							}
 							if(KYJYX2 ==1){
-							map.put("KYJQD2", 0);
-							map.put("KYJTZ2", 1);	
+							map.put(KYJQD, 0);
+							map.put(KYJTZ, 1);	
 							}				
 					}			
 				} else {
-					map.put("DI-2#KYJBD/YC", 0);
-					map.put("DO-2#KYJZD/SD", 0);
-					map.put("KYJQD2", 0);
-					map.put("KYJTZ2", 0);
+					map.put(BDYC, 0);
+					map.put(ZDSD, 0);
+					map.put(KYJQD, 0);
+					map.put(KYJTZ, 0);
 				}			
 		
 		//传递按钮状态参数
@@ -153,27 +158,27 @@ public class MonitoringController {
 			//键位判断传递
 			if (YCBD3 !=0) {
 				if (KYJZDSD3 !=1) {
-					map.put("DI-3#KYJBD/YC", 1);
-					map.put("DO-3#KYJZD/SD", 0);
-					map.put("KYJQD3", 0);
-					map.put("KYJTZ3", 0);				  
+					map.put(BDYC, 1);
+					map.put(ZDSD, 0);
+					map.put(KYJQD, 0);
+					map.put(KYJTZ, 0);				  
 				} else {
-					map.put("DI-3#KYJBD/YC", 1);
-					map.put("DO-3#KYJZD/SD", 1);
+					map.put(BDYC, 1);
+					map.put(ZDSD, 1);
 					if(KYJYX3 ==0){
-						map.put("KYJQD3", 1);
-						map.put("KYJTZ3", 0);	
+						map.put(KYJQD, 1);
+						map.put(KYJTZ, 0);	
 						}
 						if(KYJYX3 ==1){
-						map.put("KYJQD3", 0);
-						map.put("KYJTZ3", 1);	
+						map.put(KYJQD, 0);
+						map.put(KYJTZ, 1);	
 						}		
 				}			
 			} else {
-				map.put("DI-3#KYJBD/YC", 0);
-				map.put("DO-3#KYJZD/SD", 0);
-				map.put("KYJQD3", 0);
-				map.put("KYJTZ3", 0);
+				map.put(BDYC, 0);
+				map.put(ZDSD, 0);
+				map.put(KYJQD, 0);
+				map.put(KYJTZ, 0);
 			}			
 	
 		//传递按钮状态参数

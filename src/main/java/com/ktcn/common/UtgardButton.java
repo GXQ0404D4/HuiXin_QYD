@@ -22,7 +22,7 @@ public class UtgardButton {
 	private static final ConnectionInformation ci = OPCConfig.getConnectionInformation();
    
 	
-	public void UpdateUtgard(String Address, int button){
+	public String UpdateUtgard(String Address, int button){
 		
 	        final String itemId = "Siemens Ethernet.S7-200 SMART."+Address;    // 项的名字按实际，没有实际PLC，用的模拟器：simulator
 	        // create a new server，启动服务
@@ -35,7 +35,9 @@ public class UtgardButton {
 	            // Add a new item to the group，
 	            final Item item = group.addItem(itemId);
 	           final JIVariant value = new JIVariant(button);  // 写入24
-	            item.write(value);
+	            Integer write = item.write(value);
+	            System.out.println(write+"write 返回字");
+	            System.out.println(value+"value 返回字");
 	        } catch (final JIException e) {
 	           // System.out.println(String.format("%08X: %s", e.getErrorCode(), server.getErrorMessage(e.getErrorCode())));
 	        } catch (AddFailedException e) {
@@ -57,6 +59,7 @@ public class UtgardButton {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			return itemId;
 
 	}
 }

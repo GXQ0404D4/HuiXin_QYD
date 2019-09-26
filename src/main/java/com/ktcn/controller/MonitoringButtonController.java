@@ -39,33 +39,44 @@ public class MonitoringButtonController {
 	UtgardButton  utgardButton;
 
   @RequestMapping("compressorAA")
-  public void UpdateButton(@RequestBody Map<String,Object> map){
+  public String UpdateButton(@RequestBody Map<String,Object> map){
+	  System.out.println(map);
 	  String address=null;
 	  for (String string : map.keySet()) {
+		  System.out.println(string+"循环map的stringkey 名");
 		  address=string;
 	}		 	
 	 if (address.equals(buttonBDYD) && map.get(buttonBDYD)!=null ) {	
-		  if (map.get(buttonBDYD).equals(1)) {
-			utgardButton.UpdateUtgard(BDYC,0);
-		} if (map.get(buttonBDYD).equals(0)){
-			utgardButton.UpdateUtgard(BDYC,1);
+		 System.out.println("启动！");
+		  if (map.get(buttonBDYD).equals("1")) {
+			  System.out.println("启动值！");
+			utgardButton.UpdateUtgard("DI-1#KYJBD/YC",0);
+		} if (map.get(buttonBDYD).equals("0")){
+			utgardButton.UpdateUtgard("DI-1#KYJBD/YC",1);
 		}
 	} if (address.equals(buttonZDSD) && map.get(buttonZDSD)!=null  ) {
-		 if (map.get(buttonZDSD).equals(1)) {
+		 if (map.get(buttonZDSD).equals("1")) {
 				utgardButton.UpdateUtgard(ZDSD,0);
-	   } if (map.get(buttonZDSD).equals(0)){
+	   } if (map.get(buttonZDSD).equals("0")){
 				utgardButton.UpdateUtgard(ZDSD,1);
 	   }
 	} if (address.equals(buttonQD) && map.get(buttonQD)!=null  ) {
-		 if (map.get(buttonQD).equals(0)){
+		System.out.println("启动！");
+		 if (map.get(buttonQD).equals("0")){
+			 System.out.println("启动值！");
 				utgardButton.UpdateUtgard(KYJQD,1);
 	   }
 	} if (address.equals(buttonTZ) && map.get(buttonTZ)!=null  ) {
-		 if (map.get(buttonTZ).equals(0)){
+		System.out.println("停止！");
+		 if (map.get(buttonTZ).equals("0")){
+			 System.out.println("停止值！");
 				utgardButton.UpdateUtgard(KYJTZ,1);
 	   }
 	}
-	  
+	  System.out.println("操作完成" + map);
+	  System.out.println("操作方法类" + utgardButton);
+	  System.out.println("操作设定变量" + buttonTZ);
+	return "0000";
   }
   
   @RequestMapping("compressorBB")

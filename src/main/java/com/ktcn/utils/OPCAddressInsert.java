@@ -39,7 +39,7 @@ public void GetOPCInsert(Map<String, Float> map1, Map<String, Boolean> map2, Map
 		System.out.println(map2);
 		System.out.println(map3);
 		
-		data_master_table.setVoltageA_1(map1.get("1#A相电流"));
+		/*data_master_table.setVoltageA_1(map1.get("1#A相电流"));
 		data_master_table.setElectric_currentA_1(map1.get("1#A相电压"));
 		data_master_table.setHost_temperature_1(map1.get("1#主机温度"));
         data_master_table.setCoolant_temperature_1(map1.get("1#冷却剂温度"));     
@@ -96,9 +96,9 @@ public void GetOPCInsert(Map<String, Float> map1, Map<String, Boolean> map2, Map
         
         System.out.println(data_master_table);
         DataMasterTable.UpdateRealTime(data_master_table);
-        System.out.println(data_master_table+"###############################");
+        System.out.println(data_master_table+"###############################");*/
 		
-		data_master_table.setVoltageA_1(map1.get("1#A相电流"));
+	/*	data_master_table.setVoltageA_1(map1.get("1#A相电流"));
 		data_master_table.setElectric_currentA_1(map1.get("1#A相电压"));
 		data_master_table.setHost_temperature_1(map1.get("1#主机温度"));
         data_master_table.setCoolant_temperature_1(map1.get("1#冷却剂温度"));     
@@ -155,9 +155,9 @@ public void GetOPCInsert(Map<String, Float> map1, Map<String, Boolean> map2, Map
         
         System.out.println(data_master_table);
      	DataMasterTable.OpcDataMasterInsert(data_master_table);
-     	System.out.println(data_master_table+"data_master_table");
+     	System.out.println(data_master_table+"data_master_table");*/
      		
-     	
+     	   	
      	switch_output_value.setS1(map2.get("DO-1#KYJQD"));
 		switch_output_value.setS2(map2.get("DO-1#KYJTZ"));
 		switch_output_value.setS3(map2.get("DO-1#LGJQD"));

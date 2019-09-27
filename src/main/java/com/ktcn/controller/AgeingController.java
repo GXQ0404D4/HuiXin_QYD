@@ -27,15 +27,14 @@ public class AgeingController implements CommandLineRunner {
 	// 写入初始时间轴
 	@Override
 	public void run(String... args) throws Exception {
-		// 获取最后一条时间轴信息
-		Ageing ageing = ageingService.getLastCode();
-//		ageingService.writeInitialCode();
+		ageingService.writeInitialCode();
 	}
 	
 	// 定时任务每3个月执行一次, 写入系统运行时间轴
-	@Scheduled(cron = "0 0 0 * * ?")
+	@Scheduled(cron = "* * * * */3 ?")
     private void process(){
-    	
+		// 写入单次时间轴数据
+		ageingService.writeOnceCode();
         System.out.println("时间到!");
     }
     
@@ -59,8 +58,11 @@ public class AgeingController implements CommandLineRunner {
     
     @RequestMapping("testXin")
     public Object testXin() {
+    	// 获取最后一条时间轴信息
     	Ageing ageing = ageingService.getLastCode();
-    	return ageing;
+    	// 获取总条数, 查看系统时效时间轴是否存在初始数据
+    	int count = ageingService.getCodeCount();
+    	return count;
     }
 
 }

@@ -1,6 +1,10 @@
 package com.ktcn.dao;
 
+import java.util.Date;
+
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
@@ -14,8 +18,17 @@ import com.ktcn.entity.Ageing;
 @Repository
 @Mapper
 public interface AgeingDao {
+	
 	// 获取最后一条时间轴信息
 	@Select("SELECT * FROM `ageing` ORDER BY ageTime DESC LIMIT 0,1")
 	Ageing getLastCode();
+	
+	// 获取总条数, 查看系统时效时间轴是否存在初始数据
+	@Select("SELECT COUNT(id) FROM `ageing`")
+	int getCodeCount();
+	
+	// 写入初始时间轴
+	@Insert("INSERT INTO `ageing` VALUES (NULL,#{date})")
+	void writeCode(@Param("date") Date date);
 	
 }

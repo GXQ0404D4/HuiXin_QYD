@@ -24,12 +24,6 @@ public class AgeingServiceImpl implements AgeingService {
 	
 	@Resource
 	private AgeingDao ageingDao;
-	
-	// 获取最后一条时间轴信息
-	@Override
-	public Ageing getLastCode() {
-		return ageingDao.getLastCode();
-	}
 
 	// 获取总条数, 查看系统时效时间轴是否存在初始数据
 	@Override
@@ -40,10 +34,8 @@ public class AgeingServiceImpl implements AgeingService {
 	// 写入初始时间轴
 	@Override
 	public void writeInitialCode() {
-		// 获取时间轴表总条数
-		int count = this.getCodeCount();
-		// 若无数据则写入初始时间轴数据
-		if (count == 0) {
+		// 获取时间轴表总条数,若无数据则写入初始时间轴数据
+		if (this.getCodeCount() == 0) {
 			ageingDao.writeCode(new Date());
 		}
 	}

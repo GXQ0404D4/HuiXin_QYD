@@ -30,5 +30,9 @@ public interface AgeingDao {
 	// 写入初始时间轴
 	@Insert("INSERT INTO `ageing` VALUES (NULL,#{date})")
 	void writeCode(@Param("date") Date date);
+
+	// 查看最后一个时间轴与当前时间月数差
+	@Select("SELECT TIMESTAMPDIFF(MONTH,(SELECT ageTime FROM `ageing` ORDER BY ageTime DESC LIMIT 0,1),DATE_FORMAT(NOW(), '%Y-%m-%d'))")
+	int comparisonCode();
 	
 }

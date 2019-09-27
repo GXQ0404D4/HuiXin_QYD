@@ -1,5 +1,7 @@
 package com.ktcn.service;
 
+import java.util.Map;
+
 import com.ktcn.entity.Ageing;
 
 /**
@@ -19,5 +21,8 @@ public interface AgeingService {
 	void writeInitialCode();
 	// 写入单次时间轴数据
 	void writeOnceCode();
+	
+	// 用户登录调用此方法, 查看系统运行是否超时
+	Map<String, String> comparisonCode();
 
 }

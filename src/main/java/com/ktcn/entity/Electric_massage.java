@@ -21,8 +21,8 @@ public class Electric_massage {
 	private float instantaneous_power;// 瞬时功率
 	private float electric_quantity;// 电量
 	private float power_factor;		// 功率因数
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date current_time;		// 当前时间
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date current_date;		// 存入日期
 }

@@ -16,6 +16,6 @@ public class Switch_input  {
 	private int switch_input_data;
 	private int state;
 	private String introduce;
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date time;
 }

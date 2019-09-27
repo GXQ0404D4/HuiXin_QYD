@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 public class Production_plan {
 	private int id;				// 主键
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date pdt_time;		// 生产管理时间
 	private String pdt_content;	// 生产管理内容
 	private int pdt_people_id;	// 布置人ID

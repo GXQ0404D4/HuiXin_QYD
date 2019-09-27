@@ -20,7 +20,7 @@ public class Tb_user {
 	private String phone;		// 联系电话
 	private String user_name;	// 职位
 	private String working_group;// 工组
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date createTime;	// 用户创建时间
 	private int state;			// 状态码
 	private int userPower;		// 权限码

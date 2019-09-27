@@ -21,8 +21,8 @@ public class Mian_network {
 	private float total_power;			// 总功率
 	private float total_electricity;	// 总电量
 	private String machine;				// 机器
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date current_time;			// 当前时间
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date current_date;			// 写入日期
 }

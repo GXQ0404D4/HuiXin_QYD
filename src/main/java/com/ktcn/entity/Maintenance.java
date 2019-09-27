@@ -12,9 +12,9 @@ import lombok.Data;
 @Data
 public class Maintenance {
 	private int id;				// 主键
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date mt_plan_time;	// 提交计划时间
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date mt_time;		// 完成维保时间
 	private String mt_content;	// 维保内容
 	private String mt_yiliu;	// 维保遗留问题

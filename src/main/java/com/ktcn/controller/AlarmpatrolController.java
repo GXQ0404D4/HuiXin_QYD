@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ktcn.aspect.SysLog;
 import com.ktcn.entity.Alarmpatrol;
 import com.ktcn.service.AlarmpatrolService;
 
@@ -24,6 +25,7 @@ public class AlarmpatrolController {
 	
 	// 查询全部报警巡查信息
 	@RequestMapping("apFindAll")
+	@SysLog(logModule = "报警巡查", logName = "查看")
 	public Map<String,Object> apFindAll(){
 		// 创建一个map集合用来保存返回信息
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -38,6 +40,7 @@ public class AlarmpatrolController {
 	
 	// 按照时间区间查询报警巡查信息
 	@RequestMapping("apFindByTime")
+	@SysLog(logModule = "报警巡查", logName = "时间区间查看")
 	public Map<String,Object> apFindByTime(String TimeA, String TimeB){
 		// 创建一个map集合用来保存返回信息
 		Map<String,Object> map = new HashMap<String,Object>();

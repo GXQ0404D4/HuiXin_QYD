@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ktcn.aspect.SysLog;
 import com.ktcn.entity.Maintenance;
 import com.ktcn.entity.Tb_user;
+import com.ktcn.service.AgeingService;
 import com.ktcn.service.MaintenanceService;
 import com.ktcn.utils.MD5Util;
 
@@ -23,6 +24,8 @@ import com.ktcn.utils.MD5Util;
 public class MaintenanceController {
 	@Resource
 	private MaintenanceService maintenanceService;
+	@Resource
+	private AgeingService ageingService;
 	// 新增维保计划
 	@RequestMapping("MtcApply")
 	@SysLog(logModule = "维保记录", logName = "新增维保计划")
@@ -57,8 +60,12 @@ public class MaintenanceController {
 	public String executeMtcPlan(Map<String,String> map,HttpServletRequest request) {
 		// 获取当前用户
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+		// 判断用户权限
 		if (user.getUserPower() == 1 || user.getUserPower() == 2) {
+			// 执行维保计划
 			maintenanceService.updateMaintenance(map);
+			// 写入"系统运行时间轴"节点数据
+			ageingService.writeOnceCode();
 			return "success";
 		} else {
 			return null;

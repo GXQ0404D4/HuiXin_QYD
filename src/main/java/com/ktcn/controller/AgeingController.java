@@ -29,11 +29,11 @@ public class AgeingController implements CommandLineRunner {
 	}
 	
 	// 定时任务每3个月执行一次, 写入系统运行时间轴
-	@Scheduled(cron = "* * * * */3 ?")
-    private void process(){
-		// 写入单次时间轴数据
-		ageingService.writeOnceCode();
-    }
+//	@Scheduled(cron = "* * * * */3 ?")
+//    private void process(){
+//		// 写入单次时间轴数据
+//		ageingService.writeOnceCode();
+//    }
     
     // 用户登录调用此方法, 查看系统运行是否超时
     @RequestMapping("getAgeingCode")

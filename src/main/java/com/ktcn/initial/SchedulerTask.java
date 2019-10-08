@@ -8,7 +8,7 @@ public class SchedulerTask {
     // 定时任务每天0点执行一次
     @Scheduled(cron = "0 0 0 * * ?")
     private void process(){
-        System.out.println("时间到!");
+        
     }
     
 }

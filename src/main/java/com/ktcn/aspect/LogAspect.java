@@ -50,9 +50,7 @@ public class LogAspect {
         try {
         	// 获取当前登录人信息
         	Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-    		
-            // 获取ip地址
-            String ip = InetAddress.getLocalHost().toString();
+    		// 获取日志信息
             String logModule = null;
             String logName = null;
             // 获取类的全限定名
@@ -82,10 +80,8 @@ public class LogAspect {
                         log.setOperTime(new Date());
                         log.setOperModel(logModule);
                         log.setOperName(logName);
-                        // 写入客户机ip
-                        log.setUserIp("111");
+                        // 获取并写入客户机ip
                         log.setUserIp(this.getIpAddr(request));
-                        logger.info("访问ip: "+this.getIpAddr(request));
                         logService.addUserLog(log);
                     }
                 }

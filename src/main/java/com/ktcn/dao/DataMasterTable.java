@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
 
 import com.ktcn.entity.Data_master_table;
+import com.ktcn.entity.Real_time_data;
 import com.ktcn.entity.Switch_input_value;
 import com.ktcn.entity.Switch_output_value;
 
@@ -24,7 +25,7 @@ public interface DataMasterTable {
 	
 	/*realtimedata 实时数据库修改*/
 	//@Update(" UPDATE real_time_data  SET VoltageA_1 = #{data_master_table.VoltageA_1} WHERE dmt_id=1")
-	void UpdateRealTime(Data_master_table data_master_table);
+	void UpdateRealTime(Real_time_data Real_time_data);
 	
 	
 	/*switch_output 开关输入输入信息修改*/
@@ -45,9 +46,8 @@ public interface DataMasterTable {
 			+ "WHEN 11 THEN #{switch2.i11} WHEN 12 THEN #{switch2.i12} WHEN 13 THEN #{switch2.i13} WHEN 14 THEN #{switch2.i14} WHEN 15 THEN #{switch2.i15} "
 			+ "WHEN 16 THEN #{switch2.i16} WHEN 17 THEN #{switch2.i17} WHEN 18 THEN #{switch2.i18} WHEN 19 THEN #{switch2.i19} WHEN 20 THEN #{switch2.i20} "
 			+ "WHEN 21 THEN #{switch2.i21} WHEN 22 THEN #{switch2.i22} WHEN 23 THEN #{switch2.i23} WHEN 24 THEN #{switch2.i24} WHEN 25 THEN #{switch2.i25} "
-			+ "WHEN 26 THEN #{switch2.i26} WHEN 27 THEN #{switch2.i27} WHEN 28 THEN #{switch2.i28} WHEN 29 THEN #{switch2.i29} WHEN 30 THEN #{switch2.i30} "
-			+ "WHEN 31 THEN #{switch2.i31} WHEN 32 THEN #{switch2.i32} WHEN 33 THEN #{switch2.i33} "
-			+ "END WHERE input_id IN (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33)")
+			+ "WHEN 26 THEN #{switch2.i26} WHEN 27 THEN #{switch2.i27} WHEN 28 THEN #{switch2.i28} WHEN 29 THEN #{switch2.i29} WHEN 30 THEN #{switch2.i30} "			
+			+ "END WHERE input_id IN (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30)")
 	void getswitcInput(@Param("switch2") Switch_input_value switch2);
 
 

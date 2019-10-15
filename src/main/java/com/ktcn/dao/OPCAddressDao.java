@@ -11,11 +11,11 @@ import com.ktcn.entity.Opc_address;
 @Mapper
 public interface OPCAddressDao {
 	
-	//@Select("SELECT tag_name FROM opc_address WHERE type IN (1,2,3)")
-	@Select("SELECT tag_name FROM opc_address")
+	
+	@Select("SELECT tag_name FROM opc_address WHERE type=1")
 	public List<String> GetALLAddress();
 	
-	@Select("SELECT tag_name FROM opc_address WHERE type IN (2,3)")
+	@Select("SELECT tag_name FROM opc_address WHERE type in (2,3)")
 	public List<String> GetSwitchAddress();
 	
 	

@@ -32,5 +32,5 @@ public class Switch_output_value {
 	private Boolean s13;	
 	private Boolean s14;	
 	private Boolean s15;	
-	private Boolean s16;	
+	
 }

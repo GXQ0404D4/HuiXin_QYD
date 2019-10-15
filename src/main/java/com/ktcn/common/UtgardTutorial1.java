@@ -149,9 +149,9 @@ public class UtgardTutorial1  {
 				String format1 = date1.format(new Date(System.currentTimeMillis()));						
 				System.out.println(format1 + "+++++++++++++++++++++++++++++++++++采集结束时间数据");
 				
-				if (i == 100) {							
-					opcaddressinsert.GetOPCInsert(map1,map2,map3,allAddress);
-				}
+//				if (i == 100) {							
+//					opcaddressinsert.GetOPCInsert(map1,map2,map3,allAddress);
+//				}
 			} catch (final JIException e) {
 				//System.out.println(String.format("%08X: %s", e.getErrorCode(), server.getErrorMessage(e.getErrorCode())));
 			} catch (IllegalArgumentException e1) {

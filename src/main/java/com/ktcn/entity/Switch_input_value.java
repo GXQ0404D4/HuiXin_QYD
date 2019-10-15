@@ -46,10 +46,7 @@ public class Switch_input_value {
 	private Boolean i27;
 	private Boolean i28;
 	private Boolean i29;
-	private Boolean i30;
-	private Boolean i31;
-	private Boolean i32;
-	private Boolean i33;
+	private Boolean i30;	
 
 	
 }

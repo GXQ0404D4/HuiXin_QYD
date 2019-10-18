@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +46,8 @@ public class LogAspect {
     /**
      * 正常返回通知
      */
-    @AfterReturning("controllerAspect()")
+//    @AfterReturning("controllerAspect()")
+    @Before("controllerAspect()")
     public void AfterReturning(JoinPoint joinPoint) {
         try {
         	// 获取当前登录人信息

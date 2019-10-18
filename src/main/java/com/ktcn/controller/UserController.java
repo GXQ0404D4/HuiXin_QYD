@@ -27,17 +27,23 @@ public class UserController {
 	// 登录方法
 	@RequestMapping("login")
 	@SysLog(logModule = "用户管理", logName = "登录")
-	public Map<String,String> login(@RequestBody Map<String,String> map, HttpServletRequest request) {
-		Map<String,String> data = new HashMap<String,String>();
+	public Map<String,Object> login(@RequestBody Map<String,String> map, HttpServletRequest request) {
+		System.out.println("进入登录方法!");
+		// 创建一个map集合用来保存返回信息
+		Map<String,Object> data = new HashMap<String,Object>();
 		// 用户验证方法
 		Tb_user user = userService.login(map);
 		if (user != null) {
 			// 登录成功将用户信息存在session域中
 			request.getSession().setAttribute("nowuser", user);
 			data.put("code", "0000");
+			data.put("data", user);
+			data.put("message", "登录成功");
+			System.out.println("登入sessionID: " + request.getSession().getId());
 			return data;
 		} else {
 			data.put("code", "0001");
+			data.put("message", "登录失败");
 			return data;
 		}
 	}
@@ -46,8 +52,10 @@ public class UserController {
 	@RequestMapping("exit")
 	@SysLog(logModule = "用户管理", logName = "退出")
 	public String exit(HttpServletRequest request) {
+		System.out.println("登出方法");
+		System.out.println("登出sessionID: " + request.getSession().getId());
 		// 清空session
-        request.getSession().invalidate();
+		request.getSession().invalidate();
 		return "success";
 	}
 	

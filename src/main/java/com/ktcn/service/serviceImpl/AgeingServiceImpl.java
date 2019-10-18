@@ -1,6 +1,5 @@
 package com.ktcn.service.serviceImpl;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.dao.AgeingDao;
-import com.ktcn.entity.Ageing;
 import com.ktcn.service.AgeingService;
 /**
  * 系统运行时效业务层实现类

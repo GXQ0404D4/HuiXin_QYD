@@ -129,10 +129,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
-		<!--utgard -->
-		      
 		
-
+		<!--utgard -->
 		<dependency>
 			<groupId>org.openscada.external</groupId>
 			<artifactId>org.openscada.external.jcifs</artifactId>
@@ -184,7 +182,6 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-core</artifactId>
 		</dependency>
-
 
 		<!-- lombok依赖 -->
 		<dependency>

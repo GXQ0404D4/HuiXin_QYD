@@ -2,12 +2,14 @@ package com.ktcn;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.ktcn.aspect.SysLog;
 
 @SpringBootApplication
 @EnableScheduling
+@ServletComponentScan // 解决跨域session丢失问题
 //public class KtcnQydApplication extends SpringBootServletInitializer{
 //
 //	public static void main(String[] args) {

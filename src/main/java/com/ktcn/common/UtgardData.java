@@ -36,9 +36,9 @@ import com.ktcn.utils.OPCAddress;
 import com.ktcn.utils.OPCAddressInsert;
 import com.ktcn.utils.OPCConfig;
 
-@EnableScheduling // 此注解必加,必须要加，重中之重
-@Component // 此注解必加
-@Order(value = 1)
+//@EnableScheduling // 此注解必加,必须要加，重中之重
+//@Component // 此注解必加
+//@Order(value = 1)
 public class UtgardData {
 	// 获取连接池信息
 	private static final ConnectionInformation ci = OPCConfig.getConnectionInformation();

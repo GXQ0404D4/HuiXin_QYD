@@ -39,11 +39,11 @@ import com.ktcn.utils.OPCAddressInsert;
 import com.ktcn.utils.OPCAddressInsert2;
 import com.ktcn.utils.OPCConfig;
 
-@EnableScheduling // 此注解必加,必须要加，重中之重
-
-@Component // 此注解必加
-
-@Order(value = 1)
+//@EnableScheduling // 此注解必加,必须要加，重中之重
+//
+//@Component // 此注解必加
+//
+//@Order(value = 1)
 
 public class UtgardSwitchData {
 	// 获取连接池信息
@@ -55,7 +55,7 @@ public class UtgardSwitchData {
 	@Autowired
 	OPCAddressInsert2 OPCAddressInsert2;
 
-	@Scheduled(cron = "0/1 * * * * ?")
+//	@Scheduled(cron = "0/1 * * * * ?")
 	public void SwitchData() {
 
 		// 提取采集short数据

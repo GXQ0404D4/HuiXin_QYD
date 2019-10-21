@@ -46,8 +46,8 @@ public class LogAspect {
     /**
      * 正常返回通知
      */
-//    @AfterReturning("controllerAspect()")
-    @Before("controllerAspect()")
+    @AfterReturning("controllerAspect()")
+//    @Before("controllerAspect()")
     public void AfterReturning(JoinPoint joinPoint) {
         try {
         	// 获取当前登录人信息

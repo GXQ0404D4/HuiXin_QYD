@@ -33,7 +33,6 @@ public class ComReportController {
 	@RequestMapping("CompressorReport")
 	@SysLog(logModule = "空压机报表", logName = "查看全部")
 	public List<Compressor_report> CompressorReport(HttpServletRequest request) {
-		System.out.println("查看空压机sessionID: " + request.getSession().getId());
 		// 查询全部空压机报表信息
 		List<Compressor_report> Cm_report = comReportService.findAll();
 		return Cm_report;

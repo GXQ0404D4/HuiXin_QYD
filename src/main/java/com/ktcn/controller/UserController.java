@@ -133,7 +133,7 @@ public class UserController {
 				return "两次密码输入不一致";
 			}
 			// 清空session
-	        request.getSession().invalidate();
+	        // request.getSession().invalidate();
 			return "success";
 		} else {
 			return null;

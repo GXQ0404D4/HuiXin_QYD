@@ -30,6 +30,7 @@ public class ProductionServiceImpl implements ProductionService {
 	// 生产管理条件搜索
 	@Override
 	public List<Production_plan> findByParam(String pdt_select) {
+		System.out.println("调用dao层方法");
 		return productionDao.findByParam(pdt_select);
 	}
 	// 生产管理时间区间查询

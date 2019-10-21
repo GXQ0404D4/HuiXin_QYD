@@ -1,49 +1,30 @@
 package com.ktcn.common;
 
-import java.net.UnknownHostException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
-import org.jinterop.dcom.common.JIException;
 import org.jinterop.dcom.common.JISystem;
-import org.jinterop.dcom.core.JIVariant;
-import org.openscada.opc.lib.common.AlreadyConnectedException;
 import org.openscada.opc.lib.common.ConnectionInformation;
-import org.openscada.opc.lib.common.NotConnectedException;
-import org.openscada.opc.lib.da.AccessBase;
-import org.openscada.opc.lib.da.AddFailedException;
-import org.openscada.opc.lib.da.Async20Access;
-import org.openscada.opc.lib.da.DataCallback;
-import org.openscada.opc.lib.da.DuplicateGroupException;
 import org.openscada.opc.lib.da.Group;
 import org.openscada.opc.lib.da.Item;
 import org.openscada.opc.lib.da.ItemState;
 import org.openscada.opc.lib.da.Server;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.ktcn.service.OPCAddressService;
 import com.ktcn.utils.OPCAddress;
-import com.ktcn.utils.OPCAddressInsert;
 import com.ktcn.utils.OPCAddressInsert2;
 import com.ktcn.utils.OPCConfig;
 
-//@EnableScheduling // 此注解必加,必须要加，重中之重
-//
-//@Component // 此注解必加
-//
-//@Order(value = 1)
+@EnableScheduling // 此注解必加,必须要加，重中之重
+
+@Component // 此注解必加
+
+@Order(value = 1)
 
 public class UtgardSwitchData {
 	// 获取连接池信息
@@ -55,7 +36,7 @@ public class UtgardSwitchData {
 	@Autowired
 	OPCAddressInsert2 OPCAddressInsert2;
 
-//	@Scheduled(cron = "0/1 * * * * ?")
+	@Scheduled(cron = "0/1 * * * * ?")
 	public void SwitchData() {
 
 		// 提取采集short数据

@@ -1,15 +1,12 @@
 package com.ktcn.utils;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.ktcn.dao.DataMasterTable;
-import com.ktcn.entity.Data_master_table;
 import com.ktcn.entity.Switch_input_value;
 import com.ktcn.entity.Switch_output_value;
 

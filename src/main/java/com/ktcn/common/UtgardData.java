@@ -24,10 +24,10 @@ import com.ktcn.utils.OPCAddress;
 import com.ktcn.utils.OPCAddressInsert;
 import com.ktcn.utils.OPCConfig;
 
-@EnableScheduling // 此注解必加,必须要加，重中之重
+//@EnableScheduling // 此注解必加,必须要加，重中之重
 //@Component // 此注解必加
-@Service
-@Order(value = 1)
+//@Service
+//@Order(value = 1)
 public class UtgardData {
 	// 获取连接池信息
 	//private static final ConnectionInformation ci = OPCConfig.getConnectionInformation();
@@ -42,7 +42,7 @@ public class UtgardData {
 	// 获取连接池信息
 	final ConnectionInformation ci = new ConnectionInformation();
 	
-	@Scheduled(cron = "0/1 * * * * ?")
+//	@Scheduled(cron = "0/1 * * * * ?")
 	public void kepserverdata() {
 		// 获取IP地址
 		String ip = null;
@@ -85,7 +85,8 @@ public class UtgardData {
 					if(object==null) {
 						object=0;
 					}
-					fl.add(object);				} catch (Exception e1) {
+					fl.add(object);				
+					} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 					break;

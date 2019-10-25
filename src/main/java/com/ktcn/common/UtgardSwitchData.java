@@ -22,12 +22,12 @@ import com.ktcn.entity.ConfigPojo;
 import com.ktcn.utils.OPCAddress;
 import com.ktcn.utils.OPCAddressInsert2;
 
-@EnableScheduling // 此注解必加,必须要加，重中之重
+//@EnableScheduling // 此注解必加,必须要加，重中之重
 
 //@Component // 此注解必加
-@Service
-
-@Order(value = 1)
+//@Service
+//
+//@Order(value = 1)
 
 public class UtgardSwitchData {
 	// 获取地址值 的controller类
@@ -40,7 +40,7 @@ public class UtgardSwitchData {
 	// 获取连接池信息
 	ConnectionInformation ci = new ConnectionInformation();
 	
-	@Scheduled(cron = "0/1 * * * * ?")
+//	@Scheduled(cron = "0/1 * * * * ?")
 	public void SwitchData() {
 
 		// 获取IP地址

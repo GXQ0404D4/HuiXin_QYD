@@ -3,6 +3,8 @@ package com.ktcn.entity.opcaddress;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+@Component
 public class KyjOpcAddress2 {
 	private final static String A1="Siemens Ethernet.S7-200 SMART.2#A相电压";
 	private final static String A2="Siemens Ethernet.S7-200 SMART.2#A相电流";
@@ -25,8 +27,10 @@ public class KyjOpcAddress2 {
 	private final static String A19="Siemens Ethernet.S7-200 SMART.瞬时流量";
 	private final static String A20="Siemens Ethernet.S7-200 SMART.瞬时功率";
 	private final static String A21="Siemens Ethernet.S7-200 SMART.补偿后流量";
+	
+	
     List<String> listaddress=new ArrayList<String>();
-    public void getListAddress() {
+    public List<String> getListAddress() {
     	listaddress.add(A1);
     	listaddress.add(A2);
     	listaddress.add(A3);
@@ -48,5 +52,6 @@ public class KyjOpcAddress2 {
     	listaddress.add(A19);
     	listaddress.add(A20);
     	listaddress.add(A21);
+		return listaddress;
     }
 }

@@ -34,7 +34,7 @@ import org.springframework.stereotype.Component;
 import com.ktcn.utils.OPCAddress;
 import com.ktcn.utils.OPCAddressInsert;
 import com.ktcn.utils.OPCConfig;
-@EnableScheduling // 此注解必加,必须要加，重中之重
+//@EnableScheduling // 此注解必加,必须要加，重中之重
 //@Component
 //@Order(value = 1)
 public class UtgardTutorial1  {
@@ -51,7 +51,7 @@ public class UtgardTutorial1  {
 	@Autowired
 	OPCAddressInsert opcaddressinsert;
 	
-	@Scheduled(cron = "0/1 * * * * ?")
+//	@Scheduled(cron = "0/1 * * * * ?")
 	public void kepserverdata() {
 		
 		Map <String,Float> map1= new HashMap<String,Float>();

@@ -1,18 +1,13 @@
 package com.ktcn.utils;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
-import org.bouncycastle.asn1.dvcs.Data;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.ktcn.dao.DataMasterTable;
 import com.ktcn.entity.Compressor_report;
-import com.ktcn.entity.Data_master_table;
 import com.ktcn.entity.Electric_massage;
 import com.ktcn.entity.Mian_network;
 import com.ktcn.entity.Real_time_data;
@@ -35,10 +30,7 @@ public class OPCAddressInsert {
 	@Autowired
 	private Real_time_data Real_time_data;
 
-	@Autowired
-	private Data_master_table data_master_table;
-
-	@Autowired
+	@Autowired	
 	Electric_massage electric_massage;
 
 	@Autowired

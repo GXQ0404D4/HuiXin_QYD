@@ -1,13 +1,20 @@
 package com.ktcn.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
+import org.bouncycastle.asn1.dvcs.Data;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.ktcn.dao.DataMasterTable;
+import com.ktcn.entity.Compressor_report;
 import com.ktcn.entity.Data_master_table;
+import com.ktcn.entity.Electric_massage;
+import com.ktcn.entity.Mian_network;
 import com.ktcn.entity.Real_time_data;
 
 /**
@@ -31,9 +38,22 @@ public class OPCAddressInsert {
 	@Autowired
 	private Data_master_table data_master_table;
 
+	@Autowired
+	Electric_massage electric_massage;
+
+	@Autowired
+	Mian_network mian_network;
+	
+	@Autowired
+	Compressor_report compressor_report;
 
 	public void GetOPCInsert(ArrayList<Object> fl) {
-		System.out.println(fl);
+		
+		  
+		  
+//		  try { Thread.sleep(5000); } catch (InterruptedException e) { // TODO
+//		  Auto-generated catch block e.printStackTrace(); }
+		 
 
 		Real_time_data.setVoltageA_1((float) fl.get(0));
 		Real_time_data.setElectric_currentA_1((float) fl.get(1));
@@ -91,96 +111,58 @@ public class OPCAddressInsert {
 		Real_time_data.setPressure((float) fl.get(51));
 		Real_time_data.setCumulative_flow((float) fl.get(52));
 		Real_time_data.setCompensated_flow((float) fl.get(53));
+
+		// 将Real_time_data实时数据实体类 直接复制给相同属性值的data_master_table历史数据实体类
+//		BeanUtils.copyProperties(Real_time_data, data_master_table); 
+		DataMasterTable.UpdateRealTime(Real_time_data); // 实时数据存入数据库
+//		DataMasterTable.OpcDataMasterInsert(data_master_table);// 历史数据存入数据库
+
+		// 电量表存入
+		Float dl1 = (float) fl.get(1) + (float) fl.get(17) + (float) fl.get(33);
+		electric_massage.setVoltageA((float) fl.get(0));
+		electric_massage.setVoltageB((float) fl.get(16));
+		electric_massage.setVoltageC((float) fl.get(32));
+		electric_massage.setElectric_currentA((float) fl.get(1));
+		electric_massage.setElectric_currentB((float) fl.get(17));
+		electric_massage.setElectric_currentC((float) fl.get(33));
+		electric_massage.setInstantaneous_power((float) fl.get(54));
+		electric_massage.setElectric_quantity(dl1);
+		//总管网存入
+		mian_network.setPressureA((float) fl.get(51));
+		mian_network.setPressureB((float) fl.get(51));
+		mian_network.setLU_dianA((float) fl.get(17));
+		mian_network.setLU_dianB((float) fl.get(33));
+		mian_network.setInstantaneous_flow((float) fl.get(52));
+		mian_network.setTotal_power((float) fl.get(54));
+		mian_network.setTotal_electricity(dl1);
 		
-		int b = 1;
-		for (Object string : fl) {
-			System.out.println((b++) + "____" + string);
-		}
-
+//		System.out.println(fl);
 //		try {
-//			Thread.sleep(1000);
+//			Thread.sleep(10000);
 //		} catch (InterruptedException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-
-		// System.out.println(Real_time_data);
-		DataMasterTable.UpdateRealTime(Real_time_data);
-		// System.out.println(Real_time_data + "###############################");
-
-		data_master_table.setVoltageA_1((float) fl.get(0));
-		data_master_table.setElectric_currentA_1((float) fl.get(1));
-		data_master_table.setHost_temperature_1((float) fl.get(2));
-		data_master_table.setCoolant_temperature_1((float) fl.get(3));
-		data_master_table.setSump_Pressure_1((float) fl.get(4));
-		data_master_table.setLoading_pressure_1((float) fl.get(5));
-		data_master_table.setLoading_time_1((float) fl.get(6));
-		data_master_table.setUnloading_pressure_1((float) fl.get(7));
-		data_master_table.setAlarm_number_1(fl.get(8));
-		data_master_table.setExhaust_pressure_1((float) fl.get(9));
-		data_master_table.setExhaust_temperature_1((float) fl.get(10));
-		data_master_table.setControl_state_1(fl.get(11));
-		data_master_table.setTotal_energy_1((float) fl.get(12));
-		data_master_table.setWarning_sign_1(fl.get(13));
-		data_master_table.setRunning_time_1((float) fl.get(14));
-		data_master_table.setRemote_switch_1(fl.get(15));
-
-		data_master_table.setVoltageA_2((float) fl.get(16));
-		data_master_table.setElectric_currentA_2((float) fl.get(17));
-		data_master_table.setHost_temperature_2((float) fl.get(18));
-		data_master_table.setCoolant_temperature_2((float) fl.get(19));
-		data_master_table.setSump_Pressure_2((float) fl.get(20));
-		data_master_table.setLoading_pressure_2((float) fl.get(21));
-		data_master_table.setLoading_time_2((float) fl.get(22));
-		data_master_table.setUnloading_pressure_2((float) fl.get(23));
-		data_master_table.setAlarm_number_2(fl.get(24));
-		data_master_table.setExhaust_pressure_2((float) fl.get(25));
-		data_master_table.setExhaust_temperature_2((float) fl.get(26));
-		data_master_table.setControl_state_2(fl.get(27));
-		data_master_table.setTotal_energy_2((float) fl.get(28));
-		data_master_table.setWarning_sign_2(fl.get(29));
-		data_master_table.setRunning_time_2((float) fl.get(30));
-		data_master_table.setRemote_switch_2(fl.get(31));
-
-		data_master_table.setVoltageA_3((float) fl.get(32));
-		data_master_table.setElectric_currentA_3((float) fl.get(33));
-		data_master_table.setHost_temperature_3((float) fl.get(34));
-		data_master_table.setCoolant_temperature_3((float) fl.get(35));
-		data_master_table.setSump_Pressure_3((float) fl.get(36));
-		data_master_table.setLoading_pressure_3((float) fl.get(37));
-		data_master_table.setLoading_time_3((float) fl.get(38));
-		data_master_table.setUnloading_pressure_3((float) fl.get(39));
-		data_master_table.setAlarm_number_3(fl.get(40));
-		data_master_table.setExhaust_pressure_3((float) fl.get(41));
-		data_master_table.setExhaust_temperature_3((float) fl.get(42));
-		data_master_table.setControl_state_3(fl.get(43));
-		data_master_table.setTotal_energy_3((float) fl.get(44));
-		data_master_table.setWarning_sign_3(fl.get(45));
-		data_master_table.setRunning_time_3((float) fl.get(46));
-		data_master_table.setRemote_switch_3(fl.get(47));
-		data_master_table.setActive_Service_Rate1((float) fl.get(48));
-		data_master_table.setActive_Service_Rate2((float) fl.get(49));
-		data_master_table.setActive_Service_Rate3((float) fl.get(50));
-		data_master_table.setPressure((float) fl.get(51));
-		data_master_table.setCumulative_flow((float) fl.get(52));
-		data_master_table.setCompensated_flow((float) fl.get(53));
-
-//		System.out.println(data_master_table);
-		DataMasterTable.OpcDataMasterInsert(data_master_table);
-//		System.out.println(data_master_table + "data_master_table");
-
-		int a = 1;
-		for (Object string : fl) {
-			System.out.println((a++) + "____" + string);
-		}
-
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-
+		
+		//空压机数据表存入
+		compressor_report.setElectric_energy_A((float) fl.get(12));
+		compressor_report.setElectric_energy_B((float) fl.get(28));
+		compressor_report.setElectric_energy_C((float) fl.get(44));
+//		compressor_report.setRunning_time_A((Date) fl.get(15));
+//		compressor_report.setRunning_time_B((Date) fl.get(31));
+//		compressor_report.setRunning_time_C((Date) fl.get(47));
+		compressor_report.setActive_powerA((float) fl.get(48));
+		compressor_report.setActive_powerB((float) fl.get(49));
+		compressor_report.setActive_powerC((float) fl.get(50));			
+		
+		
+		DataMasterTable.DataMasterTableInsert(compressor_report);
+		
+		DataMasterTable.ElectricInsert(electric_massage);
+		
+		DataMasterTable.Mian_networkInsert(mian_network);
+		
+		
 	}
 
 }

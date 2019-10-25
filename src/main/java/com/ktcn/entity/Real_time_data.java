@@ -63,4 +63,5 @@ public class Real_time_data {
 	private float pressure;//pressure
 	private float Cumulative_flow;//Cumulative_flow
 	private float Compensated_flow;//Compensated_flow 
+	private float instantaneous_power;//instantaneous_power 瞬时功率
 }

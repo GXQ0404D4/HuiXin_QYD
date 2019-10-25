@@ -5,6 +5,7 @@
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} - [系统日志信息] - %msg%n</pattern>
+            <charset>UTF-8</charset>
         </encoder>
     </appender>
     
@@ -36,9 +37,8 @@
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <encoder>
-        	<Pattern>
-                %d{yyyy-MM-dd HH:mm:ss} - [系统日志信息] -%msg%n
-            </Pattern>
+        	<Pattern>%d{yyyy-MM-dd HH:mm:ss} - [系统日志信息] -%msg%n</Pattern>
+            <charset>UTF-8</charset>
 <!--             <pattern>${log.pattern}</pattern> -->
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">

@@ -1,12 +1,16 @@
 package com.ktcn.dao;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
 
+import com.ktcn.entity.Compressor_report;
 import com.ktcn.entity.Data_master_table;
+import com.ktcn.entity.Electric_massage;
+import com.ktcn.entity.Mian_network;
 import com.ktcn.entity.Real_time_data;
 import com.ktcn.entity.Switch_input_value;
 import com.ktcn.entity.Switch_output_value;
@@ -49,10 +53,26 @@ public interface DataMasterTable {
 			+ "WHEN 26 THEN #{switch2.i26} WHEN 27 THEN #{switch2.i27} WHEN 28 THEN #{switch2.i28} WHEN 29 THEN #{switch2.i29} WHEN 30 THEN #{switch2.i30} "			
 			+ "END WHERE input_id IN (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30)")
 	void getswitcInput(@Param("switch2") Switch_input_value switch2);
+    
+	//电量报表数据存储
+	@Insert("INSERT INTO electric_massage (voltageA,voltageB,voltageC,electric_currentA,electric_currentB,electric_currentC,instantaneous_power,electric_quantity,`current_time`,`current_date`) VALUES "
+			+ "(#{electric_massage.voltageA},#{electric_massage.voltageB},#{electric_massage.voltageC},#{electric_massage.electric_currentA},#{electric_massage.electric_currentB},#{electric_massage.electric_currentC},"
+			+ "#{electric_massage.instantaneous_power},#{electric_massage.electric_quantity},NOW(),NOW())")
+	void ElectricInsert(@Param("electric_massage") Electric_massage electric_massage);
+
+	//总管网报表数据存储
+	@Insert("INSERT INTO mian_network (pressureA,pressureB,LU_dianA,LU_dianB,Instantaneous_flow,total_power,total_electricity,`current_time`,`current_date`) VALUES"
+			+ "(#{mian_network.pressureA},#{mian_network.pressureB},#{mian_network.LU_dianA},#{mian_network.LU_dianB},#{mian_network.Instantaneous_flow},"
+			+ "#{mian_network.total_power},#{mian_network.total_electricity},NOW(),NOW())")
+
+	void Mian_networkInsert(@Param("mian_network")Mian_network mian_network);
+
+	@Insert("INSERT INTO compressor_report (electric_energy_A,electric_energy_B,electric_energy_C,`running_time_A`,`running_time_B`,`running_time_C`,active_powerA,active_powerB,active_powerC,`Air_current_time`)VALUES"
+			+ "(#{compressor_report.electric_energy_A},#{compressor_report.electric_energy_B},#{compressor_report.electric_energy_C},NOW(),NOW(),NOW(),"
+			+ "#{compressor_report.active_powerA},#{compressor_report.active_powerB},#{compressor_report.active_powerC},NOW())")
+	void DataMasterTableInsert(@Param("compressor_report")Compressor_report compressor_report);
 
 
-
-	
 	
 
 }

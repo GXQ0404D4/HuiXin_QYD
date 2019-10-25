@@ -1,5 +1,7 @@
 package com.ktcn.common;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -15,27 +17,47 @@ import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import com.ktcn.entity.ConfigPojo;
 import com.ktcn.utils.OPCAddress;
 import com.ktcn.utils.OPCAddressInsert;
 import com.ktcn.utils.OPCConfig;
 
 @EnableScheduling // 此注解必加,必须要加，重中之重
-@Component // 此注解必加
+//@Component // 此注解必加
+@Service
 @Order(value = 1)
 public class UtgardData {
 	// 获取连接池信息
-	private static final ConnectionInformation ci = OPCConfig.getConnectionInformation();
+	//private static final ConnectionInformation ci = OPCConfig.getConnectionInformation();
 	// 获取地址值 的controller类
 	@Autowired
 	OPCAddress opcaddress;
 
 	@Autowired
 	OPCAddressInsert opcaddressinsert;
-
+	
+	ConfigPojo te = new ConfigPojo();
+	// 获取连接池信息
+	final ConnectionInformation ci = new ConnectionInformation();
+	
 	@Scheduled(cron = "0/1 * * * * ?")
 	public void kepserverdata() {
-
+		// 获取IP地址
+		String ip = null;
+		try {
+			ip = InetAddress.getLocalHost().getHostAddress();
+		} catch (UnknownHostException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		ci.setHost(ip); // 电脑IP
+		ci.setDomain(""); // 域，为空就行
+		ci.setUser(te.getUsername()); // 电脑上自己建好的用户名
+		ci.setPassword(te.getPassword()); // 密码
+		// 使用KEPServer的配置
+		ci.setClsid(te.getClsid()); // KEPServer的注册表ID，可以在“组件服务”里看到
 		// 提取采集short数据
 		ArrayList<Object> fl = new ArrayList<Object>();
 		// 查询数据库所有采集通道点位
@@ -59,8 +81,11 @@ public class UtgardData {
 					Group group = server.addGroup("test");
 					Item item = group.addItem(itemId);
 					ItemState itemState = item.read(true);
-					fl.add(itemState.getValue().getObject());
-				} catch (Exception e1) {
+					Object object = itemState.getValue().getObject();
+					if(object==null) {
+						object=0;
+					}
+					fl.add(object);				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 					break;

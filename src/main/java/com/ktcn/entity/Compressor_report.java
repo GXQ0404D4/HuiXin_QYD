@@ -2,6 +2,9 @@ package com.ktcn.entity;
 
 import java.util.Date;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
@@ -11,6 +14,8 @@ import lombok.Data;
  * @author Administrator
  *
  */
+@Component
+@ConfigurationProperties(prefix = "oss")
 @Data
 public class Compressor_report {
 	private int Air_id;                // 主键

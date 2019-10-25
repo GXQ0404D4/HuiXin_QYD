@@ -33,8 +33,11 @@
 		</dependency>
 
 		<!-- 配置servlet,打war包时放开 -->
-		<!-- <dependency> <groupId>javax.servlet</groupId> <artifactId>javax.servlet-api</artifactId> 
-			<scope>provided</scope> </dependency> -->
+<!-- 		<dependency>  -->
+<!-- 			<groupId>javax.servlet</groupId>  -->
+<!-- 			<artifactId>javax.servlet-api</artifactId>  -->
+<!-- 			<scope>provided</scope>  -->
+<!-- 		</dependency> -->
 		<!-- JDBC依赖 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -50,8 +53,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<!-- 移除嵌入式tomcat插件, 打war包时放开 -->
-			<!-- <exclusions> <exclusion> <groupId>org.springframework.boot</groupId> 
-				<artifactId>spring-boot-starter-tomcat</artifactId> </exclusion> </exclusions> -->
+<!-- 			<exclusions> -->
+<!-- 				<exclusion> -->
+<!-- 					<groupId>org.springframework.boot</groupId>  -->
+<!-- 					<artifactId>spring-boot-starter-tomcat</artifactId> -->
+<!-- 				</exclusion> -->
+<!-- 			</exclusions> -->
 		</dependency>
 
 		<!-- mybatis核心包 -->
@@ -194,6 +201,12 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-war-plugin</artifactId>
+		    <version>3.1.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -212,49 +225,70 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+			
+			
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-compiler-plugin</artifactId>
+			    <version>${maven-compiler-plugin.version}</version>
+			    <configuration>
+			        <source>1.8</source>
+			        <target>1.8</target>
+			        <skip>true</skip>
+			        <encoding>UTF-8</encoding>
+			        <compilerArguments>
+<!-- 			            <extdirs>${project.basedir}/src/main/resources/lib</extdirs> -->
+			            <extdirs>${project.basedir}/src/main/resources/lib</extdirs>
+			        </compilerArguments>
+			    </configuration>
+			</plugin>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-war-plugin</artifactId>
+			    <version>3.1.0</version>
+			    <configuration>
+			        <webResources>
+			            <!--配置第三方jar包打包的路径-->
+			            <resource>
+<!-- 			                <directory>src/main/resources/lib/</directory> -->
+							<directory>lib/</directory>
+			                <targetPath>WEB-INF/lib/</targetPath>
+			                <includes>
+			                    <include>**/*.jar</include>
+			                </includes>
+			            </resource>
+			        </webResources>
+			        <!-- maven打包的时候告诉maven不需要web.xml,否刚会报找不到web.xml错误 -->
+			        <failOnMissingWebXml>false</failOnMissingWebXml>
+			    </configuration>
+			</plugin>
 		</plugins>
 
 		<resources>
-			<!-- mapper.xml文件在java目录下 -->
-			<resource>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**/*.xml</include>
-				</includes>
-			</resource>
-			<!-- mapper.xml文件在resources目录下 -->
-			<resource>
-				<directory>src/main/resources</directory>
-				<includes>
-					<iuclude>**/*.xml</iuclude>
-				</includes>
-			</resource>
+		    <!-- 打包时将页面文件拷贝到META-INF目录下 -->
+		    <resource>
+		        <!-- 指定resources插件处理哪个目录下的资源文件 -->
+		        <directory>src/main/webapp</directory>
+		        <!--注意此次必须要放在此目录下才能被访问到 -->
+		        <targetPath>META-INF/resources</targetPath>
+		        <includes>
+		        <include>**/**</include>
+		        </includes>
+		    </resource> 
+		    <resource>
+		        <directory>src/main/resources</directory>
+		        <includes>
+		            <include>**/**</include>
+		        </includes>
+		        <filtering>false</filtering>
+		    </resource>
+		    <resource>
+		        <directory>src/main/java</directory>
+		        <excludes>
+		            <exclude>**/*.java</exclude>
+		        </excludes>
+		    </resource>
 		</resources>
-		<!-- <resources> -->
-		<!-- 打包时将页面文件拷贝到META-INF目录下 -->
-		<!-- <resource> -->
-		<!-- 指定resources插件处理哪个目录下的资源文件 -->
-		<!-- <directory>src/main/webapp</directory> -->
-		<!--注意此次必须要放在此目录下才能被访问到 -->
-		<!-- <targetPath>META-INF/resources</targetPath> -->
-		<!-- <includes> -->
-		<!-- <include>**/**</include> -->
-		<!-- </includes> -->
-		<!-- </resource> -->
-		<!-- <resource> -->
-		<!-- <directory>src/main/resources</directory> -->
-		<!-- <includes> -->
-		<!-- <include>**/**</include> -->
-		<!-- </includes> -->
-		<!-- <filtering>false</filtering> -->
-		<!-- </resource> -->
-		<!-- <resource> -->
-		<!-- <directory>src/main/java</directory> -->
-		<!-- <excludes> -->
-		<!-- <exclude>**/*.java</exclude> -->
-		<!-- </excludes> -->
-		<!-- </resource> -->
-		<!-- </resources> -->
 
 	</build>
 

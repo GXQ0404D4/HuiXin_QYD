@@ -129,6 +129,8 @@ public class OpcDataKyjInsertB{
 		kyj_data_table3.setMachine_name("空压机C");
 		kyj_data_table3.setState("1");
 		
+		kyjDataTableDao.UpdateKyjTempData(kyj_data_table1,kyj_data_table2,kyj_data_table3);
+		
 		kyjDataTableDao.InsertKyjDataA(kyj_data_table1);		
 		kyjDataTableDao.InsertKyjDataA(kyj_data_table2);		
 		kyjDataTableDao.InsertKyjDataA(kyj_data_table3);		

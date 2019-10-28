@@ -15,7 +15,7 @@ public class MianNetworkSQL {
 			// 编写拼接SQL代码块
 			{
 				SELECT("*");
-				FROM("mian_network");
+				FROM("kyj_data_table");
 				if (current_timeA!=null && !"".equals(current_timeA) && current_timeB!=null && !"".equals(current_timeB)) {
 					// 任务名称
 					String s = "`current_time` BETWEEN '"+ current_timeA +"' AND '"+ current_timeB +"'";

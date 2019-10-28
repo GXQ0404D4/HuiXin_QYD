@@ -50,7 +50,11 @@ public class FlowAnalysisController {
 	@RequestMapping("FlowAnalysis_machine")
 	@SysLog(logModule = "流量曲线分析", logName = "机器名称查看")
 	public List<V_chart> FlowAnalysis_machine(String machine) {
+		System.out.println(machine);
 		List<V_chart> z_network = flowAnalysisService.findByMachine(machine);
+		for (V_chart vv : z_network) {
+			System.out.println(vv);
+		}
 		return z_network;
 	}
 	

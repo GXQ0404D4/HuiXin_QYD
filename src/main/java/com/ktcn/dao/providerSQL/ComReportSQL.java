@@ -15,10 +15,10 @@ public class ComReportSQL {
 			// 编写拼接SQL代码块
 			{
 				SELECT("*");
-				FROM("compressor_report");
+				FROM("kyj_data_table");
 				if (current_timeA!=null && !"".equals(current_timeA) && current_timeB!=null && !"".equals(current_timeB)) {
 					// 任务名称
-					String s = "Air_current_time BETWEEN '"+ current_timeA +"' AND '"+ current_timeB +"'";
+					String s = "`current_time` BETWEEN '"+ current_timeA +"' AND '"+ current_timeB +"'";
 					WHERE(s);
 				}
 				if (current_timeA!=null && !"".equals(current_timeA)) {
@@ -26,12 +26,12 @@ public class ComReportSQL {
 					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					String nowDate = format.format(date);
 					// 任务名称
-					String s = "Air_current_time BETWEEN '"+ current_timeA +"' AND '"+ nowDate +"'";
+					String s = "`current_time` BETWEEN '"+ current_timeA +"' AND '"+ nowDate +"'";
 					WHERE(s);
 				}
 				if (current_timeB!=null && !"".equals(current_timeB)) {
 					// 任务名称
-					String s = "Air_current_time BETWEEN '1970-01-01 00:00:00' AND '"+ current_timeB +"'";
+					String s = "`current_time` BETWEEN '1970-01-01 00:00:00' AND '"+ current_timeB +"'";
 					WHERE(s);
 				}
 				if (current_timeA==null && "".equals(current_timeA) && current_timeB==null && "".equals(current_timeB)) {
@@ -39,7 +39,7 @@ public class ComReportSQL {
 					SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					String nowDate = format.format(date);
 					// 任务名称
-					String s = "Air_current_time BETWEEN '1970-01-01 00:00:00' AND '"+ nowDate +"'";
+					String s = "`current_time` BETWEEN '1970-01-01 00:00:00' AND '"+ nowDate +"'";
 					WHERE(s);
 				}
 			}

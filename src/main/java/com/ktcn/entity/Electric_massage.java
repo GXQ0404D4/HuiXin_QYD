@@ -1,6 +1,5 @@
 package com.ktcn.entity;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

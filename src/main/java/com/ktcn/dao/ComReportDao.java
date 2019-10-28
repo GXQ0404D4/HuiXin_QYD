@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.SelectProvider;
 import org.springframework.stereotype.Repository;
 
 import com.ktcn.dao.providerSQL.ComReportSQL;
-import com.ktcn.entity.Compressor_report;
+import com.ktcn.entity.KYJdatatable.Kyj_data_table;
 
 /*
  * 空压机报表持久层
@@ -17,10 +17,10 @@ import com.ktcn.entity.Compressor_report;
 @Repository
 public interface ComReportDao {
 	// 查询全部空压机报表信息
-	@Select("SELECT * FROM compressor_report ORDER BY Air_current_time DESC limit 0,50")
-	List<Compressor_report> findAll();
+	@Select("SELECT * FROM kyj_data_table ORDER BY `current_time` DESC limit 0,50")
+	List<Kyj_data_table> findAll();
 	// 根据时间区间查询空压机报表信息
 	@SelectProvider(method = "findAllByTime", type = ComReportSQL.class)
-	List<Compressor_report> findAllByTime(String current_timeA, String current_timeB);
+	List<Kyj_data_table> findAllByTime(String current_timeA, String current_timeB);
 	
 }

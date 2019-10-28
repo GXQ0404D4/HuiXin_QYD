@@ -5,6 +5,8 @@ import java.util.Date;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 @Component
 @ConfigurationProperties(prefix = "oss")
@@ -38,7 +40,9 @@ public class Kyj_data_table {
 	private float electric;                 //电量
 	private float power_factor;             //功率因数	
 	private String machine_name;            //机器名
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date current_date;              //存入日期
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date current_time;              //存入时间
 	private String state;                   //状态
 	

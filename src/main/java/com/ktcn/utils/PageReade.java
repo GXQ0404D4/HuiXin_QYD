@@ -5,6 +5,9 @@ public class PageReade {
 	 * 获取分页查询参数 pageSize 当前页 Count 总条数 messNum 每页显示数量
 	 */
 	public static int getPageSize(int pageSize, int Count, int messNum) {
+		if (Count < 1) {
+			Count = 1;
+		}
 		// 定义一个临时变量
 		int x = 0;
 		// 对传入页数进行处理避免出现负数
@@ -28,6 +31,9 @@ public class PageReade {
 	 * 获取当前页
 	 */
 	public static int getPageNum(int pageSize, int Count, int messNum) {
+		if (Count < 1) {
+			Count = 1;
+		}
 		// 定义一个临时变量
 		int x = 0;
 		// 对传入页数进行处理避免出现负数

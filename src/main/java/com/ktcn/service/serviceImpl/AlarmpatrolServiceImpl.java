@@ -10,8 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ktcn.dao.AlarmpatrolDao;
 import com.ktcn.entity.Alarmpatrol;
 import com.ktcn.service.AlarmpatrolService;
+
 /**
  * 报警巡查业务层实现类
+ * 
  * @author Administrator
  *
  */
@@ -20,16 +22,22 @@ import com.ktcn.service.AlarmpatrolService;
 public class AlarmpatrolServiceImpl implements AlarmpatrolService {
 	@Resource
 	private AlarmpatrolDao alarmpatrolDao;
-	// 查询全部报警巡查信息
-	@Override
-	public List<Alarmpatrol> apFindAll() {
-		return alarmpatrolDao.apFindAll();
+
+	// 查询数据总条数
+	public int findTotal() {
+		return alarmpatrolDao.findTotal();
 	}
-	
-	// 按照时间区间查询报警巡查信息
-	@Override
-	public List<Alarmpatrol> apFindByTime(String timeA, String timeB) {
-		return alarmpatrolDao.apFindByTime(timeA,timeB);
+	// 分页查询-查询全部
+	public List<Alarmpatrol> findAllByIndex(int total) {
+		return alarmpatrolDao.findAllByIndex(total);
 	}
-	
+
+	// 时间区间查询总条数
+	public int findCountByTime(String timeA, String timeB) {
+		return alarmpatrolDao.findCountByTime(timeA,timeB);
+	}
+	// 根据时间区间查询空压机报表信息
+	public List<Alarmpatrol> findByTime(String timeA, String timeB, int total) {
+		return alarmpatrolDao.findByTime(timeA,timeB,total);
+	}
 }

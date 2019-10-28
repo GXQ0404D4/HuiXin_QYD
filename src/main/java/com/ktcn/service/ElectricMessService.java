@@ -8,10 +8,14 @@ import com.ktcn.entity.KYJdatatable.Kyj_data_table;
  * 电量报表业务接口层
  */
 public interface ElectricMessService {
+	
+	// 获取数据总条数
+	int findTotal();
+	// 获取查询数据
+	List<Kyj_data_table> findAllByIndex(int x);
 
-	// 查询全部电量报表信息
-	List<Kyj_data_table> findAll();
-	// 根据时间区间查询电量报表信息
-	List<Kyj_data_table> findAllByTime(String current_timeA, String current_timeB);
-
+	// 时间区间查询总条数
+	int findCountByTime(String current_timeA, String current_timeB);
+	// 根据时间区间查询空压机报表信息
+	List<Kyj_data_table> findByTime(String current_timeA, String current_timeB,int total);
 }

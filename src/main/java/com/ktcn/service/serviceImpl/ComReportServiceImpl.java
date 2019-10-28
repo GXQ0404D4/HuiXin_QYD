@@ -18,15 +18,27 @@ import com.ktcn.service.ComReportService;
 public class ComReportServiceImpl implements ComReportService {
 	@Resource
 	private ComReportDao comReportDao;
-	// 查询全部空压机报表信息
+	
+	// 查询数据总条数
 	@Override
-	public List<Kyj_data_table> findAll() {
-		return comReportDao.findAll();
+	public int findTotal() {
+		return comReportDao.findTotal();
+	}
+	// 分页查询-查询全部
+	@Override
+	public List<Kyj_data_table> findAllByIndex(int total) {
+		return comReportDao.findAllByIndex(total);
+	}
+	
+	// 时间区间查询总条数
+	@Override
+	public int findCountByTime(String current_timeA, String current_timeB) {
+		return comReportDao.findCountByTime(current_timeA, current_timeB);
 	}
 	// 根据时间区间查询空压机报表信息
 	@Override
-	public List<Kyj_data_table> findAllByTime(String current_timeA, String current_timeB) {
-		return comReportDao.findAllByTime(current_timeA,current_timeB);
+	public List<Kyj_data_table> findByTime(String current_timeA, String current_timeB, int total) {
+		return comReportDao.findByTime(current_timeA, current_timeB, total);
 	}
 	
 }

@@ -17,11 +17,19 @@ import com.ktcn.entity.KYJdatatable.Kyj_data_table;
 @Mapper
 @Repository
 public interface ElectricMessDao {
-	// 查询全部电量报表信息
-	@Select("SELECT * FROM kyj_data_table ORDER BY `current_time` DESC limit 0,50")
-	List<Kyj_data_table> findAll();
-	// 根据时间区间查询电量报表信息
-	@SelectProvider(method = "findAllByTime", type = ElectricSQL.class)
-	List<Kyj_data_table> findAllByTime(@Param("current_timeA") String current_timeA, @Param("current_timeB")String current_timeB);
+	
+	// 获取数据总条数
+	@Select("SELECT COUNT(id) FROM kyj_data_table")
+	int findTotal();
+	// 获取查询数据
+	@Select("SELECT * FROM kyj_data_table ORDER BY `current_time` DESC limit #{total},10")
+	List<Kyj_data_table> findAllByIndex(int x);
+	
+	// 时间区间查询总条数
+	@SelectProvider(method = "findCountByTime", type = ElectricSQL.class)
+	int findCountByTime(String current_timeA, String current_timeB);
+	// 根据时间区间查询空压机报表信息
+	@SelectProvider(method = "findByTime", type = ElectricSQL.class)
+	List<Kyj_data_table> findByTime(String current_timeA, String current_timeB, int total);
 	
 }

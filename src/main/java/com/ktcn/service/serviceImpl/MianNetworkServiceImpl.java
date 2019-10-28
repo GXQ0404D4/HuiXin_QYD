@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ktcn.dao.MianNetworkDao;
 import com.ktcn.entity.KYJdatatable.Kyj_data_table;
 import com.ktcn.service.MianNetworkService;
+
 /*
  * 总管网报表业务层实现类
  */
@@ -18,14 +19,28 @@ import com.ktcn.service.MianNetworkService;
 public class MianNetworkServiceImpl implements MianNetworkService {
 	@Resource
 	private MianNetworkDao mianNetworkDao;
-	// 查询全部总管网信息
+
+	// 查询数据总条数
 	@Override
-	public List<Kyj_data_table> findAll() {
-		return mianNetworkDao.findAll();
+	public int findTotal() {
+		return mianNetworkDao.findTotal();
 	}
-	// 查询全部电量报表信息
+
+	// 分页查询-查询全部
 	@Override
-	public List<Kyj_data_table> findAllByTime(String current_timeA, String current_timeB) {
-		return mianNetworkDao.findAllByTime(current_timeA,current_timeB);
+	public List<Kyj_data_table> findAllByIndex(int total) {
+		return mianNetworkDao.findAllByIndex(total);
+	}
+
+	// 时间区间查询总条数
+	@Override
+	public int findCountByTime(String current_timeA, String current_timeB) {
+		return mianNetworkDao.findCountByTime(current_timeA, current_timeB);
+	}
+
+	// 根据时间区间查询空压机报表信息
+	@Override
+	public List<Kyj_data_table> findByTime(String current_timeA, String current_timeB, int total) {
+		return mianNetworkDao.findByTime(current_timeA, current_timeB, total);
 	}
 }

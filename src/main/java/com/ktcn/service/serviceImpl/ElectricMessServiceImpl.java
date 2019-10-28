@@ -19,15 +19,27 @@ public class ElectricMessServiceImpl implements ElectricMessService {
 
 	@Resource
 	private ElectricMessDao electricMessDao;
-	// 查询全部电量报表信息
+	
+	// 获取数据总条数
 	@Override
-	public List<Kyj_data_table> findAll() {
-		return electricMessDao.findAll();
+	public int findTotal() {
+		return electricMessDao.findTotal();
 	}
-	// 根据时间区间查询电量报表信息
+	// 获取查询数据
 	@Override
-	public List<Kyj_data_table> findAllByTime(String current_timeA, String current_timeB) {
-		return electricMessDao.findAllByTime(current_timeA,current_timeB);
+	public List<Kyj_data_table> findAllByIndex(int x) {
+		return electricMessDao.findAllByIndex(x);
+	}
+	
+	// 时间区间查询总条数
+	@Override
+	public int findCountByTime(String current_timeA, String current_timeB) {
+		return electricMessDao.findCountByTime(current_timeA,current_timeB);
+	}
+	// 根据时间区间查询空压机报表信息
+	@Override
+	public List<Kyj_data_table> findByTime(String current_timeA, String current_timeB, int total) {
+		return electricMessDao.findByTime(current_timeA,current_timeB,total);
 	}
 	
 }

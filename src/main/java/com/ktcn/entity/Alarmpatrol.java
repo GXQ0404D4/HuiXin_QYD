@@ -14,6 +14,7 @@ import lombok.Data;
 @Data
 public class Alarmpatrol {
 	private int ap_id;				// 主键
+	private String machine_name;	// 机器名称
 	private String ap_name;			// 点位名
 	private String describe;		// 描述
 	private String measured_value;	// 实测值

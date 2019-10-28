@@ -102,6 +102,7 @@ public class MianNetworkController {
 		map.put("code", "0000"); // 返回码
 		map.put("message", "success"); // 操作提示
 		map.put("totalpage", countPage); // 总页数
+		map.put("totalmess", count); // 总条数
 		map.put("pageSize", PageReade.getPageNum(i, count, 10)); // 当前页数
 		map.put("data", list); // 查询内容
 		return map;

@@ -43,24 +43,17 @@ public class ApMonitoringServiceImpl implements ApMonitoringService {
 		List<Kyj_data_table> temp = apMonitoringDao.findtemp();
 		// 遍历实时表数据,将每条信息分别与报警设置类内容进行对比
 		for (Kyj_data_table kdt : temp) {
-			for (Kyj_data_table k : temp) {
-				System.out.println("读取数据: " + k);
-			}
 			// 将对象转换成map, 以方便后续操作
 			Map<String, Object> map = ApMonitoringServiceImpl.objectToMap(kdt);
 			// 遍历map集合
 			for (String s : map.keySet()) {
 				// 遍历报警设置list集合
 				for (Alarmseteings ala : all) {
-					System.out.println("名称对比: ");
-					System.out.print(s.equals(ala.getPosition_name()));
 					// 判断获取的实时表中的数据名与报警设置的对象名是否一致
 					if (s.equals(ala.getPosition_name())) {
 						// 获取当前键值对的值
 						double d = Double.parseDouble(map.get(s).toString());
 						// 判断是否将对象写入集合
-						System.out.println(d > ala.getUpperlimit());
-						System.out.println(d < ala.getLowerlimit());
 						// 一致则进行数据对比
 						if (d > ala.getUpperlimit() || d < ala.getLowerlimit()) {
 							// 新建一个对象, 用来保存数据
@@ -105,9 +98,6 @@ public class ApMonitoringServiceImpl implements ApMonitoringService {
 	public void writeAlarmpatrol() {
 		// 获取list
 		List<Alarmpatrol> list = this.alarmpatrolMethod();
-		for (Alarmpatrol a : list) {
-			System.out.println("写入数据: " + a);
-		}
 		// 判断是否报警
 		if (!list.isEmpty()) {
 			// 调用写入报警信息方法

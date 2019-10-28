@@ -25,12 +25,11 @@ public class ApMonitoringController {
 	private ApMonitoringService apMonitoringService;
 	
 	// 定时任务每秒执行一次,进行报警监控 
-    @Scheduled(cron = "*/1 * * * * ?")
+	// 该功能开发环境隐藏, 生产环境放开
+//    @Scheduled(cron = "*/1 * * * * ?")
     private void process(){
         // 监控数据, 将报警信息写入数据库
-    	// 该功能开发环境隐藏, 生产环境放开
         apMonitoringService.writeAlarmpatrol();
-        System.out.println("报警监控运行!");
     }
     
     // 前端调用报警巡查方法

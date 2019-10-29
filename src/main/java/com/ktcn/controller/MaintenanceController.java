@@ -57,7 +57,7 @@ public class MaintenanceController {
 	// 执行维保计划
 	@RequestMapping("executeMtcPlan")
 	@SysLog(logModule = "维保记录", logName = "执行维保计划")
-	public String executeMtcPlan(Map<String,String> map,HttpServletRequest request) {
+	public String executeMtcPlan(@RequestBody Map<String,String> map,HttpServletRequest request) {
 		// 获取当前用户
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
 		// 判断用户权限

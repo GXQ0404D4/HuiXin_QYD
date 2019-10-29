@@ -31,7 +31,7 @@
         <Prudent>true</Prudent>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>
-            	E:/QYD_system/logs/error/error.%d{yyyy-MM-dd}.log
+            	D:/QYD_system/logs/error/error.%d{yyyy-MM-dd}.log
             </fileNamePattern>
         <!-- 日志文件保留天数 -->
             <maxHistory>30</maxHistory>

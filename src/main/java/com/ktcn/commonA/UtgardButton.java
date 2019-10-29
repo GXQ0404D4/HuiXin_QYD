@@ -1,4 +1,4 @@
-package com.ktcn.common;
+package com.ktcn.commonA;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -15,19 +15,18 @@ import org.openscada.opc.lib.da.Group;
 import org.openscada.opc.lib.da.Item;
 import org.openscada.opc.lib.da.Server;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.entity.ConfigPojo;
 import com.ktcn.utils.OPCConfig;
 
 @Component
 public class UtgardButton {
-	// private static final ConnectionInformation ci =
-	// OPCConfig.getConnectionInformation();
-
+	final ConnectionInformation ci = new ConnectionInformation();
 	ConfigPojo te = new ConfigPojo();
-
+	@Transactional 
 	public String UpdateUtgard(String Address, int button) {
-		final ConnectionInformation ci = new ConnectionInformation();
+		
 		// 获取IP地址
 		String ip = null;
 		try {
@@ -54,6 +53,7 @@ public class UtgardButton {
 			final Item item = group.addItem(itemId);
 			final JIVariant value = new JIVariant(button); // 写入
 			Integer write = item.write(value);
+			
 			System.out.println(write + "write 返回字");
 			System.out.println(value + "value 返回字");
 		} catch (final JIException e) {
@@ -78,7 +78,7 @@ public class UtgardButton {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return itemId;
+		return itemId ;
 
 	}
 }

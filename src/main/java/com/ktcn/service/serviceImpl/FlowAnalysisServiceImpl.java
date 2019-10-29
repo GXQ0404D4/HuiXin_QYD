@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.dao.FlowAnalysisDao;
-import com.ktcn.entity.Mian_network;
 import com.ktcn.entity.V_chart;
 import com.ktcn.service.FlowAnalysisService;
 /*

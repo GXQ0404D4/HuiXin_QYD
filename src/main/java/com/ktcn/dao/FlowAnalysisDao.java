@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.SelectProvider;
 import org.springframework.stereotype.Repository;
 
 import com.ktcn.dao.providerSQL.FlowAnalysisSQL;
-import com.ktcn.entity.Mian_network;
 import com.ktcn.entity.V_chart;
 
 /*

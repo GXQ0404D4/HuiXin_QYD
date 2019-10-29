@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.dao.ElectricMessDao;
-import com.ktcn.entity.Electric_massage;
 import com.ktcn.entity.KYJdatatable.Kyj_data_table;
 import com.ktcn.service.ElectricMessService;
 import com.ktcn.utils.Export;

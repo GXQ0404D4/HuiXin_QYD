@@ -23,7 +23,7 @@ public class ApMonitoringController {
 	@Resource
 	private ApMonitoringService apMonitoringService;
 	
-	// 定时任务每秒执行一次,进行报警监控 
+	// 定时任务每秒执行一次,进行报警监控
 	// 该功能开发环境隐藏, 生产环境放开
 //    @Scheduled(cron = "*/1 * * * * ?")
     private void process(){

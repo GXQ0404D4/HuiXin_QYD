@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.SelectProvider;
 import org.springframework.stereotype.Repository;
 
 import com.ktcn.dao.providerSQL.CoulometrySQL;
-import com.ktcn.entity.Electric_massage;
 import com.ktcn.entity.V_chart;
 
 /*

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.dao.CoulometryDao;
-import com.ktcn.entity.Electric_massage;
 import com.ktcn.entity.V_chart;
 import com.ktcn.service.CoulometryService;
 /*

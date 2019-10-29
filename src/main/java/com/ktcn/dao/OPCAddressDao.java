@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
-import com.ktcn.entity.Opc_address;
 @Repository
 @Mapper
 public interface OPCAddressDao {

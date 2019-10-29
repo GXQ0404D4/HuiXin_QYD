@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.aspect.SysLog;
 import com.ktcn.entity.Alarmpatrol;
-import com.ktcn.entity.KYJdatatable.Kyj_data_table;
 import com.ktcn.service.AlarmpatrolService;
 import com.ktcn.utils.PageReade;
 

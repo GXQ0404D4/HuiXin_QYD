@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.dao.ComReportDao;
-import com.ktcn.entity.Compressor_report;
 import com.ktcn.entity.KYJdatatable.Kyj_data_table;
 import com.ktcn.service.ComReportService;
 import com.ktcn.utils.Export;

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.ktcn.dao.KyjDataTableDao;
 import com.ktcn.entity.Switch_input_value;
 import com.ktcn.entity.Switch_output_value;
-import com.ktcn.entity.KYJdatatable.Kyj_data_table;
 
 /**
  * @Title: OPCAddressInsert.java

@@ -4,8 +4,6 @@ import java.util.Date;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 import lombok.Data;
 

@@ -10,8 +10,10 @@ import org.openscada.opc.lib.common.ConnectionInformation;
 import org.openscada.opc.lib.da.Group;
 import org.openscada.opc.lib.da.Server;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 import com.ktcn.entity.ConfigPojo;
 import com.ktcn.utils.OpcDataKyjSwitch;

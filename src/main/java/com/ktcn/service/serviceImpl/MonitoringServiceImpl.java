@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.dao.MonitoringDao;
-import com.ktcn.entity.Real_time_data;
-import com.ktcn.entity.Switch_input;
-import com.ktcn.entity.Switch_output;
+import com.ktcn.entity.KYJdatatable.Kyj_data_table;
 import com.ktcn.service.MonitoringService;
 /*
  * 监控页面业务层实现类
@@ -20,13 +18,26 @@ import com.ktcn.service.MonitoringService;
 public class MonitoringServiceImpl implements MonitoringService {
 	@Resource
 	private MonitoringDao monitoringDao;
-
+    
+	//获取监控主页面实时数据
 	@Override
-	public Real_time_data OPCRealTimeData() {
+	public Kyj_data_table OPCRealTimeData(int i) {
 		
-		return monitoringDao.OPCRealTimeData();
+		return monitoringDao.OPCRealTimeData(i);
 		
 	}
+	@Override
+	public Kyj_data_table OPCRealTimeData2(int i) {
+		// TODO Auto-generated method stub
+		return monitoringDao.OPCRealTimeData(i);
+	}
+
+	@Override
+	public Kyj_data_table OPCRealTimeData3(int i) {
+		// TODO Auto-generated method stub
+		return monitoringDao.OPCRealTimeData(i);
+	}
+
 
 	@Override
 	public List<Boolean> OPCSwtichInputLGJ() {
@@ -34,64 +45,29 @@ public class MonitoringServiceImpl implements MonitoringService {
 		return monitoringDao.OPCSwtichInputLGJ();
 	}
     
-	//空一页面数据
+	//空压机对应页面数据
 	@Override
-	public Real_time_data KYJ1GetData() {
+	public Kyj_data_table KYJGetData(int i) {
 		// TODO Auto-generated method stub
-		return monitoringDao.KYJ1GetData();
+		return monitoringDao.KYJGetData(i);
 	}
     
-	//空二页面数据
-	@Override
-	public Real_time_data KYJ2GetData() {
-		// TODO Auto-generated method stub
-		return monitoringDao.KYJ2GetData();
-	}
-   
-	//空三页面数据
-	@Override
-	public Real_time_data KYJ3GetData() {
-		// TODO Auto-generated method stub
-		return monitoringDao.KYJ3GetData();
-	}
+	
     
 	//空一按钮数据
 	@Override
-	public List<Switch_input> GetKYJSwtichInput() {
+	public List<Integer> GetKYJSwtichInput() {
 		// TODO Auto-generated method stub		
 		return monitoringDao.GetKYJSwtichInput();
 	}
 
 	@Override
-	public List<Switch_output> GetKYJSwtichOutput() {
+	public List<Integer> GetKYJSwtichOutput() {
 		// TODO Auto-generated method stub
 		return monitoringDao.GetKYJSwtichOutput();
 	}
 	
-    //空二按钮数据
-	@Override
-	public List<Switch_input> GetKYJSwtichInput2() {
-		// TODO Auto-generated method stub		
-		return monitoringDao.GetKYJSwtichInput2();
-	}
+   
 
-	@Override
-	public List<Switch_output> GetKYJSwtichOutput2() {
-		// TODO Auto-generated method stub
-		return monitoringDao.GetKYJSwtichOutput2();
-	}
 	
-    //空三按钮数据
-	@Override
-	public List<Switch_input> GetKYJSwtichInput3() {
-		// TODO Auto-generated method stub
-		return monitoringDao.GetKYJSwtichInput3();
-	}
-
-	@Override
-	public List<Switch_output> GetKYJSwtichOutput3() {
-		// TODO Auto-generated method stub
-		return monitoringDao.GetKYJSwtichOutput3();
-	}
-
 }

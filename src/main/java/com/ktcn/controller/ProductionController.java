@@ -58,7 +58,7 @@ public class ProductionController {
 	public String Prodaction(HttpServletRequest request, @RequestBody Map<String,String> map) {
 		// 获取当前登录用户
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-		if (user.getUserPower() == 2) {
+		if (user.getUserPower() >= 2) {
 			// 调用新增生产管理方法
 			productionService.addProduction(map,user);
 			return "success";
@@ -73,7 +73,7 @@ public class ProductionController {
 	public String ProToReport(@RequestBody Map<String,String> map, HttpServletRequest request) {
 		// 获取当前登录用户
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-		if (user.getUserPower() == 1 || user.getUserPower() == 2) {
+		if (user.getUserPower() >= 1) {
 			// 调用生产管理汇报方法
 			productionService.ProToReport(map,user);
 			return "success";
@@ -88,7 +88,7 @@ public class ProductionController {
 	public String ProToApprove(int id, int pdt_people_id, HttpServletRequest request) {
 		// 获取当前登录用户
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-		if (user.getUserPower() == 2) {
+		if (user.getUserPower() >= 2) {
 			// 判断此信息是否是当前用户发布的,是则执行,不是则返回error
 			if (user.getUser_id() == pdt_people_id) {
 				// 判断成功则调用生产管理审批方法

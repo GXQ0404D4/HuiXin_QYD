@@ -61,7 +61,7 @@ public class MaintenanceController {
 		// 获取当前用户
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
 		// 判断用户权限
-		if (user.getUserPower() == 1 || user.getUserPower() == 2) {
+		if (user.getUserPower() >= 1) {
 			// 执行维保计划
 			maintenanceService.updateMaintenance(map);
 			// 写入"系统运行时间轴"节点数据

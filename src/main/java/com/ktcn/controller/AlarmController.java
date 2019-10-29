@@ -36,7 +36,7 @@ public class AlarmController {
 	public String Alarmseteings_update(@RequestBody Map<String,String> map,HttpServletRequest request) {
 		// 获取当前登录用户
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-		if (user.getUserPower() == 1 || user.getUserPower() == 2) {
+		if (user.getUserPower() >= 1) {
 			// 调用方法
 			alarmService.updateAlarm(map);
 			return "success";

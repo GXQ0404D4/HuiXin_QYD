@@ -51,7 +51,7 @@ public class FaultRecordServiceImpl implements FaultRecordService {
 	// 修改故障记录
 	@Override
 	public void updateFaultRecord(Map<String, String> map, Tb_user user) {
-		map.put("repair_time", new SimpleDateFormat("yyyy-MM--dd HH:mm:ss").format(new Date()));
+		map.put("Repair_time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		faultRecordDao.updateFaultRecord(map,user);
 	}
 }

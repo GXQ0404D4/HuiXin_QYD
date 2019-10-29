@@ -20,9 +20,9 @@ import com.ktcn.utils.OpcDataKyjSwitch;
 
 @EnableScheduling // 此注解必加,必须要加，重中之重
 
-//@Component // 此注解必加
-//
-//@Order(value = 1)
+@Component // 此注解必加
+
+@Order(value = 1)
 public class UtgardSwtich_io {
 
 	@Autowired

@@ -166,18 +166,18 @@ public class MonitoringController {
 		//存储展示状态
 		List<Integer> ZTshow=new ArrayList<Integer>();
 		//报警/故障
-		ZTshow.add(getKYJSwtichInput.get(24));
+		ZTshow.add(getKYJSwtichInput.get(23));
 		//空压机准备好/未准备
-		ZTshow.add(getKYJSwtichInput.get(25));
+		ZTshow.add(getKYJSwtichInput.get(24));
 		//空压机加载/卸载
 		ZTshow.add(getKYJSwtichInput.get(1));
 		//空压机停机故障
-		ZTshow.add(getKYJSwtichInput.get(26));
+		ZTshow.add(getKYJSwtichInput.get(25));
 		//空压机运行
-		ZTshow.add(getKYJSwtichInput.get(27));
+		ZTshow.add(getKYJSwtichInput.get(26));
 						
 	    //键位判断传递
-		if (getKYJSwtichInput.get(23) !=0) {
+		if (getKYJSwtichInput.get(22) !=0) {
 			if (getKYJSwtichOutput1.get(14)!=1) {
 				map.put(BDYC, 1);
 				map.put(ZDSD, 0);
@@ -186,11 +186,11 @@ public class MonitoringController {
 			} else {
 				map.put(BDYC, 1);
 				map.put(ZDSD, 1);
-				if(getKYJSwtichInput.get(27) ==0){
+				if(getKYJSwtichInput.get(26) ==0){
 				map.put(KYJQD, 1);
 				map.put(KYJTZ, 0);	
 				}
-				if(getKYJSwtichInput.get(27) ==1){
+				if(getKYJSwtichInput.get(26) ==1){
 				map.put(KYJQD, 0);
 				map.put(KYJTZ, 1);	
 				}				

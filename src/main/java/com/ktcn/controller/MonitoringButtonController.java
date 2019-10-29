@@ -47,15 +47,15 @@ public class MonitoringButtonController {
 		 System.out.println("启动！");
 		  if (map.get(buttonBDYD).equals("1")) {
 			  System.out.println("启动值！");
-			utgardButton.UpdateUtgard("DI-1#KYJBD/YC",0);
+			utgardButton.UpdateUtgard(BDYC,1);
 		} if (map.get(buttonBDYD).equals("0")){
-			utgardButton.UpdateUtgard("DI-1#KYJBD/YC",1);
+			utgardButton.UpdateUtgard(BDYC,0);
 		}
 	} if (address.equals(buttonZDSD) && map.get(buttonZDSD)!=null  ) {
 		 if (map.get(buttonZDSD).equals("1")) {
-				utgardButton.UpdateUtgard(ZDSD,0);
-	   } if (map.get(buttonZDSD).equals("0")){
 				utgardButton.UpdateUtgard(ZDSD,1);
+	   } if (map.get(buttonZDSD).equals("0")){
+				utgardButton.UpdateUtgard(ZDSD,0);
 	   }
 	} if (address.equals(buttonQD) && map.get(buttonQD)!=null  ) {
 		System.out.println("启动！");
@@ -83,23 +83,23 @@ public class MonitoringButtonController {
 		  address=string;
 	}		 	
 	 if (address.equals(buttonBDYD) && map.get(buttonBDYD)!=null ) {	
-		  if (map.get(buttonBDYD).equals(1)) {
-			utgardButton.UpdateUtgard(BDYC2,0);
-		} if (map.get(buttonBDYD).equals(0)){
+		  if (map.get(buttonBDYD).equals("1")) {
 			utgardButton.UpdateUtgard(BDYC2,1);
+		} if (map.get(buttonBDYD).equals("0")){
+			utgardButton.UpdateUtgard(BDYC2,0);
 		}
 	} if (address.equals(buttonZDSD) && map.get(buttonZDSD)!=null  ) {
-		 if (map.get(buttonZDSD).equals(1)) {
-				utgardButton.UpdateUtgard(ZDSD2,0);
-	   } if (map.get(buttonZDSD).equals(0)){
+		 if (map.get(buttonZDSD).equals("1")) {
 				utgardButton.UpdateUtgard(ZDSD2,1);
+	   } if (map.get(buttonZDSD).equals("0")){
+				utgardButton.UpdateUtgard(ZDSD2,0);
 	   }
 	} if (address.equals(buttonQD) && map.get(buttonQD)!=null  ) {
-		 if (map.get(buttonQD).equals(0)){
+		 if (map.get(buttonQD).equals("0")){
 				utgardButton.UpdateUtgard(KYJQD2,1);
 	   }
 	} if (address.equals(buttonTZ) && map.get(buttonTZ)!=null  ) {
-		 if (map.get(buttonTZ).equals(0)){
+		 if (map.get(buttonTZ).equals("0")){
 				utgardButton.UpdateUtgard(KYJTZ2,1);
 	   }
 	}
@@ -113,23 +113,23 @@ public class MonitoringButtonController {
 		  address=string;
 	}		 	
 	 if (address.equals(buttonBDYD) && map.get(buttonBDYD)!=null ) {	
-		  if (map.get(buttonBDYD).equals(1)) {
-			utgardButton.UpdateUtgard(BDYC3,0);
-		} if (map.get(buttonBDYD).equals(0)){
+		  if (map.get(buttonBDYD).equals("1")) {
 			utgardButton.UpdateUtgard(BDYC3,1);
+		} if (map.get(buttonBDYD).equals("0")){
+			utgardButton.UpdateUtgard(BDYC3,0);
 		}
 	} if (address.equals(buttonZDSD) && map.get(buttonZDSD)!=null  ) {
-		 if (map.get(buttonZDSD).equals(1)) {
-				utgardButton.UpdateUtgard(ZDSD3,0);
-	   } if (map.get(buttonZDSD).equals(0)){
+		 if (map.get(buttonZDSD).equals("1")) {
 				utgardButton.UpdateUtgard(ZDSD3,1);
+	   } if (map.get(buttonZDSD).equals("0")){
+				utgardButton.UpdateUtgard(ZDSD3,0);
 	   }
 	} if (address.equals(buttonQD) && map.get(buttonQD)!=null  ) {
-		 if (map.get(buttonQD).equals(0)){
+		 if (map.get(buttonQD).equals("0")){
 				utgardButton.UpdateUtgard(KYJQD3,1);
 	   }
 	} if (address.equals(buttonTZ) && map.get(buttonTZ)!=null  ) {
-		 if (map.get(buttonTZ).equals(0)){
+		 if (map.get(buttonTZ).equals("0")){
 				utgardButton.UpdateUtgard(KYJTZ3,1);
 	   }
 	}

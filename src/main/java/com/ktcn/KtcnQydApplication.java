@@ -5,8 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-import com.ktcn.aspect.SysLog;
-
 @SpringBootApplication
 @EnableScheduling
 @ServletComponentScan // 解决跨域session丢失问题

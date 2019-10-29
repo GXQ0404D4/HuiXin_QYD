@@ -9,9 +9,7 @@ import org.apache.ibatis.annotations.SelectProvider;
 import org.springframework.stereotype.Repository;
 
 import com.ktcn.dao.providerSQL.AlarmpatrolSQL;
-import com.ktcn.dao.providerSQL.ComReportSQL;
 import com.ktcn.entity.Alarmpatrol;
-import com.ktcn.entity.KYJdatatable.Kyj_data_table;
 
 /**
  * 报警巡查持久层
@@ -37,4 +35,6 @@ public interface AlarmpatrolDao {
 	@SelectProvider(method = "findByTime", type = AlarmpatrolSQL.class)
 	List<Alarmpatrol> findByTime(String timeA, String timeB, int total);
 
+	@Select("SELECT * FROM alarmpatrol ORDER BY `ap_time` DESC limit 0,10000")
+	List<Alarmpatrol> findExport();
 }

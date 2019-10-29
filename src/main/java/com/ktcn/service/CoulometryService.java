@@ -2,7 +2,6 @@ package com.ktcn.service;
 
 import java.util.List;
 
-import com.ktcn.entity.Electric_massage;
 import com.ktcn.entity.V_chart;
 
 /*

@@ -32,4 +32,7 @@ public interface ElectricMessDao {
 	@SelectProvider(method = "findByTime", type = ElectricSQL.class)
 	List<Kyj_data_table> findByTime(String current_timeA, String current_timeB, int total);
 	
+	// 导出Excel
+	@Select("SELECT * FROM kyj_data_table LIMIT 0,10000")
+	List<Kyj_data_table> findExport();
 }

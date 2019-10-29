@@ -55,43 +55,28 @@ public class ComReportServiceImpl implements ComReportService {
 	 * 
 	 * @param offlineQueryEntity
 	 */
-	public HSSFWorkbook downloadExcel(Compressor_report isEntity) {
+	public HSSFWorkbook downloadExcel(Kyj_data_table isEntity) {
 		try {
-			// 查询数据
+			// 从数据库查询数据
 			List<Kyj_data_table> query = comReportDao.findExport();
-			// 标题
+			// 定义标题
 			Map<String, String> column = new LinkedHashMap<String, String>();
-			column.put("A1", "id");
-			column.put("A2", "正向有功总电能A");
-			column.put("A3", "正向有功总电能B");
-			column.put("A4", "正向有功总电能C");
-			column.put("A5", "运行时间A");
-			column.put("A6", "运行时间B");
-			column.put("A7", "运行时间C");
-			column.put("A8", "有功公率A");
-			column.put("A9", "有功公率B");
-			column.put("A10", "有功公率C");
-			column.put("A11", "状态");
-			column.put("A12", "时间");
-			// excel内容
+			column.put("A1", "机器名称");
+			column.put("A2", "数据时间");
+			column.put("A3", "正向有功总电能");
+			column.put("A4", "运行时间");
+			column.put("A5", "有功功率");
+			// 写入excel每行单元格内容
 			List<Map<String, Object>> listResult = new ArrayList<Map<String, Object>>();
 			if (query != null && !query.isEmpty()) {
 
 				for (Kyj_data_table vo : query) {
 					Map<String, Object> hashMap = new LinkedHashMap<String, Object>();
-					hashMap.put("A1", vo.getId());
-//					hashMap.put("A2", vo.getElectric_energy_A());
-//					hashMap.put("A3", vo.getElectric_energy_B());
-//					hashMap.put("A4", vo.getElectric_energy_C());
-//					hashMap.put("A5", vo.getRunning_time_A());
-//					hashMap.put("A6", vo.getRunning_time_B());
-//					hashMap.put("A7", vo.getRunning_time_C());
-//					hashMap.put("A8", vo.getActive_powerA());
-//					hashMap.put("A9", vo.getActive_powerB());
-//					hashMap.put("A10", vo.getActive_powerC());
-//					hashMap.put("A11", vo.getAir_state());
-//					hashMap.put("A12", vo.getAir_current_time());
-
+					hashMap.put("A1", vo.getMachine_name());
+					hashMap.put("A2", vo.getCurrent_time());
+					hashMap.put("A3", vo.getTotal_energy());
+					hashMap.put("A4", vo.getRunning_time());
+					hashMap.put("A5", vo.getActive_Service_Rate());
 					listResult.add(hashMap);
 				}
 			}

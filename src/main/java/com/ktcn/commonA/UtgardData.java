@@ -3,10 +3,8 @@ package com.ktcn.commonA;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Executors;
 
-import org.jinterop.dcom.common.JISystem;
 import org.openscada.opc.lib.common.ConnectionInformation;
 import org.openscada.opc.lib.da.Group;
 import org.openscada.opc.lib.da.Server;
@@ -17,14 +15,13 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.ktcn.entity.ConfigPojo;
-import com.ktcn.entity.opcaddress.KyjOpcAddress2;
 import com.ktcn.utils.OpcDataKyjInsertB;
 
 @EnableScheduling // 此注解必加,必须要加，重中之重
 
-@Component // 此注解必加
-
-@Order(value = 1)
+//@Component // 此注解必加
+//
+//@Order(value = 1)
 public class UtgardData {
 	@Autowired
 	OpcDataKyjInsertB opcDataKyjInsertB;

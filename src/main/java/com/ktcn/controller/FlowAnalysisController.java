@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.aspect.SysLog;
-import com.ktcn.entity.Mian_network;
 import com.ktcn.entity.V_chart;
 import com.ktcn.service.FlowAnalysisService;
 

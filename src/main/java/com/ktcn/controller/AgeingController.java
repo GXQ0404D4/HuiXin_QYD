@@ -5,7 +5,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -10,9 +10,7 @@ import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ktcn.entity.Real_time_data;
-import com.ktcn.entity.Switch_input;
-import com.ktcn.entity.Switch_output;
+import com.ktcn.entity.KYJdatatable.Kyj_data_table;
 import com.ktcn.service.MonitoringService;
 
 /*
@@ -22,9 +20,7 @@ import com.ktcn.service.MonitoringService;
 public class MonitoringController {
 	@Resource
 	private MonitoringService monitoringService;
-	
-	static Map<String,Object> map=new HashMap<String,Object>();
-	
+		
 	private static String BDYC="DIKYJBDYC";
 	private static String ZDSD="DOKYJZDSD";
 	private static String KYJQD="KYJQD";
@@ -33,12 +29,20 @@ public class MonitoringController {
 	//监控主角页面数据获取
 	@RequestMapping("MonitorHomePage")
 	public Map<String,Object> OPCRealTimeData(){
+		Map<String,Object> map=new HashMap<String,Object>();
 		
-		Real_time_data opcRealTimeData = monitoringService.OPCRealTimeData();
-		opcRealTimeData.setActive_Service_Rate1(opcRealTimeData.getActive_Service_Rate1()+opcRealTimeData.getActive_Service_Rate2()+opcRealTimeData.getActive_Service_Rate3());
-		opcRealTimeData.setTotal_energy_1(opcRealTimeData.getTotal_energy_1()+opcRealTimeData.getTotal_energy_2()+opcRealTimeData.getTotal_energy_3());		
+		Kyj_data_table kyj_data_table = monitoringService.OPCRealTimeData(1);
+		Kyj_data_table kyj_data_table2 = monitoringService.OPCRealTimeData2(2);
+		Kyj_data_table kyj_data_table3 = monitoringService.OPCRealTimeData3(3);
+		// 监控主页面 上  数据和
+		kyj_data_table.setTotal_energy(kyj_data_table.getTotal_energy()+kyj_data_table2.getTotal_energy()+kyj_data_table3.getTotal_energy());
+		kyj_data_table.setActive_Service_Rate(kyj_data_table.getActive_Service_Rate()+kyj_data_table2.getActive_Service_Rate()+kyj_data_table3.getActive_Service_Rate());
+		kyj_data_table.setCumulative_flow(kyj_data_table.getCumulative_flow()+kyj_data_table2.getCumulative_flow()+kyj_data_table3.getCumulative_flow());			
 		List<Boolean> opcSwtichInputLGJ = monitoringService.OPCSwtichInputLGJ();
-		map.put("opcRealTimeData", opcRealTimeData);
+		
+		map.put("kyj_data_table", kyj_data_table);
+		map.put("kyj_data_table2", kyj_data_table2);
+		map.put("kyj_data_table3", kyj_data_table3);
 		map.put("opcSwtichInputLGJ", opcSwtichInputLGJ);
 		
 		return map;
@@ -46,21 +50,29 @@ public class MonitoringController {
 	//空压机1页面数据获取
 	@RequestMapping("compressorA")
 	public Map<String,Object> KYJ1GetData(){
+		Map<String,Object> map=new HashMap<String,Object>();
 		//获取所需要的switch_input 数据
-		List<Switch_input> getKYJSwtichInput = monitoringService.GetKYJSwtichInput();					
-		//获取按钮上面展示 机器点位状态数据 传到前台 list集合
-		List<Integer> SwitchInputList1=new ArrayList<Integer>();
-		for (Switch_input switch_input : getKYJSwtichInput) {
-             SwitchInputList1.add(switch_input.getSwitch_input_data());  
-		}	
-		int YCBD1= SwitchInputList1.get(0);
-		Integer KYJYX1 = SwitchInputList1.get(5);
+		List<Integer> getKYJSwtichInput = monitoringService.GetKYJSwtichInput();
 		//获取所需要的switch_output 数据
-		List<Switch_output> getKYJSwtichOutput1 = monitoringService.GetKYJSwtichOutput();		
-		Integer KYJZDSD1 = getKYJSwtichOutput1.get(0).getSwitch_ouput_data();
+		List<Integer> getKYJSwtichOutput1 = monitoringService.GetKYJSwtichOutput();
+		//存储展示状态
+		List<Integer> ZTshow=new ArrayList<Integer>();
+		//报警/故障
+		ZTshow.add(getKYJSwtichInput.get(4));
+		//空压机准备好/未准备
+		ZTshow.add(getKYJSwtichInput.get(5));
+		//空压机加载/卸载
+		ZTshow.add(getKYJSwtichInput.get(6));
+		//空压机停机故障
+		ZTshow.add(getKYJSwtichInput.get(8));
+		//空压机运行
+		ZTshow.add(getKYJSwtichInput.get(9));
+		
 	    //键位判断传递
-		if (YCBD1 !=0) {
-			if (KYJZDSD1!=1) {
+		//本地远程状态判断
+		if (getKYJSwtichInput.get(3) !=0) {
+			//自动手动状态判断
+			if (getKYJSwtichOutput1.get(12)!=1) {
 				map.put(BDYC, 1);
 				map.put(ZDSD, 0);
 				map.put(KYJQD, 0);
@@ -68,11 +80,12 @@ public class MonitoringController {
 			} else {
 				map.put(BDYC, 1);
 				map.put(ZDSD, 1);
-				if(KYJYX1 ==0){
+				//准备好状态
+				if(getKYJSwtichInput.get(8) ==0){
 				map.put(KYJQD, 1);
 				map.put(KYJTZ, 0);	
 				}
-				if(KYJYX1 ==1){
+				if(getKYJSwtichInput.get(8) ==1){
 				map.put(KYJQD, 0);
 				map.put(KYJTZ, 1);	
 				}				
@@ -84,107 +97,115 @@ public class MonitoringController {
 			map.put(KYJTZ, 0);
 		}			
 		//传递按钮状态参数
-		map.put("getKYJSwtichInput",SwitchInputList1);
+		map.put("ZTshow",ZTshow);
 		//传递空压机1展示数据
-        map.put("kyj1GetData", monitoringService.KYJ1GetData());
+        map.put("kyjGetData", monitoringService.KYJGetData(1));
 		return map;		
 	}
 	//空压机2页面数据获取
 	@RequestMapping("compressorB")
 	public Map<String,Object> KYJ2GetData(){
+		Map<String,Object> map=new HashMap<String,Object>();
 		//获取所需要的switch_input 数据
-		//获取所需要的switch_input 数据
-				List<Switch_input> getKYJSwtichInput2 = monitoringService.GetKYJSwtichInput2();					
-				//获取按钮上面展示 机器点位状态数据 传到前台 list集合
-				List<Integer> SwitchInputList2=new ArrayList<Integer>();
-				 
-				for (Switch_input switch_input : getKYJSwtichInput2) {
-		             SwitchInputList2.add(switch_input.getSwitch_input_data());  
-				}	
-				int YCBD2= SwitchInputList2.get(0);
-				Integer KYJYX2 = SwitchInputList2.get(4);
-				//获取所需要的switch_output 数据
-				List<Switch_output> getKYJSwtichOutput2 = monitoringService.GetKYJSwtichOutput2();		
-				Integer KYJZDSD2 = getKYJSwtichOutput2.get(0).getSwitch_ouput_data();
-		//键位判断传递
-				if (YCBD2 !=0) {
-					if (KYJZDSD2 !=1) {
-						map.put(BDYC, 1);
-						map.put(ZDSD, 0);
-						map.put(KYJQD, 0);
-						map.put(KYJTZ, 0);				  
-					} else {
-						map.put(BDYC, 1);
-						map.put(ZDSD, 1);
-						if(KYJYX2 ==0){
-							map.put(KYJQD, 1);
-							map.put(KYJTZ, 0);	
-							}
-							if(KYJYX2 ==1){
-							map.put(KYJQD, 0);
-							map.put(KYJTZ, 1);	
-							}				
-					}			
-				} else {
-					map.put(BDYC, 0);
-					map.put(ZDSD, 0);
-					map.put(KYJQD, 0);
-					map.put(KYJTZ, 0);
-				}			
-		
+		List<Integer> getKYJSwtichInput = monitoringService.GetKYJSwtichInput();
+		//获取所需要的switch_output 数据
+		List<Integer> getKYJSwtichOutput1 = monitoringService.GetKYJSwtichOutput();
+		//存储展示状态
+		List<Integer> ZTshow=new ArrayList<Integer>();
+		//报警/故障
+		ZTshow.add(getKYJSwtichInput.get(14));
+		//空压机准备好/未准备
+		ZTshow.add(getKYJSwtichInput.get(15));
+		//空压机加载/卸载
+		ZTshow.add(getKYJSwtichInput.get(0));
+		//空压机停机故障
+		ZTshow.add(getKYJSwtichInput.get(16));
+		//空压机运行
+		ZTshow.add(getKYJSwtichInput.get(17));
+						    
+	    //键位判断传递
+		if (getKYJSwtichInput.get(13) !=0) {
+			if (getKYJSwtichOutput1.get(13)!=1) {
+				map.put(BDYC, 1);
+				map.put(ZDSD, 0);
+				map.put(KYJQD, 0);
+				map.put(KYJTZ, 0);				  
+			} else {
+				map.put(BDYC, 1);
+				map.put(ZDSD, 1);
+				if(getKYJSwtichInput.get(17) ==0){
+				map.put(KYJQD, 1);
+				map.put(KYJTZ, 0);	
+				}
+				if(getKYJSwtichInput.get(17) ==1){
+				map.put(KYJQD, 0);
+				map.put(KYJTZ, 1);	
+				}				
+			}			
+		} else {
+			map.put(BDYC, 0);
+			map.put(ZDSD, 0);
+			map.put(KYJQD, 0);
+			map.put(KYJTZ, 0);
+		}			
 		//传递按钮状态参数
-		map.put("getKYJSwtichInput2", SwitchInputList2);
-		//传递空压机2页面参数
-		map.put("kyj2GetData", monitoringService.KYJ2GetData());
-		return map;
+		map.put("ZTshow",ZTshow);
+		//传递空压机1展示数据
+        map.put("kyjGetData", monitoringService.KYJGetData(2));
+		return map;		
 		
 	}
 	//空压机3页面数据获取
 	@RequestMapping("compressorC")
 	public Map<String,Object> KYJ3GetData(){
-		List<Switch_input> getKYJSwtichInput3 = monitoringService.GetKYJSwtichInput3();					
-		//获取按钮上面展示 机器点位状态数据 传到前台 list集合
-		List<Integer> SwitchInputList3=new ArrayList<Integer>();
-		 
-		for (Switch_input switch_input : getKYJSwtichInput3) {
-             SwitchInputList3.add(switch_input.getSwitch_input_data());  
-		}	
-		int YCBD3= SwitchInputList3.get(0);
-		Integer KYJYX3 = SwitchInputList3.get(4);
+		Map<String,Object> map=new HashMap<String,Object>();
+		//获取所需要的switch_input 数据
+		List<Integer> getKYJSwtichInput = monitoringService.GetKYJSwtichInput();
 		//获取所需要的switch_output 数据
-		List<Switch_output> getKYJSwtichOutput3 = monitoringService.GetKYJSwtichOutput3();		
-		Integer KYJZDSD3 = getKYJSwtichOutput3.get(0).getSwitch_ouput_data();
-			//键位判断传递
-			if (YCBD3 !=0) {
-				if (KYJZDSD3 !=1) {
-					map.put(BDYC, 1);
-					map.put(ZDSD, 0);
-					map.put(KYJQD, 0);
-					map.put(KYJTZ, 0);				  
-				} else {
-					map.put(BDYC, 1);
-					map.put(ZDSD, 1);
-					if(KYJYX3 ==0){
-						map.put(KYJQD, 1);
-						map.put(KYJTZ, 0);	
-						}
-						if(KYJYX3 ==1){
-						map.put(KYJQD, 0);
-						map.put(KYJTZ, 1);	
-						}		
-				}			
-			} else {
-				map.put(BDYC, 0);
+		List<Integer> getKYJSwtichOutput1 = monitoringService.GetKYJSwtichOutput();
+		//存储展示状态
+		List<Integer> ZTshow=new ArrayList<Integer>();
+		//报警/故障
+		ZTshow.add(getKYJSwtichInput.get(24));
+		//空压机准备好/未准备
+		ZTshow.add(getKYJSwtichInput.get(25));
+		//空压机加载/卸载
+		ZTshow.add(getKYJSwtichInput.get(1));
+		//空压机停机故障
+		ZTshow.add(getKYJSwtichInput.get(26));
+		//空压机运行
+		ZTshow.add(getKYJSwtichInput.get(27));
+						
+	    //键位判断传递
+		if (getKYJSwtichInput.get(23) !=0) {
+			if (getKYJSwtichOutput1.get(14)!=1) {
+				map.put(BDYC, 1);
 				map.put(ZDSD, 0);
 				map.put(KYJQD, 0);
-				map.put(KYJTZ, 0);
+				map.put(KYJTZ, 0);				  
+			} else {
+				map.put(BDYC, 1);
+				map.put(ZDSD, 1);
+				if(getKYJSwtichInput.get(27) ==0){
+				map.put(KYJQD, 1);
+				map.put(KYJTZ, 0);	
+				}
+				if(getKYJSwtichInput.get(27) ==1){
+				map.put(KYJQD, 0);
+				map.put(KYJTZ, 1);	
+				}				
 			}			
-	
+		} else {
+			map.put(BDYC, 0);
+			map.put(ZDSD, 0);
+			map.put(KYJQD, 0);
+			map.put(KYJTZ, 0);
+		}			
 		//传递按钮状态参数
-		map.put("getKYJSwtichInput3", SwitchInputList3);
-		//传递空压机3页面参数
-		map.put("kyj3GetData", monitoringService.KYJ3GetData());
-		return map;
+		map.put("ZTshow",ZTshow);
+		//传递空压机1展示数据
+        map.put("kyjGetData", monitoringService.KYJGetData(3));
+		return map;		
 		
 	}
 }

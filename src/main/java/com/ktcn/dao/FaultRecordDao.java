@@ -32,7 +32,7 @@ public interface FaultRecordDao {
 	@Select("SELECT * FROM `error_recording` WHERE fault_machine = #{fault_machine} ORDER BY time DESC")
 	List<Error_recording> findByName(@Param("fault_machine") String fault_machine);
 	// 新增故障记录
-	@Insert("INSERT INTO `error_recording` (fault_id,time,fault_machine,fault_picture,falut_Reporter,falut_state) VALUES (NULL,#{map.time},#{map.fault_machine},#{map.fault_picture},#{user.name},#{map.falut_state})")
+	@Insert("INSERT INTO `error_recording` (fault_id,time,fault_machine,fault_picture,falut_Reporter,falut_state) VALUES (NULL,#{map.time},#{map.fault_machine},#{map.fault_picture},#{user.name},0)")
 	void addFaultRecord(@Param("map") Map<String, String> map, @Param("user") Tb_user user);
 	// 删除故障记录
 	@Delete("DELETE FROM `error_recording` WHERE fault_id = #{id}")

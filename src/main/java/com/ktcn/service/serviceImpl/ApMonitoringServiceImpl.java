@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ktcn.dao.ApMonitoringDao;
 import com.ktcn.entity.Alarmpatrol;
 import com.ktcn.entity.Alarmseteings;
-import com.ktcn.entity.Real_time_data;
 import com.ktcn.entity.KYJdatatable.Kyj_data_table;
 import com.ktcn.service.ApMonitoringService;
 

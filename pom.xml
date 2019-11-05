@@ -33,11 +33,11 @@
 		</dependency>
 
 		<!-- 配置servlet,打war包时放开 -->
-<!-- 		<dependency>  -->
-<!-- 			<groupId>javax.servlet</groupId>  -->
-<!-- 			<artifactId>javax.servlet-api</artifactId>  -->
-<!-- 			<scope>provided</scope>  -->
-<!-- 		</dependency> -->
+		<dependency> 
+			<groupId>javax.servlet</groupId> 
+			<artifactId>javax.servlet-api</artifactId> 
+			<scope>provided</scope> 
+		</dependency>
 		<!-- JDBC依赖 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -53,12 +53,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<!-- 移除嵌入式tomcat插件, 打war包时放开 -->
-<!-- 			<exclusions> -->
-<!-- 				<exclusion> -->
-<!-- 					<groupId>org.springframework.boot</groupId>  -->
-<!-- 					<artifactId>spring-boot-starter-tomcat</artifactId> -->
-<!-- 				</exclusion> -->
-<!-- 			</exclusions> -->
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId> 
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- mybatis核心包 -->

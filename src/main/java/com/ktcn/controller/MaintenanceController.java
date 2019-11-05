@@ -62,6 +62,8 @@ public class MaintenanceController {
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
 		// 判断用户权限
 		if (user.getUserPower() >= 1) {
+			// 写入维保执行人
+			map.put("mt_personnel", user.getUser_name());
 			// 执行维保计划
 			maintenanceService.updateMaintenance(map);
 			// 写入"系统运行时间轴"节点数据

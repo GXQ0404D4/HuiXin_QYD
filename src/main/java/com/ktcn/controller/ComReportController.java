@@ -71,7 +71,7 @@ public class ComReportController {
 		// 定义一个集合用来存入返回数据;
 		List<Kyj_data_table> list = null;
 		// 判断查询方式
-		if (current_timeA == null && current_timeB == null) {
+		if ((current_timeA == null && current_timeB == null) || (current_timeA.equals("") && current_timeB.equals(""))) {
 			if (session.getAttribute("TimeAac") == null && session.getAttribute("TimeBac") == null) {
 				// 查询数据总条数
 				count = comReportService.findTotal();

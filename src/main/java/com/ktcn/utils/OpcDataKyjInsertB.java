@@ -148,8 +148,8 @@ public class OpcDataKyjInsertB {
 	}
 
 	// 一小时存储一次历史数据
-	// @Scheduled(cron = "0 0 * * * ?")
-	@Scheduled(cron = "0 0/1 * * * ?")
+	@Scheduled(cron = "0 0 * * * ?")
+//	@Scheduled(cron = "0 0/1 * * * ?")
 	public void SetUtgardHourData() {
 		// 历史数据表5秒定时存储
 		kyjDataTableDao.InsertKyjHourData(map.get("kyj_data_table1"));

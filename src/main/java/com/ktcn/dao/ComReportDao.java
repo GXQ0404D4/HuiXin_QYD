@@ -19,10 +19,10 @@ import com.ktcn.entity.KYJdatatable.Kyj_data_table;
 public interface ComReportDao {
 	
 	// 查询数据总条数
-	@Select("SELECT COUNT(id) FROM kyj_data_table")
+	@Select("SELECT COUNT(id) FROM kyj_data_hour")
 	int findTotal();
 	// 分页查询-查询全部
-	@Select("SELECT * FROM kyj_data_table ORDER BY `current_time` DESC limit #{total},10")
+	@Select("SELECT * FROM kyj_data_hour ORDER BY `current_time` DESC limit #{total},10")
 	List<Kyj_data_table> findAllByIndex(@Param("total") int total);
 	
 	// 时间区间查询总条数
@@ -33,6 +33,6 @@ public interface ComReportDao {
 	List<Kyj_data_table> findByTime(String current_timeA, String current_timeB,int total);
 	
 	// 导出Excel
-	@Select("SELECT * FROM kyj_data_table LIMIT 0,10000")
+	@Select("SELECT * FROM kyj_data_hour LIMIT 0,10000")
 	List<Kyj_data_table> findExport();
 }

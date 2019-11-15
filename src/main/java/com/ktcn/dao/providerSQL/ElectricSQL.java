@@ -16,7 +16,7 @@ public class ElectricSQL {
 			// 编写拼接SQL代码块
 			{
 				SELECT("COUNT(id)");
-				FROM("kyj_data_table");
+				FROM("kyj_data_hour");
 				if (current_timeA != null && !"".equals(current_timeA) && current_timeB != null
 						&& !"".equals(current_timeB)) {
 					// 任务名称
@@ -57,7 +57,7 @@ public class ElectricSQL {
 			// 编写拼接SQL代码块
 			{
 				SELECT("*");
-				FROM("kyj_data_table");
+				FROM("kyj_data_hour");
 				if (current_timeA != null && !"".equals(current_timeA) && current_timeB != null
 						&& !"".equals(current_timeB)) {
 					// 任务名称

@@ -104,8 +104,6 @@ public class AlarmpatrolController {
 			countPage = PageReade.getCountPage(count, 10);
 			// 获取查询起始条数
 			x = PageReade.getPageSize(i, count, 10);
-			System.out.println("总条数: " + count);
-			System.out.println("起始查询条数: " + x);
 			// 获取查询数据
 			list = alarmpatrolService.findByTime(TimeA, TimeB, x);
 		}

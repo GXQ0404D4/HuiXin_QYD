@@ -38,8 +38,6 @@ public class ProductionController {
 	@SysLog(logModule = "生产管理", logName = "条件搜索")
 	public List<Production_plan> Prodaction_select(String Pdt_select) {
 		List<Production_plan> production = productionService.findByParam(Pdt_select);
-		System.out.println("页面传参: "+Pdt_select);
-		System.out.println("查询结果: " + production);
 		return production;
 	}
 	

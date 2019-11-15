@@ -21,11 +21,17 @@ import com.ktcn.entity.KYJdatatable.Kyj_data_table;
 @ComponentScan(basePackages ="com.ktcn.dao.KyjDataTableDao")
 public interface KyjDataTableDao {
 	
-
+    //历史数据库添加
 	@Insert("INSERT INTO kyj_data_table (Voltage,Electric_current,Host_temperature,Coolant_temperature,Sump_Pressure,Loading_pressure,Loading_time,Unloading_pressure,Alarm_number,Exhaust_pressure,Exhaust_temperature,Control_state,total_energy,Warning_sign,Running_time,Remote_switch,Active_Service_Rate,pressure,Cumulative_flow,Compensated_flow,instantaneous_power,dew_point_temperature,total_power,total_electricity,electric,power_factor,machine_name,`current_date`,`current_time`,state) VALUES"
 			+ "(#{kyj_data_table.Voltage},#{kyj_data_table.Electric_current},#{kyj_data_table.Host_temperature},#{kyj_data_table.Coolant_temperature},#{kyj_data_table.Sump_Pressure},#{kyj_data_table.Loading_pressure},#{kyj_data_table.Loading_time},#{kyj_data_table.Unloading_pressure},#{kyj_data_table.Alarm_number},#{kyj_data_table.Exhaust_pressure},#{kyj_data_table.Exhaust_temperature},#{kyj_data_table.Control_state},"
 			+ "#{kyj_data_table.total_energy},#{kyj_data_table.Warning_sign},#{kyj_data_table.Running_time},#{kyj_data_table.Remote_switch},#{kyj_data_table.Active_Service_Rate},#{kyj_data_table.pressure},#{kyj_data_table.Cumulative_flow},#{kyj_data_table.Compensated_flow},#{kyj_data_table.instantaneous_power},#{kyj_data_table.dew_point_temperature},#{kyj_data_table.total_power},#{kyj_data_table.total_electricity},#{kyj_data_table.electric},#{kyj_data_table.power_factor},#{kyj_data_table.machine_name},NOW(3),NOW(3),#{kyj_data_table.state})")
 	public void InsertKyjDataA(@Param("kyj_data_table")Kyj_data_table kyj_data_table);
+	
+	//小时数据库历史表
+	@Insert("INSERT INTO kyj_data_hour (Voltage,Electric_current,Host_temperature,Coolant_temperature,Sump_Pressure,Loading_pressure,Loading_time,Unloading_pressure,Alarm_number,Exhaust_pressure,Exhaust_temperature,Control_state,total_energy,Warning_sign,Running_time,Remote_switch,Active_Service_Rate,pressure,Cumulative_flow,Compensated_flow,instantaneous_power,dew_point_temperature,total_power,total_electricity,electric,power_factor,machine_name,`current_date`,`current_time`,state) VALUES"
+			+ "(#{kyj_data_table.Voltage},#{kyj_data_table.Electric_current},#{kyj_data_table.Host_temperature},#{kyj_data_table.Coolant_temperature},#{kyj_data_table.Sump_Pressure},#{kyj_data_table.Loading_pressure},#{kyj_data_table.Loading_time},#{kyj_data_table.Unloading_pressure},#{kyj_data_table.Alarm_number},#{kyj_data_table.Exhaust_pressure},#{kyj_data_table.Exhaust_temperature},#{kyj_data_table.Control_state},"
+			+ "#{kyj_data_table.total_energy},#{kyj_data_table.Warning_sign},#{kyj_data_table.Running_time},#{kyj_data_table.Remote_switch},#{kyj_data_table.Active_Service_Rate},#{kyj_data_table.pressure},#{kyj_data_table.Cumulative_flow},#{kyj_data_table.Compensated_flow},#{kyj_data_table.instantaneous_power},#{kyj_data_table.dew_point_temperature},#{kyj_data_table.total_power},#{kyj_data_table.total_electricity},#{kyj_data_table.electric},#{kyj_data_table.power_factor},#{kyj_data_table.machine_name},NOW(3),NOW(3),#{kyj_data_table.state})")
+	public void InsertKyjHourData(@Param("kyj_data_table")Kyj_data_table kyj_data_table);
 
 	
 	
@@ -76,6 +82,10 @@ public interface KyjDataTableDao {
 			+ "WHEN 26 THEN #{switch2.i26} WHEN 27 THEN #{switch2.i27} WHEN 28 THEN #{switch2.i28} WHEN 29 THEN #{switch2.i29} WHEN 30 THEN #{switch2.i30} "			
 			+ "END WHERE input_id IN (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30)")
 	void getswitcInput(@Param("switch2") Switch_input_value switch2);
+
+
+
+	
 
 
 

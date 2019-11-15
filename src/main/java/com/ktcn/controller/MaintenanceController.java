@@ -34,7 +34,7 @@ public class MaintenanceController {
 		if (MD5Util.getMaintenanceCode().equals(map.get("mt_num"))) {
 			// 获取当前用户
 			Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-			if (user.getUserPower() ==2) {
+			if (user.getUserPower() >= 2) {
 				// 调用新增维保计划方法
 				maintenanceService.addMaintenance(map,user);
 				return "success";

@@ -118,7 +118,7 @@ public class ElectricMessController {
 
 	// Excel导出_电量报表数据
 	@RequestMapping(value = "ElectricityReport_export")
-	@SysLog(logModule = "电量报表", logName = "导出Excel")
+//	@SysLog(logModule = "电量报表", logName = "导出Excel")
 	public void ElectricityReport_export(HttpServletRequest request, HttpServletResponse response,
 			Kyj_data_table isEntity) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

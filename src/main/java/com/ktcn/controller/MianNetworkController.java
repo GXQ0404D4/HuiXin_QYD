@@ -117,7 +117,7 @@ public class MianNetworkController {
 
 	// Excel导出_总管网报表数据
 	@RequestMapping(value = "TotalReport_export")
-	@SysLog(logModule = "总管网报表", logName = "导出Excel")
+//	@SysLog(logModule = "总管网报表", logName = "导出Excel")
 	public void TotalReport_export(HttpServletRequest request, HttpServletResponse response, Kyj_data_table isEntity) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		StringBuffer sbBuffer = new StringBuffer();

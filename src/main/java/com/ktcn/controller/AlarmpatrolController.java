@@ -119,9 +119,9 @@ public class AlarmpatrolController {
 		return map;
 	}
 
-	// Excel导出_空压机报表数据
+	// Excel导出_报警巡查报表数据
 		@RequestMapping(value = "ap_export")
-		@SysLog(logModule = "报警巡查", logName = "导出Excel")
+//		@SysLog(logModule = "报警巡查", logName = "导出Excel")
 		public void compressor_export(HttpServletRequest request, HttpServletResponse response) {
 			Alarmpatrol isEntity = new Alarmpatrol();
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

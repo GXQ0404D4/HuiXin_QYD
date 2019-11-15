@@ -1,6 +1,8 @@
 package com.ktcn.utils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -155,6 +157,12 @@ public class OpcDataKyjInsertB {
 		kyjDataTableDao.InsertKyjHourData(map.get("kyj_data_table1"));
 		kyjDataTableDao.InsertKyjHourData(map.get("kyj_data_table2"));
 		kyjDataTableDao.InsertKyjHourData(map.get("kyj_data_table3"));
+	}
+
+	// 每月执行一次删除三个月之前的数据
+	@Scheduled(cron = "0 15 10 15 * ?")
+	public void SetUtgardMonthData() {
+		kyjDataTableDao.DelectKyjData();
 	}
 
 }

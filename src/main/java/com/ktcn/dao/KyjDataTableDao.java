@@ -1,5 +1,8 @@
 package com.ktcn.dao;
 
+import java.text.SimpleDateFormat;
+
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -82,6 +85,11 @@ public interface KyjDataTableDao {
 			+ "WHEN 26 THEN #{switch2.i26} WHEN 27 THEN #{switch2.i27} WHEN 28 THEN #{switch2.i28} WHEN 29 THEN #{switch2.i29} WHEN 30 THEN #{switch2.i30} "			
 			+ "END WHERE input_id IN (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30)")
 	void getswitcInput(@Param("switch2") Switch_input_value switch2);
+
+	
+	//删除 历史数据库三个月以前的数据
+	@Delete("DELETE FROM kyj_data_table WHERE `current_date` < DATE_SUB(CURDATE(),INTERVAL +3 MONTH)")
+	public void DelectKyjData();
 
 
 

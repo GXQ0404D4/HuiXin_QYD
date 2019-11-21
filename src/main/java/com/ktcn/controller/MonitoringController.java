@@ -43,6 +43,11 @@ public class MonitoringController {
 		map.put("kyj_data_table", kyj_data_table);
 		map.put("kyj_data_table2", kyj_data_table2);
 		map.put("kyj_data_table3", kyj_data_table3);
+		map.put("kyj_data_table4", kyj_data_table);
+		map.put("kyj_data_table5", kyj_data_table2);
+		map.put("kyj_data_table6", kyj_data_table3);
+		map.put("kyj_data_table7", kyj_data_table);
+		
 		map.put("opcSwtichInputLGJ", opcSwtichInputLGJ);
 		
 		return map;

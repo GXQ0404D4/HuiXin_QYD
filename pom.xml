@@ -13,10 +13,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>Ktcn_QYD</artifactId>
+	<artifactId>FuXin_QYD</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Ktcn_QYD</name>
+	<name>FuXin_QYD</name>
 	<description>Demo project for Spring Boot</description>
 
 

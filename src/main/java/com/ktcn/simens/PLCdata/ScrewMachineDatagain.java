@@ -16,7 +16,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.ktcn.service.ScrewMachineService;
+import com.ktcn.service.siemensService.ScrewMachineService;
 import com.ktcn.simens.utils.SiemensPlcConfig;
 
 import HslCommunication.Core.Types.OperateResult;
@@ -25,7 +25,8 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
  * @author 作者 :Runaway programmer
- * @version 创建时间：2019年12月27日 下午4:39:57 类说明 ScrewMachine 螺杆机
+ * @version 创建时间：2019年12月27日 下午4:39:57 类说明 
+ * ScrewMachine 螺杆机数据获取
  */
 //@EnableScheduling // 此注解必加,必须要加，重中之重
 //

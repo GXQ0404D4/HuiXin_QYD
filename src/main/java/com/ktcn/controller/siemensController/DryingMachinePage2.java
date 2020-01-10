@@ -1,4 +1,4 @@
-package com.ktcn.controller_Siemens;
+package com.ktcn.controller.siemensController;
 
 import java.util.HashMap;
 import java.util.Map;

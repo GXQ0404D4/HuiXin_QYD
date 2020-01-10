@@ -1,4 +1,4 @@
-package com.ktcn.service.siemens.serviceimp;
+package com.ktcn.service.siemensServiceImp;
 
 import java.util.List;
 import java.util.Map;
@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.ktcn.dao.siemensdao.ScrewMachineDao;
 import com.ktcn.entity.siemensentity.ScrewMachine;
-import com.ktcn.service.ScrewMachineService;
+import com.ktcn.service.siemensService.ScrewMachineService;
 
 /**
 * @author 作者 :Runaway programmer
 * @version 创建时间：2020年1月3日 上午9:29:11
-* 类说明
+* 类说明 ScrewMachine 螺杆机数据获取
 */
 @Service
 public class ScrewMachineServiceImp implements  ScrewMachineService{

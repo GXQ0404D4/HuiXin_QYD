@@ -2,7 +2,7 @@ package com.ktcn.dao.siemensdao;
 /**
 * @author 作者 :Runaway programmer
 * @version 创建时间：2020年1月2日 下午4:02:21
-* 类说明
+* 类说明  通信状态获取PLC 数据类
 */
 
 import org.apache.ibatis.annotations.Insert;

@@ -16,7 +16,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.ktcn.service.siemens.serviceimp.AmmeterServiceImp;
+import com.ktcn.service.siemensServiceImp.AmmeterServiceImp;
 import com.ktcn.simens.utils.SiemensPlcConfig;
 
 import HslCommunication.Core.Types.OperateResult;

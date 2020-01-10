@@ -11,7 +11,7 @@ import com.ktcn.entity.siemensentity.Ammeter;
 /**
 * @author 作者 :Runaway programmer
 * @version 创建时间：2020年1月2日 上午10:34:36
-* 类说明 电表dao层操作
+* 类说明   电表数据获取    电表dao层操作
 */
 @Repository
 @Mapper

@@ -2,7 +2,7 @@ package com.ktcn.dao.siemensdao;
 /**
 * @author 作者 :Runaway programmer
 * @version 创建时间：2020年1月2日 下午4:51:09
-* 类说明
+* 类说明  流量计 PLC 数据获取
 */
 
 import org.springframework.stereotype.Repository;

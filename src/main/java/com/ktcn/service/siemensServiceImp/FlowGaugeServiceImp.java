@@ -1,4 +1,4 @@
-package com.ktcn.service.siemens.serviceimp;
+package com.ktcn.service.siemensServiceImp;
 
 import java.util.List;
 
@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.ktcn.dao.siemensdao.FlowGaugeDao;
 import com.ktcn.entity.siemensentity.FlowGauge;
-import com.ktcn.service.FlowGaugeService;
+import com.ktcn.service.siemensService.FlowGaugeService;
 
 /**
 * @author 作者 :Runaway programmer
 * @version 创建时间：2020年1月2日 下午4:51:56
-* 类说明
+* 类说明 流量计 PLC 数据获取
 */
 @Service
 public class FlowGaugeServiceImp implements FlowGaugeService {

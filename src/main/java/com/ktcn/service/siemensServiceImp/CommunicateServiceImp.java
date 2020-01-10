@@ -1,4 +1,4 @@
-package com.ktcn.service.siemens.serviceimp;
+package com.ktcn.service.siemensServiceImp;
 
 import java.util.List;
 
@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 
 import com.ktcn.dao.siemensdao.CommunicateDao;
 import com.ktcn.entity.siemensentity.CommunicateState;
-import com.ktcn.service.CommunicateService;
+import com.ktcn.service.siemensService.CommunicateService;
 
 /**
 * @author 作者 :Runaway programmer
 * @version 创建时间：2020年1月2日 下午4:03:27
-* 类说明
+* 类说明  通信状态获取PLC 数据类
 */
 @Service
 public class CommunicateServiceImp implements CommunicateService {

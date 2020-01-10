@@ -1,4 +1,4 @@
-package com.ktcn.service.siemens.serviceimp;
+package com.ktcn.service.siemensServiceImp;
 
 import java.util.List;
 import java.util.Map;
@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.ktcn.dao.siemensdao.DryingMachineDao;
 import com.ktcn.entity.siemensentity.DryingMachine;
-import com.ktcn.service.DryingMachineService;
+import com.ktcn.service.siemensService.DryingMachineService;
 
 /**
 * @author 作者 :Runaway programmer
 * @version 创建时间：2020年1月3日 上午11:42:38
-* 类说明
+* 类说明 干燥机PLC 获取数据类
 */
 @Service
 public class DryingMachineServiceImp implements DryingMachineService{

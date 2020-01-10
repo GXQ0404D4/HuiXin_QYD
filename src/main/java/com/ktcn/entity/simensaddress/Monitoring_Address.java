@@ -12,7 +12,7 @@ import lombok.Data;
 /**
 * @author 作者 :Runaway programmer
 * @version 创建时间：2020年1月9日 下午3:05:27
-* 类说明
+* 类说明 Properties 文件获取配置PLC地址
 */
 @Data
 @Configuration

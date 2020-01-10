@@ -1,4 +1,4 @@
-package com.ktcn.service.siemens.serviceimp;
+package com.ktcn.service.siemensServiceImp;
 
 import java.util.List;
 import java.util.Map;
@@ -9,11 +9,12 @@ import org.springframework.stereotype.Service;
 
 import com.ktcn.dao.siemensdao.AmmeterDao;
 import com.ktcn.entity.siemensentity.Ammeter;
-import com.ktcn.service.AmmeterService;
+import com.ktcn.service.siemensService.AmmeterService;
 
 /**
  * @author 作者 :Runaway programmer
- * @version 创建时间：2020年1月2日 上午10:38:54 类说明
+ * @version 创建时间：2020年1月2日 上午10:38:54 
+ * 类说明电表数据获取   
  */
 @Component
 @Service

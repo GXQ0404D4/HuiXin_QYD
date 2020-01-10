@@ -13,7 +13,7 @@ import lombok.Data;
 */
 @Data
 @Component
-public class ControlValve {
+public class ControlValue {
 	
 	private int id;
 	private Float TJF0;  //比例值          R/W

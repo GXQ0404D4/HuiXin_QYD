@@ -11,7 +11,7 @@ import com.ktcn.entity.siemensentity.DryingMachine;
 /**
 * @author 作者 :Runaway programmer
 * @version 创建时间：2020年1月3日 上午11:42:19
-* 类说明
+* 类说明 干燥机PLC 获取数据类
 */
 @Mapper
 @Repository

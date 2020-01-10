@@ -6,18 +6,12 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.annotation.Order;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
-import com.ktcn.entity.siemensentity.ControlValve;
-import com.ktcn.service.ControlValveService;
+import com.ktcn.entity.siemensentity.ControlValue;
+import com.ktcn.service.siemensService.ControlValueService;
 import com.ktcn.simens.utils.SiemensPlcConfig;
 
-import HslCommunication.Core.Types.OperateResult;
-import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
@@ -32,7 +26,7 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 //
 //@Order(value = 1)
 @PropertySource({"classpath:config/control_value.properties"})
-public final class ControlValveDatagain {
+public final class ControlValueDatagain {
 	@Value("${PLC0.TJF0}")
 	private static String TJF0;
 	@Value("${PLC0.TJF1}")
@@ -55,32 +49,32 @@ public final class ControlValveDatagain {
 	SiemensPlcConfig SiemensPlcConfig;
 	 
 	@Autowired
-	ControlValveService ControlValveServiceImp;
+	ControlValueService ControlValueServiceImp;
 	
 	@Autowired
-	ControlValve  controlValve;
+	ControlValue  controlValue;
 	
 //	@Async
 	@Scheduled(cron = "0/1 * * * * ?")
 	public  void getControlValueData() {
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
 		if (siemensPLC.ConnectServer().IsSuccess) {
-			controlValve.setTJF0((siemensPLC.ReadFloat(TJF0).Content));
-			controlValve.setTJF1((siemensPLC.ReadBool(TJF1).Content));
-			controlValve.setTJF2((siemensPLC.ReadFloat(TJF2).Content));
-			controlValve.setTJF3((siemensPLC.ReadFloat(TJF3).Content));
-			controlValve.setTJF4((siemensPLC.ReadFloat(TJF4).Content));
-			controlValve.setTJF5((siemensPLC.ReadFloat(TJF5).Content));
-			controlValve.setTJF6((siemensPLC.ReadFloat(TJF6).Content));
-			controlValve.setTJF9((siemensPLC.ReadFloat(TJF9).Content));
+			controlValue.setTJF0((siemensPLC.ReadFloat(TJF0).Content));
+			controlValue.setTJF1((siemensPLC.ReadBool(TJF1).Content));
+			controlValue.setTJF2((siemensPLC.ReadFloat(TJF2).Content));
+			controlValue.setTJF3((siemensPLC.ReadFloat(TJF3).Content));
+			controlValue.setTJF4((siemensPLC.ReadFloat(TJF4).Content));
+			controlValue.setTJF5((siemensPLC.ReadFloat(TJF5).Content));
+			controlValue.setTJF6((siemensPLC.ReadFloat(TJF6).Content));
+			controlValue.setTJF9((siemensPLC.ReadFloat(TJF9).Content));
 			
 			siemensPLC.ConnectClose();
 		} else {
 			System.out.println("failed:" +siemensPLC.ConnectServer().Message);
 		}
 		//持久化到调节阀数据表
-		ControlValveServiceImp.setControlValueData(controlValve);
-//		System.out.println("第一组数据————————@@@@@@@@@@@@@@@@@@@@@__________-!"+controlValve );
+		ControlValueServiceImp.setControlValueData(controlValue);
+//		System.out.println("第一组数据————————@@@@@@@@@@@@@@@@@@@@@__________-!"+controlValue );
 		// 数据读取完毕 获取当前时间
 		System.out.println(" ");
 		System.out.println("持久化到调节阀" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));

@@ -16,7 +16,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.ktcn.service.DryingMachineService;
+import com.ktcn.service.siemensService.DryingMachineService;
 import com.ktcn.simens.utils.SiemensPlcConfig;
 
 import HslCommunication.Core.Types.OperateResult;
@@ -25,7 +25,8 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
  * @author 作者 :Runaway programmer
- * @version 创建时间：2019年12月27日 下午4:36:02 类说明 干燥机PLC 获取数据类
+ * @version 创建时间：2019年12月27日 下午4:36:02 类说明 
+ * 干燥机PLC 获取数据类
 // */
 //@EnableScheduling // 此注解必加,必须要加，重中之重
 //

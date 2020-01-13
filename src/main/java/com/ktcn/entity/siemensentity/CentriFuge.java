@@ -13,7 +13,7 @@ import lombok.Data;
 */
 @Data
 @Component
-public class Centrifuge {
+public class CentriFuge {
  
 	private int id;
 	private String centrifuge_name; //离心机名字

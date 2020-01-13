@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ktcn.dao.siemensdao.CentrifugeDao;
-import com.ktcn.entity.siemensentity.Centrifuge;
+import com.ktcn.entity.siemensentity.CentriFuge;
 import com.ktcn.service.siemensService.CentrifugeService;
 
 /**
@@ -21,7 +21,7 @@ public class CentrifugeServiceImp implements CentrifugeService {
 	CentrifugeDao centrifugeDao;
 	
 	@Autowired
-	Centrifuge centrifuge;
+	CentriFuge centrifuge;
 	
 	@Override
 	public void setCentrifugeData(ArrayList<Float> centrifugeData) {

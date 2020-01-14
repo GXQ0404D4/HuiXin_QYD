@@ -105,5 +105,21 @@ public class Monitoring_Address {
 	private String MD82;
 	private String MD83;
 	private String MD84;
-
-}
+	private String MD85;
+	private String MD86;
+	private String MD87;
+	private String MD88;
+	private String MD89;
+	private String MD90;
+	private String MD91;
+	private String MD92;
+	private String MD93;
+	private String MD94;
+	private String MD95;
+	private String MD96;
+	private String MD97;
+	private String MD98;
+//	private String MD99;
+                   
+}                  
+                   

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 /**
 * @author 作者 :Runaway programmer
 * @version 创建时间：2020年1月10日 下午3:12:49
-* 类说明 类说明  调节阀(曲线分析) 折线图controller层
+* 类说明 类说明  调节阀(曲线分析) 折线图dao层  获取当天24小时数据
 */
 @Repository
 @Mapper

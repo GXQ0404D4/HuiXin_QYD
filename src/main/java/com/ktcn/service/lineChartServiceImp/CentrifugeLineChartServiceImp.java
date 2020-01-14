@@ -15,7 +15,7 @@ import com.ktcn.service.lineChartService.CentrifugeLineChartService;
 /**
 * @author 作者 :Runaway programmer
 * @version 创建时间：2020年1月13日 上午9:06:06
-* 类说明
+* 类说明 离心机 曲线分析（折线图）serviceimp层 获取当天24小时数据
 */
 @Service
 public class CentrifugeLineChartServiceImp implements CentrifugeLineChartService {

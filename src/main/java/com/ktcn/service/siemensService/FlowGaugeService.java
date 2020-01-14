@@ -11,6 +11,6 @@ import java.util.Set;
 
 public interface FlowGaugeService {
 
-	void setFlowGaugeData(List<Float> flowGaugeData, List<Float> flowGaugeData1);
+	void setFlowGaugeData(List<Float> flowGaugeData);
 
 }

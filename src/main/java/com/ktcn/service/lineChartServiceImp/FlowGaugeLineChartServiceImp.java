@@ -13,7 +13,7 @@ import com.ktcn.service.lineChartService.FlowGaugeLineChartService;
 /**
 * @author 作者 :Runaway programmer
 * @version 创建时间：2020年1月10日 下午4:43:31
-* 类说明 曲线分析流量计数据获取
+* 类说明 流量计  曲线分析（折线图）serviceimp层  获取当天24小时数据
 */
 @Service
 public class FlowGaugeLineChartServiceImp implements FlowGaugeLineChartService{

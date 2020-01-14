@@ -37,29 +37,29 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 public final class CommunicateStateDatagain {
 	
 	@Value("${PLC.TX0}")
-	private static String TX0;
+	private  String TX0;
 	@Value("${PLC.TX1}")
-	private static String TX1;
+	private  String TX1;
 	@Value("${PLC.TX2}")
-	private static String TX2;
+	private  String TX2;
 	@Value("${PLC.TX3}")
-	private static String TX3;
+	private  String TX3;
 	@Value("${PLC.TX4}")
-	private static String TX4;
+	private  String TX4;
 	@Value("${PLC.TX5}")
-	private static String TX5;
+	private  String TX5;
 	@Value("${PLC.TX6}")
-	private static String TX6;
+	private  String TX6;
 	@Value("${PLC.TX7}")
-	private static String TX7;
+	private  String TX7;
 	@Value("${PLC.TX8}")
-	private static String TX8;
+	private  String TX8;
 	@Value("${PLC.TX9}")
-	private static String TX9;
+	private  String TX9;
 	@Value("${PLC.TX10}")
-	private static String TX10;
+	private  String TX10;
 	@Value("${PLC.TX11}")
-	private static String TX11;
+	private  String TX11;
 	
 	@Autowired
 	SiemensPlcConfig SiemensPlcConfig;
@@ -86,14 +86,13 @@ public final class CommunicateStateDatagain {
 			CommunicationData.add(siemensPLC.ReadBool(TX9).Content);
 			CommunicationData.add(siemensPLC.ReadBool(TX10).Content);
 			CommunicationData.add(siemensPLC.ReadBool(TX11).Content);
-			
 			siemensPLC.ConnectClose();
-			
-			
+			System.out.println(CommunicationData);
+			CommunicateServiceImp.setCommunicateData(CommunicationData);
 		} else {
 			System.out.println("failed:" +siemensPLC.ConnectServer().Message);
 		}
-		CommunicateServiceImp.setCommunicateData(CommunicationData);
+		
 //		System.out.println("第一组数据————————%%%%%%%%%%%%%%%%%%%%%%%%__________-!"+CommunicationData );
 			// 数据读取完毕 获取当前时间
 		System.out.println(" ");

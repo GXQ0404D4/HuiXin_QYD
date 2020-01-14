@@ -17,10 +17,15 @@ import com.ktcn.entity.siemensentity.ControlValue;
 @Repository
 public interface ControlValveDao {
 	
-	//持久化到调节阀数据表
+	//持久化到周调节阀数据表
 	@Insert("INSERT INTO control_valve (TJF0,TJF1,TJF2,TJF3,TJF4,TJF5,TJF6,TJF9,TJF_time,TJF_datatime,state) VALUES"
 			+ "(#{cnt.TJF0},#{cnt.TJF1},#{cnt.TJF2},#{cnt.TJF3},#{cnt.TJF4},#{cnt.TJF5},#{cnt.TJF6},#{cnt.TJF9},NOW(),NOW(),1)")
 	void setControlValueData(@Param("cnt") ControlValue cnt);
+
+	//持久化到小时调节阀数据库
+	@Insert("INSERT INTO control_valve_hour (TJF0,TJF1,TJF2,TJF3,TJF4,TJF5,TJF6,TJF9,TJF_time,TJF_datatime,state) VALUES"
+			+ "(#{cnt.TJF0},#{cnt.TJF1},#{cnt.TJF2},#{cnt.TJF3},#{cnt.TJF4},#{cnt.TJF5},#{cnt.TJF6},#{cnt.TJF9},NOW(),NOW(),1)")
+	void setControlValueDataHour(@Param("cnt")ControlValue cnt);
 
 	
 }

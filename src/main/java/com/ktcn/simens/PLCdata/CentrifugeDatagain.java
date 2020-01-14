@@ -36,37 +36,35 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 public final class CentrifugeDatagain {
 	
 	@Value("${PLC.LXJ5}")
-	private static String LXJ5;
+	private  String LXJ5;
 	@Value("${PLC.LXJ7}")
-	private static String LXJ7;
+	private  String LXJ7;
 	@Value("${PLC.LXJ8}")
-	private static String LXJ8;
+	private  String LXJ8;
 	@Value("${PLC.LXJ9}")
-	private static String LXJ9;
+	private  String LXJ9;
 	@Value("${PLC.LXJ10}")
-	private static String LXJ10;
+	private  String LXJ10;
 	@Value("${PLC.LXJ11}")
-	private static String LXJ11;
+	private  String LXJ11;
 	@Value("${PLC.LXJ14}")
-	private static String LXJ14;
+	private  String LXJ14;
 	@Value("${PLC.LXJ15}")
-	private static String LXJ15;
+	private  String LXJ15;
 	@Value("${PLC.LXJ16}")
-	private static String LXJ16;
+	private  String LXJ16;
 	@Value("${PLC.LXJ17}")
-	private static String LXJ17;
+	private  String LXJ17;
 	@Value("${PLC.LXJ18}")
-	private static String LXJ18;
+	private  String LXJ18;
 	@Value("${PLC.LXJ19}")
-	private static String LXJ19;
+	private  String LXJ19;
 	@Value("${PLC.LXJ20}")
-	private static String LXJ20;
+	private  String LXJ20;
 	@Value("${PLC.LXJ21}")
-	private static String LXJ21;
+	private  String LXJ21;
 	@Value("${PLC.LXJ22}")
-	private static String LXJ22;
-	@Value("${PLC.LXJ23}")
-	private static String LXJ23;
+	private  String LXJ22;
 	
 	@Autowired
 	SiemensPlcConfig SiemensPlcConfig;
@@ -97,10 +95,11 @@ public final class CentrifugeDatagain {
 			CentrifugeData.add(siemensPLC.ReadFloat(LXJ20).Content);
 			CentrifugeData.add(siemensPLC.ReadFloat(LXJ21).Content);
 			CentrifugeData.add(siemensPLC.ReadFloat(LXJ22).Content);
-			CentrifugeData.add(siemensPLC.ReadFloat(LXJ23).Content);
 			
 			siemensPLC.ConnectClose();
+			System.out.println(CentrifugeData);
 			centrifugeServiceImp.setCentrifugeData(CentrifugeData);
+			
 		} else {
 			System.out.println("failed:" +siemensPLC.ConnectServer().Message);
 		}

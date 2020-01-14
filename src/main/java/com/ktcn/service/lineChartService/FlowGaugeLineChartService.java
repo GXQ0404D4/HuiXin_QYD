@@ -6,7 +6,7 @@ import java.util.Map;
 /**
 * @author 作者 :Runaway programmer
 * @version 创建时间：2020年1月10日 下午4:43:07
-* 类说明 曲线分析流量计数据获取
+* 类说明   曲线分析（折线图）service层  获取当天24小时数据
 */
 
 public interface FlowGaugeLineChartService {

@@ -1,6 +1,7 @@
 package com.ktcn.service.siemensServiceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.ktcn.dao.siemensdao.ControlValveDao;
@@ -17,11 +18,26 @@ public class ControlValueServiceImp implements ControlValueService{
 
 	@Autowired
 	ControlValveDao controlValveDao;
-
+    @Autowired
+	ControlValue ControlValuedata;
+	
 	@Override
 	public void setControlValueData(ControlValue controlValve) {
+		ControlValuedata=controlValve;
 		//持久化到调节阀数据表
 		controlValveDao.setControlValueData(controlValve);
 		
+	}
+	
+//	@Scheduled(cron = "0/1 * * * * ?")
+	@Scheduled(cron = "0 0 * * * ?")
+	public void setControlValueDataHour() {
+		//持久化到调节阀数据表
+		try {
+			controlValveDao.setControlValueDataHour(ControlValuedata);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

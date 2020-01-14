@@ -14,7 +14,7 @@ import com.ktcn.service.lineChartService.ControlValueLineChartService;
 /**
 * @author 作者 :Runaway programmer
 * @version 创建时间：2020年1月10日 下午3:12:09
-* 类说明 类说明  调节阀(曲线分析) 折线图controller层
+* 类说明 调节阀(曲线分析) 折线图serviceimp层  获取当天24小时数据
 */
 @Service
 public class ControlValueLineChartServiceImp implements ControlValueLineChartService{

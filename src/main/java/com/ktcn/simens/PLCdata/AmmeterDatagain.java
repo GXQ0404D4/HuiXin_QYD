@@ -41,85 +41,85 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 public final class AmmeterDatagain {
 //	烧结电表地址值
 	@Value("${PLC0.DB9}")
-	private static  String DB9;
+	private   String DB9;
 	@Value("${PLC0.DB10}")
-	private static String DB10;
+	private  String DB10;
 	@Value("${PLC0.DB11}")
-	private static String DB11;
+	private  String DB11;
 	@Value("${PLC0.DB12}")
-	private static String DB12;
+	private  String DB12;
 //  离心机电表地址值
 	@Value("${PLC1.DB9}")
-	private static String DB9_1;
+	private  String DB9_1;
 	@Value("${PLC1.DB10}")
-	private static String DB10_1;
+	private  String DB10_1;
 	@Value("${PLC1.DB11}")
-	private static String DB11_1;
+	private  String DB11_1;
 	@Value("${PLC1.DB12}")
-	private static String DB12_1;
+	private  String DB12_1;
 //  空压机1电表地址值
 	@Value("${PLC2.DB9}")
-	private static String DB9_2;
+	private  String DB9_2;
 	@Value("${PLC2.DB10}")
-	private static String DB10_2;
+	private  String DB10_2;
 	@Value("${PLC2.DB11}")
-	private static String DB11_2;
+	private  String DB11_2;
 	@Value("${PLC2.DB12}")
-	private static String DB12_2;
+	private  String DB12_2;
 //  空压机2电表地址值	
 	@Value("${PLC3.DB9}")
-	private static String DB9_3;
+	private  String DB9_3;
 	@Value("${PLC3.DB10}")
-	private static String DB10_3;
+	private  String DB10_3;
 	@Value("${PLC3.DB11}")
-	private static String DB11_3;
+	private  String DB11_3;
 	@Value("${PLC3.DB12}")
-	private static String DB12_3;
+	private  String DB12_3;
 //  空压机3电表地址值
 	@Value("${PLC4.DB9}")
-	private static String DB9_4;
+	private  String DB9_4;
 	@Value("${PLC4.DB10}")
-	private static String DB10_4;
+	private  String DB10_4;
 	@Value("${PLC4.DB11}")
-	private static String DB11_4;
+	private  String DB11_4;
 	@Value("${PLC4.DB12}")
-	private static String DB12_4;
+	private  String DB12_4;
 //  空压机4电表地址值
 	@Value("${PLC5.DB9}")
-	private static String DB9_5;
+	private  String DB9_5;
 	@Value("${PLC5.DB10}")
-	private static String DB10_5;
+	private  String DB10_5;
 	@Value("${PLC5.DB11}")
-	private static String DB11_5;
+	private  String DB11_5;
 	@Value("${PLC5.DB12}")
-	private static String DB12_5;
+	private  String DB12_5;
 //  空压机5电表地址值
 	@Value("${PLC6.DB9}")
-	private static String DB9_6;
+	private  String DB9_6;
 	@Value("${PLC6.DB10}")
-	private static String DB10_6;
+	private  String DB10_6;
 	@Value("${PLC6.DB11}")
-	private static String DB11_6;
+	private  String DB11_6;
 	@Value("${PLC6.DB12}")
-	private static String DB12_6;
+	private  String DB12_6;
 //  空压机6电表地址值
 	@Value("${PLC7.DB9}")
-	private static String DB9_7;
+	private  String DB9_7;
 	@Value("${PLC7.DB10}")
-	private static String DB10_7;
+	private  String DB10_7;
 	@Value("${PLC7.DB11}")
-	private static String DB11_7;
+	private  String DB11_7;
 	@Value("${PLC7.DB12}")
-	private static String DB12_7;
+	private  String DB12_7;
 //  空压机7电表地址值
 	@Value("${PLC8.DB9}")
-	private static String DB9_8;
+	private  String DB9_8;
 	@Value("${PLC8.DB10}")
-	private static String DB10_8;
+	private  String DB10_8;
 	@Value("${PLC8.DB11}")
-	private static String DB11_8;
+	private  String DB11_8;
 	@Value("${PLC8.DB12}")
-	private static  String DB12_8;
+	private   String DB12_8;
 	
 	// PLC 连接池 封装类配置类
 	@Autowired
@@ -150,14 +150,10 @@ public final class AmmeterDatagain {
 		
 		if (siemensPLC.ConnectServer().IsSuccess) {
 			//烧结电表获取数据
-//			DataList1.add(siemensPLC.ReadFloat(DB9).Content);
-//			DataList1.add(siemensPLC.ReadFloat(DB10).Content);
-//			DataList1.add(siemensPLC.ReadFloat(DB11).Content);
-//			DataList1.add(siemensPLC.ReadFloat(DB12).Content);
-			DataList1.add(1.12F);
-			DataList1.add(1.3F);
-			DataList1.add(1.4F);
-			DataList1.add(1.50F);
+			DataList1.add(siemensPLC.ReadFloat(DB9).Content);
+			DataList1.add(siemensPLC.ReadFloat(DB10).Content);
+			DataList1.add(siemensPLC.ReadFloat(DB11).Content);
+			DataList1.add(siemensPLC.ReadFloat(DB12).Content);
 			//离心机电表获取数据
 			DataList2.add(siemensPLC.ReadFloat(DB9_1).Content);
 			DataList2.add(siemensPLC.ReadFloat(DB10_1).Content);

@@ -17,9 +17,13 @@ import org.apache.ibatis.annotations.Param;
 @Repository
 public interface FlowGaugeDao {
 
-	//持久化到冷却剂数据表
+	//持久化到流量计数据表
 	@Insert("INSERT INTO flow_gauge (LLJ2,LLJ3,LLJ4,LLJ5,LLJ_time,LLJ_datatime,state,FlowGauge_name) VALUES"
 			+ "(#{fg.LLJ2},#{fg.LLJ3},#{fg.LLJ4},#{fg.LLJ5},NOW(),NOW(),1,#{fg.FlowGauge_name})")
 	void setFlowGaugeData(@Param("fg") FlowGauge fg);
 
+	//持久化到小时数据表 流量计数据表
+	@Insert("INSERT INTO flow_gauge_hour (LLJ2,LLJ3,LLJ4,LLJ5,LLJ_time,LLJ_datatime,state,FlowGauge_name) VALUES"
+			+ "(#{fg.LLJ2},#{fg.LLJ3},#{fg.LLJ4},#{fg.LLJ5},NOW(),NOW(),1,#{fg.FlowGauge_name})")
+	void setFlowGaugeDataHour(@Param("fg") FlowGauge fg);
 }

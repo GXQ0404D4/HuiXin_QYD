@@ -6,7 +6,10 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.annotation.Order;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 import com.ktcn.entity.siemensentity.ControlValue;
 import com.ktcn.service.siemensService.ControlValueService;
@@ -28,21 +31,21 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 @PropertySource({"classpath:config/control_value.properties"})
 public final class ControlValueDatagain {
 	@Value("${PLC0.TJF0}")
-	private static String TJF0;
+	private  String TJF0;
 	@Value("${PLC0.TJF1}")
-	private static String TJF1;
+	private  String TJF1;
 	@Value("${PLC0.TJF2}")
-	private static String TJF2;
+	private  String TJF2;
 	@Value("${PLC0.TJF3}")
-	private static String TJF3;
+	private  String TJF3;
 	@Value("${PLC0.TJF4}")
-	private static String TJF4;
+	private  String TJF4;
 	@Value("${PLC0.TJF5}")
-	private static String TJF5;
+	private  String TJF5;
 	@Value("${PLC0.TJF6}")
-	private static String TJF6;
+	private  String TJF6;
 	@Value("${PLC0.TJF9}")
-	private static String TJF9;
+	private  String TJF9;
 	
 	
 	@Autowired
@@ -67,13 +70,13 @@ public final class ControlValueDatagain {
 			controlValue.setTJF5((siemensPLC.ReadFloat(TJF5).Content));
 			controlValue.setTJF6((siemensPLC.ReadFloat(TJF6).Content));
 			controlValue.setTJF9((siemensPLC.ReadFloat(TJF9).Content));
-			
 			siemensPLC.ConnectClose();
+			//持久化到调节阀数据表
+			ControlValueServiceImp.setControlValueData(controlValue);
 		} else {
 			System.out.println("failed:" +siemensPLC.ConnectServer().Message);
 		}
-		//持久化到调节阀数据表
-		ControlValueServiceImp.setControlValueData(controlValue);
+		
 //		System.out.println("第一组数据————————@@@@@@@@@@@@@@@@@@@@@__________-!"+controlValue );
 		// 数据读取完毕 获取当前时间
 		System.out.println(" ");

@@ -312,4 +312,11 @@ public class DryingMachineServiceImp implements DryingMachineService{
 				
 				dryingMachineDao.setDryingMachineDataHour2(dryingMachine);
 	}
+	
+//定时删除周报表数据
+//	@Scheduled(cron = "0 0 1 ? * L") //每周星期天凌晨1点执行一次
+	@Scheduled(cron = "0 0 1 * * ?") //每天凌晨1点执行一次
+	public void deleteDryingMachineData() {
+		dryingMachineDao.deleteDryingMachineData();
+	}
 }

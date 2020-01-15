@@ -1,5 +1,6 @@
 package com.ktcn.dao.siemensdao;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -26,6 +27,10 @@ public interface ControlValveDao {
 	@Insert("INSERT INTO control_valve_hour (TJF0,TJF1,TJF2,TJF3,TJF4,TJF5,TJF6,TJF9,TJF_time,TJF_datatime,state) VALUES"
 			+ "(#{cnt.TJF0},#{cnt.TJF1},#{cnt.TJF2},#{cnt.TJF3},#{cnt.TJF4},#{cnt.TJF5},#{cnt.TJF6},#{cnt.TJF9},NOW(),NOW(),1)")
 	void setControlValueDataHour(@Param("cnt")ControlValue cnt);
+
+	//定时删除周报表数据
+	@Delete("DELETE FROM control_valve WHERE TJF_time<=DATE_SUB(NOW(),INTERVAL 1 WEEK)")
+	void deleteControlValueData();
 
 	
 }

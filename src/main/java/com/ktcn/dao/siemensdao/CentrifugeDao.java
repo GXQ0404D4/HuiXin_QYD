@@ -1,5 +1,6 @@
 package com.ktcn.dao.siemensdao;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -26,5 +27,9 @@ public interface CentrifugeDao {
 			+ "VALUES(#{cen.LXJ5},#{cen.LXJ7},#{cen.LXJ8},#{cen.LXJ9},#{cen.LXJ10},#{cen.LXJ11},#{cen.LXJ14},#{cen.LXJ15},#{cen.LXJ16},#{cen.LXJ17},#{cen.LXJ18},#{cen.LXJ19},#{cen.LXJ20},"
 			+ "#{cen.LXJ21},#{cen.LXJ22},#{cen.LXJ23},NOW(),NOW(),1,#{cen.centrifuge_name})")
 	void setsetCentrifugeDataHour(@Param("cen")CentriFuge cen);
+	
+	//定时删除周报表数据
+	@Delete(" DELETE FROM centrifuge WHERE LXJ_time<=DATE_SUB(NOW(),INTERVAL 1 WEEK)")
+	void deleteCentrifugeData();
 
 }

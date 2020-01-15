@@ -1,5 +1,6 @@
 package com.ktcn.dao.siemensdao;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -35,5 +36,9 @@ public interface ScrewMachineDao {
 	@Insert("INSERT INTO screw_machine_hour (LGJ5,LGJ6,LGJ25,LGJ26,LGJ27,LGJ_time,LGJ_datatime,state,ScrewMachine_name) VALUES"
 			+ "(#{sm.LGJ5},#{sm.LGJ6},#{sm.LGJ25},#{sm.LGJ26},#{sm.LGJ27},NOW(),NOW(),1,#{sm.ScrewMachine_name})")
 	void setScrewMachineDataHour_1(@Param("sm") ScrewMachine sm);
+
+	//定时删除周报表数据
+	@Delete("DELETE FROM screw_machine WHERE LGJ_time<=DATE_SUB(NOW(),INTERVAL 1 WEEK)")
+	void deleteScrewMachineData();
 
 }

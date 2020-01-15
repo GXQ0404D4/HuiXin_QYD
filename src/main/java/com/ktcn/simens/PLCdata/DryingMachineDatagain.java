@@ -28,11 +28,11 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
  * @version 创建时间：2019年12月27日 下午4:36:02 类说明 
  * 干燥机PLC 获取数据类
 // */
-//@EnableScheduling // 此注解必加,必须要加，重中之重
-//
-//@Component // 此注解必加
-//
-//@Order(value = 1)
+@EnableScheduling // 此注解必加,必须要加，重中之重
+
+@Component // 此注解必加
+
+@Order(value = 1)
 @PropertySource({ "classpath:config/drying_machine.properties" })
 public final class DryingMachineDatagain {
 
@@ -225,8 +225,9 @@ public final class DryingMachineDatagain {
 	@Autowired
 	DryingMachineService DryingMachineServiceImp;
 	
+	
 //	@Async
-	@Scheduled(cron = "0/1 * * * * ?")
+	@Scheduled(cron = "0/10 * * * * ?")
 	public  void getDryingMachineData() {
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
 		Map<String, List> MapData=new HashMap<String, List>();
@@ -361,7 +362,7 @@ public final class DryingMachineDatagain {
 		
 		// 数据读取完毕 获取当前时间
 		System.out.println(" ");
-		System.out.println("干燥机数据持久化" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+		System.out.println("干燥机数据持久化" + siemensPLC.hashCode()+ new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		System.out.println(" ");
 	}
 }

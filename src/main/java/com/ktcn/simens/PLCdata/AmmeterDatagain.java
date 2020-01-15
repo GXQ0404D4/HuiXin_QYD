@@ -31,11 +31,11 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 */
 
 
-//@EnableScheduling // 此注解必加,必须要加，重中之重
-//
-//@Component // 此注解必加
-//
-//@Order(value = 1)
+@EnableScheduling // 此注解必加,必须要加，重中之重
+
+@Component // 此注解必加
+
+@Order(value = 1)
 
 @PropertySource({"classpath:config/ammeter.properties"})
 public final class AmmeterDatagain {
@@ -125,15 +125,13 @@ public final class AmmeterDatagain {
 	@Autowired
 	SiemensPlcConfig SiemensPlcConfig;
 	
-	 
 	//电表数据处理类
 	@Autowired
 	AmmeterServiceImp ammeterServiceImp;
 			
 	
-	
 //	@Async
-	@Scheduled(cron = "0/1 * * * * ?")
+	@Scheduled(cron = "0/10 * * * * ?")
 	public void getAmmeterData() {
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
 		Map <String,List> DataMap=new HashMap<String,List>();
@@ -215,7 +213,7 @@ public final class AmmeterDatagain {
 //		System.out.println(DataMap);
 		// 数据读取完毕 获取当前时间
 	    System.out.println(" ");
-		System.out.println("电表持续化到数据库" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+		System.out.println("电表持续化到数据库" +siemensPLC.hashCode()+ new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		System.out.println(" ");
 	}
 

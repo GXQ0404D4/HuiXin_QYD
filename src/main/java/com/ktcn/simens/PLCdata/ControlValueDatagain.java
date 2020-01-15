@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.annotation.Order;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import com.ktcn.entity.siemensentity.ControlValue;
 import com.ktcn.service.siemensService.ControlValueService;
 import com.ktcn.simens.utils.SiemensPlcConfig;
 
+import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
@@ -23,11 +25,11 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 * 类说明
 * 调节阀PLC 数据获取
 */
-//@EnableScheduling // 此注解必加,必须要加，重中之重
-//
-//@Component // 此注解必加
-//
-//@Order(value = 1)
+@EnableScheduling // 此注解必加,必须要加，重中之重
+
+@Component // 此注解必加
+
+@Order(value = 1)
 @PropertySource({"classpath:config/control_value.properties"})
 public final class ControlValueDatagain {
 	@Value("${PLC0.TJF0}")
@@ -57,8 +59,10 @@ public final class ControlValueDatagain {
 	@Autowired
 	ControlValue  controlValue;
 	
+
+	
 //	@Async
-	@Scheduled(cron = "0/1 * * * * ?")
+	@Scheduled(cron = "0/10 * * * * ?")
 	public  void getControlValueData() {
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
 		if (siemensPLC.ConnectServer().IsSuccess) {
@@ -80,7 +84,7 @@ public final class ControlValueDatagain {
 //		System.out.println("第一组数据————————@@@@@@@@@@@@@@@@@@@@@__________-!"+controlValue );
 		// 数据读取完毕 获取当前时间
 		System.out.println(" ");
-		System.out.println("持久化到调节阀" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+		System.out.println("持久化到调节阀" +siemensPLC.hashCode()+  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		System.out.println(" ");
 	}
 

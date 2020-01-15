@@ -20,6 +20,7 @@ import com.ktcn.simens.utils.SiemensPlcConfig;
 import HslCommunication.Core.Types.OperateResult;
 import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
+import lombok.val;
 
 /**
 * @author 作者 :Runaway programmer
@@ -36,31 +37,23 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 @PropertySource({"classpath:config/flow_gauge.properties"})
 public final class FlowGaugeDatagain {
 	
-	@Value("${PLC0.LLJ2]")
-	private  String LLJ2;
+	@Value("${PLC0.LLJ2}")
+	private String LLJ2;
+	@Value("${PLC0.LLJ3}")
+	private String LLJ3;
+	@Value("${PLC0.LLJ4}")
+	private String LLJ4;
+	@Value("${PLC0.LLJ5}")
+	private String LLJ5;
 	
-	@Value("${PLC0.LLJ3]")
-	private  String LLJ3;
-	
-	@Value("${PLC0.LLJ4]")
-	private  String LLJ4;
-	
-	@Value("${PLC0.LLJ5]")
-	private  String LLJ5;
-	
-	
-	@Value("${PLC1.LLJ2]")
-	private  String LLJ1_2;
-	
-	@Value("${PLC1.LLJ3]")
-	private  String LLJ1_3;
-	
-	@Value("${PLC1.LLJ4]")
-	private  String LLJ1_4;
-	
-	@Value("${PLC1.LLJ5]")
-	private  String LLJ1_5;
-	
+	@Value("${PLC1.LLJ2}")
+	private String LLJ1_2;
+	@Value("${PLC1.LLJ3}")
+	private String LLJ1_3;
+	@Value("${PLC1.LLJ4}")
+	private String LLJ1_4;
+	@Value("${PLC1.LLJ5}")
+	private String LLJ1_5;
 	
 	@Autowired
 	SiemensPlcConfig SiemensPlcConfig;
@@ -68,8 +61,10 @@ public final class FlowGaugeDatagain {
 	@Autowired
 	FlowGaugeService FlowGaugeServiceImp;
 	
+
+	
 //	@Async
-	@Scheduled(cron = "0/1 * * * * ?")
+	@Scheduled(cron = "0/10 * * * * ?")
 	public void getFlowGaugeData() {
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
 		List<Float> FlowGaugeData = new ArrayList <Float>();
@@ -87,11 +82,6 @@ public final class FlowGaugeDatagain {
 			
 			siemensPLC.ConnectClose();
 			//持久化到冷却剂数据表
-			System.out.println(LLJ2);
-			System.out.println(LLJ3);
-			System.out.println(LLJ1_2);
-			System.out.println(LLJ1_3);
-			System.out.println(FlowGaugeData);
 			FlowGaugeServiceImp.setFlowGaugeData(FlowGaugeData);
 		} else {
 			System.out.println("failed:" +siemensPLC.ConnectServer().Message);
@@ -99,7 +89,7 @@ public final class FlowGaugeDatagain {
 		
 		// 数据读取完毕 获取当前时间
 		System.out.println(" ");
-		System.out.println("持久化到冷却剂" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+		System.out.println("持久化到冷却剂" +siemensPLC.hashCode()+  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		System.out.println(" ");
 	}
 }

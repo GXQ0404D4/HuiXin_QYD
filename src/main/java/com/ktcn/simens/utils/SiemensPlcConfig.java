@@ -16,12 +16,17 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 @PropertySource({"classpath:config/plc_ip.properties"})
 public class SiemensPlcConfig {
 	
-	@Value("${PLC.IP}")
-	private String IP;
+//	@Value("${PLC.IP}")
+//	private static String IP;
+	
+	static SiemensS7Net siemens_net = null;
+
 	
 	public SiemensS7Net getSiemensPLC() {
-		
-		return new SiemensS7Net(SiemensPLCS.S1200, IP);
+		if (siemens_net==null) {
+			siemens_net=new SiemensS7Net(SiemensPLCS.S1200,"192.168.1.1");
+		}
+		return siemens_net;
 	}
 	
 }

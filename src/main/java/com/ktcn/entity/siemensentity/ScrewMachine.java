@@ -43,9 +43,9 @@ public class ScrewMachine {
 	private Float LGJ23;   //冷却水回水温度                                               R
 	private Float LGJ24;   //后冷冷却温差                                                 R
 	private Float LGJ25;   //运行频率                                                     R
-	private Byte LGJ26;   //运行                                                         R
-	private Byte LGJ27;   //加卸载                                                       R
-	private Byte LGJ28;   //故障                                                         R
+	private Boolean LGJ26;   //运行                                                         R
+	private Boolean LGJ27;   //加卸载                                                       R
+	private Boolean LGJ28;   //故障                                                         R
 	private Date LGJ_time; //空压机时间
 	private Date LGJ_datatime;//空压机数据时间
 	private int state;//状态

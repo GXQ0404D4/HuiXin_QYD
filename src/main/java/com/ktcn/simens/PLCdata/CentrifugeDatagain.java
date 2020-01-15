@@ -27,11 +27,11 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 */
 
 
-//@EnableScheduling // 此注解必加,必须要加，重中之重
-//
-//@Component // 此注解必加
-//
-//@Order(value = 1)
+@EnableScheduling // 此注解必加,必须要加，重中之重
+
+@Component // 此注解必加
+
+@Order(value = 1)
 @PropertySource({"classpath:config/centrifuge.properties"})
 public final class CentrifugeDatagain {
 	
@@ -69,13 +69,13 @@ public final class CentrifugeDatagain {
 	@Autowired
 	SiemensPlcConfig SiemensPlcConfig;
 
-	
 	@Autowired
 	CentrifugeService centrifugeServiceImp;
 	
+
 	
 //	@Async
-	@Scheduled(cron = "0/1 * * * * ?")
+	@Scheduled(cron = "0/10 * * * * ?")
 	public  void getCentrifugeData() {
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
 		ArrayList<Float> CentrifugeData = new ArrayList<Float>();
@@ -97,7 +97,6 @@ public final class CentrifugeDatagain {
 			CentrifugeData.add(siemensPLC.ReadFloat(LXJ22).Content);
 			
 			siemensPLC.ConnectClose();
-			System.out.println(CentrifugeData);
 			centrifugeServiceImp.setCentrifugeData(CentrifugeData);
 			
 		} else {
@@ -107,7 +106,7 @@ public final class CentrifugeDatagain {
 //		System.out.println("第一组数据————————%%%%%%%%%%%%%%%%%%%%%%%%__________-!"+CentrifugeData );
 			// 数据读取完毕 获取当前时间
 		System.out.println(" ");
-		System.out.println("持久化到离心机" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+		System.out.println("持久化到离心机" +siemensPLC.hashCode()+  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		System.out.println(" ");
 	}
 

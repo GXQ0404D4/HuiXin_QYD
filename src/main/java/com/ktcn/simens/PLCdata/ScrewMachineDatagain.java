@@ -28,11 +28,11 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
  * @version 创建时间：2019年12月27日 下午4:39:57 类说明 
  * ScrewMachine 螺杆机数据获取
  */
-@EnableScheduling // 此注解必加,必须要加，重中之重
-
-@Component // 此注解必加
-
-@Order(value = 1)
+//@EnableScheduling // 此注解必加,必须要加，重中之重
+//
+//@Component // 此注解必加
+//
+//@Order(value = 1)
 
 @PropertySource({ "classpath:config/screw_machine.properties" })
 public final class ScrewMachineDatagain {

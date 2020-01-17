@@ -25,7 +25,7 @@ public interface MaintenanceDao {
 	@Insert("INSERT INTO maintenance (id,mt_time,mt_content,mt_man,mt_num,state) VALUES (NULL,#{map.mt_time},#{map.mt_content},#{user.name},#{map.mt_num},0)")
 	void addMaintenance(@Param("map") Map<String, String> map, @Param("user") Tb_user user);
 	// 查看全部维保记录
-	@Select("SELECT * FROM `maintenance` WHERE data_state=1 ORDER BY mt_plan_time DESC")
+	@Select("SELECT * FROM `maintenance` ORDER BY mt_time DESC")
 	List<Maintenance> findAllOrdList();
 	// 按时间区间查看维保记录
 	@SelectProvider(method = "findByTime",type = MaintenanceSQL.class)

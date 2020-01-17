@@ -31,11 +31,11 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 */
 
 
-//@EnableScheduling // 此注解必加,必须要加，重中之重
-//
-//@Component // 此注解必加
-//
-//@Order(value = 1)
+@EnableScheduling // 此注解必加,必须要加，重中之重
+
+@Component // 此注解必加
+
+@Order(value = 1)
 
 @PropertySource({"classpath:config/ammeter.properties"})
 public final class AmmeterDatagain {

@@ -38,6 +38,10 @@ public class LineChartMianController {
 		Map<String, Object> controlValueData = controlValueLineChartServiceImp.getControlValueData();
 		Map<String, List> flowGaugeLineChartData = flowGaugeLineChartServiceImp.getFlowGaugeLineChartData();
 		Map<String, List> screwMachineLineChartData = screwMachineLineChartServiceImp.getScrewMachineLineChartData();
+		System.out.println(centrifugeLineChartData);
+		System.out.println(controlValueData);
+		System.out.println(flowGaugeLineChartData);
+		System.out.println(screwMachineLineChartData);
 		LineChartMap.put("centrifugeLineChartData", centrifugeLineChartData);
 		LineChartMap.put("controlValueData", controlValueData);
 		LineChartMap.put("flowGaugeLineChartData", flowGaugeLineChartData);

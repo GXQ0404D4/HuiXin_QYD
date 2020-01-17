@@ -28,11 +28,11 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
  * @version 创建时间：2019年12月27日 下午4:36:02 类说明 
  * 干燥机PLC 获取数据类
 // */
-//@EnableScheduling // 此注解必加,必须要加，重中之重
-//
-//@Component // 此注解必加
-//
-//@Order(value = 1)
+@EnableScheduling // 此注解必加,必须要加，重中之重
+
+@Component // 此注解必加
+
+@Order(value = 1)
 @PropertySource({ "classpath:config/drying_machine.properties" })
 public final class DryingMachineDatagain {
 

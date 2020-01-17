@@ -208,7 +208,8 @@ public class AmmeterServiceImp implements AmmeterService {
 	}
 	
 //抄表模块
-	@Scheduled(cron = "0 0 1 * * ?") //每天凌晨1点执行一次
+//	@Scheduled(cron = "0 0 1 * * ?") //每天凌晨1点执行一次
+	@Scheduled(cron = "0/10 * * * * ?")
 	public void readingAmmeterData() {
 		reading_Ammeter.setAmDB1(DataList1.get(0));
 		reading_Ammeter.setAmDB2(DataList2.get(0));

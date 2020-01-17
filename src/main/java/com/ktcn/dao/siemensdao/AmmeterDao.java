@@ -29,6 +29,9 @@ public interface AmmeterDao {
 	void deleteAmmeterData();
 
 	//电表 正向有功总电能 抄表模块
-	void readingAmmeterData(Reading_Ammeter reading_Ammeter);
+	@Insert("INSERT INTO reading_ammeter(amDB1,amDB2,amDB3,amDB4,amDB5,amDB6,amDB7,amDB8,amDB9,amDB_time,amDB_date,state) VALUES "
+			+ "(#{reading_Ammeter.amDB1},#{reading_Ammeter.amDB2},#{reading_Ammeter.amDB3},#{reading_Ammeter.amDB4},#{reading_Ammeter.amDB5},#{reading_Ammeter.amDB6},"
+			+ "#{reading_Ammeter.amDB7},#{reading_Ammeter.amDB8},#{reading_Ammeter.amDB9},NOW(),NOW(),1)")
+	void readingAmmeterData(@Param("reading_Ammeter") Reading_Ammeter reading_Ammeter);
 
 }

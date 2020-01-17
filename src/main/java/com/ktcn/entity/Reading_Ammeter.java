@@ -9,7 +9,7 @@ import lombok.Data;
 /**
 * @author 作者 :Runaway programmer
 * @version 创建时间：2020年1月17日 下午2:46:38
-* 类说明
+* 类说明 抄表模块 实体类
 */
 @Component
 @Data

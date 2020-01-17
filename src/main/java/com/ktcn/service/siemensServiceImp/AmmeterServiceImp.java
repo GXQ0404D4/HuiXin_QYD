@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.ktcn.dao.siemensdao.AmmeterDao;
+import com.ktcn.entity.Reading_Ammeter;
 import com.ktcn.entity.siemensentity.Ammeter;
 import com.ktcn.service.siemensService.AmmeterService;
 
@@ -18,6 +21,7 @@ import com.ktcn.service.siemensService.AmmeterService;
  */
 @Component
 @Service
+//@PropertySource({"classpath:config/MachineName/ammeter_name.properties"})
 public class AmmeterServiceImp implements AmmeterService {
 
 	private final static String ammeter_1 = "烧结电表";
@@ -29,6 +33,25 @@ public class AmmeterServiceImp implements AmmeterService {
 	private final static String ammeter_7 = "空压机电表5";
 	private final static String ammeter_8 = "空压机电表6";
 	private final static String ammeter_9 = "空压机电表7";
+	
+//    @Value("${MACHINE.NAME0}")
+//	private  static String ammeter_1;
+//    @Value("${MACHINE.NAME1}")
+//	private  static String ammeter_2;
+//    @Value("${MACHINE.NAME2}")
+//	private  static String ammeter_3;
+//    @Value("${MACHINE.NAME3}")
+//	private  static String ammeter_4;
+//    @Value("${MACHINE.NAME4}")
+//	private  static String ammeter_5;
+//    @Value("${MACHINE.NAME5}")
+//	private  static String ammeter_6;
+//    @Value("${MACHINE.NAME6}")
+//	private  static String ammeter_7;
+//    @Value("${MACHINE.NAME7}")
+//	private  static String ammeter_8;
+//    @Value("${MACHINE.NAME8}")
+//	private  static String ammeter_9;
 
 	List<Float> DataList1;
 	List<Float> DataList2;
@@ -44,6 +67,8 @@ public class AmmeterServiceImp implements AmmeterService {
 	Ammeter ammeter;
 	@Autowired
 	AmmeterDao ammeterDao;
+	@Autowired
+	Reading_Ammeter reading_Ammeter;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -181,5 +206,20 @@ public class AmmeterServiceImp implements AmmeterService {
 	public void deleteAmmeterData() {
 		ammeterDao.deleteAmmeterData();
 	}
-
+	
+//抄表模块
+	@Scheduled(cron = "0 0 1 * * ?") //每天凌晨1点执行一次
+	public void readingAmmeterData() {
+		reading_Ammeter.setAmDB1(DataList1.get(0));
+		reading_Ammeter.setAmDB2(DataList2.get(0));
+		reading_Ammeter.setAmDB3(DataList3.get(0));
+		reading_Ammeter.setAmDB4(DataList4.get(0));
+		reading_Ammeter.setAmDB5(DataList5.get(0));
+		reading_Ammeter.setAmDB6(DataList6.get(0));
+		reading_Ammeter.setAmDB7(DataList7.get(0));
+		reading_Ammeter.setAmDB8(DataList8.get(0));
+		reading_Ammeter.setAmDB9(DataList9.get(0));
+		
+		ammeterDao.readingAmmeterData(reading_Ammeter);
+	}
 }

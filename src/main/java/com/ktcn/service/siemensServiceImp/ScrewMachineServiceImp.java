@@ -103,7 +103,7 @@ public class ScrewMachineServiceImp implements  ScrewMachineService{
 		screwMachineDao.setScrewMachineData_1(screwMachine);		
 	}
 	
-//	@Scheduled(cron = "0/1 * * * * ?")
+//	@Scheduled(cron = "0/10 * * * * ?")
 	@Scheduled(cron = "0 0 * * * ?")
 	public void setScrewMachineDataHour() {
 		// TODO Auto-generated method stub

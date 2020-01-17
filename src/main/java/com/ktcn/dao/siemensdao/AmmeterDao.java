@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import com.ktcn.entity.Reading_Ammeter;
 import com.ktcn.entity.siemensentity.Ammeter;
 
 /**
@@ -26,5 +27,8 @@ public interface AmmeterDao {
 	//定时删除周报表数据
 	@Delete(" DELETE FROM ammeter WHERE DB_time<=DATE_SUB(NOW(),INTERVAL 1 WEEK)")
 	void deleteAmmeterData();
+
+	//电表 正向有功总电能 抄表模块
+	void readingAmmeterData(Reading_Ammeter reading_Ammeter);
 
 }

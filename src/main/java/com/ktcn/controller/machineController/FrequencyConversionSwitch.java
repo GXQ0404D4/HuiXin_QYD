@@ -21,10 +21,11 @@ public class FrequencyConversionSwitch {
 	
 	private String FCCNAME;
 	
-	SiemensS7Net siemensPLC = siemensPlcConfig.getSiemensPLC();
+
 
 	@RequestMapping("/fc_incident")
 	public String FrequencyConversionControllerIncident(String FCCname,Boolean FCCof) {
+		SiemensS7Net siemensPLC = siemensPlcConfig.getSiemensPLC();
 		FCCNAME=FCCname;
 		
 		if (siemensPLC.ConnectServer().IsSuccess) {

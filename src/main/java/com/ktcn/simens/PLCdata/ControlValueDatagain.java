@@ -25,11 +25,11 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 * 类说明
 * 调节阀PLC 数据获取
 */
-//@EnableScheduling // 此注解必加,必须要加，重中之重
-//
-//@Component // 此注解必加
-//
-//@Order(value = 1)
+@EnableScheduling // 此注解必加,必须要加，重中之重
+
+@Component // 此注解必加
+
+@Order(value = 1)
 @PropertySource({"classpath:config/control_value.properties"})
 public final class ControlValueDatagain {
 	@Value("${PLC0.TJF0}")

@@ -18,30 +18,38 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 public class FrequencyConversionSwitch {
 	@Autowired
 	SiemensPlcConfig siemensPlcConfig;
+	
+	private String FCCNAME;
+	
+	SiemensS7Net siemensPLC = siemensPlcConfig.getSiemensPLC();
 
 	@RequestMapping("/fc_incident")
-	public String FrequencyConversionControllerIncident(String FCname,String FCof) {
-		SiemensS7Net siemensPLC = siemensPlcConfig.getSiemensPLC();
+	public String FrequencyConversionControllerIncident(String FCCname,Boolean FCCof) {
+		FCCNAME=FCCname;
+		
 		if (siemensPLC.ConnectServer().IsSuccess) {
-			switch (FCname) {
-			case "fcA":
-				System.out.println((siemensPLC.ReadBool("DB4.0.4").Content));
-//				System.out.println((siemensPLC.Write("DB4.0.4", FCof).ErrorCode)+"_______ErrorCode");
-//				System.out.println((siemensPLC.Write("DB4.0.4", FCof).IsSuccess)+"_______IsSuccess");
-//				System.out.println((siemensPLC.Write("DB4.0.4", FCof).Message)+"_______Message");
-//				System.out.println((siemensPLC.Write("DB4.0.4", FCof).ToMessageShowString())+"_______ToMessageShowString");
-//				System.out.println((siemensPLC.Write("DB4.0.4", FCof).CreateSuccessResult())+"_______CreateSuccessResult");
-//				
-				OperateResult write = siemensPLC.Write("DB4.0.4", FCof);
-//				System.out.println((siemensPLC.ReadBool("DB4.0.4").Content));
-				System.out.println(write+"_______");
-				return "00001";
+			switch (FCCname) {
+			case "MD99":
+				OperateResult write1 = siemensPLC.Write(FCCname, FCCof);
+				if (siemensPLC.ReadBool("DB4.2.4").Content==FCCof) {
+					return write1.Message;
+				} else {
+					return FCCNAME;
+				}
+			case "MD100":
+				OperateResult write2 = siemensPLC.Write(FCCname, FCCof);
+				if (siemensPLC.ReadBool("DB4.2.7").Content==FCCof) {
+					return write2.Message;
+				} else {
+					return FCCNAME;
+				}
+				
 			}
 			
 			siemensPLC.ConnectClose();
 		}else {
 			System.out.println("failed:" +siemensPLC.ConnectServer().Message);
 		}
-		return "0002";
+		return FCCNAME;
 	}
 }

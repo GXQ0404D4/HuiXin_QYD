@@ -26,19 +26,8 @@ public class MaintenanceServiceImpl implements MaintenanceService {
 	// 新增维保计划
 	@Override
 	public void addMaintenance(Map<String, String> map, Tb_user user) {
-		map.put("mt_plan_time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-		maintenanceDao.addMaintenance(map,user);
-	}
-	// 查看维保计划
-	@Override
-	public List<Maintenance> findAll() {
-		return maintenanceDao.findAll();
-	}
-	// 执行维保计划
-	@Override
-	public void updateMaintenance(Map<String, String> map) {
 		map.put("mt_time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-		maintenanceDao.updateMaintenance(map);
+		maintenanceDao.addMaintenance(map,user);
 	}
 	// 查看全部维保记录
 	@Override

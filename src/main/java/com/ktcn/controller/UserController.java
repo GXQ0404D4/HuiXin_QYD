@@ -61,6 +61,7 @@ public class UserController {
 	public List<Tb_user> UserManagement(HttpServletRequest request){
 		// 获取当前登录用户
 		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+		System.out.println();
 		if (user.getUserPower() == 4) {
 			List<Tb_user> list = userService.findAllUser();
 			return list;

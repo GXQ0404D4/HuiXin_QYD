@@ -1,5 +1,6 @@
 package com.ktcn.controller.lineChartController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,7 @@ public class LineChartMianController {
 
 	@RequestMapping("/LineChartMian")
 	public Map<String,Map> getLineChartMianControllerData(){
+		System.out.println("进入曲线方法");
 		Map<String,Map> LineChartMap=new HashMap<String,Map>();
 		Map<String, List> centrifugeLineChartData = centrifugeLineChartServiceImp.getCentrifugeLineChartData();
 		Map<String, Object> controlValueData = controlValueLineChartServiceImp.getControlValueData();

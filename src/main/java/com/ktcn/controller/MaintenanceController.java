@@ -1,10 +1,13 @@
 package com.ktcn.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,14 +29,45 @@ public class MaintenanceController {
 	private MaintenanceService maintenanceService;
 	@Resource
 	private AgeingService ageingService;
+	// 获取维保申请码
+	@RequestMapping("getMtCode")
+	public String getMtCode(HttpServletRequest request) {
+		// 获取随机码
+		String s = MD5Util.getUUID();
+		// 截取前6位
+		String str = s.substring(0, 6);
+		// 调用生成维保码方法
+		mtCode(str,request);
+		
+		return str;
+	}
+	// 生成维保码
+	private void mtCode(String str,HttpServletRequest request) {
+		// 获取当前日期
+		SimpleDateFormat format = new SimpleDateFormat("YYYYMMdd");
+		String date = format.format(new Date());
+		// 加盐
+		String s1 = date + str + "qyd";
+		// 生成维保码
+		String string = MD5Util.encodeByMd5_32(s1);
+		// 截取前十位
+		String s2 = string.substring(0, 10);
+		System.out.println(s2);
+		// 获取session
+		HttpSession session = request.getSession();
+		// 存入维保码
+		session.setAttribute("mtCode", s2);
+	}
+	
 	// 新增维保计划
 	@RequestMapping("MtcApply")
 	@SysLog(logModule = "维保记录", logName = "新增维保计划")
 	public String MtcApply(@RequestBody Map<String,String> map, HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		// 判断用户输入维保码是否有效
-		if (MD5Util.getMaintenanceCode().equals(map.get("mt_num"))) {
+		if (session.getAttribute("mtCode").equals(map.get("mt_num"))) {
 			// 获取当前用户
-			Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
+			Tb_user user = (Tb_user) session.getAttribute("nowuser");
 			if (user.getUserPower() >= 2) {
 				// 调用新增维保计划方法
 				maintenanceService.addMaintenance(map,user);
@@ -43,34 +77,6 @@ public class MaintenanceController {
 			}
 		} else {
 			return "error";
-		}
-	}
-	
-	// 查看维保计划
-	@RequestMapping("MtcPlan")
-	@SysLog(logModule = "维保记录", logName = "查看维保计划")
-	public List<Maintenance> MtcPlan() {
-		List<Maintenance> maintenance = maintenanceService.findAll();
-		return maintenance;
-	}
-	
-	// 执行维保计划
-	@RequestMapping("executeMtcPlan")
-	@SysLog(logModule = "维保记录", logName = "执行维保计划")
-	public String executeMtcPlan(@RequestBody Map<String,String> map,HttpServletRequest request) {
-		// 获取当前用户
-		Tb_user user = (Tb_user) request.getSession().getAttribute("nowuser");
-		// 判断用户权限
-		if (user.getUserPower() >= 2) {
-			// 写入维保执行人
-			map.put("mt_personnel", user.getUser_name());
-			// 执行维保计划
-			maintenanceService.updateMaintenance(map);
-			// 写入"系统运行时间轴"节点数据
-			ageingService.writeOnceCode();
-			return "success";
-		} else {
-			return null;
 		}
 	}
 	

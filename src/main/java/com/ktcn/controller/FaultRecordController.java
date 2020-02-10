@@ -29,6 +29,9 @@ public class FaultRecordController {
 	@SysLog(logModule = "故障记录", logName = "查看全部")
 	public List<Error_recording> FaultRecordAll(){
 		List<Error_recording> recording = faultRecordService.findAll();
+		for (Error_recording e : recording) {
+			System.out.println(e);
+		}
 		return recording;
 	}
 	

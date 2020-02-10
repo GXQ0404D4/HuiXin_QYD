@@ -11,7 +11,7 @@ import lombok.Data;
 /**
 * @author 作者 :Runaway programmer
 * @version 创建时间：2019年12月31日 上午9:15:08
-* 类说明 centrifuge   离心机
+* 类说明 centrifuge   离心机实体类
 */
 @Data
 @Component

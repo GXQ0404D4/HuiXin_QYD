@@ -103,7 +103,7 @@ public class ScrewMachineServiceImp implements  ScrewMachineService{
 		screwMachineDao.setScrewMachineData_1(screwMachine);		
 	}
 	
-//	@Scheduled(cron = "0/1 * * * * ?")
+//	@Scheduled(cron = "0/10 * * * * ?")
 	@Scheduled(cron = "0 0 * * * ?")
 	public void setScrewMachineDataHour() {
 		// TODO Auto-generated method stub
@@ -176,5 +176,10 @@ public class ScrewMachineServiceImp implements  ScrewMachineService{
 		screwMachine.setScrewMachine_name("烧结2变频");
 		screwMachineDao.setScrewMachineDataHour_1(screwMachine);		
 	}
-
+//定时删除周报表数据
+//	@Scheduled(cron = "0 0 1 ? * L") //每周星期天凌晨1点执行一次
+	@Scheduled(cron = "0 0 1 * * ?") //每天凌晨1点执行一次
+	public void deleteScrewMachineData() {
+		screwMachineDao.deleteScrewMachineData();
+	}
 }

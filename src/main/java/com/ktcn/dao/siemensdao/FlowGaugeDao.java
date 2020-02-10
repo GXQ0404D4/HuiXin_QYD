@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ktcn.entity.siemensentity.FlowGauge;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -26,4 +27,8 @@ public interface FlowGaugeDao {
 	@Insert("INSERT INTO flow_gauge_hour (LLJ2,LLJ3,LLJ4,LLJ5,LLJ_time,LLJ_datatime,state,FlowGauge_name) VALUES"
 			+ "(#{fg.LLJ2},#{fg.LLJ3},#{fg.LLJ4},#{fg.LLJ5},NOW(),NOW(),1,#{fg.FlowGauge_name})")
 	void setFlowGaugeDataHour(@Param("fg") FlowGauge fg);
+
+	//定时删除周报表数据
+	@Delete("DELETE FROM flow_gauge WHERE LLJ_time<=DATE_SUB(NOW(),INTERVAL 1 WEEK)")
+	void deleteFlowGaugeData();
 }

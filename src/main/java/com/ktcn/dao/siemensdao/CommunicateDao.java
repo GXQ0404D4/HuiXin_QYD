@@ -5,6 +5,7 @@ package com.ktcn.dao.siemensdao;
 * 类说明  通信状态获取PLC 数据类
 */
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -26,5 +27,9 @@ public interface CommunicateDao {
 	@Insert("INSERT INTO communicate_hour (TX0,TX1,TX2,TX3,TX4,TX5,TX6,TX7,TX8,TX9,TX10,TX11,TX_time,TX_data_time,state) VALUES"
 			+ "(#{cm.TX0},#{cm.TX1},#{cm.TX2},#{cm.TX3},#{cm.TX4},#{cm.TX5},#{cm.TX6},#{cm.TX7},#{cm.TX8},#{cm.TX9},#{cm.TX10},#{cm.TX11},NOW(),NOW(),1)")
 	void setCommunicateStateDataHour(@Param ("cm")CommunicateState cm);
+
+	//定时删除周报表数据
+	@Delete("DELETE FROM communicate WHERE TX_time<=DATE_SUB(NOW(),INTERVAL 1 WEEK)")
+	void deleteCommunicateData();
 
 }

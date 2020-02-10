@@ -1,5 +1,6 @@
 package com.ktcn.dao.siemensdao;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -53,6 +54,10 @@ public interface DryingMachineDao {
 	@Insert("INSERT INTO drying_machine_hour (GZJ9,GZJ10,GZJ18,GZJ19,GZ_time,GZ_datatime,state,DryingMachine_name) VALUES"
 			+ "(#{dm.GZJ9},#{dm.GZJ10},#{dm.GZJ18},#{dm.GZJ19},NOW(),NOW(),1,#{dm.DryingMachine_name})")
 	void setDryingMachineDataHour2(@Param("dm") DryingMachine dm);
+
+	//定时删除周报表数据
+	@Delete(" DELETE FROM drying_machine WHERE GZ_time<=DATE_SUB(NOW(),INTERVAL 1 WEEK)")
+	void deleteDryingMachineData();
 
 
 }

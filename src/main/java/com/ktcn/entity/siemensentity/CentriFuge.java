@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 /**
@@ -48,7 +50,9 @@ public class CentriFuge {
 	private Float LXJ28;  //冷却水进水温度                                     R
 	private Float LXJ29;  //冷却水回水温度                                     R
 	private Float LXJ30;  //后冷冷却温差                                       R
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date LXJ_time;  //离心机时间
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date LXJ_datatime;  //离心机数据时间
 	private int state;  //状态
 }

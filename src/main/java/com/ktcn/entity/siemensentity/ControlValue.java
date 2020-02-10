@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 /**
@@ -26,7 +28,9 @@ public class ControlValue {
 	private Float TJF7;  //瞬时流量  R
 	private Float TJF8;  //累积流量  R
 	private Float TJF9;  //位置反馈  R
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date TJF_time;//调节阀时间
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date TJF_datatime;//调节阀数据时间
 	private int state;//状态
 

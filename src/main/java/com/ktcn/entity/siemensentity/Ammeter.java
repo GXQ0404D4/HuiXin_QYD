@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 /**
 * @author 作者 :Runaway programmer
@@ -30,7 +32,9 @@ public class Ammeter {
 	private Float DB10;  //反向有功总电能      R
 	private Float DB11;  //正向无功总电能      R
 	private Float DB12;  //反向无功总电能      R
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date  DB_time;  //电表时间
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date  DB_datatime;  //电表数据时间
 	private int state;  //状态
 	

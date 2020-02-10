@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 /**
@@ -46,7 +48,9 @@ public class ScrewMachine {
 	private Boolean LGJ26;   //运行                                                         R
 	private Boolean LGJ27;   //加卸载                                                       R
 	private Boolean LGJ28;   //故障                                                         R
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date LGJ_time; //空压机时间
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date LGJ_datatime;//空压机数据时间
 	private int state;//状态
 }

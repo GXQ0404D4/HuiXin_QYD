@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 /**
@@ -23,7 +25,9 @@ public class FlowGauge {
 	private Float LLJ3;  //累积流量   R
 	private Float LLJ4;  //管道压力   R
 	private Float LLJ5;  //管道温度   R
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date LLJ_time; //流量计时间
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date LLJ_datatime; //流量计数据时间
 	private int state;  //状态
 	

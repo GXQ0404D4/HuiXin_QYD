@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 /**
@@ -25,6 +27,8 @@ public class Reading_Ammeter {
 	private Float amDB7; //空压机电表5
 	private Float amDB8; //空压机电表6
 	private Float amDB9; //空压机电表7
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date amDB_time;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date amDB_date;
 }

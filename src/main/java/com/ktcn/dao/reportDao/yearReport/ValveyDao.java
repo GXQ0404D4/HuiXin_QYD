@@ -17,10 +17,10 @@ import com.ktcn.entity.siemensentity.ControlValue;
 @Repository
 public interface ValveyDao {
 	// 获取数据总条数
-	@Select("SELECT COUNT(id) FROM control_valve")
+	@Select("SELECT COUNT(id) FROM control_valve_hour")
 	int findTotal();
 	// 获取查询数据
-	@Select("SELECT * FROM control_valve ORDER BY `TJF_datatime` DESC limit #{total},10")
+	@Select("SELECT * FROM control_valve_hour ORDER BY `TJF_datatime` DESC limit #{total},10")
 	List<ControlValue> findAllByIndex(int x);
 	
 	// 时间区间查询总条数
@@ -31,6 +31,6 @@ public interface ValveyDao {
 	List<ControlValue> findByTime(String current_timeA, String current_timeB, int total);
 	
 	// 导出Excel
-	@Select("SELECT * FROM control_valve LIMIT 0,10000")
+	@Select("SELECT * FROM control_valve_hour LIMIT 0,10000")
 	List<ControlValue> findExport();
 }

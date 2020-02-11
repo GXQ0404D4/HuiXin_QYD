@@ -16,7 +16,7 @@ public class ScrewySQL {
 			// 编写拼接SQL代码块
 			{
 				SELECT("COUNT(id)");
-				FROM("screw_machine");
+				FROM("screw_machine_hour");
 				if (current_timeA != null && !"".equals(current_timeA) && current_timeB != null
 						&& !"".equals(current_timeB)) {
 					// 任务名称
@@ -57,7 +57,7 @@ public class ScrewySQL {
 			// 编写拼接SQL代码块
 			{
 				SELECT("*");
-				FROM("screw_machine");
+				FROM("screw_machine_hour");
 				if (current_timeA != null && !"".equals(current_timeA) && current_timeB != null
 						&& !"".equals(current_timeB)) {
 					// 任务名称

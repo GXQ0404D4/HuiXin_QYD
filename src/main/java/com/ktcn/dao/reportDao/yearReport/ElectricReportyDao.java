@@ -17,10 +17,10 @@ import com.ktcn.entity.siemensentity.Ammeter;
 @Repository
 public interface ElectricReportyDao {
 	// 获取数据总条数
-	@Select("SELECT COUNT(id) FROM ammeter")
+	@Select("SELECT COUNT(id) FROM ammeter_hour")
 	int findTotal();
 	// 获取查询数据
-	@Select("SELECT * FROM ammeter ORDER BY `DB_datatime` DESC limit #{total},10")
+	@Select("SELECT * FROM ammeter_hour ORDER BY `DB_datatime` DESC limit #{total},10")
 	List<Ammeter> findAllByIndex(int x);
 	
 	// 时间区间查询总条数
@@ -31,6 +31,6 @@ public interface ElectricReportyDao {
 	List<Ammeter> findByTime(String current_timeA, String current_timeB, int total);
 	
 	// 导出Excel
-	@Select("SELECT * FROM ammeter LIMIT 0,10000")
+	@Select("SELECT * FROM ammeter_hour LIMIT 0,10000")
 	List<Ammeter> findExport();
 }

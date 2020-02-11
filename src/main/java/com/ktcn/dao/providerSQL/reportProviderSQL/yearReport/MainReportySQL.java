@@ -16,7 +16,7 @@ public class MainReportySQL {
 			// 编写拼接SQL代码块
 			{
 				SELECT("COUNT(id)");
-				FROM("flow_gauge");
+				FROM("flow_gauge_hour");
 				if (current_timeA != null && !"".equals(current_timeA) && current_timeB != null
 						&& !"".equals(current_timeB)) {
 					// 任务名称
@@ -57,7 +57,7 @@ public class MainReportySQL {
 			// 编写拼接SQL代码块
 			{
 				SELECT("*");
-				FROM("flow_gauge");
+				FROM("flow_gauge_hour");
 				if (current_timeA != null && !"".equals(current_timeA) && current_timeB != null
 						&& !"".equals(current_timeB)) {
 					// 任务名称

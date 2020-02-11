@@ -17,10 +17,10 @@ import com.ktcn.entity.siemensentity.FlowGauge;
 @Repository
 public interface MainReportyDao {
 	// 获取数据总条数
-	@Select("SELECT COUNT(id) FROM flow_gauge")
+	@Select("SELECT COUNT(id) FROM flow_gauge_hour")
 	int findTotal();
 	// 获取查询数据
-	@Select("SELECT * FROM flow_gauge ORDER BY `LLJ_datatime` DESC limit #{total},10")
+	@Select("SELECT * FROM flow_gauge_hour ORDER BY `LLJ_datatime` DESC limit #{total},10")
 	List<FlowGauge> findAllByIndex(int x);
 	
 	// 时间区间查询总条数
@@ -31,6 +31,6 @@ public interface MainReportyDao {
 	List<FlowGauge> findByTime(String current_timeA, String current_timeB, int total);
 	
 	// 导出Excel
-	@Select("SELECT * FROM flow_gauge LIMIT 0,10000")
+	@Select("SELECT * FROM flow_gauge_hour LIMIT 0,10000")
 	List<FlowGauge> findExport();
 }

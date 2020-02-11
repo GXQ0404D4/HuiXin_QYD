@@ -16,7 +16,7 @@ public class ElectricReportSQL {
 			// 编写拼接SQL代码块
 			{
 				SELECT("COUNT(id)");
-				FROM("ammeter_hour");
+				FROM("ammeter");
 				if (current_timeA != null && !"".equals(current_timeA) && current_timeB != null
 						&& !"".equals(current_timeB)) {
 					// 任务名称
@@ -57,7 +57,7 @@ public class ElectricReportSQL {
 			// 编写拼接SQL代码块
 			{
 				SELECT("*");
-				FROM("ammeter_hour");
+				FROM("ammeter");
 				if (current_timeA != null && !"".equals(current_timeA) && current_timeB != null
 						&& !"".equals(current_timeB)) {
 					// 任务名称

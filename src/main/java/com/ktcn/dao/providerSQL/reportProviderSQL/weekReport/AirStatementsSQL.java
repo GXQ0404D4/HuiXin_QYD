@@ -16,7 +16,7 @@ public class AirStatementsSQL {
 			// 编写拼接SQL代码块
 			{
 				SELECT("COUNT(id)");
-				FROM("centrifuge_hour");
+				FROM("centrifuge");
 				if (current_timeA != null && !"".equals(current_timeA) && current_timeB != null
 						&& !"".equals(current_timeB)) {
 					// 任务名称
@@ -57,7 +57,7 @@ public class AirStatementsSQL {
 			// 编写拼接SQL代码块
 			{
 				SELECT("*");
-				FROM("centrifuge_hour");
+				FROM("centrifuge");
 				if (current_timeA != null && !"".equals(current_timeA) && current_timeB != null
 						&& !"".equals(current_timeB)) {
 					// 任务名称

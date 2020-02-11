@@ -15,7 +15,8 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
  * @author 作者 :Runaway programmer
- * @version 创建时间：2020年1月9日 下午1:59:54 类说明 监控主页面 Controller
+ * @version 创建时间：2020年1月9日 下午1:59:54 
+ * 类说明 监控主页面 Controller
  */
 @RestController
 public final class MonitoringPageMian {
@@ -118,20 +119,19 @@ public final class MonitoringPageMian {
 			MMData.put("MD82",siemens_net.ReadBool(monitoring_Address.getMD82()).Content);
 			MMData.put("MD83",siemens_net.ReadBool(monitoring_Address.getMD83()).Content);
 			MMData.put("MD84",siemens_net.ReadBool(monitoring_Address.getMD84()).Content);
-			MMData.put("MD84",siemens_net.ReadBool(monitoring_Address.getMD85()).Content);
-			MMData.put("MD84",siemens_net.ReadBool(monitoring_Address.getMD86()).Content);
-			MMData.put("MD84",siemens_net.ReadBool(monitoring_Address.getMD87()).Content);
-			MMData.put("MD84",siemens_net.ReadBool(monitoring_Address.getMD88()).Content);
-			MMData.put("MD84",siemens_net.ReadBool(monitoring_Address.getMD89()).Content);
-			MMData.put("MD84",siemens_net.ReadBool(monitoring_Address.getMD90()).Content);
-			MMData.put("MD84",siemens_net.ReadBool(monitoring_Address.getMD91()).Content);
-			MMData.put("MD84",siemens_net.ReadBool(monitoring_Address.getMD92()).Content);
-			MMData.put("MD84",siemens_net.ReadBool(monitoring_Address.getMD93()).Content);
-			MMData.put("MD84",siemens_net.ReadBool(monitoring_Address.getMD94()).Content);
-			MMData.put("MD84",siemens_net.ReadBool(monitoring_Address.getMD95()).Content);
-			MMData.put("MD84",siemens_net.ReadBool(monitoring_Address.getMD96()).Content);
-			MMData.put("MD84",siemens_net.ReadBool(monitoring_Address.getMD97()).Content);
-			MMData.put("MD84",siemens_net.ReadBool(monitoring_Address.getMD98()).Content);
+			MMData.put("MD85",siemens_net.ReadBool(monitoring_Address.getMD85()).Content);
+			MMData.put("MD86",siemens_net.ReadBool(monitoring_Address.getMD86()).Content);
+			MMData.put("MD87",siemens_net.ReadBool(monitoring_Address.getMD87()).Content);
+			MMData.put("MD88",siemens_net.ReadBool(monitoring_Address.getMD88()).Content);
+			MMData.put("MD89",siemens_net.ReadBool(monitoring_Address.getMD89()).Content);
+			MMData.put("MD90",siemens_net.ReadBool(monitoring_Address.getMD90()).Content);
+			MMData.put("MD91",siemens_net.ReadBool(monitoring_Address.getMD91()).Content);
+			MMData.put("MD92",siemens_net.ReadBool(monitoring_Address.getMD92()).Content);
+			MMData.put("MD93",siemens_net.ReadBool(monitoring_Address.getMD93()).Content);
+			MMData.put("MD94",siemens_net.ReadBool(monitoring_Address.getMD94()).Content);
+			MMData.put("MD95",siemens_net.ReadBool(monitoring_Address.getMD95()).Content);
+			MMData.put("MD96",siemens_net.ReadBool(monitoring_Address.getMD96()).Content);
+			MMData.put("MD97",siemens_net.ReadBool(monitoring_Address.getMD97()).Content);
 			System.out.println("connect success!");
 		} else {
 			System.out.println("failed:" + connect.Message);

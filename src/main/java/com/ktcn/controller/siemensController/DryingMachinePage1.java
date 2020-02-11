@@ -37,6 +37,34 @@ public final class DryingMachinePage1 {
 	private static String GZJ5;
 	@Value("${PLC.GZJ12}")
 	private static String GZJ12;
+	
+	@Value("${PLC.GZJ19}")
+	private static String GZJ19;
+	@Value("${PLC.GZJ20}")
+	private static String GZJ20;
+	@Value("${PLC.GZJ21}")
+	private static String GZJ21;
+	@Value("${PLC.GZJ22}")
+	private static String GZJ22;
+	@Value("${PLC.GZJ23}")
+	private static String GZJ23;
+	@Value("${PLC.GZJ24}")
+	private static String GZJ24;
+	@Value("${PLC.GZJ25}")
+	private static String GZJ25;
+	@Value("${PLC.GZJ26}")
+	private static String GZJ26;
+	@Value("${PLC.GZJ27}")
+	private static String GZJ27;
+	@Value("${PLC.GZJ28}")
+	private static String GZJ28;
+	@Value("${PLC.GZJ29}")
+	private static String GZJ29;
+	@Value("${PLC.GZJ30}")
+	private static String GZJ30;
+	@Value("${PLC.GZJ31}")
+	private static String GZJ31;
+	
 	@Value("${PLC.GZJ32}")
 	private static String GZJ32;
 	@Value("${PLC.GZJ33}")
@@ -73,7 +101,20 @@ public final class DryingMachinePage1 {
 			ZYGZJData.put("ZYGZJ10",siemens_net.ReadFloat(GZJ35).Content);
 			ZYGZJData.put("ZYGZJ11",siemens_net.ReadFloat(GZJ36).Content);
 			ZYGZJData.put("ZYGZJ12",siemens_net.ReadFloat(GZJ37).Content);
-			
+			//制氧干燥机 1-13阀门状态
+			ZYGZJData.put("ZYGZJ13",siemens_net.ReadFloat(GZJ19).Content);
+			ZYGZJData.put("ZYGZJ14",siemens_net.ReadFloat(GZJ20).Content);
+			ZYGZJData.put("ZYGZJ15",siemens_net.ReadFloat(GZJ21).Content);
+			ZYGZJData.put("ZYGZJ16",siemens_net.ReadFloat(GZJ22).Content);
+			ZYGZJData.put("ZYGZJ17",siemens_net.ReadFloat(GZJ23).Content);
+			ZYGZJData.put("ZYGZJ18",siemens_net.ReadFloat(GZJ24).Content);
+			ZYGZJData.put("ZYGZJ19",siemens_net.ReadFloat(GZJ25).Content);
+			ZYGZJData.put("ZYGZJ20",siemens_net.ReadFloat(GZJ26).Content);
+			ZYGZJData.put("ZYGZJ21",siemens_net.ReadFloat(GZJ27).Content);
+			ZYGZJData.put("ZYGZJ22",siemens_net.ReadFloat(GZJ28).Content);
+			ZYGZJData.put("ZYGZJ23",siemens_net.ReadFloat(GZJ29).Content);
+			ZYGZJData.put("ZYGZJ24",siemens_net.ReadFloat(GZJ30).Content);
+			ZYGZJData.put("ZYGZJ25",siemens_net.ReadFloat(GZJ31).Content);
 			System.out.println("connect success!");
 		} else {
 			System.out.println("failed:" + connect.Message);

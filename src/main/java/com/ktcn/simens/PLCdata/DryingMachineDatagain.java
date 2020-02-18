@@ -36,6 +36,7 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 @PropertySource({ "classpath:config/drying_machine.properties" })
 public final class DryingMachineDatagain {
 
+	//制氧干燥机
 	@Value("${PLC.GZJ0}")
 	private  String GZJ0;
 	@Value("${PLC.GZJ1}")

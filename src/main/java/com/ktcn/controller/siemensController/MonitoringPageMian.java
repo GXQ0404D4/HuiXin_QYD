@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.entity.simensaddress.Monitoring_Address;
-import com.ktcn.simens.utils.SiemensPlcConfig;
-import com.ktcn.simens.utils.SiemensPlcConfig2;
 import com.ktcn.simens.utils.SiemensPlcConfig3;
 
 import HslCommunication.Core.Types.OperateResult;
@@ -31,7 +29,7 @@ public final class MonitoringPageMian {
 
 	@RequestMapping("/monitoring")
 	public Map <String,Object> getMonitoringPageData() {
-		SiemensS7Net siemens_net = SiemensPlcConfig2.getSiemensPLC();
+		SiemensS7Net siemens_net = SiemensPlcConfig3.getSiemensPLC();
 		OperateResult connect = siemens_net.ConnectServer();
 		Map <String,Object> MMData=new HashMap<String,Object>();
 

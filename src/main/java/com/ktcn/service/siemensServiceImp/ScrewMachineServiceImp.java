@@ -45,44 +45,44 @@ public class ScrewMachineServiceImp implements  ScrewMachineService{
 		
 		//空压机持久化到数据库1
 		screwMachine.setLGJ26(list.get(0));
-		screwMachine.setLGJ26(list.get(1));
-		screwMachine.setLGJ26(list.get(2));
+		screwMachine.setLGJ27(list.get(1));
+		screwMachine.setLGJ28(list.get(2));
 		screwMachine.setScrewMachine_name("空压机1");
 		screwMachineDao.setScrewMachineData(screwMachine);
 		//空压机持久化到数据库2
 		screwMachine.setLGJ26(list1.get(0));
-		screwMachine.setLGJ26(list1.get(1));
-		screwMachine.setLGJ26(list1.get(2));
+		screwMachine.setLGJ27(list1.get(1));
+		screwMachine.setLGJ28(list1.get(2));
 		screwMachine.setScrewMachine_name("空压机2");
 		screwMachineDao.setScrewMachineData(screwMachine);		
 		//空压机持久化到数据库3
 		screwMachine.setLGJ26(list2.get(0));
-		screwMachine.setLGJ26(list2.get(1));
-		screwMachine.setLGJ26(list2.get(2));
+		screwMachine.setLGJ27(list2.get(1));
+		screwMachine.setLGJ28(list2.get(2));
 		screwMachine.setScrewMachine_name("空压机3");
 		screwMachineDao.setScrewMachineData(screwMachine);		
 		//空压机持久化到数据库4
 		screwMachine.setLGJ26(list3.get(0));
-		screwMachine.setLGJ26(list3.get(1));
-		screwMachine.setLGJ26(list3.get(2));
+		screwMachine.setLGJ27(list3.get(1));
+		screwMachine.setLGJ28(list3.get(2));
 		screwMachine.setScrewMachine_name("空压机4");
 		screwMachineDao.setScrewMachineData(screwMachine);		
 		//空压机持久化到数据库5
 		screwMachine.setLGJ26(list4.get(0));
-		screwMachine.setLGJ26(list4.get(1));
-		screwMachine.setLGJ26(list4.get(2));
+		screwMachine.setLGJ27(list4.get(1));
+		screwMachine.setLGJ28(list4.get(2));
 		screwMachine.setScrewMachine_name("空压机5");
 		screwMachineDao.setScrewMachineData(screwMachine);	
 		//空压机持久化到数据库6
 		screwMachine.setLGJ26(list5.get(0));
-		screwMachine.setLGJ26(list5.get(1));
-		screwMachine.setLGJ26(list5.get(2));
+		screwMachine.setLGJ27(list5.get(1));
+		screwMachine.setLGJ28(list5.get(2));
 		screwMachine.setScrewMachine_name("空压机6");
 		screwMachineDao.setScrewMachineData(screwMachine);
 		//空压机持久化到数据库7
 		screwMachine.setLGJ26(list6.get(0));
-		screwMachine.setLGJ26(list6.get(1));
-		screwMachine.setLGJ26(list6.get(2));
+		screwMachine.setLGJ27(list6.get(1));
+		screwMachine.setLGJ28(list6.get(2));
 		screwMachine.setScrewMachine_name("空压机7");
 		screwMachineDao.setScrewMachineData(screwMachine);
 		//烧结变频持久化到数据库1
@@ -105,7 +105,7 @@ public class ScrewMachineServiceImp implements  ScrewMachineService{
 	
 //	@Scheduled(cron = "0/10 * * * * ?")
 	@Scheduled(cron = "0 0 * * * ?")
-	public void setScrewMachineDataHour() {
+	public  void setScrewMachineDataHour() {
 		// TODO Auto-generated method stub
 		final List<Boolean> list = listMap.get("ScrewMachineData");
 		final List<Boolean> list1 = listMap.get("ScrewMachineData1");
@@ -119,44 +119,44 @@ public class ScrewMachineServiceImp implements  ScrewMachineService{
 		
 		//空压机持久化到数据库1
 		screwMachine.setLGJ26(list.get(0));
-		screwMachine.setLGJ26(list.get(1));
-		screwMachine.setLGJ26(list.get(2));
+		screwMachine.setLGJ27(list.get(1));
+		screwMachine.setLGJ28(list.get(2));
 		screwMachine.setScrewMachine_name("空压机1");
 		screwMachineDao.setScrewMachineDataHour(screwMachine);
 		//空压机持久化到数据库2
 		screwMachine.setLGJ26(list1.get(0));
-		screwMachine.setLGJ26(list1.get(1));
-		screwMachine.setLGJ26(list1.get(2));
+		screwMachine.setLGJ27(list1.get(1));
+		screwMachine.setLGJ28(list1.get(2));
 		screwMachine.setScrewMachine_name("空压机2");
 		screwMachineDao.setScrewMachineDataHour(screwMachine);		
 		//空压机持久化到数据库3
 		screwMachine.setLGJ26(list2.get(0));
-		screwMachine.setLGJ26(list2.get(1));
-		screwMachine.setLGJ26(list2.get(2));
+		screwMachine.setLGJ27(list2.get(1));
+		screwMachine.setLGJ28(list2.get(2));
 		screwMachine.setScrewMachine_name("空压机3");
 		screwMachineDao.setScrewMachineDataHour(screwMachine);		
 		//空压机持久化到数据库4
 		screwMachine.setLGJ26(list3.get(0));
-		screwMachine.setLGJ26(list3.get(1));
-		screwMachine.setLGJ26(list3.get(2));
+		screwMachine.setLGJ27(list3.get(1));
+		screwMachine.setLGJ28(list3.get(2));
 		screwMachine.setScrewMachine_name("空压机4");
 		screwMachineDao.setScrewMachineDataHour(screwMachine);		
 		//空压机持久化到数据库5
 		screwMachine.setLGJ26(list4.get(0));
-		screwMachine.setLGJ26(list4.get(1));
-		screwMachine.setLGJ26(list4.get(2));
+		screwMachine.setLGJ27(list4.get(1));
+		screwMachine.setLGJ28(list4.get(2));
 		screwMachine.setScrewMachine_name("空压机5");
 		screwMachineDao.setScrewMachineDataHour(screwMachine);	
 		//空压机持久化到数据库6
 		screwMachine.setLGJ26(list5.get(0));
-		screwMachine.setLGJ26(list5.get(1));
-		screwMachine.setLGJ26(list5.get(2));
+		screwMachine.setLGJ27(list5.get(1));
+		screwMachine.setLGJ28(list5.get(2));
 		screwMachine.setScrewMachine_name("空压机6");
 		screwMachineDao.setScrewMachineDataHour(screwMachine);
 		//空压机持久化到数据库7
 		screwMachine.setLGJ26(list6.get(0));
-		screwMachine.setLGJ26(list6.get(1));
-		screwMachine.setLGJ26(list6.get(2));
+		screwMachine.setLGJ27(list6.get(1));
+		screwMachine.setLGJ28(list6.get(2));
 		screwMachine.setScrewMachine_name("空压机7");
 		screwMachineDao.setScrewMachineDataHour(screwMachine);
 		//烧结变频持久化到数据库1

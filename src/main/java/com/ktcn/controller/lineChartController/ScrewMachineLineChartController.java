@@ -22,7 +22,7 @@ public class ScrewMachineLineChartController {
 	@Autowired
 	ScrewMachineLineChartService screwMachineLineChartServiceImp;
 	
-//	@RequestMapping("/screwmachine")
+	@RequestMapping("/screwmachine")
 	public Map<String,List> getScrewMachineLineChartData(){
 		return screwMachineLineChartServiceImp.getScrewMachineLineChartData();
 		

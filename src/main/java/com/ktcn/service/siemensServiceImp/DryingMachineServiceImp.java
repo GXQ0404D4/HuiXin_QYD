@@ -107,64 +107,64 @@ public class DryingMachineServiceImp implements DryingMachineService{
 		dryingMachineDao.setDryingMachineData1(dryingMachine);
 		
 		//干燥机数据持久化到数据库1
-		dryingMachine.setGZJ9(listdata2.get(1));
+		dryingMachine.setGZJ9(listdata2.get(0));
 		dryingMachine.setGZJ10(listdata2.get(1));
-		dryingMachine.setGZJ18(listdata2.get(1));
-		dryingMachine.setGZJ19(listdata2.get(1));
+		dryingMachine.setGZJ18(listdata2.get(2));
+		dryingMachine.setGZJ19(listdata2.get(3));
 		dryingMachine.setDryingMachine_name("空压机1");
 		
 		dryingMachineDao.setDryingMachineData2(dryingMachine);
 		
 		//干燥机数据持久化到数据库2
-		dryingMachine.setGZJ9(listdata3.get(1));
+		dryingMachine.setGZJ9(listdata3.get(0));
 		dryingMachine.setGZJ10(listdata3.get(1));
-		dryingMachine.setGZJ18(listdata3.get(1));
-		dryingMachine.setGZJ19(listdata3.get(1));
+		dryingMachine.setGZJ18(listdata3.get(2));
+		dryingMachine.setGZJ19(listdata3.get(3));
 		dryingMachine.setDryingMachine_name("空压机2");
 		
 		dryingMachineDao.setDryingMachineData2(dryingMachine);
 		
 		//干燥机数据持久化到数据库3
-		dryingMachine.setGZJ9(listdata4.get(1));
+		dryingMachine.setGZJ9(listdata4.get(0));
 		dryingMachine.setGZJ10(listdata4.get(1));
-		dryingMachine.setGZJ18(listdata4.get(1));
-		dryingMachine.setGZJ19(listdata4.get(1));
+		dryingMachine.setGZJ18(listdata4.get(2));
+		dryingMachine.setGZJ19(listdata4.get(3));
 		dryingMachine.setDryingMachine_name("空压机3");
 		
 		dryingMachineDao.setDryingMachineData2(dryingMachine);
 		
 		//干燥机数据持久化到数据库4
-		dryingMachine.setGZJ9(listdata5.get(1));
+		dryingMachine.setGZJ9(listdata5.get(0));
 		dryingMachine.setGZJ10(listdata5.get(1));
-		dryingMachine.setGZJ18(listdata5.get(1));
-		dryingMachine.setGZJ19(listdata5.get(1));
+		dryingMachine.setGZJ18(listdata5.get(2));
+		dryingMachine.setGZJ19(listdata5.get(3));
 		dryingMachine.setDryingMachine_name("空压机4");
 		
 		dryingMachineDao.setDryingMachineData2(dryingMachine);
 		
 		//干燥机数据持久化到数据库5
-		dryingMachine.setGZJ9(listdata6.get(1));
+		dryingMachine.setGZJ9(listdata6.get(0));
 		dryingMachine.setGZJ10(listdata6.get(1));
-		dryingMachine.setGZJ18(listdata6.get(1));
-		dryingMachine.setGZJ19(listdata6.get(1));
+		dryingMachine.setGZJ18(listdata6.get(2));
+		dryingMachine.setGZJ19(listdata6.get(3));
 		dryingMachine.setDryingMachine_name("空压机5");
 		
 		dryingMachineDao.setDryingMachineData2(dryingMachine);
 		
 		//干燥机数据持久化到数据库6
-		dryingMachine.setGZJ9(listdata7.get(1));
+		dryingMachine.setGZJ9(listdata7.get(0));
 		dryingMachine.setGZJ10(listdata7.get(1));
-		dryingMachine.setGZJ18(listdata7.get(1));
-		dryingMachine.setGZJ19(listdata7.get(1));
+		dryingMachine.setGZJ18(listdata7.get(2));
+		dryingMachine.setGZJ19(listdata7.get(3));
 		dryingMachine.setDryingMachine_name("空压机6");
 		
 		dryingMachineDao.setDryingMachineData2(dryingMachine);
 		
 		//干燥机数据持久化到数据库7
-		dryingMachine.setGZJ9(listdata8.get(1));
+		dryingMachine.setGZJ9(listdata8.get(0));
 		dryingMachine.setGZJ10(listdata8.get(1));
-		dryingMachine.setGZJ18(listdata8.get(1));
-		dryingMachine.setGZJ19(listdata8.get(1));
+		dryingMachine.setGZJ18(listdata8.get(2));
+		dryingMachine.setGZJ19(listdata8.get(3));
 		dryingMachine.setDryingMachine_name("空压机7");
 		
 		dryingMachineDao.setDryingMachineData2(dryingMachine);
@@ -250,64 +250,64 @@ public class DryingMachineServiceImp implements DryingMachineService{
 				dryingMachineDao.setDryingMachineDataHour1(dryingMachine);
 				
 				//干燥机数据持久化到数据库1
-				dryingMachine.setGZJ9(listdata2.get(1));
+				dryingMachine.setGZJ9(listdata2.get(0));
 				dryingMachine.setGZJ10(listdata2.get(1));
-				dryingMachine.setGZJ18(listdata2.get(1));
-				dryingMachine.setGZJ19(listdata2.get(1));
+				dryingMachine.setGZJ18(listdata2.get(2));
+				dryingMachine.setGZJ19(listdata2.get(3));
 				dryingMachine.setDryingMachine_name("空压机1");
 				
 				dryingMachineDao.setDryingMachineDataHour2(dryingMachine);
 				
 				//干燥机数据持久化到数据库2
-				dryingMachine.setGZJ9(listdata3.get(1));
+				dryingMachine.setGZJ9(listdata3.get(0));
 				dryingMachine.setGZJ10(listdata3.get(1));
-				dryingMachine.setGZJ18(listdata3.get(1));
-				dryingMachine.setGZJ19(listdata3.get(1));
+				dryingMachine.setGZJ18(listdata3.get(2));
+				dryingMachine.setGZJ19(listdata3.get(3));
 				dryingMachine.setDryingMachine_name("空压机2");
 				
 				dryingMachineDao.setDryingMachineDataHour2(dryingMachine);
 				
 				//干燥机数据持久化到数据库3
-				dryingMachine.setGZJ9(listdata4.get(1));
+				dryingMachine.setGZJ9(listdata4.get(0));
 				dryingMachine.setGZJ10(listdata4.get(1));
-				dryingMachine.setGZJ18(listdata4.get(1));
-				dryingMachine.setGZJ19(listdata4.get(1));
+				dryingMachine.setGZJ18(listdata4.get(2));
+				dryingMachine.setGZJ19(listdata4.get(3));
 				dryingMachine.setDryingMachine_name("空压机3");
 				
 				dryingMachineDao.setDryingMachineDataHour2(dryingMachine);
 				
 				//干燥机数据持久化到数据库4
-				dryingMachine.setGZJ9(listdata5.get(1));
+				dryingMachine.setGZJ9(listdata5.get(0));
 				dryingMachine.setGZJ10(listdata5.get(1));
-				dryingMachine.setGZJ18(listdata5.get(1));
-				dryingMachine.setGZJ19(listdata5.get(1));
+				dryingMachine.setGZJ18(listdata5.get(2));
+				dryingMachine.setGZJ19(listdata5.get(3));
 				dryingMachine.setDryingMachine_name("空压机4");
 				
 				dryingMachineDao.setDryingMachineDataHour2(dryingMachine);
 				
 				//干燥机数据持久化到数据库5
-				dryingMachine.setGZJ9(listdata6.get(1));
+				dryingMachine.setGZJ9(listdata6.get(0));
 				dryingMachine.setGZJ10(listdata6.get(1));
-				dryingMachine.setGZJ18(listdata6.get(1));
-				dryingMachine.setGZJ19(listdata6.get(1));
+				dryingMachine.setGZJ18(listdata6.get(2));
+				dryingMachine.setGZJ19(listdata6.get(3));
 				dryingMachine.setDryingMachine_name("空压机5");
 				
 				dryingMachineDao.setDryingMachineDataHour2(dryingMachine);
 				
 				//干燥机数据持久化到数据库6
-				dryingMachine.setGZJ9(listdata7.get(1));
+				dryingMachine.setGZJ9(listdata7.get(0));
 				dryingMachine.setGZJ10(listdata7.get(1));
-				dryingMachine.setGZJ18(listdata7.get(1));
-				dryingMachine.setGZJ19(listdata7.get(1));
+				dryingMachine.setGZJ18(listdata7.get(2));
+				dryingMachine.setGZJ19(listdata7.get(3));
 				dryingMachine.setDryingMachine_name("空压机6");
 				
 				dryingMachineDao.setDryingMachineDataHour2(dryingMachine);
 				
 				//干燥机数据持久化到数据库7
-				dryingMachine.setGZJ9(listdata8.get(1));
+				dryingMachine.setGZJ9(listdata8.get(0));
 				dryingMachine.setGZJ10(listdata8.get(1));
-				dryingMachine.setGZJ18(listdata8.get(1));
-				dryingMachine.setGZJ19(listdata8.get(1));
+				dryingMachine.setGZJ18(listdata8.get(2));
+				dryingMachine.setGZJ19(listdata8.get(3));
 				dryingMachine.setDryingMachine_name("空压机7");
 				
 				dryingMachineDao.setDryingMachineDataHour2(dryingMachine);

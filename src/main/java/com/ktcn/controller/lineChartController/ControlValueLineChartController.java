@@ -22,7 +22,7 @@ public class ControlValueLineChartController {
 	
 	 
 
-//	@RequestMapping("/getcontrolvalue")
+	@RequestMapping("/getcontrolvalue")
 	public Map<String, Object> getControlValueData(){
 	
 		return controlValueLineChartServiceImp.getControlValueData();

@@ -14,10 +14,11 @@ import lombok.Data;
 * @version 创建时间：2020年1月9日 下午3:05:27
 * 类说明 Properties 文件获取配置PLC地址
 */
+
 @Data
 @Configuration
 @Component
-@ConfigurationProperties(prefix = "monitoringpage",ignoreInvalidFields = false)
+@ConfigurationProperties(prefix = "plc",ignoreInvalidFields = false)
 @PropertySource("classpath:config/PlcRealAddress/monitoringpage.properties")
 public class Monitoring_Address {
 	private String MD0;

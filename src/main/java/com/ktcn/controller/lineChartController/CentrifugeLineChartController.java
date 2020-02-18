@@ -22,7 +22,7 @@ public class CentrifugeLineChartController {
 	@Autowired
 	CentrifugeLineChartService centrifugeLineChartServiceImp;
 	
-//	@RequestMapping("/centrifugelinechart")
+	@RequestMapping("/centrifugelinechart")
 	public Map<String,List> getCentrifugeLineChartData(){
 		
 		return centrifugeLineChartServiceImp.getCentrifugeLineChartData();

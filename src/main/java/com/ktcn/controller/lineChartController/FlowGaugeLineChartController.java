@@ -22,7 +22,7 @@ public class FlowGaugeLineChartController {
 	@Autowired
 	FlowGaugeLineChartService flowGaugeLineChartServiceImp;
 	
-//	@RequestMapping("/flowGaugeLineChart")
+	@RequestMapping("/flowGaugeLineChart")
 	public Map<String,List> getFlowGaugeLineChartData(){
 		
 		Map<String, List> flowGaugeLineChartData = flowGaugeLineChartServiceImp.getFlowGaugeLineChartData();

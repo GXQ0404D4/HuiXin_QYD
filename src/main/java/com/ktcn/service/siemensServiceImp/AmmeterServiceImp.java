@@ -211,7 +211,7 @@ public class AmmeterServiceImp implements AmmeterService {
 //	@Scheduled(cron = "0 0 1 * * ?") //每天凌晨1点执行一次
 	@Scheduled(cron = "0/10 * * * * ?")
 	public void readingAmmeterData() {
-		try {
+		if (DataList1!=null) {
 			reading_Ammeter.setAmDB1(DataList1.get(0));
 			reading_Ammeter.setAmDB2(DataList2.get(0));
 			reading_Ammeter.setAmDB3(DataList3.get(0));
@@ -221,11 +221,9 @@ public class AmmeterServiceImp implements AmmeterService {
 			reading_Ammeter.setAmDB7(DataList7.get(0));
 			reading_Ammeter.setAmDB8(DataList8.get(0));
 			reading_Ammeter.setAmDB9(DataList9.get(0));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			ammeterDao.readingAmmeterData(reading_Ammeter);
 		}
-		
-		ammeterDao.readingAmmeterData(reading_Ammeter);
+			
 	}
 }

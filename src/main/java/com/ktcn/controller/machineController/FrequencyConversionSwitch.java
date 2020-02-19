@@ -30,15 +30,15 @@ public class FrequencyConversionSwitch {
 		
 		if (siemensPLC.ConnectServer().IsSuccess) {
 			switch (FCCname) {
-			case "MD99":
-				OperateResult write1 = siemensPLC.Write(FCCname, FCCof);
+			case "MD53":
+				OperateResult write1 = siemensPLC.Write("DB4.2.4", FCCof);
 				if (siemensPLC.ReadBool("DB4.2.4").Content==FCCof) {
 					return write1.Message;
 				} else {
 					return FCCNAME;
 				}
-			case "MD100":
-				OperateResult write2 = siemensPLC.Write(FCCname, FCCof);
+			case "MD54":
+				OperateResult write2 = siemensPLC.Write("DB4.2.7", FCCof);
 				if (siemensPLC.ReadBool("DB4.2.7").Content==FCCof) {
 					return write2.Message;
 				} else {

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.simens.utils.SiemensPlcConfig;
-import com.ktcn.simens.utils.SiemensPlcConfig2;
 
 import HslCommunication.Core.Types.OperateResult;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
@@ -56,13 +55,13 @@ public final class CentrifugePage {
 	
 	// PLC 连接池 封装类配置类
 	@Autowired
-	SiemensPlcConfig2 SiemensPlcConfig;
+	SiemensPlcConfig SiemensPlcConfig;
 	
 //	@Autowired
 //	Centrifuge_Address centrifuge_Address;
 	@RequestMapping("/centrifuge")
 	public Map <String,Object> getCentrifugePageData() {
-		SiemensS7Net siemens_net = SiemensPlcConfig2.getSiemensPLC();
+		SiemensS7Net siemens_net = SiemensPlcConfig.getSiemensPLC();
 		OperateResult connect = siemens_net.ConnectServer();
 		Map <String,Object> LXJData=new HashMap<String,Object>();
 		
@@ -79,13 +78,11 @@ public final class CentrifugePage {
 			LXJData.put("LXJ9",siemens_net.ReadFloat(LXJ20).Content);
 			LXJData.put("LXJ10",siemens_net.ReadFloat(LXJ21).Content);
 			LXJData.put("LXJ11",siemens_net.ReadFloat(LXJ22).Content);
-			System.out.println("connect success!");
 		} else {
 			System.out.println("failed:" + connect.Message);
 		}
 
 		siemens_net.ConnectClose();
-		System.out.println("关闭连接");
 		return LXJData;
 	}
 }

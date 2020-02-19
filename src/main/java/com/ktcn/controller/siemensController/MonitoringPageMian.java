@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.entity.simensaddress.Monitoring_Address;
-import com.ktcn.simens.utils.SiemensPlcConfig3;
+import com.ktcn.simens.utils.SiemensPlcConfig;
 
 import HslCommunication.Core.Types.OperateResult;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
@@ -25,11 +25,11 @@ public final class MonitoringPageMian {
 
 	// PLC 连接池 封装类配置类
 	@Autowired
-	SiemensPlcConfig3 SiemensPlcConfig;
+	SiemensPlcConfig SiemensPlcConfig;
 
 	@RequestMapping("/monitoring")
 	public Map <String,Object> getMonitoringPageData() {
-		SiemensS7Net siemens_net = SiemensPlcConfig3.getSiemensPLC();
+		SiemensS7Net siemens_net = SiemensPlcConfig.getSiemensPLC();
 		OperateResult connect = siemens_net.ConnectServer();
 		Map <String,Object> MMData=new HashMap<String,Object>();
 
@@ -133,13 +133,11 @@ public final class MonitoringPageMian {
 			MMData.put("MD96",siemens_net.ReadBool(monitoring_Address.getMD96()).Content);
 			MMData.put("MD97",siemens_net.ReadBool(monitoring_Address.getMD97()).Content);
 		
-			System.out.println("connect success!");
 		} else {
 			System.out.println("failed:" + connect.Message);
 		}
 
 		siemens_net.ConnectClose();
-		System.out.println("关闭连接");
 		return MMData;
 
 	}

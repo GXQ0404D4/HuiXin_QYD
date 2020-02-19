@@ -11,16 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.annotation.Order;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.ktcn.service.siemensService.DryingMachineService;
-import com.ktcn.simens.utils.SiemensPlcConfig;
+import com.ktcn.simens.utils.SiemensPlcConfig5;
 
-import HslCommunication.Core.Types.OperateResult;
-import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
@@ -221,7 +218,7 @@ public final class DryingMachineDatagain {
 	@Value("${PLC7.GZJ4}")
 	private  String GZJ7_4;
 	@Autowired
-	SiemensPlcConfig SiemensPlcConfig;
+	SiemensPlcConfig5 SiemensPlcConfig;
 	 
 	@Autowired
 	DryingMachineService DryingMachineServiceImp;
@@ -230,7 +227,7 @@ public final class DryingMachineDatagain {
 //	@Async
 	@Scheduled(cron = "0/10 * * * * ?")
 	public  void getDryingMachineData() {
-		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
+		SiemensS7Net siemensPLC = SiemensPlcConfig5.getSiemensPLC();
 		Map<String, List> MapData=new HashMap<String, List>();
 		List<Object> DryingMachineData0 = new ArrayList<Object>();
 		List<Object> DryingMachineData1 = new ArrayList<Object>();
@@ -346,7 +343,7 @@ public final class DryingMachineDatagain {
 			DryingMachineData8.add(siemensPLC.ReadBool(GZJ7_2).Content);  
 			DryingMachineData8.add(siemensPLC.ReadBool(GZJ7_3).Content);  
 			DryingMachineData8.add(siemensPLC.ReadBool(GZJ7_4).Content);  
-			siemensPLC.ConnectClose();
+		
 			MapData.put("DryingMachineData0", DryingMachineData0);
 			MapData.put("DryingMachineData1", DryingMachineData1);
 			MapData.put("DryingMachineData2", DryingMachineData2);
@@ -358,12 +355,12 @@ public final class DryingMachineDatagain {
 			MapData.put("DryingMachineData8", DryingMachineData8);
 			DryingMachineServiceImp.setDryingMachineData(MapData);
 		} else {
-			System.out.println("failed:" + siemensPLC.ConnectServer().Message);
+			System.out.println("failed:" + siemensPLC.ConnectServer().Message+"干燥机异常");
 		}
-		
+		siemensPLC.ConnectClose();
 		// 数据读取完毕 获取当前时间
 		System.out.println(" ");
-		System.out.println("干燥机数据持久化" + siemensPLC.hashCode()+ new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+		System.out.println("干燥机数据持久化+555" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		System.out.println(" ");
 	}
 }

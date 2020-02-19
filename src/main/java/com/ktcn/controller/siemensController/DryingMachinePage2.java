@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.simens.utils.SiemensPlcConfig;
-import com.ktcn.simens.utils.SiemensPlcConfig2;
-import com.ktcn.simens.utils.SiemensPlcConfig3;
 
 import HslCommunication.Core.Types.OperateResult;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
@@ -72,24 +70,24 @@ public final class DryingMachinePage2 {
 		private  String GZJ0_31;
 	// PLC 连接池 封装类配置类
 	@Autowired
-	SiemensPlcConfig2 SiemensPlcConfig;
+	SiemensPlcConfig SiemensPlcConfig;
 	
 	@RequestMapping("/dryingmachine2")
 	public Map <String,Object> getDryingMachineData2() {
-		SiemensS7Net siemens_net = SiemensPlcConfig2.getSiemensPLC();
+		SiemensS7Net siemens_net = SiemensPlcConfig.getSiemensPLC();
 		OperateResult connect = siemens_net.ConnectServer();
 		Map <String,Object> SJGZJData=new HashMap<String,Object>();
 		
 		if (connect.IsSuccess) {
-			SJGZJData.put("SJGZJ0",siemens_net.ReadFloat(GZJ0_0).Content);
-			SJGZJData.put("SJGZJ1",siemens_net.ReadFloat(GZJ0_1).Content);
-			SJGZJData.put("SJGZJ2",siemens_net.ReadFloat(GZJ0_2).Content);
-			SJGZJData.put("SJGZJ3",siemens_net.ReadFloat(GZJ0_3).Content);
-			SJGZJData.put("SJGZJ4",siemens_net.ReadFloat(GZJ0_4).Content);
-			SJGZJData.put("SJGZJ5",siemens_net.ReadFloat(GZJ0_5).Content);
-			SJGZJData.put("SJGZJ6",siemens_net.ReadFloat(GZJ0_6).Content);
-			SJGZJData.put("SJGZJ7",siemens_net.ReadFloat(GZJ0_10).Content);
-			SJGZJData.put("SJGZJ8",siemens_net.ReadFloat(GZJ0_11).Content);
+			SJGZJData.put("SJGZJ0",siemens_net.ReadByte(GZJ0_0).Content);
+			SJGZJData.put("SJGZJ1",siemens_net.ReadByte(GZJ0_1).Content);
+			SJGZJData.put("SJGZJ2",siemens_net.ReadByte(GZJ0_2).Content);
+			SJGZJData.put("SJGZJ3",siemens_net.ReadByte(GZJ0_3).Content);
+			SJGZJData.put("SJGZJ4",siemens_net.ReadByte(GZJ0_4).Content);
+			SJGZJData.put("SJGZJ5",siemens_net.ReadByte(GZJ0_5).Content);
+			SJGZJData.put("SJGZJ6",siemens_net.ReadByte(GZJ0_6).Content);
+			SJGZJData.put("SJGZJ7",siemens_net.ReadByte(GZJ0_10).Content);
+			SJGZJData.put("SJGZJ8",siemens_net.ReadByte(GZJ0_11).Content);
 			//烧结干燥机 1-13 阀门状态灯
 			SJGZJData.put("SJGZJ9",siemens_net.ReadBool(GZJ0_19).Content);
 			SJGZJData.put("SJGZJ10",siemens_net.ReadBool(GZJ0_20).Content);
@@ -105,13 +103,11 @@ public final class DryingMachinePage2 {
 			SJGZJData.put("SJGZJ20",siemens_net.ReadBool(GZJ0_30).Content);
 			SJGZJData.put("SJGZJ21",siemens_net.ReadBool(GZJ0_31).Content);
 			
-			System.out.println("connect success!");
 		} else {
 			System.out.println("failed:" + connect.Message);
 		}
 
 		siemens_net.ConnectClose();
-		System.out.println("关闭连接");
 		return SJGZJData;
 	}
 }

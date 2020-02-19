@@ -55,7 +55,7 @@ public class CentrifugeServiceImp implements CentrifugeService {
 	@Scheduled(cron = "0 0 * * * ?")
 	public void setCentrifugeDataHour() {
 		// 持久化到离心机1 小时数据
-		try {
+		if (listdata!=null) {
 			centrifuge.setLXJ5(listdata.get(0));
 			centrifuge.setLXJ7(listdata.get(1));
 			centrifuge.setLXJ8(listdata.get(2));
@@ -73,10 +73,9 @@ public class CentrifugeServiceImp implements CentrifugeService {
 			centrifuge.setLXJ22(listdata.get(14));
 			centrifuge.setCentrifuge_name("离心机1");
 			centrifugeDao.setsetCentrifugeDataHour(centrifuge);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+			
+
 	}
 //删除当前7天前的数据
 //	@Scheduled(cron = "0 0 1 ? * L") //每周星期天凌晨1点执行一次

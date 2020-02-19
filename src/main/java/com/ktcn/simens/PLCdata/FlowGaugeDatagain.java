@@ -9,18 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.annotation.Order;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.ktcn.service.siemensService.FlowGaugeService;
-import com.ktcn.simens.utils.SiemensPlcConfig;
+import com.ktcn.simens.utils.SiemensPlcConfig6;
 
-import HslCommunication.Core.Types.OperateResult;
-import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
-import lombok.val;
 
 /**
 * @author 作者 :Runaway programmer
@@ -56,7 +52,7 @@ public final class FlowGaugeDatagain {
 	private String LLJ1_5;
 	
 	@Autowired
-	SiemensPlcConfig SiemensPlcConfig;
+	SiemensPlcConfig6 SiemensPlcConfig;
 	
 	@Autowired
 	FlowGaugeService FlowGaugeServiceImp;
@@ -66,7 +62,7 @@ public final class FlowGaugeDatagain {
 //	@Async
 	@Scheduled(cron = "0/10 * * * * ?")
 	public void getFlowGaugeData() {
-		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
+		SiemensS7Net siemensPLC = SiemensPlcConfig6.getSiemensPLC();
 		List<Float> FlowGaugeData = new ArrayList <Float>();
 		if (siemensPLC.ConnectServer().IsSuccess) {
 			//制氧总管0-3
@@ -80,16 +76,15 @@ public final class FlowGaugeDatagain {
 			FlowGaugeData.add(siemensPLC.ReadFloat(LLJ1_4).Content);
 			FlowGaugeData.add(siemensPLC.ReadFloat(LLJ1_5).Content);
 			
-			siemensPLC.ConnectClose();
 			//持久化到冷却剂数据表
 			FlowGaugeServiceImp.setFlowGaugeData(FlowGaugeData);
 		} else {
-			System.out.println("failed:" +siemensPLC.ConnectServer().Message);
+			System.out.println("failed:" +siemensPLC.ConnectServer().Message+"冷却剂异常");
 		}
-		
+		siemensPLC.ConnectClose();
 		// 数据读取完毕 获取当前时间
 		System.out.println(" ");
-		System.out.println("持久化到冷却剂" +siemensPLC.hashCode()+  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+		System.out.println("持久化到冷却剂+666" +  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		System.out.println(" ");
 	}
 }

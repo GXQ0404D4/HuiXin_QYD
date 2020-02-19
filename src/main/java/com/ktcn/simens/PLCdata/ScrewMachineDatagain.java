@@ -11,16 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.annotation.Order;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.ktcn.service.siemensService.ScrewMachineService;
-import com.ktcn.simens.utils.SiemensPlcConfig;
+import com.ktcn.simens.utils.SiemensPlcConfig7;
 
-import HslCommunication.Core.Types.OperateResult;
-import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
@@ -109,7 +106,7 @@ public final class ScrewMachineDatagain {
 	private String LGJ8_27;
 
 	@Autowired
-	SiemensPlcConfig SiemensPlcConfig;
+	SiemensPlcConfig7 SiemensPlcConfig;
 	
 	@Autowired
 	ScrewMachineService screwMachineServiceImp;
@@ -117,7 +114,7 @@ public final class ScrewMachineDatagain {
 //	@Async
 	@Scheduled(cron = "0/10 * * * * ?")
 	public void getScrewMachineData() {
-		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
+		SiemensS7Net siemensPLC = SiemensPlcConfig7.getSiemensPLC();
 		final  Map<String,List> DataMap= new HashMap<String, List>();
 		final  List<Boolean> ScrewMachineData = new ArrayList<Boolean>();
 		final  List<Boolean> ScrewMachineData1 = new ArrayList<Boolean>();
@@ -170,7 +167,6 @@ public final class ScrewMachineDatagain {
 			ScrewMachineData8.add(siemensPLC.ReadBool(LGJ8_26).Content);
 			ScrewMachineData8.add(siemensPLC.ReadBool(LGJ8_27).Content);
 
-			siemensPLC.ConnectClose();
 			
 			DataMap.put("ScrewMachineData", ScrewMachineData);
 			DataMap.put("ScrewMachineData1", ScrewMachineData1);
@@ -184,12 +180,12 @@ public final class ScrewMachineDatagain {
 			//传递MAP 9个空压机数据ArrayList 集合
 			screwMachineServiceImp.setScrewMachineData(DataMap);
 		} else {
-			System.out.println("failed:" + siemensPLC.ConnectServer().Message);
+			System.out.println("failed:" + siemensPLC.ConnectServer().Message+"螺杆机异常");
 		}
-		
+		siemensPLC.ConnectClose();
 		// 数据读取完毕 获取当前时间
 		System.out.println(" ");
-		System.out.println("螺杆机数据获取" +siemensPLC.hashCode()+  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+		System.out.println("螺杆机数据获取+777" +  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		System.out.println(" ");
 	}
 }

@@ -73,13 +73,11 @@ public final class CommunicatePage {
 			CommPage.put("Comm10",siemens_net.ReadBool(TX10).Content);
 			CommPage.put("Comm11",siemens_net.ReadBool(TX11).Content);
 		
-			System.out.println("connect success!");
 		} else {
 			System.out.println("failed:" + connect.Message);
 		}
 
 		siemens_net.ConnectClose();
-		System.out.println("关闭连接");
 		return CommPage;
 	}
 }

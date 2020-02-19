@@ -7,16 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.annotation.Order;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.ktcn.entity.siemensentity.ControlValue;
 import com.ktcn.service.siemensService.ControlValueService;
-import com.ktcn.simens.utils.SiemensPlcConfig;
+import com.ktcn.simens.utils.SiemensPlcConfig4;
 
-import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
@@ -51,7 +49,7 @@ public final class ControlValueDatagain {
 	
 	
 	@Autowired
-	SiemensPlcConfig SiemensPlcConfig;
+	SiemensPlcConfig4 SiemensPlcConfig;
 	 
 	@Autowired
 	ControlValueService ControlValueServiceImp;
@@ -64,7 +62,7 @@ public final class ControlValueDatagain {
 //	@Async
 	@Scheduled(cron = "0/10 * * * * ?")
 	public  void getControlValueData() {
-		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
+		SiemensS7Net siemensPLC = SiemensPlcConfig4.getSiemensPLC();
 		if (siemensPLC.ConnectServer().IsSuccess) {
 			controlValue.setTJF0((siemensPLC.ReadFloat(TJF0).Content));
 			controlValue.setTJF1((siemensPLC.ReadBool(TJF1).Content));
@@ -74,17 +72,16 @@ public final class ControlValueDatagain {
 			controlValue.setTJF5((siemensPLC.ReadFloat(TJF5).Content));
 			controlValue.setTJF6((siemensPLC.ReadFloat(TJF6).Content));
 			controlValue.setTJF9((siemensPLC.ReadFloat(TJF9).Content));
-			siemensPLC.ConnectClose();
+	
 			//持久化到调节阀数据表
 			ControlValueServiceImp.setControlValueData(controlValue);
 		} else {
-			System.out.println("failed:" +siemensPLC.ConnectServer().Message);
+			System.out.println("failed:" +siemensPLC.ConnectServer().Message+"调节阀异常");
 		}
-		
-//		System.out.println("第一组数据————————@@@@@@@@@@@@@@@@@@@@@__________-!"+controlValue );
+		siemensPLC.ConnectClose();
 		// 数据读取完毕 获取当前时间
 		System.out.println(" ");
-		System.out.println("持久化到调节阀" +siemensPLC.hashCode()+  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+		System.out.println("持久化到调节阀+444" +  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		System.out.println(" ");
 	}
 

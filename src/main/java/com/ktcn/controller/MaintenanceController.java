@@ -66,6 +66,8 @@ public class MaintenanceController {
 		HttpSession session = request.getSession();
 		// 判断用户输入维保码是否有效
 		if (session.getAttribute("mtCode").equals(map.get("mt_num"))) {
+			System.out.println(session.getAttribute("mtCode"));
+			System.out.println(map.get("mt_num")+"--- 维保码");
 			// 获取当前用户
 			Tb_user user = (Tb_user) session.getAttribute("nowuser");
 			if (user.getUserPower() >= 2) {

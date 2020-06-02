@@ -24,34 +24,34 @@ import com.ktcn.service.siemensService.AmmeterService;
 //@PropertySource({"classpath:config/MachineName/ammeter_name.properties"})
 public class AmmeterServiceImp implements AmmeterService {
 
-	private final static String ammeter_1 = "烧结电表";
-	private final static String ammeter_2 = "离心机电表";
-	private final static String ammeter_3 = "空压机电表1";
-	private final static String ammeter_4 = "空压机电表2";
-	private final static String ammeter_5 = "空压机电表3";
-	private final static String ammeter_6 = "空压机电表4";
-	private final static String ammeter_7 = "空压机电表5";
-	private final static String ammeter_8 = "空压机电表6";
-	private final static String ammeter_9 = "空压机电表7";
+//	private final static String ammeter_1 = "烧结电表";
+//	private final static String ammeter_2 = "离心机电表";
+//	private final static String ammeter_3 = "空压机电表1";
+//	private final static String ammeter_4 = "空压机电表2";
+//	private final static String ammeter_5 = "空压机电表3";
+//	private final static String ammeter_6 = "空压机电表4";
+//	private final static String ammeter_7 = "空压机电表5";
+//	private final static String ammeter_8 = "空压机电表6";
+//	private final static String ammeter_9 = "空压机电表7";
 	
-//    @Value("${MACHINE.NAME0}")
-//	private  static String ammeter_1;
-//    @Value("${MACHINE.NAME1}")
-//	private  static String ammeter_2;
-//    @Value("${MACHINE.NAME2}")
-//	private  static String ammeter_3;
-//    @Value("${MACHINE.NAME3}")
-//	private  static String ammeter_4;
-//    @Value("${MACHINE.NAME4}")
-//	private  static String ammeter_5;
-//    @Value("${MACHINE.NAME5}")
-//	private  static String ammeter_6;
-//    @Value("${MACHINE.NAME6}")
-//	private  static String ammeter_7;
-//    @Value("${MACHINE.NAME7}")
-//	private  static String ammeter_8;
-//    @Value("${MACHINE.NAME8}")
-//	private  static String ammeter_9;
+    @Value("${machine.name1}")
+	private  static String ammeter_1;
+    @Value("${machine.name2}")
+	private  static String ammeter_2;
+    @Value("${machine.name3}")
+	private  static String ammeter_3;
+    @Value("${machine.name4}")
+	private  static String ammeter_4;
+    @Value("${machine.name5}")
+	private  static String ammeter_5;
+    @Value("${machine.name6}")
+	private  static String ammeter_6;
+    @Value("${machine.name7}")
+	private  static String ammeter_7;
+    @Value("${machine.name8}")
+	private  static String ammeter_8;
+    @Value("${machine.name9}")
+	private  static String ammeter_9;
 
 	List<Float> DataList1;
 	List<Float> DataList2;

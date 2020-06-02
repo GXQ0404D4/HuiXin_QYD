@@ -28,46 +28,46 @@ public class DryingMachineSwitch {
 		DMSNAME=DMSname;
 		try {
 			switch (DMSname) {
-			case "MD85":
+			case "MD82":
 				String incidentDX1 = DryingMachineSwitchIncidentDX("DB4.0.4",DMSof);
 				return incidentDX1;
-			case "MD86":
+			case "MD83":
 				String incidentDX2 = DryingMachineSwitchIncidentDX("DB4.0.5",DMSof);
 				return incidentDX2;
-			case "MD87":
+			case "MD84":
 				String incidentDX3 = DryingMachineSwitchIncidentDX("DB4.0.6",DMSof);
 				return incidentDX3;
-			case "MD88":
+			case "MD85":
 				String incidentDX4 = DryingMachineSwitchIncidentDX("DB4.0.7",DMSof);
 				return incidentDX4;
-			case "MD89":
+			case "MD86":
 				String incidentDX5 = DryingMachineSwitchIncidentDX("DB4.1.0",DMSof);
 				return incidentDX5;
-			case "MD90":
+			case "MD87":
 				String incidentDX6 = DryingMachineSwitchIncidentDX("DB4.1.1",DMSof);
 				return incidentDX6;
-			case "MD91":
+			case "MD88":
 				String incidentDX7 = DryingMachineSwitchIncidentDX("DB4.1.4",DMSof);
 				return incidentDX7;
-			case "MD92":
+			case "MD89":
 				String incidentDX8 = DryingMachineSwitchIncidentDX("DB4.1.5",DMSof);
 				return incidentDX8;
-			case "MD93":
+			case "MD90":
 				String incidentDX9 = DryingMachineSwitchIncidentDX("DB4.1.6",DMSof);
 				return incidentDX9;
-			case "MD94":
+			case "MD91":
 				String incidentDX10 = DryingMachineSwitchIncidentDX("DB4.1.7",DMSof);
 				return incidentDX10;
-			case "MD95":
+			case "MD92":
 				String incidentDX11 = DryingMachineSwitchIncidentDX("DB4.2.0",DMSof);
 				return incidentDX11;
-			case "MD96":
+			case "MD93":
 				String incidentDX12 = DryingMachineSwitchIncidentDX("DB4.2.1",DMSof);
 				return incidentDX12;
-			case "MD97":
+			case "MD94":
 				String incidentDX13 = DryingMachineSwitchIncidentDX("DB4.1.2",DMSof);
 				return incidentDX13;
-			case "MD98":
+			case "MD95":
 				String incidentDX14 = DryingMachineSwitchIncidentDX("DB4.1.3",DMSof);
 				return incidentDX14;
 			}

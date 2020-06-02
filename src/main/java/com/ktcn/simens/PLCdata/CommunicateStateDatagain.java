@@ -9,16 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.annotation.Order;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.ktcn.service.siemensService.CommunicateService;
-import com.ktcn.simens.utils.SiemensPlcConfig;
+import com.ktcn.simens.utils.SiemensPlcConfig3;
 
-import HslCommunication.Core.Types.OperateResult;
-import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
@@ -62,7 +59,7 @@ public final class CommunicateStateDatagain {
 	private  String TX11;
 	
 	@Autowired
-	SiemensPlcConfig SiemensPlcConfig;
+	SiemensPlcConfig3 SiemensPlcConfig;
 	 
 	@Autowired
 	CommunicateService CommunicateServiceImp;
@@ -71,7 +68,7 @@ public final class CommunicateStateDatagain {
 //	@Async
 	@Scheduled(cron = "0/10 * * * * ?")
 	public  void getCommunicateData() {
-		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
+		SiemensS7Net siemensPLC = SiemensPlcConfig3.getSiemensPLC();
 		List<Boolean> CommunicationData = new ArrayList<Boolean>();
 		//通信状态数据获取
 		if (siemensPLC.ConnectServer().IsSuccess) {
@@ -87,16 +84,15 @@ public final class CommunicateStateDatagain {
 			CommunicationData.add(siemensPLC.ReadBool(TX9).Content);
 			CommunicationData.add(siemensPLC.ReadBool(TX10).Content);
 			CommunicationData.add(siemensPLC.ReadBool(TX11).Content);
-			siemensPLC.ConnectClose();
+		
 			CommunicateServiceImp.setCommunicateData(CommunicationData);
 		} else {
-			System.out.println("failed:" +siemensPLC.ConnectServer().Message);
+			System.out.println("failed:" +siemensPLC.ConnectServer().Message+"通信状态异常");
 		}
-		
-//		System.out.println("第一组数据————————%%%%%%%%%%%%%%%%%%%%%%%%__________-!"+CommunicationData );
+		siemensPLC.ConnectClose();
 			// 数据读取完毕 获取当前时间
 		System.out.println(" ");
-		System.out.println("持久化通信状态" +siemensPLC.hashCode()+  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+		System.out.println("持久化通信状态+333" +  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		System.out.println(" ");
 	}
 

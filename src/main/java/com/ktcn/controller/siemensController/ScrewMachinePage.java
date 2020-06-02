@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.simens.utils.SiemensPlcConfig;
-import com.ktcn.simens.utils.SiemensPlcConfig3;
 
 import HslCommunication.Core.Types.OperateResult;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
@@ -47,11 +46,11 @@ public final class ScrewMachinePage {
 	private String LGJ8_27;
 
 	@Autowired
-	SiemensPlcConfig3 SiemensPlcConfig;
+	SiemensPlcConfig SiemensPlcConfig;
 	// 烧结变频1
 	@RequestMapping("/screwmachine1")
 	public Map <String,Object> getScrewMachineData1() {
-		SiemensS7Net siemens_net = SiemensPlcConfig3.getSiemensPLC();
+		SiemensS7Net siemens_net = SiemensPlcConfig.getSiemensPLC();
 		OperateResult connect = siemens_net.ConnectServer();
 		Map <String,Object> SJBP1=new HashMap<String,Object>();
 		
@@ -74,7 +73,7 @@ public final class ScrewMachinePage {
 	// 烧结变频2
 	@RequestMapping("/screwmachine2")
 	public Map <String,Object> getScrewMachineData2() {
-		SiemensS7Net siemens_net = SiemensPlcConfig3.getSiemensPLC();
+		SiemensS7Net siemens_net = SiemensPlcConfig.getSiemensPLC();
 		OperateResult connect = siemens_net.ConnectServer();
 		Map <String,Object> SJBP2=new HashMap<String,Object>();
 		

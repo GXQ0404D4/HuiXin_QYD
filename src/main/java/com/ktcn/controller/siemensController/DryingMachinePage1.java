@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.simens.utils.SiemensPlcConfig;
-import com.ktcn.simens.utils.SiemensPlcConfig2;
 
 import HslCommunication.Core.Types.OperateResult;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
@@ -81,10 +80,10 @@ public final class DryingMachinePage1 {
 	
 	// PLC 连接池 封装类配置类
 	@Autowired
-	SiemensPlcConfig2 SiemensPlcConfig;
+	SiemensPlcConfig SiemensPlcConfig;
 	@RequestMapping("/dryingmachine1")
 	public Map <String,Object> getDryingMachineData1() {
-		SiemensS7Net siemens_net = SiemensPlcConfig2.getSiemensPLC();
+		SiemensS7Net siemens_net = SiemensPlcConfig.getSiemensPLC();
 		OperateResult connect = siemens_net.ConnectServer();
 		Map <String,Object> ZYGZJData=new HashMap<String,Object>();
 		
@@ -117,13 +116,11 @@ public final class DryingMachinePage1 {
 			ZYGZJData.put("ZYGZJ24",siemens_net.ReadBool(GZJ30).Content);
 			ZYGZJData.put("ZYGZJ25",siemens_net.ReadBool(GZJ31).Content);
 			
-			System.out.println("connect success!");
 		} else {
 			System.out.println("failed:" + connect.Message);
 		}
 
 		siemens_net.ConnectClose();
-		System.out.println("关闭连接");
 		return ZYGZJData;
 	}
 }

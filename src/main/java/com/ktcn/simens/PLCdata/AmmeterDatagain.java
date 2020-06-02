@@ -11,16 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.annotation.Order;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.ktcn.service.siemensServiceImp.AmmeterServiceImp;
-import com.ktcn.simens.utils.SiemensPlcConfig;
+import com.ktcn.simens.utils.SiemensPlcConfig1;
 
-import HslCommunication.Core.Types.OperateResult;
-import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
@@ -123,7 +120,7 @@ public final class AmmeterDatagain {
 	
 	// PLC 连接池 封装类配置类
 	@Autowired
-	SiemensPlcConfig SiemensPlcConfig;
+	SiemensPlcConfig1 SiemensPlcConfig;
 	
 	//电表数据处理类
 	@Autowired
@@ -193,8 +190,6 @@ public final class AmmeterDatagain {
 			DataList9.add(siemensPLC.ReadFloat(DB11_8).Content);
 			DataList9.add(siemensPLC.ReadFloat(DB12_8).Content);
 			
-			siemensPLC.ConnectClose();
-			
 			DataMap.put("DataList1", DataList1);
 			DataMap.put("DataList2", DataList2);
 			DataMap.put("DataList3", DataList3);
@@ -205,15 +200,14 @@ public final class AmmeterDatagain {
 			DataMap.put("DataList8", DataList8);
 			DataMap.put("DataList9", DataList9);
 			ammeterServiceImp.setAmmeterData(DataMap);
-			System.out.println(DataMap);
 		} else {
-			System.out.println("failed:" +siemensPLC.ConnectServer().Message);
+			System.out.println("failed:" +siemensPLC.ConnectServer().Message+"电表数据异常");
 		}
-		
+		siemensPLC.ConnectClose();
 //		System.out.println(DataMap);
 		// 数据读取完毕 获取当前时间
 	    System.out.println(" ");
-		System.out.println("电表持续化到数据库" +siemensPLC.hashCode()+ new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+		System.out.println("电表持续化到数据库+111" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		System.out.println(" ");
 	}
 

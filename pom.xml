@@ -16,7 +16,7 @@
 	<artifactId>FuXin_QYD</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>FuXin_QYD</name>
+	<name>HuXin_QYD</name>
 	<description>Demo project for Spring Boot</description>
 
 

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-//@EnableAsync //开启异步调用
+@EnableAsync //开启异步调用
 @SpringBootApplication
 @EnableScheduling
 @ServletComponentScan // 解决跨域session丢失问题\

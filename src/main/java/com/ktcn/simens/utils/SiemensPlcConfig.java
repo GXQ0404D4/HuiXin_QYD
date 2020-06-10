@@ -23,7 +23,7 @@ public class SiemensPlcConfig {
 	
 	public SiemensS7Net getSiemensPLC() {
 		if (siemens_net==null) {
-			siemens_net=new SiemensS7Net(SiemensPLCS.S1200,"192.168.1.1");
+			siemens_net=new SiemensS7Net(SiemensPLCS.S1200,"192.168.0.1");
 		}
 		return siemens_net;
 	}

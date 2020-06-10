@@ -17,17 +17,17 @@ import lombok.Data;
 @Component
 public class ControlValue {
 	
-	private int id;
-	private Float TJF0;  //比例值          R/W
-	private Boolean TJF1;//手自动          R/W
-	private Float TJF2;  //手动开度设定值  R/W
-	private Float TJF3;  //目标压力        R/W
-	private Float TJF4;  //积分值          R/W
-	private Float TJF5;  //上游压力  R
-	private Float TJF6;  //下游压力  R
-	private Float TJF7;  //瞬时流量  R
-	private Float TJF8;  //累积流量  R
-	private Float TJF9;  //位置反馈  R
+	private int id;      
+	private Object TJF0;  
+	private Object TJF1;
+	private Object TJF2;  
+	private Object TJF3;  
+	private Object TJF4;  
+	private Object TJF5;  
+	private Object TJF6;  
+	private Object TJF7;  
+//	private Object TJF8;  
+//	private Object TJF9;  
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date TJF_time;//调节阀时间
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

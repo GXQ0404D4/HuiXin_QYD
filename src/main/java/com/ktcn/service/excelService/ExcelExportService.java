@@ -16,4 +16,9 @@ public interface ExcelExportService {
 	 */
 	HSSFWorkbook downloadExcelAir(ScrewMachine isEntity, String eqName, String time1, String time2);
 
+	/*
+	 * 干燥机历史数据导出
+	 */
+	HSSFWorkbook downloadExcelDry(ScrewMachine isEntity, String time1, String time2);
+
 }

@@ -112,7 +112,7 @@ public class Peripheral_Data {
 	private Object ww93;
 	private Object ww94;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date PDdate;
+	private Date pddate;
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date PDdatetime;
+	private Date pddatetime;
 }

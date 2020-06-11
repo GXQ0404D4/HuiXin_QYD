@@ -7,15 +7,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ktcn.entity.siemensentity.DryingMachine;
-import com.ktcn.entity.siemensentity.ScrewMachine;
 import com.ktcn.service.excelService.ExcelExportService;
 
 

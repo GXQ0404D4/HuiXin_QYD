@@ -32,7 +32,7 @@ public class DryingMachine_serviceimp implements DryingMachine_service{
 	@Override
 	//每小时执行一次
 //	@Scheduled(cron = "0 0 * * * ?")
-	@Scheduled(cron = "0/1 * * * * ?")
+//	@Scheduled(cron = "0/1 * * * * ?")
 	public void setDryingMachineDataHour() {
 		// TODO Auto-generated method stub
 		if (dMHour==null && dMHour.equals("")) {

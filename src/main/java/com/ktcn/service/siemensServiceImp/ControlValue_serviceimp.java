@@ -38,7 +38,7 @@ public class ControlValue_serviceimp implements ControlValue_service{
 //@Scheduled(cron = "0 0/15 * * * ?")   //每15分钟触发一次
 //每小时执行一次
 //	@Scheduled(cron = "0 0 * * * ?")
-	@Scheduled(cron = "0/1 * * * * ?")
+//	@Scheduled(cron = "0/1 * * * * ?")
 	public void setControlValueDataHour() {
 		// TODO Auto-generated method stub
 		if (ControlValuehour==null && ControlValuehour.equals("")) {

@@ -44,7 +44,7 @@ public class ScrewMachine_serviceimp implements ScrewMachine_service {
 	@Override
 //每小时执行一次
 //	@Scheduled(cron = "0 0 * * * ?")
-	@Scheduled(cron = "0/1 * * * * ?")
+//	@Scheduled(cron = "0/1 * * * * ?")
 	public void setScrewMachineDataHour() {
 		// TODO Auto-generated method stub
 		if (hourdata.get("ScrewMachine1")!=null) {

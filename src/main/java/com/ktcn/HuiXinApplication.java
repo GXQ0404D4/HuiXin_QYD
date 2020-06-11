@@ -27,10 +27,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //		return builder.sources(HuXinApplication.class);
 //	}
 //}
-public class HuXinApplication{
+public class HuiXinApplication{
 	
 	public static void main(String[] args) {
-		SpringApplication.run(HuXinApplication.class, args);
+		SpringApplication.run(HuiXinApplication.class, args);
 		
 	}
 }

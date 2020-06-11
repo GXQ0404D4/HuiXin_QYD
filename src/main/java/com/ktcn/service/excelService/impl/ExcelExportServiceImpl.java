@@ -208,7 +208,7 @@ public class ExcelExportServiceImpl implements ExcelExportService {
 	// ----------------------- 分割线, 上面是历史数据模块, 下面是报表模块 ---------------------------------
 	
 	/*
-	 * 空压机历史数据导出
+	 * 空压机报表导出
 	 */
 	@Override
 	public HSSFWorkbook downloadExcelAirh(String eqName, String time1, String time2) {
@@ -264,7 +264,7 @@ public class ExcelExportServiceImpl implements ExcelExportService {
 	}
 	
 	/*
-	 * 干燥机历史数据导出
+	 * 干燥机报表导出
 	 */
 	@Override
 	public HSSFWorkbook downloadExcelDryh(String time1, String time2) {
@@ -316,7 +316,7 @@ public class ExcelExportServiceImpl implements ExcelExportService {
 	}
 
 	/*
-	 * 外围仪表历史数据导出
+	 * 外围仪表报表导出
 	 */
 	@Override
 	public HSSFWorkbook downloadExcelMeterh(String time1, String time2) {

@@ -45,4 +45,31 @@ public interface ExcelExportDao {
 			@Param("time1") String time1, 
 			@Param("time2") String time2);
 
+	// ----------------------- 分割线, 上面是历史数据模块, 下面是报表模块 ---------------------------------
+	
+	/*
+	 * 空压机历史数据导出
+	 */
+	@Select("SELECT * FROM `screw_machine_hour` WHERE ScrewMachine_name LIKE '%${eqName}%' AND LGJ_time BETWEEN #{time1} AND #{time2} ORDER BY LGJ_datatime DESC")
+	List<ScrewMachine> downloadExcelAirh(
+			@Param("eqName") String eqName, 
+			@Param("time1") String time1, 
+			@Param("time2") String time2);
+	
+	/*
+	 *  干燥机历史数据导出
+	 */
+	@Select("SELECT * FROM `drying_machine_hour` WHERE GZ_time BETWEEN #{time1} AND #{time2} ORDER BY GZ_datatime DESC")
+	List<DryingMachine> downloadExcelDryh(
+			@Param("time1") String time1, 
+			@Param("time2") String time2);
+
+	/*
+	 *  外围仪表历史数据导出
+	 */
+	@Select("SELECT * FROM `peripheral_data` WHERE pddate BETWEEN #{time1} AND #{time2} ORDER BY pddatetime DESC")
+	List<Peripheral_Data> downloadExcelMeterh(
+			@Param("time1") String time1, 
+			@Param("time2") String time2);
+
 }

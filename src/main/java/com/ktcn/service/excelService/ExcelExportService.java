@@ -24,4 +24,21 @@ public interface ExcelExportService {
 	 */
 	HSSFWorkbook downloadExcelMeter(String time1, String time2);
 
+	// ----------------------- 分割线, 上面是历史数据模块, 下面是报表模块 ---------------------------------
+
+	/*
+	 * 空压机报表导出
+	 */
+	HSSFWorkbook downloadExcelAirh(String eqName, String time1, String time2);
+	
+	/*
+	 * 干燥机报表导出
+	 */
+	HSSFWorkbook downloadExcelDryh(String time1, String time2);
+
+	/*
+	 * 外围仪表报表导出
+	 */
+	HSSFWorkbook downloadExcelMeterh(String time1, String time2);
+
 }

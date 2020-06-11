@@ -122,5 +122,85 @@ public class ExcelExportController {
 			// TODO 处理异常
 		}
 	}
+	
+	// ----------------------- 分割线, 上面是历史数据模块, 下面是报表模块 ---------------------------------
+	
+	/*
+	 * 空压机历史数据导出
+	 */
+	@RequestMapping("airh")
+	public void exportAirh(HttpServletResponse response,String eqName,String time1,String time2) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		StringBuffer sbBuffer = new StringBuffer();
+		sbBuffer.append("空压机报表_");
+		sbBuffer.append(format.format(new Date()));
+		sbBuffer.append(".xls");
+		String fileName = sbBuffer.toString();
+
+		// excel 写入数据 service层 TODO 这个自己注入进来
+		HSSFWorkbook wb = excelExportService.downloadExcelAirh(eqName,time1,time2);
+
+		this.setResponseHeader(response, fileName);
+		try {
+			OutputStream os = response.getOutputStream();
+			wb.write(os);
+			os.flush();
+			os.close();
+		} catch (IOException e) {
+			// TODO 处理异常
+		}
+	}
+	
+	/*
+	 * 干燥机历史数据导出
+	 */
+	@RequestMapping("dryh")
+	public void exportDryh(HttpServletResponse response,String time1,String time2) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		StringBuffer sbBuffer = new StringBuffer();
+		sbBuffer.append("干燥机报表_");
+		sbBuffer.append(format.format(new Date()));
+		sbBuffer.append(".xls");
+		String fileName = sbBuffer.toString();
+
+		// excel 写入数据 service层 TODO 这个自己注入进来
+		HSSFWorkbook wb = excelExportService.downloadExcelDryh(time1,time2);
+
+		this.setResponseHeader(response, fileName);
+		try {
+			OutputStream os = response.getOutputStream();
+			wb.write(os);
+			os.flush();
+			os.close();
+		} catch (IOException e) {
+			// TODO 处理异常
+		}
+	}
+	
+	/*
+	 * 外围仪表历史数据导出
+	 */
+	@RequestMapping("meterh")
+	public void exportMeterh(HttpServletResponse response,String time1,String time2) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		StringBuffer sbBuffer = new StringBuffer();
+		sbBuffer.append("外围仪表报表_");
+		sbBuffer.append(format.format(new Date()));
+		sbBuffer.append(".xls");
+		String fileName = sbBuffer.toString();
+
+		// excel 写入数据 service层 TODO 这个自己注入进来
+		HSSFWorkbook wb = excelExportService.downloadExcelMeterh(time1,time2);
+
+		this.setResponseHeader(response, fileName);
+		try {
+			OutputStream os = response.getOutputStream();
+			wb.write(os);
+			os.flush();
+			os.close();
+		} catch (IOException e) {
+			// TODO 处理异常
+		}
+	}
 
 }

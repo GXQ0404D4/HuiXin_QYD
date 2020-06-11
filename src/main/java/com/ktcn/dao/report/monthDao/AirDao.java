@@ -21,8 +21,11 @@ public interface AirDao {
 	/*
 	 * 查询总条数
 	 */
-	@Select("SELECT COUNT(id) FROM `screw_machine` WHERE ScrewMachine_name LIKE '%${eqName}%'")
-	int findTotal(@Param("eqName") String eqName);
+	@Select("SELECT COUNT(id) FROM `screw_machine` WHERE ScrewMachine_name LIKE '%${eqName}%' AND LGJ_time BETWEEN #{time1} AND #{time2}")
+	int findTotal(
+			@Param("eqName") String eqName,
+			@Param("time1") String time1,
+			@Param("time2") String time2);
 
 	/*
 	 * 查询数据

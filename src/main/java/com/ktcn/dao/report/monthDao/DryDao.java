@@ -21,8 +21,10 @@ public interface DryDao {
 	/*
 	 * 查询总条数
 	 */
-	@Select("SELECT COUNT(id) FROM `drying_machine`")
-	int findTotal();
+	@Select("SELECT COUNT(id) FROM `drying_machine` WHERE GZ_time BETWEEN #{time1} AND #{time2}")
+	int findTotal(
+			@Param("time1") String time1,
+			@Param("time2") String time2);
 
 	/*
 	 * 查询数据

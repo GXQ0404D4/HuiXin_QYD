@@ -53,7 +53,7 @@ public class AirSerciceImpl implements AirService {
 		int countPage = 0;
 		
 		// 查询数据总条数
-		count = airDao.findTotal(eqName);
+		count = airDao.findTotal(eqName,time1,time2);
 		// 获取总页数
 		countPage = PageReade.getCountPage(count, 10);
 		// 获取查询起始条数

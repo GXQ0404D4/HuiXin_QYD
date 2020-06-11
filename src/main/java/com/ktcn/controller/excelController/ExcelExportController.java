@@ -14,6 +14,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ktcn.entity.siemensentity.DryingMachine;
 import com.ktcn.entity.siemensentity.ScrewMachine;
 import com.ktcn.service.excelService.ExcelExportService;
 
@@ -51,7 +52,7 @@ public class ExcelExportController {
 	 * 空压机历史数据导出
 	 */
 	@RequestMapping("air")
-	public void exportAir(HttpServletResponse response,ScrewMachine isEntity,String eqName,String time1,String time2) {
+	public void exportAir(HttpServletResponse response,String eqName,String time1,String time2) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		StringBuffer sbBuffer = new StringBuffer();
 		sbBuffer.append("空压机历史数据_");
@@ -60,7 +61,7 @@ public class ExcelExportController {
 		String fileName = sbBuffer.toString();
 
 		// excel 写入数据 service层 TODO 这个自己注入进来
-		HSSFWorkbook wb = excelExportService.downloadExcelAir(isEntity,eqName,time1,time2);
+		HSSFWorkbook wb = excelExportService.downloadExcelAir(eqName,time1,time2);
 
 		this.setResponseHeader(response, fileName);
 		try {
@@ -77,7 +78,7 @@ public class ExcelExportController {
 	 * 干燥机历史数据导出
 	 */
 	@RequestMapping("dry")
-	public void exportDry(HttpServletResponse response,ScrewMachine isEntity,String time1,String time2) {
+	public void exportDry(HttpServletResponse response,String time1,String time2) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		StringBuffer sbBuffer = new StringBuffer();
 		sbBuffer.append("干燥机历史数据_");
@@ -86,7 +87,33 @@ public class ExcelExportController {
 		String fileName = sbBuffer.toString();
 
 		// excel 写入数据 service层 TODO 这个自己注入进来
-		HSSFWorkbook wb = excelExportService.downloadExcelDry(isEntity,time1,time2);
+		HSSFWorkbook wb = excelExportService.downloadExcelDry(time1,time2);
+
+		this.setResponseHeader(response, fileName);
+		try {
+			OutputStream os = response.getOutputStream();
+			wb.write(os);
+			os.flush();
+			os.close();
+		} catch (IOException e) {
+			// TODO 处理异常
+		}
+	}
+	
+	/*
+	 * 外围仪表历史数据导出
+	 */
+	@RequestMapping("meter")
+	public void exportMeter(HttpServletResponse response,String time1,String time2) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		StringBuffer sbBuffer = new StringBuffer();
+		sbBuffer.append("外围仪表历史数据_");
+		sbBuffer.append(format.format(new Date()));
+		sbBuffer.append(".xls");
+		String fileName = sbBuffer.toString();
+
+		// excel 写入数据 service层 TODO 这个自己注入进来
+		HSSFWorkbook wb = excelExportService.downloadExcelMeter(time1,time2);
 
 		this.setResponseHeader(response, fileName);
 		try {

@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import com.ktcn.entity.siemensentity.DryingMachine;
+import com.ktcn.entity.siemensentity.Peripheral_Data;
 import com.ktcn.entity.siemensentity.ScrewMachine;
 
 /**
@@ -33,6 +34,14 @@ public interface ExcelExportDao {
 	 */
 	@Select("SELECT * FROM `drying_machine` WHERE GZ_time BETWEEN #{time1} AND #{time2} ORDER BY GZ_datatime DESC")
 	List<DryingMachine> downloadExcelDry(
+			@Param("time1") String time1, 
+			@Param("time2") String time2);
+
+	/*
+	 *  外围仪表历史数据导出
+	 */
+	@Select("SELECT * FROM `peripheral_data` WHERE pddate BETWEEN #{time1} AND #{time2} ORDER BY pddatetime DESC")
+	List<Peripheral_Data> downloadExcelMeter(
 			@Param("time1") String time1, 
 			@Param("time2") String time2);
 

@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.dao.excelExportDao.ExcelExportDao;
 import com.ktcn.entity.siemensentity.DryingMachine;
+import com.ktcn.entity.siemensentity.Peripheral_Data;
 import com.ktcn.entity.siemensentity.ScrewMachine;
 import com.ktcn.service.excelService.ExcelExportService;
 import com.ktcn.utils.Export;
@@ -34,7 +35,7 @@ public class ExcelExportServiceImpl implements ExcelExportService {
 	 *  空压机历史数据导出
 	 */
 	@Override
-	public HSSFWorkbook downloadExcelAir(ScrewMachine isEntity, String eqName, String time1, String time2) {
+	public HSSFWorkbook downloadExcelAir(String eqName, String time1, String time2) {
 		// 初始化数据
 		if ("".equals(time1) || time1 == null) {
 			time1 = "1970-01-01";
@@ -90,7 +91,7 @@ public class ExcelExportServiceImpl implements ExcelExportService {
 	 * 干燥机历史数据导出
 	 */
 	@Override
-	public HSSFWorkbook downloadExcelDry(ScrewMachine isEntity, String time1, String time2) {
+	public HSSFWorkbook downloadExcelDry(String time1, String time2) {
 		// 初始化数据
 		if ("".equals(time1) || time1 == null) {
 			time1 = "1970-01-01";
@@ -124,6 +125,72 @@ public class ExcelExportServiceImpl implements ExcelExportService {
 					hashMap.put("A5", vo.getGZJ4());
 					hashMap.put("A6", vo.getGZJ2());
 					hashMap.put("A7", vo.getGZJ5());
+
+					listResult.add(hashMap);
+				}
+			}
+
+			// 去调用工具类的方法
+			HSSFWorkbook wb = Export.getHSSFWorkbook(listResult, column);
+			return wb;
+		} catch (Exception e) {
+			// TODO处理异常
+		}
+		return null;
+	}
+
+	/*
+	 * 外围仪表历史数据导出
+	 */
+	@Override
+	public HSSFWorkbook downloadExcelMeter(String time1, String time2) {
+		// 初始化数据
+		if ("".equals(time1) || time1 == null) {
+			time1 = "1970-01-01";
+		}
+		if ("".equals(time2) || time2 == null) {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			time2 = format.format(new Date());
+		}
+		try {
+			// 获取数据
+			List<Peripheral_Data> query = excelExportDao.downloadExcelMeter(time1,time2);
+			
+			// 标题
+			Map<String, String> column = new LinkedHashMap<String, String>();
+			column.put("A1", "时间");
+			column.put("A2", "外供二冷压缩空气主管流量");
+			column.put("A3", "外供二冷压缩空气主管压力");
+			column.put("A4", "外供净化压缩空气主管压力");
+			column.put("A5", "外供净化压缩空气主管流量");
+			column.put("A6", "外供普通压缩空气主管压力");
+			column.put("A7", "外供普通压缩空气主管流量");
+			column.put("A8", "综合水处理器进出口压差");
+			column.put("A9", "干燥机排气压力");
+			column.put("A10", "干燥机进气压力");
+			column.put("A11", "干燥机进气温度");
+			column.put("A12", "干燥机排气温度");
+			column.put("A13", "冷却水供水流量");
+			column.put("A14", "冷却水供水温度");
+			// excel内容
+			List<Map<String, Object>> listResult = new ArrayList<Map<String, Object>>();
+			if (query != null && !query.isEmpty()) {
+				for (Peripheral_Data vo : query) {
+					Map<String, Object> hashMap = new LinkedHashMap<String, Object>();
+					hashMap.put("A1", vo.getPddatetime());
+					hashMap.put("A2", vo.getWw27());
+					hashMap.put("A3", vo.getWw44());
+					hashMap.put("A4", vo.getWw30());
+					hashMap.put("A5", vo.getWw21());
+					hashMap.put("A6", vo.getWw37());
+					hashMap.put("A7", vo.getWw24());
+					hashMap.put("A8", vo.getWw51());
+					hashMap.put("A9", vo.getWw65());
+					hashMap.put("A10", vo.getWw58());
+					hashMap.put("A11", vo.getWw72());
+					hashMap.put("A12", vo.getWw79());
+					hashMap.put("A13", vo.getWw0());
+					hashMap.put("A14", vo.getWw14());
 
 					listResult.add(hashMap);
 				}

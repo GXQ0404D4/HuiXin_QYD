@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 /**
@@ -26,7 +28,9 @@ public class DryingMachine {
 	private Object GZJ7; // 加载时间
 	private Object GZJ8; // 干燥机启动
 	private Object GZJ9; // 干燥机停止
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date GZ_time;//
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date GZ_datatime;//
 	private int state;//
 }

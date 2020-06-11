@@ -2,6 +2,8 @@ package com.ktcn.entity.siemensentity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 /**
@@ -94,7 +96,9 @@ public class Monitoring_Page {
 	private Object MD79;
 	private Object MD80;
 	private Object MD81;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date MD_time;
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date MD_timedate;
 
 }

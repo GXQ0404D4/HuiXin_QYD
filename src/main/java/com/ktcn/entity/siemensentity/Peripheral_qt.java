@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 /**
@@ -24,7 +26,9 @@ public class Peripheral_qt {
 	private Object WWQT7;   //变频频率反馈
 	private Object WWQT8;   //低压机1变频
 	private Object WWQT9;   //低压机2变频
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date QTdata;  
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date QTdatatime;
 
 }

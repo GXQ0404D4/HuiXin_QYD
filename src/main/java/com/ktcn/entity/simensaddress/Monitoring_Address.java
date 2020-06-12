@@ -59,6 +59,7 @@ public class Monitoring_Address {
 	private String MD38;
 	private String MD39;
 	private String MD40;
+	private String MD41;
 	
 
 }

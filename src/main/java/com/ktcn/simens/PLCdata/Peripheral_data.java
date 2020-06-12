@@ -12,6 +12,7 @@
 //
 //import com.ktcn.entity.siemensentity.Peripheral_qt;
 //import com.ktcn.entity.siemensentity.Peripheral_Data;
+//import com.ktcn.entity.simensaddress.Peripheral_Address;
 //import com.ktcn.service.siemensService.Peripheral_service;
 //import com.ktcn.service.siemensServiceImp.Newly_serviceimp;
 //import com.ktcn.simens.utils.SiemensPlcConfig;
@@ -27,230 +28,24 @@
 //@Component // 此注解必加
 ////@Async
 //@Order(value = 1)
-//@PropertySource({ "classpath:config/peripheral_data.properties" })
+////@PropertySource({ "classpath:config/peripheral_data.properties" })
 //public final class Peripheral_data {
-//	
-//	@Value("${PLC.WW0}")
-//	private String WW0;
-//	@Value("${PLC.WW1}")
-//	private String WW1;	
-//	@Value("${PLC.WW2}")
-//	private String WW2;	
-//	@Value("${PLC.WW3}")
-//	private String WW3;
-//	@Value("${PLC.WW4}")
-//	private String WW4;
-//	@Value("${PLC.WW5}")
-//	private String WW5;
-//	@Value("${PLC.WW6}")
-//	private String WW6;
-//	@Value("${PLC.WW7}")
-//	private String WW7;
-//	@Value("${PLC.WW8}")
-//	private String WW8;
-//	@Value("${PLC.WW9}")
-//	private String WW9;
-//	@Value("${PLC.WW10}")
-//	private String WW10;
-//	@Value("${PLC.WW11}")
-//	private String WW11;
-//	@Value("${PLC.WW12}")
-//	private String WW12;
-//	@Value("${PLC.WW13}")
-//	private String WW13;
-//	@Value("${PLC.WW14}")
-//	private String WW14;
-//	@Value("${PLC.WW15}")
-//	private String WW15;
-//	@Value("${PLC.WW16}")
-//	private String WW16;
-//	@Value("${PLC.WW17}")
-//	private String WW17;
-//	@Value("${PLC.WW18}")
-//	private String WW18;
-//	@Value("${PLC.WW19}")
-//	private String WW19;
-//	@Value("${PLC.WW20}")
-//	private String WW20;
-//	@Value("${PLC.WW21}")
-//	private String WW21;
-//	@Value("${PLC.WW22}")
-//	private String WW22;
-//	@Value("${PLC.WW23}")
-//	private String WW23;
-//	@Value("${PLC.WW24}")
-//	private String WW24;
-//	@Value("${PLC.WW25}")
-//	private String WW25;
-//	@Value("${PLC.WW26}")
-//	private String WW26;
-//	@Value("${PLC.WW27}")
-//	private String WW27;
-//	@Value("${PLC.WW28}")
-//	private String WW28;
-//	@Value("${PLC.WW29}")
-//	private String WW29;
-//	@Value("${PLC.WW30}")
-//	private String WW30;
-//	@Value("${PLC.WW31}")
-//	private String WW31;
-//	@Value("${PLC.WW32}")
-//	private String WW32;
-//	@Value("${PLC.WW33}")
-//	private String WW33;
-//	@Value("${PLC.WW34}")
-//	private String WW34;
-//	@Value("${PLC.WW35}")
-//	private String WW35;
-//	@Value("${PLC.WW36}")
-//	private String WW36;
-//	@Value("${PLC.WW37}")
-//	private String WW37;
-//	@Value("${PLC.WW38}")
-//	private String WW38;
-//	@Value("${PLC.WW39}")
-//	private String WW39;
-//	@Value("${PLC.WW40}")
-//	private String WW40;
-//	@Value("${PLC.WW41}")
-//	private String WW41;
-//	@Value("${PLC.WW42}")
-//	private String WW42;
-//	@Value("${PLC.WW43}")
-//	private String WW43;
-//	@Value("${PLC.WW44}")
-//	private String WW44;
-//	@Value("${PLC.WW45}")
-//	private String WW45;
-//	@Value("${PLC.WW46}")
-//	private String WW46;
-//	@Value("${PLC.WW47}")
-//	private String WW47;
-//	@Value("${PLC.WW48}")
-//	private String WW48;
-//	@Value("${PLC.WW49}")
-//	private String WW49;
-//	@Value("${PLC.WW50}")
-//	private String WW50;
-//	@Value("${PLC.WW51}")
-//	private String WW51;
-//	@Value("${PLC.WW52}")
-//	private String WW52;
-//	@Value("${PLC.WW53}")
-//	private String WW53;
-//	@Value("${PLC.WW54}")
-//	private String WW54;
-//	@Value("${PLC.WW55}")
-//	private String WW55;
-//	@Value("${PLC.WW56}")
-//	private String WW56;
-//	@Value("${PLC.WW57}")
-//	private String WW57;
-//	@Value("${PLC.WW58}")
-//	private String WW58;
-//	@Value("${PLC.WW59}")
-//	private String WW59;
-//	@Value("${PLC.WW60}")
-//	private String WW60;
-//	@Value("${PLC.WW61}")
-//	private String WW61;
-//	@Value("${PLC.WW62}")
-//	private String WW62;
-//	@Value("${PLC.WW63}")
-//	private String WW63;
-//	@Value("${PLC.WW64}")
-//	private String WW64;
-//	@Value("${PLC.WW65}")
-//	private String WW65;
-//	@Value("${PLC.WW66}")
-//	private String WW66;
-//	@Value("${PLC.WW67}")
-//	private String WW67;
-//	@Value("${PLC.WW68}")
-//	private String WW68;
-//	@Value("${PLC.WW69}")
-//	private String WW69;
-//	@Value("${PLC.WW70}")
-//	private String WW70;
-//	@Value("${PLC.WW71}")
-//	private String WW71;
-//	@Value("${PLC.WW72}")
-//	private String WW72;
-//	@Value("${PLC.WW73}")
-//	private String WW73;
-//	@Value("${PLC.WW74}")
-//	private String WW74;
-//	@Value("${PLC.WW75}")
-//	private String WW75;
-//	@Value("${PLC.WW76}")
-//	private String WW76;
-//	@Value("${PLC.WW77}")
-//	private String WW77;
-//	@Value("${PLC.WW78}")
-//	private String WW78;
-//	@Value("${PLC.WW79}")
-//	private String WW79;
-//	@Value("${PLC.WW80}")
-//	private String WW80;
-//	@Value("${PLC.WW81}")
-//	private String WW81;
-//	@Value("${PLC.WW82}")
-//	private String WW82;
-//	@Value("${PLC.WW83}")
-//	private String WW83;
-//	@Value("${PLC.WW84}")
-//	private String WW84;
-//	@Value("${PLC.WW85}")
-//	private String WW85;
-//	@Value("${PLC.WW86}")
-//	private String WW86;
-//	@Value("${PLC.WW87}")
-//	private String WW87;
-//	@Value("${PLC.WW88}")
-//	private String WW88;
-//	@Value("${PLC.WW89}")
-//	private String WW89;
-//	@Value("${PLC.WW90}")
-//	private String WW90;
-//	@Value("${PLC.WW91}")
-//	private String WW91;
-//	@Value("${PLC.WW92}")
-//	private String WW92;
-//	@Value("${PLC.WW93}")
-//	private String WW93;
-//	@Value("${PLC.WW94}")
-//	private String WW94;
-//	
-//	//QT数据
-//	@Value("${PLC.WWQT0}")
-//	private String WWQT0;
-//	@Value("${PLC.WWQT1}")
-//	private String WWQT1;
-//	@Value("${PLC.WWQT2}")
-//	private String WWQT2;
-//	@Value("${PLC.WWQT3}")
-//	private String WWQT3;
-//	@Value("${PLC.WWQT4}")
-//	private String WWQT4;
-//	@Value("${PLC.WWQT5}")
-//	private String WWQT5;
-//	@Value("${PLC.WWQT6}")
-//	private String WWQT6;
-//	@Value("${PLC.WWQT7}")
-//	private String WWQT7;
-//	@Value("${PLC.WWQT8}")
-//	private String WWQT8;
-//	@Value("${PLC.WWQT9}")
-//	private String WWQT9;
-//	
+//	//PLC地址点位获取类
+//    @Autowired
+//    Peripheral_Address Ph_Address;
+//	//连接池工具类
 //	@Autowired
-//	SiemensPlcConfig SiemensPlcConfig;	 	
+//	SiemensPlcConfig SiemensPlcConfig;	 
+//	//实体类
 //	@Autowired
 //	Peripheral_Data Peripheral_Data;
+//	//实体类
 //	@Autowired
 //	Peripheral_qt Peripheral_qt;
+//	//实体类
 //	@Autowired
 //	Newly_serviceimp Newly_serviceimp;
+//	//service
 //	@Autowired
 //	Peripheral_service Peripheral_serviceimp;
 //	
@@ -261,112 +56,112 @@
 //		
 //		if (siemensPLC.ConnectServer().IsSuccess) {
 //			//外围数据获取
-//			Peripheral_Data.setWw0(siemensPLC.ReadFloat(WW0).Content);
-//			Peripheral_Data.setWw1(siemensPLC.ReadFloat(WW1).Content);
-//			Peripheral_Data.setWw2(siemensPLC.ReadFloat(WW2).Content);
-//			Peripheral_Data.setWw3(siemensPLC.ReadFloat(WW3).Content);
-//			Peripheral_Data.setWw4(siemensPLC.ReadFloat(WW4).Content);
-//			Peripheral_Data.setWw5(siemensPLC.ReadBool(WW5).Content);
-//			Peripheral_Data.setWw6(siemensPLC.ReadBool(WW6).Content);
-//			Peripheral_Data.setWw7(siemensPLC.ReadFloat(WW7).Content);
-//			Peripheral_Data.setWw8(siemensPLC.ReadFloat(WW8).Content);
-//			Peripheral_Data.setWw9(siemensPLC.ReadFloat(WW9).Content);
-//			Peripheral_Data.setWw10(siemensPLC.ReadFloat(WW10).Content);
-//			Peripheral_Data.setWw11(siemensPLC.ReadFloat(WW11).Content);
-//			Peripheral_Data.setWw12(siemensPLC.ReadBool(WW12).Content);
-//			Peripheral_Data.setWw13(siemensPLC.ReadBool(WW13).Content);
-//			Peripheral_Data.setWw14(siemensPLC.ReadFloat(WW14).Content);
-//			Peripheral_Data.setWw15(siemensPLC.ReadFloat(WW15).Content);
-//			Peripheral_Data.setWw16(siemensPLC.ReadFloat(WW16).Content);
-//			Peripheral_Data.setWw17(siemensPLC.ReadFloat(WW17).Content);
-//			Peripheral_Data.setWw18(siemensPLC.ReadFloat(WW18).Content);
-//			Peripheral_Data.setWw19(siemensPLC.ReadBool(WW19).Content);
-//			Peripheral_Data.setWw20(siemensPLC.ReadBool(WW20).Content);
-//			Peripheral_Data.setWw21(siemensPLC.ReadFloat(WW21).Content);
-//			Peripheral_Data.setWw22(siemensPLC.ReadFloat(WW22).Content);
-//			Peripheral_Data.setWw23(siemensPLC.ReadFloat(WW23).Content);
-//			Peripheral_Data.setWw24(siemensPLC.ReadFloat(WW24).Content);
-//			Peripheral_Data.setWw25(siemensPLC.ReadFloat(WW25).Content);
-//			Peripheral_Data.setWw26(siemensPLC.ReadFloat(WW26).Content);
-//			Peripheral_Data.setWw27(siemensPLC.ReadFloat(WW27).Content);
-//			Peripheral_Data.setWw28(siemensPLC.ReadFloat(WW28).Content);
-//			Peripheral_Data.setWw29(siemensPLC.ReadFloat(WW29).Content);
-//			Peripheral_Data.setWw30(siemensPLC.ReadFloat(WW30).Content);
-//			Peripheral_Data.setWw31(siemensPLC.ReadFloat(WW31).Content);
-//			Peripheral_Data.setWw32(siemensPLC.ReadFloat(WW32).Content);
-//			Peripheral_Data.setWw33(siemensPLC.ReadFloat(WW33).Content);
-//			Peripheral_Data.setWw34(siemensPLC.ReadFloat(WW34).Content);
-//			Peripheral_Data.setWw35(siemensPLC.ReadBool(WW35).Content);
-//			Peripheral_Data.setWw36(siemensPLC.ReadBool(WW36).Content);
-//			Peripheral_Data.setWw37(siemensPLC.ReadFloat(WW37).Content);
-//			Peripheral_Data.setWw38(siemensPLC.ReadFloat(WW38).Content);
-//			Peripheral_Data.setWw39(siemensPLC.ReadFloat(WW39).Content);
-//			Peripheral_Data.setWw40(siemensPLC.ReadFloat(WW40).Content);
-//			Peripheral_Data.setWw41(siemensPLC.ReadFloat(WW41).Content);
-//			Peripheral_Data.setWw42(siemensPLC.ReadBool(WW42).Content);
-//			Peripheral_Data.setWw43(siemensPLC.ReadBool(WW43).Content);
-//			Peripheral_Data.setWw44(siemensPLC.ReadFloat(WW44).Content);
-//			Peripheral_Data.setWw45(siemensPLC.ReadFloat(WW45).Content);
-//			Peripheral_Data.setWw46(siemensPLC.ReadFloat(WW46).Content);
-//			Peripheral_Data.setWw47(siemensPLC.ReadFloat(WW47).Content);
-//			Peripheral_Data.setWw48(siemensPLC.ReadFloat(WW48).Content);
-//			Peripheral_Data.setWw49(siemensPLC.ReadBool(WW49).Content);
-//			Peripheral_Data.setWw50(siemensPLC.ReadBool(WW50).Content);
-//			Peripheral_Data.setWw51(siemensPLC.ReadFloat(WW51).Content);
-//			Peripheral_Data.setWw52(siemensPLC.ReadFloat(WW52).Content);
-//			Peripheral_Data.setWw53(siemensPLC.ReadFloat(WW53).Content);
-//			Peripheral_Data.setWw54(siemensPLC.ReadFloat(WW54).Content);
-//			Peripheral_Data.setWw55(siemensPLC.ReadFloat(WW55).Content);
-//			Peripheral_Data.setWw56(siemensPLC.ReadBool(WW56).Content);
-//			Peripheral_Data.setWw57(siemensPLC.ReadBool(WW57).Content);
-//			Peripheral_Data.setWw58(siemensPLC.ReadFloat(WW58).Content);
-//			Peripheral_Data.setWw59(siemensPLC.ReadFloat(WW59).Content);
-//			Peripheral_Data.setWw60(siemensPLC.ReadFloat(WW60).Content);
-//			Peripheral_Data.setWw61(siemensPLC.ReadFloat(WW61).Content);
-//			Peripheral_Data.setWw62(siemensPLC.ReadFloat(WW62).Content);
-//			Peripheral_Data.setWw63(siemensPLC.ReadBool(WW63).Content);
-//			Peripheral_Data.setWw64(siemensPLC.ReadBool(WW64).Content);
-//			Peripheral_Data.setWw65(siemensPLC.ReadFloat(WW65).Content);
-//			Peripheral_Data.setWw66(siemensPLC.ReadFloat(WW66).Content);
-//			Peripheral_Data.setWw67(siemensPLC.ReadFloat(WW67).Content);
-//			Peripheral_Data.setWw68(siemensPLC.ReadFloat(WW68).Content);
-//			Peripheral_Data.setWw69(siemensPLC.ReadFloat(WW69).Content);
-//			Peripheral_Data.setWw70(siemensPLC.ReadBool(WW70).Content);
-//			Peripheral_Data.setWw71(siemensPLC.ReadBool(WW71).Content);
-//			Peripheral_Data.setWw72(siemensPLC.ReadFloat(WW72).Content);
-//			Peripheral_Data.setWw73(siemensPLC.ReadFloat(WW73).Content);
-//			Peripheral_Data.setWw74(siemensPLC.ReadFloat(WW74).Content);
-//			Peripheral_Data.setWw75(siemensPLC.ReadFloat(WW75).Content);
-//			Peripheral_Data.setWw76(siemensPLC.ReadFloat(WW76).Content);
-//			Peripheral_Data.setWw77(siemensPLC.ReadBool(WW77).Content);
-//			Peripheral_Data.setWw78(siemensPLC.ReadBool(WW78).Content);
-//			Peripheral_Data.setWw79(siemensPLC.ReadFloat(WW79).Content);
-//			Peripheral_Data.setWw80(siemensPLC.ReadFloat(WW80).Content);
-//			Peripheral_Data.setWw81(siemensPLC.ReadFloat(WW81).Content);
-//			Peripheral_Data.setWw82(siemensPLC.ReadFloat(WW82).Content);
-//			Peripheral_Data.setWw83(siemensPLC.ReadFloat(WW83).Content);
-//			Peripheral_Data.setWw84(siemensPLC.ReadBool(WW84).Content);
-//			Peripheral_Data.setWw85(siemensPLC.ReadBool(WW85).Content);
-//			Peripheral_Data.setWw86(siemensPLC.ReadFloat(WW86).Content);
-//			Peripheral_Data.setWw87(siemensPLC.ReadFloat(WW87).Content);
-//			Peripheral_Data.setWw88(siemensPLC.ReadBool(WW88).Content);
-//			Peripheral_Data.setWw89(siemensPLC.ReadFloat(WW89).Content);
-//			Peripheral_Data.setWw90(siemensPLC.ReadFloat(WW90).Content);
-//			Peripheral_Data.setWw91(siemensPLC.ReadBool(WW91).Content);
-//			Peripheral_Data.setWw92(siemensPLC.ReadFloat(WW92).Content);
-//			Peripheral_Data.setWw93(siemensPLC.ReadFloat(WW93).Content);
-//			Peripheral_Data.setWw94(siemensPLC.ReadBool(WW94).Content);
+//			Peripheral_Data.setWw0(siemensPLC.ReadFloat(Ph_Address.getWW0()).Content);
+//			Peripheral_Data.setWw1(siemensPLC.ReadFloat(Ph_Address.getWW1()).Content);
+//			Peripheral_Data.setWw2(siemensPLC.ReadFloat(Ph_Address.getWW2()).Content);
+//			Peripheral_Data.setWw3(siemensPLC.ReadFloat(Ph_Address.getWW3()).Content);
+//			Peripheral_Data.setWw4(siemensPLC.ReadFloat(Ph_Address.getWW4()).Content);
+//			Peripheral_Data.setWw5(siemensPLC.ReadBool(Ph_Address.getWW5()).Content);
+//			Peripheral_Data.setWw6(siemensPLC.ReadBool(Ph_Address.getWW6()).Content);
+//			Peripheral_Data.setWw7(siemensPLC.ReadFloat(Ph_Address.getWW7()).Content);
+//			Peripheral_Data.setWw8(siemensPLC.ReadFloat(Ph_Address.getWW8()).Content);
+//			Peripheral_Data.setWw9(siemensPLC.ReadFloat(Ph_Address.getWW9()).Content);
+//			Peripheral_Data.setWw10(siemensPLC.ReadFloat(Ph_Address.getWW10()).Content);
+//			Peripheral_Data.setWw11(siemensPLC.ReadFloat(Ph_Address.getWW11()).Content);
+//			Peripheral_Data.setWw12(siemensPLC.ReadBool(Ph_Address.getWW12()).Content);
+//			Peripheral_Data.setWw13(siemensPLC.ReadBool(Ph_Address.getWW13()).Content);
+//			Peripheral_Data.setWw14(siemensPLC.ReadFloat(Ph_Address.getWW14()).Content);
+//			Peripheral_Data.setWw15(siemensPLC.ReadFloat(Ph_Address.getWW15()).Content);
+//			Peripheral_Data.setWw16(siemensPLC.ReadFloat(Ph_Address.getWW16()).Content);
+//			Peripheral_Data.setWw17(siemensPLC.ReadFloat(Ph_Address.getWW17()).Content);
+//			Peripheral_Data.setWw18(siemensPLC.ReadFloat(Ph_Address.getWW18()).Content);
+//			Peripheral_Data.setWw19(siemensPLC.ReadBool(Ph_Address.getWW19()).Content);
+//			Peripheral_Data.setWw20(siemensPLC.ReadBool(Ph_Address.getWW20()).Content);
+//			Peripheral_Data.setWw21(siemensPLC.ReadFloat(Ph_Address.getWW21()).Content);
+//			Peripheral_Data.setWw22(siemensPLC.ReadFloat(Ph_Address.getWW22()).Content);
+//			Peripheral_Data.setWw23(siemensPLC.ReadFloat(Ph_Address.getWW23()).Content);
+//			Peripheral_Data.setWw24(siemensPLC.ReadFloat(Ph_Address.getWW24()).Content);
+//			Peripheral_Data.setWw25(siemensPLC.ReadFloat(Ph_Address.getWW25()).Content);
+//			Peripheral_Data.setWw26(siemensPLC.ReadFloat(Ph_Address.getWW26()).Content);
+//			Peripheral_Data.setWw27(siemensPLC.ReadFloat(Ph_Address.getWW27()).Content);
+//			Peripheral_Data.setWw28(siemensPLC.ReadFloat(Ph_Address.getWW28()).Content);
+//			Peripheral_Data.setWw29(siemensPLC.ReadFloat(Ph_Address.getWW29()).Content);
+//			Peripheral_Data.setWw30(siemensPLC.ReadFloat(Ph_Address.getWW30()).Content);
+//			Peripheral_Data.setWw31(siemensPLC.ReadFloat(Ph_Address.getWW31()).Content);
+//			Peripheral_Data.setWw32(siemensPLC.ReadFloat(Ph_Address.getWW32()).Content);
+//			Peripheral_Data.setWw33(siemensPLC.ReadFloat(Ph_Address.getWW33()).Content);
+//			Peripheral_Data.setWw34(siemensPLC.ReadFloat(Ph_Address.getWW34()).Content);
+//			Peripheral_Data.setWw35(siemensPLC.ReadBool(Ph_Address.getWW35()).Content);
+//			Peripheral_Data.setWw36(siemensPLC.ReadBool(Ph_Address.getWW36()).Content);
+//			Peripheral_Data.setWw37(siemensPLC.ReadFloat(Ph_Address.getWW37()).Content);
+//			Peripheral_Data.setWw38(siemensPLC.ReadFloat(Ph_Address.getWW38()).Content);
+//			Peripheral_Data.setWw39(siemensPLC.ReadFloat(Ph_Address.getWW39()).Content);
+//			Peripheral_Data.setWw40(siemensPLC.ReadFloat(Ph_Address.getWW40()).Content);
+//			Peripheral_Data.setWw41(siemensPLC.ReadFloat(Ph_Address.getWW41()).Content);
+//			Peripheral_Data.setWw42(siemensPLC.ReadBool(Ph_Address.getWW42()).Content);
+//			Peripheral_Data.setWw43(siemensPLC.ReadBool(Ph_Address.getWW43()).Content);
+//			Peripheral_Data.setWw44(siemensPLC.ReadFloat(Ph_Address.getWW44()).Content);
+//			Peripheral_Data.setWw45(siemensPLC.ReadFloat(Ph_Address.getWW45()).Content);
+//			Peripheral_Data.setWw46(siemensPLC.ReadFloat(Ph_Address.getWW46()).Content);
+//			Peripheral_Data.setWw47(siemensPLC.ReadFloat(Ph_Address.getWW47()).Content);
+//			Peripheral_Data.setWw48(siemensPLC.ReadFloat(Ph_Address.getWW48()).Content);
+//			Peripheral_Data.setWw49(siemensPLC.ReadBool(Ph_Address.getWW49()).Content);
+//			Peripheral_Data.setWw50(siemensPLC.ReadBool(Ph_Address.getWW50()).Content);
+//			Peripheral_Data.setWw51(siemensPLC.ReadFloat(Ph_Address.getWW51()).Content);
+//			Peripheral_Data.setWw52(siemensPLC.ReadFloat(Ph_Address.getWW52()).Content);
+//			Peripheral_Data.setWw53(siemensPLC.ReadFloat(Ph_Address.getWW53()).Content);
+//			Peripheral_Data.setWw54(siemensPLC.ReadFloat(Ph_Address.getWW54()).Content);
+//			Peripheral_Data.setWw55(siemensPLC.ReadFloat(Ph_Address.getWW55()).Content);
+//			Peripheral_Data.setWw56(siemensPLC.ReadBool(Ph_Address.getWW56()).Content);
+//			Peripheral_Data.setWw57(siemensPLC.ReadBool(Ph_Address.getWW57()).Content);
+//			Peripheral_Data.setWw58(siemensPLC.ReadFloat(Ph_Address.getWW58()).Content);
+//			Peripheral_Data.setWw59(siemensPLC.ReadFloat(Ph_Address.getWW59()).Content);
+//			Peripheral_Data.setWw60(siemensPLC.ReadFloat(Ph_Address.getWW60()).Content);
+//			Peripheral_Data.setWw61(siemensPLC.ReadFloat(Ph_Address.getWW61()).Content);
+//			Peripheral_Data.setWw62(siemensPLC.ReadFloat(Ph_Address.getWW62()).Content);
+//			Peripheral_Data.setWw63(siemensPLC.ReadBool(Ph_Address.getWW63()).Content);
+//			Peripheral_Data.setWw64(siemensPLC.ReadBool(Ph_Address.getWW64()).Content);
+//			Peripheral_Data.setWw65(siemensPLC.ReadFloat(Ph_Address.getWW65()).Content);
+//			Peripheral_Data.setWw66(siemensPLC.ReadFloat(Ph_Address.getWW66()).Content);
+//			Peripheral_Data.setWw67(siemensPLC.ReadFloat(Ph_Address.getWW67()).Content);
+//			Peripheral_Data.setWw68(siemensPLC.ReadFloat(Ph_Address.getWW68()).Content);
+//			Peripheral_Data.setWw69(siemensPLC.ReadFloat(Ph_Address.getWW69()).Content);
+//			Peripheral_Data.setWw70(siemensPLC.ReadBool(Ph_Address.getWW70()).Content);
+//			Peripheral_Data.setWw71(siemensPLC.ReadBool(Ph_Address.getWW71()).Content);
+//			Peripheral_Data.setWw72(siemensPLC.ReadFloat(Ph_Address.getWW72()).Content);
+//			Peripheral_Data.setWw73(siemensPLC.ReadFloat(Ph_Address.getWW73()).Content);
+//			Peripheral_Data.setWw74(siemensPLC.ReadFloat(Ph_Address.getWW74()).Content);
+//			Peripheral_Data.setWw75(siemensPLC.ReadFloat(Ph_Address.getWW75()).Content);
+//			Peripheral_Data.setWw76(siemensPLC.ReadFloat(Ph_Address.getWW76()).Content);
+//			Peripheral_Data.setWw77(siemensPLC.ReadBool(Ph_Address.getWW77()).Content);
+//			Peripheral_Data.setWw78(siemensPLC.ReadBool(Ph_Address.getWW78()).Content);
+//			Peripheral_Data.setWw79(siemensPLC.ReadFloat(Ph_Address.getWW79()).Content);
+//			Peripheral_Data.setWw80(siemensPLC.ReadFloat(Ph_Address.getWW80()).Content);
+//			Peripheral_Data.setWw81(siemensPLC.ReadFloat(Ph_Address.getWW81()).Content);
+//			Peripheral_Data.setWw82(siemensPLC.ReadFloat(Ph_Address.getWW82()).Content);
+//			Peripheral_Data.setWw83(siemensPLC.ReadFloat(Ph_Address.getWW83()).Content);
+//			Peripheral_Data.setWw84(siemensPLC.ReadBool(Ph_Address.getWW84()).Content);
+//			Peripheral_Data.setWw85(siemensPLC.ReadBool(Ph_Address.getWW85()).Content);
+//			Peripheral_Data.setWw86(siemensPLC.ReadFloat(Ph_Address.getWW86()).Content);
+//			Peripheral_Data.setWw87(siemensPLC.ReadFloat(Ph_Address.getWW87()).Content);
+//			Peripheral_Data.setWw88(siemensPLC.ReadBool(Ph_Address.getWW88()).Content);
+//			Peripheral_Data.setWw89(siemensPLC.ReadFloat(Ph_Address.getWW89()).Content);
+//			Peripheral_Data.setWw90(siemensPLC.ReadFloat(Ph_Address.getWW90()).Content);
+//			Peripheral_Data.setWw91(siemensPLC.ReadBool(Ph_Address.getWW91()).Content);
+//			Peripheral_Data.setWw92(siemensPLC.ReadFloat(Ph_Address.getWW92()).Content);
+//			Peripheral_Data.setWw93(siemensPLC.ReadFloat(Ph_Address.getWW93()).Content);
+//			Peripheral_Data.setWw94(siemensPLC.ReadBool(Ph_Address.getWW94()).Content);
 //			//QT
-//			Peripheral_qt.setWwqt0(siemensPLC.ReadFloat(WWQT0).Content);
-//			Peripheral_qt.setWwqt1(siemensPLC.ReadFloat(WWQT1).Content);
-//			Peripheral_qt.setWwqt2(siemensPLC.ReadBool(WWQT2).Content);
-//			Peripheral_qt.setWwqt3(siemensPLC.ReadFloat(WWQT3).Content);
-//			Peripheral_qt.setWwqt4(siemensPLC.ReadFloat(WWQT4).Content);
-//			Peripheral_qt.setWwqt5(siemensPLC.ReadBool(WWQT5).Content);
-//			Peripheral_qt.setWwqt6(siemensPLC.ReadBool(WWQT6).Content);
-//			Peripheral_qt.setWwqt7(siemensPLC.ReadFloat(WWQT7).Content);
-//			Peripheral_qt.setWwqt8(siemensPLC.ReadBool(WWQT8).Content);
-//			Peripheral_qt.setWwqt9(siemensPLC.ReadBool(WWQT9).Content);
+//			Peripheral_qt.setWwqt0(siemensPLC.ReadFloat(Ph_Address.getWWQT0()).Content);
+//			Peripheral_qt.setWwqt1(siemensPLC.ReadFloat(Ph_Address.getWWQT1()).Content);
+//			Peripheral_qt.setWwqt2(siemensPLC.ReadBool(Ph_Address.getWWQT2()).Content);
+//			Peripheral_qt.setWwqt3(siemensPLC.ReadFloat(Ph_Address.getWWQT3()).Content);
+//			Peripheral_qt.setWwqt4(siemensPLC.ReadFloat(Ph_Address.getWWQT4()).Content);
+//			Peripheral_qt.setWwqt5(siemensPLC.ReadBool(Ph_Address.getWWQT5()).Content);
+//			Peripheral_qt.setWwqt6(siemensPLC.ReadBool(Ph_Address.getWWQT6()).Content);
+//			Peripheral_qt.setWwqt7(siemensPLC.ReadFloat(Ph_Address.getWWQT7()).Content);
+//			Peripheral_qt.setWwqt8(siemensPLC.ReadBool(Ph_Address.getWWQT8()).Content);
+//			Peripheral_qt.setWwqt9(siemensPLC.ReadBool(Ph_Address.getWWQT9()).Content);
 //			Peripheral_serviceimp.setPeripheral_data(Peripheral_Data);
 //			Newly_serviceimp.setNewlyData(Peripheral_qt);
 //		} else {

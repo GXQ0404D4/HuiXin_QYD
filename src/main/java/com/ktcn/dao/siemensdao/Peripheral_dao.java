@@ -28,4 +28,16 @@ public interface Peripheral_dao {
 			+ ",#{p_da.ww86},#{p_da.ww87},#{p_da.ww88},#{p_da.ww89},#{p_da.ww90},#{p_da.ww91},#{p_da.ww92},#{p_da.ww93},#{p_da.ww94},NOW(),NOW())")
 	void setPeripheral_data(@Param("p_da") Peripheral_Data p_da);
 
+	
+	@Insert("INSERT INTO peripheral_data_hour VALUES (null,#{p_dhour.ww0},#{p_dhour.ww1},#{p_dhour.ww2},#{p_dhour.ww3},#{p_dhour.ww4},#{p_dhour.ww5},#{p_dhour.ww6},#{p_dhour.ww7},#{p_dhour.ww8}"
+			+ ",#{p_dhour.ww9},#{p_dhour.ww10},#{p_dhour.ww11},#{p_dhour.ww12},#{p_dhour.ww13},#{p_dhour.ww14},#{p_dhour.ww15},#{p_dhour.ww16},#{p_dhour.ww17},#{p_dhour.ww18},#{p_dhour.ww19}"
+			+ ",#{p_dhour.ww20},#{p_dhour.ww21},#{p_dhour.ww22},#{p_dhour.ww23},#{p_dhour.ww24},#{p_dhour.ww25},#{p_dhour.ww26},#{p_dhour.ww27},#{p_dhour.ww28},#{p_dhour.ww29},#{p_dhour.ww30}"
+			+ ",#{p_dhour.ww31},#{p_dhour.ww32},#{p_dhour.ww33},#{p_dhour.ww34},#{p_dhour.ww35},#{p_dhour.ww36},#{p_dhour.ww37},#{p_dhour.ww38},#{p_dhour.ww39},#{p_dhour.ww40},#{p_dhour.ww41}"
+			+ ",#{p_dhour.ww42},#{p_dhour.ww43},#{p_dhour.ww44},#{p_dhour.ww45},#{p_dhour.ww46},#{p_dhour.ww47},#{p_dhour.ww48},#{p_dhour.ww49},#{p_dhour.ww50},#{p_dhour.ww51},#{p_dhour.ww52}"
+			+ ",#{p_dhour.ww53},#{p_dhour.ww54},#{p_dhour.ww55},#{p_dhour.ww56},#{p_dhour.ww57},#{p_dhour.ww58},#{p_dhour.ww59},#{p_dhour.ww60},#{p_dhour.ww61},#{p_dhour.ww62},#{p_dhour.ww63}"
+			+ ",#{p_dhour.ww64},#{p_dhour.ww65},#{p_dhour.ww66},#{p_dhour.ww67},#{p_dhour.ww68},#{p_dhour.ww69},#{p_dhour.ww70},#{p_dhour.ww71},#{p_dhour.ww72},#{p_dhour.ww73},#{p_dhour.ww74}"
+			+ ",#{p_dhour.ww75},#{p_dhour.ww76},#{p_dhour.ww77},#{p_dhour.ww78},#{p_dhour.ww79},#{p_dhour.ww80},#{p_dhour.ww81},#{p_dhour.ww82},#{p_dhour.ww83},#{p_dhour.ww84},#{p_dhour.ww85}"
+			+ ",#{p_dhour.ww86},#{p_dhour.ww87},#{p_dhour.ww88},#{p_dhour.ww89},#{p_dhour.ww90},#{p_dhour.ww91},#{p_dhour.ww92},#{p_dhour.ww93},#{p_dhour.ww94},NOW(),NOW())")
+	void setPeripheral_data_hour(@Param("p_dhour") Peripheral_Data p_dhour);
+
 }

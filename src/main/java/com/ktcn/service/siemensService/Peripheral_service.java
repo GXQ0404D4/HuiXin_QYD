@@ -12,5 +12,6 @@ import com.ktcn.entity.siemensentity.Peripheral_qt;
 public interface Peripheral_service {
 
 	void setPeripheral_data(Peripheral_Data p_da);
+	void setPeripheral_data_hour();
 
 }

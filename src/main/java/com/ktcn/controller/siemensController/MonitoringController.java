@@ -15,7 +15,8 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
  * @author 作者 :Runaway programmer
- * @version 创建时间：2020年6月11日 上午10:21:29 类说明 : 监控界面数据获取以及操作
+ * @version 创建时间：2020年6月11日 上午10:21:29 
+ * 类说明 : 监控界面数据获取以及操作
  */
 
 @RestController
@@ -235,6 +236,13 @@ public class MonitoringController {
 		}
 		siemensPLC.ConnectClose();
 		return "ununited";
+		
+	}
+	
+	@RequestMapping("/dryingMachineQT")
+	public String  setDryingMachine() {
+		
+		return null;
 		
 	}
 }

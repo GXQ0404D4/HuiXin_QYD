@@ -35,7 +35,7 @@ public class DryingMachine_serviceimp implements DryingMachine_service{
 //	@Scheduled(cron = "0/1 * * * * ?")
 	public void setDryingMachineDataHour() {
 		// TODO Auto-generated method stub
-		if (dMHour==null && dMHour.equals("")) {
+		if (dMHour==null || dMHour.equals("")) {
 			try {
 				setDryingMachineDataHour();
 			} catch (Exception e) {

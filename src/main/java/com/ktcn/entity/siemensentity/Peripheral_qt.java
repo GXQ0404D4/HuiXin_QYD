@@ -16,6 +16,7 @@ import lombok.Data;
 @Data
 @Component
 public class Peripheral_qt {
+	private int id;
 	private Object wwqt0;   //低压端压力低
 	private Object wwqt1;   //低压端压力高
 	private Object wwqt2;   //低压端手自动

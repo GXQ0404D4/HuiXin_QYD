@@ -16,6 +16,7 @@ import lombok.Data;
 @Component
 public class Peripheral_Data {
 
+	private int id;
 	private Object ww0;
 	private Object ww1;
 	private Object ww2;

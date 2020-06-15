@@ -21,15 +21,27 @@ import com.ktcn.entity.Tb_user;
 @Mapper
 @Repository
 public interface ProductionDao {
-	// 查看全部生产管理表信息
-	@Select("SELECT * FROM `production_plan` ORDER BY pdt_time DESC")
-	List<Production_plan> findAll();
-	// 生产管理条件搜索
-	@Select("SELECT * FROM production_plan WHERE pdt_people LIKE '%${pdt_select}%'")
-	List<Production_plan> findByParam(@Param("pdt_select") String pdt_select);
-	// 生产管理时间区间查询
-	@SelectProvider(method = "findByTime",type = ProductionSQL.class)
-	List<Production_plan> findByTime(@Param("pdt_selecttimeA") String pdt_selecttimeA, @Param("pdt_selecttimeB") String pdt_selecttimeB);
+	// 查询总条数
+	@Select("SELECT COUNT(id) FROM `production_plan` "
+			+ "WHERE pdt_people LIKE '%${pdt_people}%' "
+			+ "AND pdt_time BETWEEN #{timeA} AND #{timeB}")
+	int findTotal(
+			@Param("pdt_people") String pdt_people, 
+			@Param("timeA") String timeA, 
+			@Param("timeB") String timeB);
+	// 查询数据
+	@Select("SELECT * FROM `production_plan` "
+			+ "WHERE pdt_people LIKE '%${pdt_people}%' "
+			+ "AND pdt_time BETWEEN #{timeA} AND #{timeB} "
+			+ "ORDER BY pdt_time DESC "
+			+ "limit #{x},#{sizeNum}")
+	List<Production_plan> find(
+			@Param("pdt_people") String pdt_people, 
+			@Param("timeA") String timeA, 
+			@Param("timeB") String timeB, 
+			@Param("x") int x, 
+			@Param("sizeNum") int sizeNum);
+	
 	// 新增生产管理
 	@Insert("INSERT INTO production_plan (id,pdt_time,pdt_content,pdt_people_id,pdt_people,pdt_state,op_state,data_state) "
 			+ "VALUES (NULL,#{map.pdt_time},#{map.pdt_content},#{user.user_id},#{user.name},#{map.pdt_state},0,0)")

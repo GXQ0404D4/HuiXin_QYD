@@ -1,6 +1,5 @@
 package com.ktcn.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.aspect.SysLog;
-import com.ktcn.entity.Production_plan;
 import com.ktcn.entity.Tb_user;
 import com.ktcn.service.ProductionService;
 
@@ -25,28 +23,10 @@ public class ProductionController {
 	@Resource
 	private ProductionService productionService;
 	
-	// 查看全部生产管理表信息
-	@RequestMapping("ProdactionMgt")
-	@SysLog(logModule = "生产管理", logName = "查看全部")
-	public List<Production_plan> ProdactionMgt() {
-		List<Production_plan> production = productionService.findAll();
-		return production;
-	}
-	
-	// 生产管理条件搜索
-	@RequestMapping("Prodaction_select")
-	@SysLog(logModule = "生产管理", logName = "条件搜索")
-	public List<Production_plan> Prodaction_select(String Pdt_select) {
-		List<Production_plan> production = productionService.findByParam(Pdt_select);
-		return production;
-	}
-	
-	// 生产管理时间区间查询
-	@RequestMapping("Prodaction_time")
-	@SysLog(logModule = "生产管理", logName = "时间区间查询")
-	public List<Production_plan> Prodaction_time(String Pdt_selecttimeA, String Pdt_selecttimeB) {
-		List<Production_plan> production = productionService.findByTime(Pdt_selecttimeA,Pdt_selecttimeB);
-		return production;
+	// 查询方法
+	@RequestMapping("proFind")
+	public Map<String,Object> find(String pageSize,int sizeNum,String pdt_people,String TimeA, String TimeB) {
+		return productionService.find(pageSize,sizeNum,pdt_people,TimeA, TimeB);
 	}
 	
 	// 新增生产管理

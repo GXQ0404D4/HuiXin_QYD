@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ktcn.entity.siemensentity.DryingMachine;
 import com.ktcn.entity.simensaddress.Monitoring_Address;
 import com.ktcn.simens.utils.SiemensPlcConfig;
+import com.ktcn.simens.PLCdata.DryingMachineDatagain;
 
 import HslCommunication.Core.Types.OperateResult;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
@@ -26,9 +28,13 @@ public class MonitoringController {
 	SiemensPlcConfig SiemensPlcConfig;
 	@Autowired
 	Monitoring_Address MT_Address;
+	@Autowired
+	DryingMachineDatagain DryingMachineDatagain;
 
 	@RequestMapping("/monitoringPage")
 	public Map<String, Object> getMonitoringData() {
+		DryingMachine dryingMachine = DryingMachineDatagain.getDryingMachineData();
+		
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
 		Map<String, Object> MMData = new HashMap<String, Object>();
 		if (siemensPLC.ConnectServer().IsSuccess) {
@@ -81,6 +87,9 @@ public class MonitoringController {
 			MMData.put("MD38", siemensPLC.ReadBool(MT_Address.getMD38()).Content);
 			MMData.put("MD39", siemensPLC.ReadBool(MT_Address.getMD39()).Content);
 			MMData.put("MD40", siemensPLC.ReadBool(MT_Address.getMD40()).Content);
+//			干燥机 运行状态和启停
+			MMData.put("MD42", siemensPLC.ReadBool(MT_Address.getMD40()).Content);
+			MMData.put("MD43", siemensPLC.ReadBool(MT_Address.getMD40()).Content);
 //			通讯复位
 //			MMData.put("MD41", siemensPLC.ReadBool(MT_Address.getMD41()).Content);
 		} else {

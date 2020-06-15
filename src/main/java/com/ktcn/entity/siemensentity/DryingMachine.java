@@ -28,6 +28,8 @@ public class DryingMachine {
 	private Object GZJ7; // 加载时间
 	private Object GZJ8; // 干燥机启动
 	private Object GZJ9; // 干燥机停止
+	private Object GZJ10; // 运行/停止
+	private Object GZJ11; // 报警
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	private Date GZ_time;//
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

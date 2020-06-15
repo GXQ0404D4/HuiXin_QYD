@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.ktcn.entity.siemensentity.Peripheral_Data;
+import com.ktcn.entity.siemensentity.Peripheral_entity;
 import com.ktcn.entity.siemensentity.Peripheral_qt;
 
 /**
@@ -26,7 +26,7 @@ public interface Peripheral_dao {
 			+ ",#{p_da.ww64},#{p_da.ww65},#{p_da.ww66},#{p_da.ww67},#{p_da.ww68},#{p_da.ww69},#{p_da.ww70},#{p_da.ww71},#{p_da.ww72},#{p_da.ww73},#{p_da.ww74}"
 			+ ",#{p_da.ww75},#{p_da.ww76},#{p_da.ww77},#{p_da.ww78},#{p_da.ww79},#{p_da.ww80},#{p_da.ww81},#{p_da.ww82},#{p_da.ww83},#{p_da.ww84},#{p_da.ww85}"
 			+ ",#{p_da.ww86},#{p_da.ww87},#{p_da.ww88},#{p_da.ww89},#{p_da.ww90},#{p_da.ww91},#{p_da.ww92},#{p_da.ww93},#{p_da.ww94},NOW(),NOW())")
-	void setPeripheral_data(@Param("p_da") Peripheral_Data p_da);
+	void setPeripheral_data(@Param("p_da") Peripheral_entity p_da);
 
 	
 	@Insert("INSERT INTO peripheral_data_hour VALUES (null,#{p_dhour.ww0},#{p_dhour.ww1},#{p_dhour.ww2},#{p_dhour.ww3},#{p_dhour.ww4},#{p_dhour.ww5},#{p_dhour.ww6},#{p_dhour.ww7},#{p_dhour.ww8}"
@@ -38,6 +38,6 @@ public interface Peripheral_dao {
 			+ ",#{p_dhour.ww64},#{p_dhour.ww65},#{p_dhour.ww66},#{p_dhour.ww67},#{p_dhour.ww68},#{p_dhour.ww69},#{p_dhour.ww70},#{p_dhour.ww71},#{p_dhour.ww72},#{p_dhour.ww73},#{p_dhour.ww74}"
 			+ ",#{p_dhour.ww75},#{p_dhour.ww76},#{p_dhour.ww77},#{p_dhour.ww78},#{p_dhour.ww79},#{p_dhour.ww80},#{p_dhour.ww81},#{p_dhour.ww82},#{p_dhour.ww83},#{p_dhour.ww84},#{p_dhour.ww85}"
 			+ ",#{p_dhour.ww86},#{p_dhour.ww87},#{p_dhour.ww88},#{p_dhour.ww89},#{p_dhour.ww90},#{p_dhour.ww91},#{p_dhour.ww92},#{p_dhour.ww93},#{p_dhour.ww94},NOW(),NOW())")
-	void setPeripheral_data_hour(@Param("p_dhour") Peripheral_Data p_dhour);
+	void setPeripheral_data_hour(@Param("p_dhour") Peripheral_entity p_dhour);
 
 }

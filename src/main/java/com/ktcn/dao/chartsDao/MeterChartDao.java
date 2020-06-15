@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
-import com.ktcn.entity.siemensentity.Peripheral_Data;
+import com.ktcn.entity.siemensentity.Peripheral_entity;
 
 /**
  * 外围仪表折线图持久层
@@ -40,6 +40,6 @@ public interface MeterChartDao {
 //			+ "WHERE e.pddate = '2020-06-10' "
 			+ "GROUP BY HOUR(e.pddatetime) "
 			+ "ORDER BY Hour(e.pddatetime);")
-	List<Peripheral_Data> find();
+	List<Peripheral_entity> find();
 
 }

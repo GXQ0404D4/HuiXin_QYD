@@ -16,10 +16,10 @@ import com.ktcn.entity.siemensentity.DryingMachine;
 @Repository
 public interface DryingMachine_dao {
 
-	@Insert("INSERT INTO drying_machine VALUES(null,'',#{dMac.GZJ0},#{dMac.GZJ1},#{dMac.GZJ2},#{dMac.GZJ3},#{dMac.GZJ4},#{dMac.GZJ5},#{dMac.GZJ6},#{dMac.GZJ7},#{dMac.GZJ8},#{dMac.GZJ9},NOW(),NOW())")
+	@Insert("INSERT INTO drying_machine VALUES(null,'',#{dMac.GZJ0},#{dMac.GZJ1},#{dMac.GZJ2},#{dMac.GZJ3},#{dMac.GZJ4},#{dMac.GZJ5},#{dMac.GZJ6},#{dMac.GZJ7},#{dMac.GZJ8},#{dMac.GZJ9},#{dMac.GZJ10},#{dMac.GZJ11},NOW(),NOW())")
 	void setDryingMachineData(@Param("dMac") DryingMachine dMac);
 
-	@Insert("INSERT INTO drying_machine_hour VALUES(null,'',#{dMac.GZJ0},#{dMac.GZJ1},#{dMac.GZJ2},#{dMac.GZJ3},#{dMac.GZJ4},#{dMac.GZJ5},#{dMac.GZJ6},#{dMac.GZJ7},#{dMac.GZJ8},#{dMac.GZJ9},NOW(),NOW())")
+	@Insert("INSERT INTO drying_machine_hour VALUES(null,'',#{dMac.GZJ0},#{dMac.GZJ1},#{dMac.GZJ2},#{dMac.GZJ3},#{dMac.GZJ4},#{dMac.GZJ5},#{dMac.GZJ6},#{dMac.GZJ7},#{dMac.GZJ8},#{dMac.GZJ9},#{dMac.GZJ10},#{dMac.GZJ11},NOW(),NOW())")
 	void setDryingMachineDataHour(@Param("dMac") DryingMachine dMac);
 
 }

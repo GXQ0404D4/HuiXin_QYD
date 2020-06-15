@@ -13,6 +13,6 @@ public interface DryingMachine_service {
 
 	void setDryingMachineData(DryingMachine dryingMachine);
 
-	void setDryingMachineDataHour();
+	void setDryingMachineDataHour(DryingMachine dryingMachine);
 
 }

@@ -1,6 +1,5 @@
 package com.ktcn.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.aspect.SysLog;
-import com.ktcn.entity.Error_recording;
 import com.ktcn.entity.Tb_user;
 import com.ktcn.service.FaultRecordService;
 
@@ -24,31 +22,10 @@ public class FaultRecordController {
 	@Resource
 	private FaultRecordService faultRecordService;
 	
-	// 跳转并查看所有故障记录
-	@RequestMapping("FaultRecordAll")
-	@SysLog(logModule = "故障记录", logName = "查看全部")
-	public List<Error_recording> FaultRecordAll(){
-		List<Error_recording> recording = faultRecordService.findAll();
-		for (Error_recording e : recording) {
-			System.out.println(e);
-		}
-		return recording;
-	}
-	
-	// 按时间查询故障记录
-	@RequestMapping("FaultRecord_time")
-	@SysLog(logModule = "故障记录", logName = "时间区间查看")
-	public List<Error_recording> FaultRecord_time(String TimeA, String TimeB){
-		List<Error_recording> recording = faultRecordService.findByTime(TimeA,TimeB);
-		return recording;
-	}
-	
-	// 按照故障机器名称查询
-	@RequestMapping(value="FaultRecord",method = RequestMethod.GET)
-	@SysLog(logModule = "故障记录", logName = "机器名称查询")
-	public List<Error_recording> getFaultRecordByName(String fault_machine){
-		List<Error_recording> recording = faultRecordService.findByName(fault_machine);
-		return recording;
+	// 查看方法
+	@RequestMapping("faultFind")
+	public Map<String,Object> find(String pageSize,int sizeNum,String falut_summary,String TimeA, String TimeB){
+		return faultRecordService.find(pageSize,sizeNum,falut_summary,TimeA, TimeB);
 	}
 	
 	// 新增故障记录

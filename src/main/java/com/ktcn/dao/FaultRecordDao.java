@@ -8,11 +8,9 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
-import com.ktcn.dao.providerSQL.FaultRecordSQL;
 import com.ktcn.entity.Error_recording;
 import com.ktcn.entity.Tb_user;
 
@@ -22,15 +20,27 @@ import com.ktcn.entity.Tb_user;
 @Mapper
 @Repository
 public interface FaultRecordDao {
-	// 跳转并查看所有故障记录
-	@Select("SELECT * FROM `error_recording` ORDER BY time DESC")
-	List<Error_recording> findAll();
-	// 按时间查询故障记录
-	@SelectProvider(method = "findByTime",type = FaultRecordSQL.class)
-	List<Error_recording> findByTime(String timeA, String timeB);
-	// 按照故障机器名称查询
-	@Select("SELECT * FROM `error_recording` WHERE fault_machine = #{fault_machine} ORDER BY time DESC")
-	List<Error_recording> findByName(@Param("fault_machine") String fault_machine);
+	// 查询总条数
+	@Select("SELECT COUNT(fault_id) FROM `error_recording` "
+			+ "WHERE falut_summary LIKE '%${falut_summary}%' "
+			+ "AND time BETWEEN #{timeA} AND #{timeB}")
+	int findTotal(
+			@Param("falut_summary") String falut_summary, 
+			@Param("timeA") String timeA, 
+			@Param("timeB") String timeB);
+	// 查询数据
+	@Select("SELECT * FROM `error_recording` "
+			+ "WHERE falut_summary LIKE '%${falut_summary}%' "
+			+ "AND time BETWEEN #{timeA} AND #{timeB} "
+			+ "ORDER BY time DESC "
+			+ "limit #{x},#{sizeNum}")
+	List<Error_recording> find(
+			@Param("falut_summary") String falut_summary, 
+			@Param("timeA") String timeA, 
+			@Param("timeB") String timeB, 
+			@Param("x") int x, 
+			@Param("sizeNum") int sizeNum);
+	
 	// 新增故障记录
 	@Insert("INSERT INTO `error_recording` (fault_id,time,fault_machine,fault_picture,falut_Reporter,falut_state) VALUES (NULL,#{map.time},#{map.fault_machine},#{map.fault_picture},#{user.name},0)")
 	void addFaultRecord(@Param("map") Map<String, String> map, @Param("user") Tb_user user);
@@ -40,5 +50,8 @@ public interface FaultRecordDao {
 	// 修改故障记录
 	@Update("UPDATE `error_recording` SET falut_people=#{user.name},Repair_time=#{map.Repair_time},falut_summary=#{map.falut_summary},falut_state=1 WHERE fault_id=#{map.fault_id}")
 	void updateFaultRecord(@Param("map") Map<String, String> map,@Param("user") Tb_user user);
+
+
+
 
 }

@@ -12,6 +12,6 @@ public interface DryService {
 	/*
 	 * 干燥机数据查询方法
 	 */
-	Map<String, Object> find(String pageSize, String time1, String time2);
+	Map<String, Object> find(String pageSize, int sizeNum, String time1, String time2);
 
 }

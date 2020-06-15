@@ -29,9 +29,10 @@ public interface MeterDao {
 	/*
 	 * 查询数据
 	 */
-	@Select("SELECT * FROM `peripheral_data` WHERE pddate BETWEEN #{time1} AND #{time2} ORDER BY pddatetime DESC limit #{x},10")
+	@Select("SELECT * FROM `peripheral_data` WHERE pddate BETWEEN #{time1} AND #{time2} ORDER BY pddatetime DESC limit #{x},#{sizeNum}")
 	List<Peripheral_Data> find(
 			@Param("time1") String time1,
 			@Param("time2") String time2,
-			@Param("x") int x);
+			@Param("x") int x,
+			@Param("sizeNum") int sizeNum);
 }

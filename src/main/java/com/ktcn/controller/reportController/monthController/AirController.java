@@ -25,8 +25,8 @@ public class AirController {
 	 * 空压机数据查询方法
 	 */
 	@RequestMapping("find")
-	public Map<String,Object> find(String pageSize,String eqName,String time1,String time2){
-		return airService.find(pageSize,eqName,time1,time2);
+	public Map<String,Object> find(String pageSize,int sizeNum,String eqName,String time1,String time2){
+		return airService.find(pageSize,sizeNum,eqName,time1,time2);
 	}
 	
 }

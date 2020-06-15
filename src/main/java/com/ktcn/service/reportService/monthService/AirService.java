@@ -11,6 +11,6 @@ public interface AirService {
 	/*
 	 * 空压机数据查询方法
 	 */
-	Map<String, Object> find(String pageSize, String eqName, String time1, String time2);
+	Map<String, Object> find(String pageSize, int sizeNum, String eqName, String time1, String time2);
 
 }

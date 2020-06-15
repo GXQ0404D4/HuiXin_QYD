@@ -25,7 +25,7 @@ public class MeterHController {
 	 * 外围仪表报表查询方法
 	 */
 	@RequestMapping("find")
-	public Map<String,Object> find(String pageSize,String time1,String time2){
-		return meterHService.find(pageSize,time1,time2);
+	public Map<String,Object> find(String pageSize,int sizeNum,String time1,String time2){
+		return meterHService.find(pageSize,sizeNum,time1,time2);
 	}
 }

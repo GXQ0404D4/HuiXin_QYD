@@ -29,9 +29,10 @@ public interface DryHDao {
 	/*
 	 * 查询数据
 	 */
-	@Select("SELECT * FROM `drying_machine_hour` WHERE GZ_time BETWEEN #{time1} AND #{time2} ORDER BY GZ_datatime DESC limit #{x},10")
+	@Select("SELECT * FROM `drying_machine_hour` WHERE GZ_time BETWEEN #{time1} AND #{time2} ORDER BY GZ_datatime DESC limit #{x},#{sizeNum}")
 	List<DryingMachine> find(
 			@Param("time1") String time1,
 			@Param("time2") String time2,
-			@Param("x") int x);
+			@Param("x") int x,
+			@Param("sizeNum") int sizeNum);
 }

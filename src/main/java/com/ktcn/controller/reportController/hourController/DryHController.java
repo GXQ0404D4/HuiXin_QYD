@@ -25,7 +25,7 @@ public class DryHController {
 	 * 干燥机数据查询方法
 	 */
 	@RequestMapping("find")
-	public Map<String,Object> find(String pageSize,String time1,String time2){
-		return dryHService.find(pageSize,time1,time2);
+	public Map<String,Object> find(String pageSize,int sizeNum,String time1,String time2){
+		return dryHService.find(pageSize,sizeNum,time1,time2);
 	}
 }

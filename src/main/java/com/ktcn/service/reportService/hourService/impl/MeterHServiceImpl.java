@@ -31,7 +31,7 @@ public class MeterHServiceImpl implements MeterHService {
 	 * 外围仪表报表查询方法
 	 */
 	@Override
-	public Map<String, Object> find(String pageSize, String time1, String time2) {
+	public Map<String, Object> find(String pageSize, int sizeNum, String time1, String time2) {
 		// 判断如果pageSize为NULL则pageSize为0
 		if (pageSize == null) {
 			pageSize = "1";
@@ -55,11 +55,11 @@ public class MeterHServiceImpl implements MeterHService {
 		// 查询数据总条数
 		count = meterHDao.findTotal(time1,time2);
 		// 获取总页数
-		countPage = PageReade.getCountPage(count, 10);
+		countPage = PageReade.getCountPage(count, sizeNum);
 		// 获取查询起始条数
-		x = PageReade.getPageSize(i, count, 10);
+		x = PageReade.getPageSize(i, count, sizeNum);
 		// 获取数据
-		List<Peripheral_Data> list = meterHDao.find(time1,time2,x);
+		List<Peripheral_Data> list = meterHDao.find(time1,time2,x,sizeNum);
 		
 		// 新建一个map集合承接返回数据
 		Map<String,Object> reMap = new HashMap<String,Object>();
@@ -67,7 +67,7 @@ public class MeterHServiceImpl implements MeterHService {
 		reMap.put("message", "操作成功");
 		reMap.put("totalpage", countPage); // 总页数
 		reMap.put("totalmess", count); // 总条数
-		reMap.put("pageSize", PageReade.getPageNum(i, count, 10)); // 当前页数
+		reMap.put("pageSize", PageReade.getPageNum(i, count, sizeNum)); // 当前页数
 		reMap.put("data", list);
 		
 		return reMap;

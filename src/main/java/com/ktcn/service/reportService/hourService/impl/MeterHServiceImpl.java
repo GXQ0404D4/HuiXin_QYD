@@ -12,7 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.dao.report.hourDao.MeterHDao;
-import com.ktcn.entity.siemensentity.Peripheral_Data;
+//import com.ktcn.entity.siemensentity.Peripheral_Data;
+import com.ktcn.entity.siemensentity.Peripheral_entity;
 import com.ktcn.service.reportService.hourService.MeterHService;
 import com.ktcn.utils.PageReade;
 /**
@@ -59,7 +60,7 @@ public class MeterHServiceImpl implements MeterHService {
 		// 获取查询起始条数
 		x = PageReade.getPageSize(i, count, 10);
 		// 获取数据
-		List<Peripheral_Data> list = meterHDao.find(time1,time2,x);
+		List<Peripheral_entity> list = meterHDao.find(time1,time2,x);
 		
 		// 新建一个map集合承接返回数据
 		Map<String,Object> reMap = new HashMap<String,Object>();

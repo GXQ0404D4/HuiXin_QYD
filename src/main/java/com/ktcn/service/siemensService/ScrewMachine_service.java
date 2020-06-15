@@ -16,6 +16,6 @@ public interface ScrewMachine_service {
 
 	void setScrewMachineData(Map<String, ScrewMachine> dataMap);
 
-	void setScrewMachineDataHour();
+	void setScrewMachineDataHour(Map<String, ScrewMachine> dataMap);
 
 }

@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.dao.excelExportDao.ExcelExportDao;
 import com.ktcn.entity.siemensentity.DryingMachine;
-import com.ktcn.entity.siemensentity.Peripheral_Data;
+import com.ktcn.entity.siemensentity.Peripheral_entity;
 import com.ktcn.entity.siemensentity.ScrewMachine;
 import com.ktcn.service.excelService.ExcelExportService;
 import com.ktcn.utils.Export;
@@ -154,7 +154,7 @@ public class ExcelExportServiceImpl implements ExcelExportService {
 		}
 		try {
 			// 获取数据
-			List<Peripheral_Data> query = excelExportDao.downloadExcelMeter(time1,time2);
+			List<Peripheral_entity> query = excelExportDao.downloadExcelMeter(time1,time2);
 			
 			// 标题
 			Map<String, String> column = new LinkedHashMap<String, String>();
@@ -175,7 +175,7 @@ public class ExcelExportServiceImpl implements ExcelExportService {
 			// excel内容
 			List<Map<String, Object>> listResult = new ArrayList<Map<String, Object>>();
 			if (query != null && !query.isEmpty()) {
-				for (Peripheral_Data vo : query) {
+				for (Peripheral_entity vo : query) {
 					Map<String, Object> hashMap = new LinkedHashMap<String, Object>();
 					hashMap.put("A1", vo.getPddatetime());
 					hashMap.put("A2", vo.getWw27());
@@ -330,7 +330,7 @@ public class ExcelExportServiceImpl implements ExcelExportService {
 		}
 		try {
 			// 获取数据
-			List<Peripheral_Data> query = excelExportDao.downloadExcelMeterh(time1,time2);
+			List<Peripheral_entity> query = excelExportDao.downloadExcelMeterh(time1,time2);
 			
 			// 标题
 			Map<String, String> column = new LinkedHashMap<String, String>();
@@ -351,7 +351,7 @@ public class ExcelExportServiceImpl implements ExcelExportService {
 			// excel内容
 			List<Map<String, Object>> listResult = new ArrayList<Map<String, Object>>();
 			if (query != null && !query.isEmpty()) {
-				for (Peripheral_Data vo : query) {
+				for (Peripheral_entity vo : query) {
 					Map<String, Object> hashMap = new LinkedHashMap<String, Object>();
 					hashMap.put("A1", vo.getPddatetime());
 					hashMap.put("A2", vo.getWw27());

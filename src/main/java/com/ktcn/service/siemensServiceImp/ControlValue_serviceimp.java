@@ -17,7 +17,6 @@ import com.ktcn.service.siemensService.ControlValue_service;
 * @version 创建时间：2020年6月10日 上午10:55:43
 * 类说明
 */
-@Component
 @Service
 public class ControlValue_serviceimp implements ControlValue_service{
 	
@@ -39,18 +38,8 @@ public class ControlValue_serviceimp implements ControlValue_service{
 //每小时执行一次
 //	@Scheduled(cron = "0 0 * * * ?")
 //	@Scheduled(cron = "0/1 * * * * ?")
-	public void setControlValueDataHour() {
-		// TODO Auto-generated method stub
-		if (ControlValuehour==null && ControlValuehour.equals("")) {
-			try {
-				setControlValueDataHour();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}else {
-			ControlValue_dao.setControlValueDataHour(ControlValuehour);
-		}
+	public void setControlValueDataHour(ControlValue CValue) {
+			ControlValue_dao.setControlValueDataHour(CValue);
 		
 	}
 

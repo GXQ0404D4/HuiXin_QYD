@@ -14,7 +14,7 @@ import lombok.Data;
  */
 @Data
 @Component
-public class Peripheral_Data {
+public class Peripheral_entity {
 
 	private int id;
 	private Object ww0;

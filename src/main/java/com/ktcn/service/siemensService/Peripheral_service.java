@@ -1,6 +1,6 @@
 package com.ktcn.service.siemensService;
 
-import com.ktcn.entity.siemensentity.Peripheral_Data;
+import com.ktcn.entity.siemensentity.Peripheral_entity;
 import com.ktcn.entity.siemensentity.Peripheral_qt;
 
 /**
@@ -11,7 +11,7 @@ import com.ktcn.entity.siemensentity.Peripheral_qt;
 
 public interface Peripheral_service {
 
-	void setPeripheral_data(Peripheral_Data p_da);
-	void setPeripheral_data_hour();
+	void setPeripheral_data(Peripheral_entity p_da);
+	void setPeripheral_data_hour(Peripheral_entity p_da);
 
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.dao.chartsDao.MeterChartDao;
-import com.ktcn.entity.siemensentity.Peripheral_Data;
+import com.ktcn.entity.siemensentity.Peripheral_entity;
 import com.ktcn.service.chartsService.MeterChartService;
 /**
  * 外围仪表折线图业务层实现类
@@ -32,7 +32,7 @@ public class MeterChartServiceImpl implements MeterChartService {
 		// 创建返回map
 		Map<String,Object> reMap = new HashMap<String,Object>();
 		// 获取数据
-		List<Peripheral_Data> list = meterChartDao.find();
+		List<Peripheral_entity> list = meterChartDao.find();
 		// 存入返回集合
 		reMap.put("code", "1");
 		reMap.put("message", "操作成功");

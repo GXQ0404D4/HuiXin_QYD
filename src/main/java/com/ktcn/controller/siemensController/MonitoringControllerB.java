@@ -1,5 +1,7 @@
 package com.ktcn.controller.siemensController;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ktcn.controller.semensData.PeripheralDataController;
+import com.ktcn.controller.semensData.ScrewMachineDataController;
+import com.ktcn.entity.siemensentity.Peripheral_entity;
+import com.ktcn.entity.siemensentity.Peripheral_qt;
+import com.ktcn.entity.siemensentity.ScrewMachine;
 import com.ktcn.entity.simensaddress.Monitoring_AddressB;
 import com.ktcn.simens.utils.SiemensPlcConfig;
 
@@ -22,8 +29,9 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 public class MonitoringControllerB {
 
 	@Autowired
-	Monitoring_AddressB MT_AddressB;
-
+	ScrewMachineDataController SMDReaml;
+	@Autowired
+	PeripheralDataController PDReaml;
 	@Autowired
 	SiemensPlcConfig SiemensPlcConfig;
 	
@@ -32,31 +40,26 @@ public class MonitoringControllerB {
     private final short data4=4;
 
 	@RequestMapping("/monitoringPageB")
-	public Map<String, Object> setMonitoringBData() {
-		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
+	public Map<String, Object> getMonitoringBData() {
 		Map<String, Object> MMDataB = new HashMap<String, Object>();
-		if (siemensPLC.ConnectServer().IsSuccess) {
-			MMDataB.put("QT0", siemensPLC.ReadBool(MT_AddressB.getQT0()).Content);
-			MMDataB.put("QT1", siemensPLC.ReadFloat(MT_AddressB.getQT1()).Content);
-			MMDataB.put("QT2", siemensPLC.ReadFloat(MT_AddressB.getQT2()).Content);
-			MMDataB.put("QT3", siemensPLC.ReadFloat(MT_AddressB.getQT3()).Content);
+		Peripheral_qt nLRealData = PDReaml.getNewLyRealData();
+		Peripheral_entity ppRealData = PDReaml.getPeripheralRealData();
+		Map<String, ScrewMachine> smReamldata = SMDReaml.getRealDataPage();
+			MMDataB.put("QT0",nLRealData.getWwqt2());
+			MMDataB.put("QT1",ppRealData.getWw44());
+			MMDataB.put("QT2",nLRealData.getWwqt0());
+			MMDataB.put("QT3",nLRealData.getWwqt1());
 
-			MMDataB.put("QT4", siemensPLC.ReadBool(MT_AddressB.getQT4()).Content);
-			MMDataB.put("QT5", siemensPLC.ReadFloat(MT_AddressB.getQT5()).Content);
-			MMDataB.put("QT6", siemensPLC.ReadFloat(MT_AddressB.getQT6()).Content);
-			MMDataB.put("QT7", siemensPLC.ReadFloat(MT_AddressB.getQT7()).Content);
+			MMDataB.put("QT4",nLRealData.getWwqt5());
+			MMDataB.put("QT5",ppRealData.getWw37());
+			MMDataB.put("QT6",nLRealData.getWwqt3());
+			MMDataB.put("QT7",nLRealData.getWwqt4());
 
-			MMDataB.put("QT8", siemensPLC.ReadBool(MT_AddressB.getQT8()).Content);
-			MMDataB.put("QT9", siemensPLC.ReadBool(MT_AddressB.getQT9()).Content);
-			MMDataB.put("QT10", siemensPLC.ReadBool(MT_AddressB.getQT10()).Content);
-			MMDataB.put("QT11", siemensPLC.ReadBool(MT_AddressB.getQT11()).Content);
-			MMDataB.put("QT12", siemensPLC.ReadBool(MT_AddressB.getQT12()).Content);
-
-		} else {
-			System.out.println("failed:" + siemensPLC.ConnectServer().Message + "B监控页面数据");
-		}
-		System.out.println(MMDataB);
-		siemensPLC.ConnectClose();
+			MMDataB.put("QT8",smReamldata.get("ScrewMachine1").getLGJ19());
+			MMDataB.put("QT9",smReamldata.get("ScrewMachine2").getLGJ19());
+			MMDataB.put("QT10",smReamldata.get("ScrewMachine3").getLGJ19());
+			MMDataB.put("QT11",smReamldata.get("ScrewMachine4").getLGJ19());
+			MMDataB.put("QT12",smReamldata.get("ScrewMachine5").getLGJ19());
 		return MMDataB;
 
 	}

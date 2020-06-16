@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.entity.siemensentity.ScrewMachine;
@@ -22,21 +23,30 @@ public class ScrewMachineDataController {
 	@Autowired
 	ScrewMachine_service ScrewMachine_serviceimp;
 	
+	Map<String, ScrewMachine> SMData;
+	
 	@Scheduled(cron = "0/1 * * * * ?")
-	public void getScrewMachineDataBB() {
+	public void setScrewMachineDataBB() {
 		System.out.println("我去拿空压机数据，准备存入数据库");
 		Map<String, ScrewMachine> screwMachineData = ScrewMachineDatagain.getScrewMachineData();
+		SMData=screwMachineData;
 		// 空压机数据 存入常量SCmapdata集合里
 		ScrewMachine_serviceimp.setScrewMachineData(screwMachineData);
 		
 	}
-//	@RequestMapping("/screwMachineRealData")
 	//每小时执行一次
 	@Scheduled(cron = "0 0 * * * ?")
 //	@Scheduled(cron = "0/1 * * * * ?")
-	public void getRealData(){
+	public void setRealData(){
 		System.out.println("我去拿空压机实时数据，准备返回前端页面");
 		Map<String, ScrewMachine> screwMachineData = ScrewMachineDatagain.getScrewMachineData();
 		ScrewMachine_serviceimp.setScrewMachineDataHour(screwMachineData);
+	}
+	//页面刷新获取实时数据
+	@RequestMapping("/screwMachineRealData")
+	public Map<String, ScrewMachine> getRealDataPage(){
+		System.out.println("我去拿空压机实时数据，准备返回前端页面");
+		return SMData;
+
 	}
 }

@@ -20,13 +20,16 @@ public class ControlValueDataController {
 
 	@Autowired
 	ControlValue_service ControlValue_serviceimp;
+	
+	@Autowired
+	ControlValue controlValue;
 
 	// 定时任务调用点位数据存入数据库中
 	@Scheduled(cron = "0/1 * * * * ?")
 	public void setControlValueDataBB() {
 		System.out.println("我去拿调节阀实时数据，准备存入数据库");
-		ControlValue controlValueData = ControlValueDatagain.getControlValueData();
-		ControlValue_serviceimp.setControlValueData(controlValueData);
+		ControlValue controlValue = ControlValueDatagain.getControlValueData();
+		ControlValue_serviceimp.setControlValueData(controlValue);
 	}
 
 //	@RequestMapping("/getControlVlueRealData")
@@ -34,10 +37,16 @@ public class ControlValueDataController {
 //  每小时执行一次
 	@Scheduled(cron = "0 0 * * * ?")
 //	@Scheduled(cron = "0/1 * * * * ?")
-	public void getControlValueRealData() {
+	public void setControlValueRealData() {
 		System.out.println("我去拿调节阀实时数据，准备返回前端页面");
 		ControlValue controlValueData = ControlValueDatagain.getControlValueData();
 		ControlValue_serviceimp.setControlValueDataHour(controlValueData);
+	}
+	
+	@RequestMapping("/getControlVlueRealData")
+	public ControlValue getControlValueRealDataPage() {
+		System.out.println("我去拿调节阀实时数据，准备返回前端页面");
+		return controlValue;
 	}
 
 }

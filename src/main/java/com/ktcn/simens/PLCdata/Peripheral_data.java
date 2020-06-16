@@ -145,7 +145,7 @@ public  class Peripheral_data {
 			Peripheral_qt.setWwqt1(siemensPLC.ReadFloat(Ph_Address.getWWQT1()).Content);
 			Peripheral_qt.setWwqt2(siemensPLC.ReadBool(Ph_Address.getWWQT2()).Content);
 			Peripheral_qt.setWwqt3(siemensPLC.ReadFloat(Ph_Address.getWWQT3()).Content);
-			Peripheral_qt.setWwqt4(siemensPLC.ReadFloat(Ph_Address.getWWQT4()).Content);
+			Peripheral_qt.setWwqt4(siemensPLC.ReadFloat("DB21.14").Content);
 			Peripheral_qt.setWwqt5(siemensPLC.ReadBool(Ph_Address.getWWQT5()).Content);
 			Peripheral_qt.setWwqt6(siemensPLC.ReadBool(Ph_Address.getWWQT6()).Content);
 			Peripheral_qt.setWwqt7(siemensPLC.ReadFloat(Ph_Address.getWWQT7()).Content);

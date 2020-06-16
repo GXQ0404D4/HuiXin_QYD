@@ -25,22 +25,26 @@ public class DryingMachineDataController {
 	@Autowired
 	DryingMachine DryingMachine;
 
-//	@Scheduled(cron = "0/1 * * * * ?")
-	public void getDryingMachineDataBB() {
+	@Scheduled(cron = "0/1 * * * * ?")
+	public void setDryingMachineDataBB() {
 		System.out.println("获取实时干燥机数据，准备存入数据库");
-		DryingMachine dryingMachineData = DryingMachineDatagain.getDryingMachineData();
-		DryingMachine=dryingMachineData;
-		DryingMachine_serviceimp.setDryingMachineData(dryingMachineData);
+		DryingMachine DryingMachine = DryingMachineDatagain.getDryingMachineData();
+		DryingMachine_serviceimp.setDryingMachineData(DryingMachine);
 	}
 
 //	@RequestMapping("/getDryingMachineRealData")
 	@Scheduled(cron = "0 0 * * * ?")
 //	@Scheduled(cron = "0/1 * * * * ?")
-	public void getDryingMachineRealData() {
+	public void setDryingMachineRealData() {
 		System.out.println("获取实时干燥机数据，准备存入前端页面");
-		DryingMachine dryingMachineData = DryingMachineDatagain.getDryingMachineData();
-		DryingMachine_serviceimp.setDryingMachineDataHour(dryingMachineData);
-		
+		DryingMachine DryingMachine = DryingMachineDatagain.getDryingMachineData();
+		DryingMachine_serviceimp.setDryingMachineDataHour(DryingMachine);
+	}
+	//页面刷新获取实时数据
+	@RequestMapping("/getDryingMachineRealData")
+	public DryingMachine getDryingMachineRealDataPage() {
+		System.out.println("获取实时干燥机数据，准备存入前端页面");
+		return DryingMachine;
 
 	}
 }

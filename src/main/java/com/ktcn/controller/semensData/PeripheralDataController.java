@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.entity.siemensentity.Peripheral_entity;
@@ -57,15 +58,15 @@ public class PeripheralDataController {
 			
 		}
 		
-		
-//		@RequestMapping("/getPeripheralRealData")
-//		public Peripheral_entity getPeripheralRealData() {
-//			System.out.println("外围实时数据，传递到前端页面");
-//			return Peripheral_entity;
-//		}
-//		@RequestMapping("/getNewLyRealData")
-//		public Peripheral_qt getNewLyRealData() {
-//			System.out.println("外围其他实时数据，传递到前端页面");
-//			return Peripheral_qt;
-//		}
+		//页面刷新获取实时数据
+		@RequestMapping("/getPeripheralRealData")
+		public Peripheral_entity getPeripheralRealData() {
+			System.out.println("外围实时数据，传递到前端页面");
+			return Peripheral_entity;
+		}
+		@RequestMapping("/getNewLyRealData")
+		public Peripheral_qt getNewLyRealData() {
+			System.out.println("外围其他实时数据，传递到前端页面");
+			return Peripheral_qt;
+		}
 }

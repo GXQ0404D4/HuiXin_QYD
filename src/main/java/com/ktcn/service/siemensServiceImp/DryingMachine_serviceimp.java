@@ -30,4 +30,11 @@ public class DryingMachine_serviceimp implements DryingMachine_service{
 		
 		
 	}
+
+	@Override
+	//干燥机报警信息持久化到数据库
+	public void setBJDryingMachineData(DryingMachine dMac) {
+		DryingMachine_dao.setBJDryingMachineData(dMac);
+		
+	}
 }

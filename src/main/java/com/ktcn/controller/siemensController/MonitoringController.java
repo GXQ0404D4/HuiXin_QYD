@@ -20,6 +20,7 @@ import com.ktcn.simens.utils.SiemensPlcConfig;
 import com.ktcn.simens.PLCdata.DryingMachineDatagain;
 
 import HslCommunication.Core.Types.OperateResult;
+import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
@@ -39,12 +40,14 @@ public class MonitoringController {
 	@Autowired
 	DryingMachineDataController DMReaml;
 
+	//监控页面1实时数据展示
 	@RequestMapping("/monitoringPage")
 	public Map<String, Object> getMonitoringData() {
 		Map<String, Object> MMData = new HashMap<String, Object>();
 		Map<String, ScrewMachine> smReamlData = SMDReaml.getRealDataPage();
 		Peripheral_entity ppReamlData = PDReaml.getPeripheralRealData();
 		DryingMachine dmReamlData = DMReaml.getDryingMachineRealDataPage();
+		if (smReamlData!=null && ppReamlData!=null && dmReamlData!=null) {
 //			五台空压机数据
 		MMData.put("MD0", smReamlData.get("ScrewMachine1").getLGJ0());
 		MMData.put("MD1", smReamlData.get("ScrewMachine1").getLGJ2());
@@ -92,7 +95,7 @@ public class MonitoringController {
 		MMData.put("MD33", ppReamlData.getWw0());
 		MMData.put("MD34", ppReamlData.getWw7());
 		MMData.put("MD35", ppReamlData.getWw14());
-//          空压机运行状态
+//      空压机运行状态
 		MMData.put("MD36", smReamlData.get("ScrewMachine1").getLGJ19());
 		MMData.put("MD37", smReamlData.get("ScrewMachine2").getLGJ19());
 		MMData.put("MD38", smReamlData.get("ScrewMachine3").getLGJ19());
@@ -104,44 +107,61 @@ public class MonitoringController {
 		MMData.put("MD43", smReamlData.get("ScrewMachine3").getLGJ16());
 		MMData.put("MD44", smReamlData.get("ScrewMachine4").getLGJ16());
 		MMData.put("MD45", smReamlData.get("ScrewMachine5").getLGJ16());
-//			干燥机 运行状态和启停
-//		MMData.put("MD42", dmReamlData.getGZJ8());
-//		MMData.put("MD43", dmReamlData.getGZJ9());
+//		空压机综合报警状态
+		MMData.put("MD46", smReamlData.get("ScrewMachine1").getLGJ17());
+		MMData.put("MD47", smReamlData.get("ScrewMachine2").getLGJ17());
+		MMData.put("MD48", smReamlData.get("ScrewMachine3").getLGJ17());
+		MMData.put("MD49", smReamlData.get("ScrewMachine4").getLGJ17());
+		MMData.put("MD50", smReamlData.get("ScrewMachine5").getLGJ17());
+//		干燥机容器压力
+		MMData.put("MD51", dmReamlData.getGZJ0());
+		MMData.put("MD52", dmReamlData.getGZJ1());
 		return MMData;
+		}else {
+			MMData.put("state", "loading");
+			return MMData;
+		}
+		
+
 	}
 
 //    	监控界面三个重置按钮
 	@RequestMapping("/resetButtion")
 	public String setFUWEI(String MDname) {
+		System.out.println(MDname);
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
-		if (siemensPLC.ConnectServer().IsSuccess) {
-			if (MDname.equals("FWA")) {
-				OperateResult write = siemensPLC.Write("DB24.38.0", true);
-				if (write.IsSuccess) {
-					siemensPLC.Write("DB24.38.0", false);
-					return write.Message;
+		try {
+			if (siemensPLC.ConnectServer().IsSuccess) {
+				if ("FWA".equals(MDname)) {
+					OperateResult write = siemensPLC.Write("DB24.38.0", true);
+					if (write.IsSuccess) {
+						siemensPLC.Write("DB24.38.0", false);
+						return write.Message;
+					}
 				}
-			}
-			if (MDname.equals("FWB")) {
-				OperateResult write = siemensPLC.Write("DB24.28.0", true);
-				if (write.IsSuccess) {
-					siemensPLC.Write("DB24.28.0", false);
-					return write.Message;
+				if ("FWB".equals(MDname)) {
+					OperateResult write = siemensPLC.Write("DB24.28.0", true);
+					if (write.IsSuccess) {
+						siemensPLC.Write("DB24.28.0", false);
+						return write.Message;
+					}
 				}
-			}
-			if (MDname.equals("FWC")) {
-				OperateResult write = siemensPLC.Write("DB24.18.0", true);
-				if (write.IsSuccess) {
-					siemensPLC.Write("DB24.18.0", false);
-					return write.Message;
+				if ("FWC".equals(MDname)) {
+					OperateResult write = siemensPLC.Write("DB24.18.0", true);
+					if (write.IsSuccess) {
+						siemensPLC.Write("DB24.18.0", false);
+						return write.Message;
+					}
 				}
-			}
-		} else {
-			System.out.println("failed:" + siemensPLC.ConnectServer().Message + "监控页面数据");
-			return "failed";
+			} else {
+				return "failed";
+			} 
+			return "ununited";
+		} finally {
+			System.out.println("结束连接池");
+			siemensPLC.ConnectClose();
 		}
-		siemensPLC.ConnectClose();
-		return "ununited";
+		
 
 	}
 
@@ -149,94 +169,99 @@ public class MonitoringController {
 	@RequestMapping("/compressButtion")
 	public String setCompressorButton(String MDname, Boolean MDTF) {
 		System.out.println(MDname + "__________" + MDTF);
-		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
-		if (siemensPLC.ConnectServer().IsSuccess) {
-			if (MDname.equals("MDA")) {
-				if (MDTF.equals(true)) {
-					OperateResult write1 = siemensPLC.Write("DB21.0.2", true);
-					if (write1.IsSuccess) {
-						siemensPLC.Write("DB21.0.2", false);
-						return write1.Message;
+		SiemensS7Net siemensPLC =  SiemensPlcConfig.getSiemensPLC();
+		try {
+			if (siemensPLC.ConnectServer().IsSuccess) {
+				if ("MDA".equals(MDname)) {
+					if (MDTF.equals(true)) {
+						OperateResult write1 = siemensPLC.Write("DB21.0.2", true);
+						if (write1.IsSuccess) {
+							siemensPLC.Write("DB21.0.2", false);
+							return write1.Message;
+						}
+					}
+					if (MDTF.equals(false)) {
+						OperateResult write2 = siemensPLC.Write("DB21.0.3", true);
+						if (write2.IsSuccess) {
+							siemensPLC.Write("DB21.0.3", false);
+							return write2.Message;
+						}
 					}
 				}
-				if (MDTF.equals(false)) {
-					OperateResult write2 = siemensPLC.Write("DB21.0.3", true);
-					if (write2.IsSuccess) {
-						siemensPLC.Write("DB21.0.3", false);
-						return write2.Message;
+				if ("MDB".equals(MDname)) {
+					if (MDTF.equals(true)) {
+						OperateResult write3 = siemensPLC.Write("DB21.0.0", true);
+						if (write3.IsSuccess) {
+							siemensPLC.Write("DB21.0.0", false);
+							return write3.Message;
+						}
+					}
+					if (MDTF.equals(false)) {
+						OperateResult write4 = siemensPLC.Write("DB21.0.1", true);
+						if (write4.IsSuccess) {
+							siemensPLC.Write("DB21.0.1", false);
+							return write4.Message;
+						}
 					}
 				}
-			}
-			if (MDname.equals("MDB")) {
-				if (MDTF.equals(true)) {
-					OperateResult write3 = siemensPLC.Write("DB21.0.0", true);
-					if (write3.IsSuccess) {
-						siemensPLC.Write("DB21.0.0", false);
-						return write3.Message;
+				if ("MDC".equals(MDname)) {
+					if (MDTF.equals(true)) {
+						OperateResult write5 = siemensPLC.Write("DB21.0.4", true);
+						if (write5.IsSuccess) {
+							siemensPLC.Write("DB21.0.4", false);
+							return write5.Message;
+						}
+					}
+					if (MDTF.equals(false)) {
+						OperateResult write6 = siemensPLC.Write("DB21.0.5", true);
+						if (write6.IsSuccess) {
+							siemensPLC.Write("DB21.0.5", false);
+							return write6.Message;
+						}
 					}
 				}
-				if (MDTF.equals(false)) {
-					OperateResult write4 = siemensPLC.Write("DB21.0.1", true);
-					if (write4.IsSuccess) {
-						siemensPLC.Write("DB21.0.1", false);
-						return write4.Message;
+				if ("MDD".equals(MDname)) {
+					if (MDTF.equals(true)) {
+						OperateResult write7 = siemensPLC.Write("DB21.0.6", true);
+						if (write7.IsSuccess) {
+							siemensPLC.Write("DB21.0.6", false);
+							return write7.Message;
+						}
+					}
+					if (MDTF.equals(false)) {
+						OperateResult write8 = siemensPLC.Write("DB21.0.7", true);
+						if (write8.IsSuccess) {
+							siemensPLC.Write("DB21.0.7", false);
+							return write8.Message;
+						}
 					}
 				}
-			}
-			if (MDname.equals("MDC")) {
-				if (MDTF.equals(true)) {
-					OperateResult write5 = siemensPLC.Write("DB21.0.4", true);
-					if (write5.IsSuccess) {
-						siemensPLC.Write("DB21.0.4", false);
-						return write5.Message;
+				if ("MDE".equals(MDname)) {
+					if (MDTF.equals(true)) {
+						OperateResult write9 = siemensPLC.Write("DB21.0.6", true);
+						if (write9.IsSuccess) {
+							siemensPLC.Write("DB21.0.6", false);
+							return write9.Message;
+						}
+					}
+					if (MDTF.equals(false)) {
+						OperateResult write10 = siemensPLC.Write("DB21.0.7", true);
+						if (write10.IsSuccess) {
+							siemensPLC.Write("DB21.0.7", false);
+							return write10.Message;
+						}
 					}
 				}
-				if (MDTF.equals(false)) {
-					OperateResult write6 = siemensPLC.Write("DB21.0.5", true);
-					if (write6.IsSuccess) {
-						siemensPLC.Write("DB21.0.5", false);
-						return write6.Message;
-					}
-				}
-			}
-			if (MDname.equals("MDD")) {
-				if (MDTF.equals(true)) {
-					OperateResult write7 = siemensPLC.Write("DB21.0.6", true);
-					if (write7.IsSuccess) {
-						siemensPLC.Write("DB21.0.6", false);
-						return write7.Message;
-					}
-				}
-				if (MDTF.equals(false)) {
-					OperateResult write8 = siemensPLC.Write("DB21.0.7", true);
-					if (write8.IsSuccess) {
-						siemensPLC.Write("DB21.0.7", false);
-						return write8.Message;
-					}
-				}
-			}
-			if (MDname.equals("MDE")) {
-				if (MDTF.equals(true)) {
-					OperateResult write9 = siemensPLC.Write("DB21.0.6", true);
-					if (write9.IsSuccess) {
-						siemensPLC.Write("DB21.0.6", false);
-						return write9.Message;
-					}
-				}
-				if (MDTF.equals(false)) {
-					OperateResult write10 = siemensPLC.Write("DB21.0.7", true);
-					if (write10.IsSuccess) {
-						siemensPLC.Write("DB21.0.7", false);
-						return write10.Message;
-					}
-				}
-			}
 
-		} else {
-			return "failed";
+			} else {
+				return "failed";
+			} 
+			return "ununited";
+		} finally {
+			System.out.println("结束连接池");
+			siemensPLC.ConnectClose();
 		}
-		siemensPLC.ConnectClose();
-		return "ununited";
+	
 
 	}
 
@@ -244,17 +269,24 @@ public class MonitoringController {
 	@RequestMapping("/txFuWei")
 	public String setTongxinFW() {
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
-		if (siemensPLC.ConnectServer().IsSuccess) {
-			OperateResult write = siemensPLC.Write("DB21.18.6", true);
-			if (write.IsSuccess) {
-				siemensPLC.Write("DB21.18.6", false);
-				return write.Message;
-			}
-		} else {
-			return "failed";
+		try {
+			if (siemensPLC.ConnectServer().IsSuccess) {
+				OperateResult write = siemensPLC.Write("DB21.18.6", true);
+				if (write.IsSuccess) {
+					siemensPLC.Write("DB21.18.6", false);
+					System.out.println(write.Message);
+					return write.Message;
+				}
+			} else {
+				return "failed";
+			} 
+			return "ununited";
+		} finally {
+			System.out.println("结束连接池");
+			siemensPLC.ConnectClose();
 		}
-		siemensPLC.ConnectClose();
-		return "ununited";
+	
+	
 
 	}
 
@@ -262,27 +294,34 @@ public class MonitoringController {
 	@RequestMapping("/dryingMachineQT")
 	public String setDryingMachine(String MDname) {
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
-		if (siemensPLC.ConnectServer().IsSuccess) {
-			// 获取到干燥机的运行状态 如果
-			if (MDname.equals("DmQD")) {
-				OperateResult write = siemensPLC.Write("DB21.1.2", true);
-				if (write.IsSuccess) {
-					siemensPLC.Write("DB21.1.2", false);
-					return write.Message;
+		System.out.println(MDname);
+		try {
+			if (siemensPLC.ConnectServer().IsSuccess) {
+				// 获取到干燥机的运行状态 如果
+				if ("DmQD".equals(MDname)) {
+					OperateResult write = siemensPLC.Write("DB21.1.2", true);
+					if (write.IsSuccess) {
+						siemensPLC.Write("DB21.1.2", false);
+						return write.Message;
+					}
 				}
-			}
-			if (MDname.equals("DmTZ")) {
-				OperateResult write = siemensPLC.Write("DB21.1.3", true);
-				if (write.IsSuccess) {
-					siemensPLC.Write("DB21.1.3", false);
-					return write.Message;
+				if ("DmTZ".equals(MDname)) {
+					OperateResult write = siemensPLC.Write("DB21.1.3", true);
+					if (write.IsSuccess) {
+						siemensPLC.Write("DB21.1.3", false);
+						return write.Message;
+					}
 				}
-			}
 
-		} else {
-			return "failed";
+			} else {
+				return "failed";
+			} 
+			return "ununited";
+		} finally {
+			System.out.println("结束连接池");
+			siemensPLC.ConnectClose();
 		}
-		siemensPLC.ConnectClose();
-		return "ununited";
+		
+		
 	}
 }

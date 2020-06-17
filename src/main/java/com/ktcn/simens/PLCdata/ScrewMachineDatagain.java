@@ -410,9 +410,9 @@ public  class ScrewMachineDatagain {
 		}
 		siemensPLC.ConnectClose();
 		// 数据读取完毕 获取当前时间
-		System.out.println(DataMap);
-		System.out.println("螺杆机数据获取+777" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
-		System.out.println(" ");
+//		System.out.println(DataMap);
+//		System.out.println("螺杆机数据获取+777" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+//		System.out.println(" ");
 		
 		return DataMap;
 	}

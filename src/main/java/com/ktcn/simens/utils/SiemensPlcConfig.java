@@ -1,6 +1,5 @@
 package com.ktcn.simens.utils;
 
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import HslCommunication.Profinet.Siemens.SiemensPLCS;
@@ -12,19 +11,10 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 *    SiemensPLC获取对象封装类 IP192.168.1.1
 */
 @Component
-@PropertySource({"classpath:config/plc_ip.properties"})
 public class SiemensPlcConfig {
 	
-//	@Value("${PLC.IP}")
-//	private static String IP;
-	
-	static SiemensS7Net siemens_net = null;
-
-	
 	public SiemensS7Net getSiemensPLC() {
-		if (siemens_net==null) {
-			siemens_net=new SiemensS7Net(SiemensPLCS.S1200,"192.168.0.1");
-		}
+			SiemensS7Net siemens_net = new SiemensS7Net(SiemensPLCS.S1200,"192.168.0.1");
 		return siemens_net;
 	}
 	

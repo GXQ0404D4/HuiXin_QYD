@@ -15,7 +15,8 @@ import com.ktcn.service.siemensService.ScrewMachine_service;
 
 /**
  * @author 作者 :Runaway programmer
- * @version 创建时间：2020年6月10日 上午10:58:28 类说明
+ * @version 创建时间：2020年6月10日 上午10:58:28 
+ * 类说明   空压机数据持久化 serviceimp层
  */
 @Component
 @Service
@@ -24,6 +25,7 @@ public class ScrewMachine_serviceimp implements ScrewMachine_service {
 	ScrewMachine_dao ScrewMachine_dao;
 
 	@Override
+	//空压机实时数据持久化到数据库
 	public void setScrewMachineData(Map<String, ScrewMachine> dataMap) {
 		// TODO Auto-generated method stub
 		ScrewMachine sMC1 = dataMap.get("ScrewMachine1");
@@ -39,9 +41,7 @@ public class ScrewMachine_serviceimp implements ScrewMachine_service {
 	}
 
 	@Override
-//每小时执行一次
-//	@Scheduled(cron = "0 0 * * * ?")
-//	@Scheduled(cron = "0/1 * * * * ?")
+  //每小时执行一次
 	public void setScrewMachineDataHour(Map<String, ScrewMachine> dataMap) {
 		ScrewMachine sMC1 = dataMap.get("ScrewMachine1");
 		ScrewMachine sMC2 = dataMap.get("ScrewMachine2");
@@ -54,6 +54,13 @@ public class ScrewMachine_serviceimp implements ScrewMachine_service {
 		ScrewMachine_dao.setScrewMachineDataHour(sMC4);
 		ScrewMachine_dao.setScrewMachineDataHour(sMC5);
 
+	}
+
+	@Override
+	//报警信息持久化到数据库
+	public void setBJScrewMachineData(ScrewMachine dataMap) {
+		// TODO Auto-generated method stub
+		ScrewMachine_dao.setBJScrewMachineData(dataMap);
 	}
 
 }

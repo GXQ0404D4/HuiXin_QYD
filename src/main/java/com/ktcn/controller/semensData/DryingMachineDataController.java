@@ -27,8 +27,12 @@ public class DryingMachineDataController {
 
 	@Scheduled(cron = "0/1 * * * * ?")
 	public void setDryingMachineDataBB() {
-		System.out.println("获取实时干燥机数据，准备存入数据库");
 		DryingMachine DryingMachine = DryingMachineDatagain.getDryingMachineData();
+		//报警信息判断存储
+		if ((boolean) DryingMachine.getGZJ11()==true) {
+			DryingMachine.setDryingMachine_name("干燥机");
+			DryingMachine_serviceimp.setBJDryingMachineData(DryingMachine);
+		}
 		DryingMachine_serviceimp.setDryingMachineData(DryingMachine);
 	}
 
@@ -36,14 +40,13 @@ public class DryingMachineDataController {
 	@Scheduled(cron = "0 0 * * * ?")
 //	@Scheduled(cron = "0/1 * * * * ?")
 	public void setDryingMachineRealData() {
-		System.out.println("获取实时干燥机数据，准备存入前端页面");
 		DryingMachine DryingMachine = DryingMachineDatagain.getDryingMachineData();
 		DryingMachine_serviceimp.setDryingMachineDataHour(DryingMachine);
 	}
+	
 	//页面刷新获取实时数据
 	@RequestMapping("/getDryingMachineRealData")
 	public DryingMachine getDryingMachineRealDataPage() {
-		System.out.println("获取实时干燥机数据，准备存入前端页面");
 		return DryingMachine;
 
 	}

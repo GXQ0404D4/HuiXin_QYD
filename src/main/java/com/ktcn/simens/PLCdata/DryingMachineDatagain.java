@@ -85,9 +85,9 @@ public  class DryingMachineDatagain {
 		}
 		siemensPLC.ConnectClose();
 		// 数据读取完毕 获取当前时间
-		System.out.println(DryingMachine );
-		System.out.println("干燥机数据持久化+555" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
-		System.out.println(" ");
+//		System.out.println(DryingMachine );
+//		System.out.println("干燥机数据持久化+555" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+//		System.out.println(" ");
 		return DryingMachine;
 	}
 	

@@ -73,9 +73,9 @@ public  class ControlValueDatagain {
 		}
 		siemensPLC.ConnectClose();
 		// 数据读取完毕 获取当前时间
-		System.out.println(controlValue);
-		System.out.println("持久化到调节阀+444" +  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
-		System.out.println(" ");
+//		System.out.println(controlValue);
+//		System.out.println("持久化到调节阀+444" +  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+//		System.out.println(" ");
 		return controlValue;
 	}
 	

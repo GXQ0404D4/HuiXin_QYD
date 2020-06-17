@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import com.ktcn.entity.Peripheral_Alarm;
 import com.ktcn.entity.siemensentity.Peripheral_entity;
 import com.ktcn.entity.siemensentity.Peripheral_qt;
 
@@ -16,7 +17,7 @@ import com.ktcn.entity.siemensentity.Peripheral_qt;
 @Mapper
 @Repository
 public interface Peripheral_dao {
-
+//  外围实时数据持久到数据库
 	@Insert("INSERT INTO peripheral_data VALUES (null,#{p_da.ww0},#{p_da.ww1},#{p_da.ww2},#{p_da.ww3},#{p_da.ww4},#{p_da.ww5},#{p_da.ww6},#{p_da.ww7},#{p_da.ww8}"
 			+ ",#{p_da.ww9},#{p_da.ww10},#{p_da.ww11},#{p_da.ww12},#{p_da.ww13},#{p_da.ww14},#{p_da.ww15},#{p_da.ww16},#{p_da.ww17},#{p_da.ww18},#{p_da.ww19}"
 			+ ",#{p_da.ww20},#{p_da.ww21},#{p_da.ww22},#{p_da.ww23},#{p_da.ww24},#{p_da.ww25},#{p_da.ww26},#{p_da.ww27},#{p_da.ww28},#{p_da.ww29},#{p_da.ww30}"
@@ -28,7 +29,7 @@ public interface Peripheral_dao {
 			+ ",#{p_da.ww86},#{p_da.ww87},#{p_da.ww88},#{p_da.ww89},#{p_da.ww90},#{p_da.ww91},#{p_da.ww92},#{p_da.ww93},#{p_da.ww94},NOW(),NOW())")
 	void setPeripheral_data(@Param("p_da") Peripheral_entity p_da);
 
-	
+//	外围小时数据持久化到数据库
 	@Insert("INSERT INTO peripheral_data_hour VALUES (null,#{p_dhour.ww0},#{p_dhour.ww1},#{p_dhour.ww2},#{p_dhour.ww3},#{p_dhour.ww4},#{p_dhour.ww5},#{p_dhour.ww6},#{p_dhour.ww7},#{p_dhour.ww8}"
 			+ ",#{p_dhour.ww9},#{p_dhour.ww10},#{p_dhour.ww11},#{p_dhour.ww12},#{p_dhour.ww13},#{p_dhour.ww14},#{p_dhour.ww15},#{p_dhour.ww16},#{p_dhour.ww17},#{p_dhour.ww18},#{p_dhour.ww19}"
 			+ ",#{p_dhour.ww20},#{p_dhour.ww21},#{p_dhour.ww22},#{p_dhour.ww23},#{p_dhour.ww24},#{p_dhour.ww25},#{p_dhour.ww26},#{p_dhour.ww27},#{p_dhour.ww28},#{p_dhour.ww29},#{p_dhour.ww30}"
@@ -39,5 +40,12 @@ public interface Peripheral_dao {
 			+ ",#{p_dhour.ww75},#{p_dhour.ww76},#{p_dhour.ww77},#{p_dhour.ww78},#{p_dhour.ww79},#{p_dhour.ww80},#{p_dhour.ww81},#{p_dhour.ww82},#{p_dhour.ww83},#{p_dhour.ww84},#{p_dhour.ww85}"
 			+ ",#{p_dhour.ww86},#{p_dhour.ww87},#{p_dhour.ww88},#{p_dhour.ww89},#{p_dhour.ww90},#{p_dhour.ww91},#{p_dhour.ww92},#{p_dhour.ww93},#{p_dhour.ww94},NOW(),NOW())")
 	void setPeripheral_data_hour(@Param("p_dhour") Peripheral_entity p_dhour);
+
+	
+	
+//  外围报警数据持久化到数据库
+	@Insert("INSERT INTO peripheral_bj  VALUES(null,#{pp_Alarm.pdjname},#{pp_Alarm.pbj0},#{pp_Alarm.pbj1},#{pp_Alarm.pbj2},#{pp_Alarm.pbj3}"
+			+ ",#{pp_Alarm.pbj4},#{pp_Alarm.pbj5},#{pp_Alarm.pbj6},NOW(),NOW())")
+	void setBJPeripheral_data(@Param("pp_Alarm") Peripheral_Alarm pp_Alarm);
 
 }

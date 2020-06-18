@@ -28,8 +28,8 @@ public interface DryChartDao {
 			"SUM(GZJ4) GZJ4," + 
 			"SUM(GZJ5) GZJ5 " + 
 			"FROM drying_machine e "
-//			+ "WHERE TO_DAYS(GZ_datatime) = TO_DAYS(NOW()) "
-			+ "WHERE e.GZ_time = '2020-06-10' "
+			+ "WHERE TO_DAYS(GZ_datatime) = TO_DAYS(NOW()) "
+//			+ "WHERE e.GZ_time = '2020-06-10' "
 			+ "GROUP BY HOUR(e.GZ_datatime) "
 			+ "ORDER BY Hour(e.GZ_datatime);")
 	List<DryingMachine> find();

@@ -56,7 +56,7 @@ public class Export {
 		int pageNum = PAGE_NUM;//每页数量
 		int size = list.size();//数据数量
 		int pages = (size % pageNum > 0) ? (size / pageNum + 1) : (size / pageNum);//导出页数
-		int x = size;
+		int x = size; // 中转数据,在多页时用来做最后一页遍历总数
 		
 		HSSFCellStyle cs = null;//单元格样式
 		HSSFSheet sheet = null;//页面
@@ -75,6 +75,7 @@ public class Export {
 		Map<String,Object> dataMap = null;
 		
 		for (int i = 0; i < pages; i++) {
+			// 写入Excel表头
 			sheet = wb.createSheet();
 			wb.setSheetName(i, (String.valueOf((i + 1))));
 			row = sheet.createRow(0);
@@ -82,7 +83,11 @@ public class Export {
 				columnTitle = columnMap.get(keyColumn);
 				createStringCell(row, (short) row.getLastCellNum() == -1 ? 0 : (short) row.getLastCellNum(), columnTitle, cs);
 			}
+			
+			// 写入Excel内容
+			// 页码判断
 			if ((i+1) == pages) {
+				// 最后一页使用此方法写入
 				for(int j = 0; j < x; j++){
 					dataMap = list.get(j+i*pageNum);
 					row = sheet.createRow(j + 1);
@@ -92,7 +97,9 @@ public class Export {
 					}
 				}
 			} else {
+				// 每写一页在中转数据(总条数)中减去响应的条数
 				x = x-pageNum;
+				// 其他页使用此方法写入
 				for(int j = 0; j < pageNum; j++){
 					dataMap = list.get(j+i*pageNum);
 					row = sheet.createRow(j + 1);

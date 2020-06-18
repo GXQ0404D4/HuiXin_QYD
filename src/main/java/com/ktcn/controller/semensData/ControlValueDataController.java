@@ -1,6 +1,7 @@
 package com.ktcn.controller.semensData;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ktcn.entity.siemensentity.ControlValue;
 import com.ktcn.service.siemensService.ControlValue_service;
 import com.ktcn.simens.PLCdata.ControlValueDatagain;
+import com.ktcn.simens.utils.EmptyUtil;
 
 /**
  * @author 作者 :Runaway programmer
@@ -23,12 +25,20 @@ public class ControlValueDataController {
 	
 	@Autowired
 	ControlValue controlValue;
+	
+	@Autowired
+	EmptyUtil emptyUtil;
 
 	// 定时任务调用点位数据存入数据库中
+	@Async
 	@Scheduled(cron = "0/1 * * * * ?")
 	public void setControlValueDataBB() {
+		System.out.println("___"+"调节阀实时数据1");
 		ControlValue controlValue = ControlValueDatagain.getControlValueData();
-		ControlValue_serviceimp.setControlValueData(controlValue);
+		if (emptyUtil.isNotEmpty(controlValue)) {
+			ControlValue_serviceimp.setControlValueData(controlValue);
+		}
+		
 	}
 
 //	@RequestMapping("/getControlVlueRealData")
@@ -39,6 +49,13 @@ public class ControlValueDataController {
 	public void setControlValueRealData() {
 		ControlValue controlValueData = ControlValueDatagain.getControlValueData();
 		ControlValue_serviceimp.setControlValueDataHour(controlValueData);
+	}
+	
+//  定时删除周报表数据
+//	@Scheduled(cron = "0 0 1 ? * L") //每周星期天凌晨1点执行一次
+	@Scheduled(cron = "0 0 1 * * ?") //每天凌晨1点执行一次
+	public void deleteControlValueReamlData() {
+		ControlValue_serviceimp.deleteControlValueReamlData();
 	}
 	
 	@RequestMapping("/getControlVlueRealData")

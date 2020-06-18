@@ -37,4 +37,11 @@ public class DryingMachine_serviceimp implements DryingMachine_service{
 		DryingMachine_dao.setBJDryingMachineData(dMac);
 		
 	}
+
+	//定时删除周报表数据
+	@Override
+	public void deleteReamlData() {
+		// TODO Auto-generated method stub
+		DryingMachine_dao.deleteReamlData();
+	}
 }

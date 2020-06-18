@@ -1,5 +1,6 @@
 package com.ktcn.dao.siemensdao;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -47,5 +48,9 @@ public interface Peripheral_dao {
 	@Insert("INSERT INTO peripheral_bj  VALUES(null,#{pp_Alarm.pdjname},#{pp_Alarm.pbj0},#{pp_Alarm.pbj1},#{pp_Alarm.pbj2},#{pp_Alarm.pbj3}"
 			+ ",#{pp_Alarm.pbj4},#{pp_Alarm.pbj5},#{pp_Alarm.pbj6},NOW(),NOW())")
 	void setBJPeripheral_data(@Param("pp_Alarm") Peripheral_Alarm pp_Alarm);
+
+//	删除当前一个月之前的数据
+	@Delete("DELETE FROM peripheral_data WHERE pddate<=DATE_ADD(NOW(),INTERVAL -1 MONTH)")
+	void deletePeripheralReamlData();
 
 }

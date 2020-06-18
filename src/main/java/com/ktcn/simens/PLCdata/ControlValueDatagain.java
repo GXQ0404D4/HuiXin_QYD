@@ -15,6 +15,7 @@ import com.ktcn.entity.siemensentity.ControlValue;
 import com.ktcn.service.siemensService.ControlValue_service;
 import com.ktcn.simens.utils.SiemensPlcConfig;
 
+import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
@@ -27,7 +28,7 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 @Component // 此注解必加
 @Order(value = 1)
 @PropertySource({"classpath:config/control_value.properties"})
-public  class ControlValueDatagain {
+public final  class ControlValueDatagain {
 	@Value("${PLC0.TJF0}")
 	private  String TJF0;
 	@Value("${PLC0.TJF1}")
@@ -58,6 +59,7 @@ public  class ControlValueDatagain {
 //	@Scheduled(cron = "0/1 * * * * ?")
 	public  ControlValue getControlValueData() {
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
+//		SiemensS7Net siemensPLC = new SiemensS7Net(SiemensPLCS.S1200,"192.168.0.1");
 		if (siemensPLC.ConnectServer().IsSuccess) {
 			controlValue.setTJF0((siemensPLC.ReadFloat(TJF0).Content));
 			controlValue.setTJF1((siemensPLC.ReadFloat(TJF1).Content));
@@ -67,11 +69,14 @@ public  class ControlValueDatagain {
 			controlValue.setTJF5((siemensPLC.ReadFloat(TJF5).Content));
 			controlValue.setTJF6((siemensPLC.ReadFloat(TJF6).Content));
 			controlValue.setTJF7((siemensPLC.ReadBool(TJF7).Content));
+			
+			siemensPLC.ConnectClose();
+			
 //			ControlValue_serviceimp.setControlValueData(controlValue);
 		} else {
-			System.out.println("failed:" +siemensPLC.ConnectServer().Message+"调节阀异常");
+			System.out.println("failed:" +siemensPLC.ConnectServer().Message+"___调节阀异常");
+			siemensPLC.ConnectClose();
 		}
-		siemensPLC.ConnectClose();
 		// 数据读取完毕 获取当前时间
 //		System.out.println(controlValue);
 //		System.out.println("持久化到调节阀+444" +  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));

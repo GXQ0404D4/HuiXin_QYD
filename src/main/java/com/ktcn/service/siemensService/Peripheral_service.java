@@ -18,5 +18,7 @@ public interface Peripheral_service {
 	void setPeripheral_data_hour(Peripheral_entity p_da);
 	//外围报警信息持久化到数据库
 	void setBJPeripheral_data(Peripheral_Alarm pp_Alarm);
+	//删除当前一个月之前的数据
+	void deletePeripheralReamlData();
 
 }

@@ -1,5 +1,6 @@
 package com.ktcn.dao.siemensdao;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -37,5 +38,10 @@ public interface ScrewMachine_dao {
 			+ ",#{sMC.LGJ6},#{sMC.LGJ7},#{sMC.LGJ8},#{sMC.LGJ9},#{sMC.LGJ10},#{sMC.LGJ11},#{sMC.LGJ12},#{sMC.LGJ13},#{sMC.LGJ14},#{sMC.LGJ15}"
 			+ ",#{sMC.LGJ16},#{sMC.LGJ17},#{sMC.LGJ18},#{sMC.LGJ19},#{sMC.LGJ20},#{sMC.LGJ21},NOW(),NOW(),#{sMC.state})")
 	void setBJScrewMachineData(@Param("sMC") ScrewMachine sMC);
+
+
+	//删除当前一个月时间之前的数据
+	@Delete("DELETE FROM screw_machine WHERE LGJ_time<=DATE_ADD(NOW(),INTERVAL -1 MONTH)")
+	void deleteScrewMachineReamlData();
 
 }

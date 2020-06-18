@@ -34,13 +34,18 @@ public class ControlValue_serviceimp implements ControlValue_service{
 	
 	
 
-//@Scheduled(cron = "0 0/15 * * * ?")   //每15分钟触发一次
 //每小时执行一次
-//	@Scheduled(cron = "0 0 * * * ?")
-//	@Scheduled(cron = "0/1 * * * * ?")
 	public void setControlValueDataHour(ControlValue CValue) {
 			ControlValue_dao.setControlValueDataHour(CValue);
 		
+	}
+
+
+//定时删除一个月之前的数据
+	@Override
+	public void deleteControlValueReamlData() {
+		// TODO Auto-generated method stub
+		ControlValue_dao.deleteControlValueReamlData();
 	}
 
 }

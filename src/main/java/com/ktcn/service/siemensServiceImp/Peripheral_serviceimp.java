@@ -40,6 +40,13 @@ public class Peripheral_serviceimp implements Peripheral_service  {
 		// TODO Auto-generated method stub
 		Peripheral_dao.setBJPeripheral_data(pp_Alarm);
 	}
+
+	//删除当前一个月之前的数据
+	@Override
+	public void deletePeripheralReamlData() {
+		// TODO Auto-generated method stub
+		Peripheral_dao.deletePeripheralReamlData();
+	}
 	
 
 }

@@ -232,6 +232,8 @@ public class MonitoringControllerB {
 		}
 		
 	}
+	
+	//高压低压手自动
 	@RequestMapping("/updataSelfMotion")
 	public String updataSelfMotion(String GYDYname,Boolean QTvalue) {
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ktcn.entity.siemensentity.ScrewMachine;
 import com.ktcn.simens.utils.SiemensPlcConfig;
 
+import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
@@ -26,7 +27,7 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 @Order(value = 1)
 //@Async
 @PropertySource({ "classpath:config/screw_machine.properties" })
-public  class ScrewMachineDatagain {
+public final class ScrewMachineDatagain {
 	// 低压机1
 	@Value("${PLC0.LGJ0}")
 	private String LGJ0;
@@ -264,6 +265,7 @@ public  class ScrewMachineDatagain {
 //	@Scheduled(cron = "0/1 * * * * ?")
 	public  Map<String, ScrewMachine> getScrewMachineData() {
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
+//		SiemensS7Net siemensPLC = new SiemensS7Net(SiemensPLCS.S1200,"192.168.0.1");
 		 Map<String, ScrewMachine> DataMap = new HashMap<String, ScrewMachine>();
 		ScrewMachine ScrewMachine1 =new ScrewMachine();
 		ScrewMachine ScrewMachine2 =new ScrewMachine();
@@ -400,6 +402,8 @@ public  class ScrewMachineDatagain {
 			((ScrewMachine) ScrewMachine5).setLGJ20(siemensPLC.ReadBool(LGJD20).Content);
 			((ScrewMachine) ScrewMachine5).setLGJ21(siemensPLC.ReadBool(LGJD21).Content);
 
+			siemensPLC.ConnectClose();
+			
 			DataMap.put("ScrewMachine1", ScrewMachine1);
 			DataMap.put("ScrewMachine2", ScrewMachine2);
 			DataMap.put("ScrewMachine3", ScrewMachine3);
@@ -407,8 +411,8 @@ public  class ScrewMachineDatagain {
 			DataMap.put("ScrewMachine5", ScrewMachine5);
 		} else {
 			System.out.println("failed:" + siemensPLC.ConnectServer().Message + "螺杆机异常");
+			siemensPLC.ConnectClose();
 		}
-		siemensPLC.ConnectClose();
 		// 数据读取完毕 获取当前时间
 //		System.out.println(DataMap);
 //		System.out.println("螺杆机数据获取+777" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));

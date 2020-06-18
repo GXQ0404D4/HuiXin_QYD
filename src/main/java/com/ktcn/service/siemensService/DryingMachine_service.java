@@ -18,4 +18,7 @@ public interface DryingMachine_service {
 	//干燥机报警监测 持久化到数据库
 	void setBJDryingMachineData(DryingMachine dryingMachine);
 
+	//定时删除周报表数据
+	void deleteReamlData();
+
 }

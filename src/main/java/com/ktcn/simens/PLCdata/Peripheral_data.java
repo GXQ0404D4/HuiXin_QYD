@@ -1,20 +1,18 @@
 package com.ktcn.simens.PLCdata;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.entity.siemensentity.Peripheral_entity;
 import com.ktcn.entity.siemensentity.Peripheral_qt;
 import com.ktcn.entity.simensaddress.Peripheral_Address;
 import com.ktcn.simens.utils.SiemensPlcConfig;
 
+import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
@@ -25,7 +23,7 @@ import HslCommunication.Profinet.Siemens.SiemensS7Net;
 //@EnableScheduling // 开启定时器任务，springboot启动类 已添加这里就不需要了
 @Component
 @Order(value = 1)//此类运行顺序
-public  class Peripheral_data {
+public final  class Peripheral_data {
 	//PLC地址点位获取类
     @Autowired
     Peripheral_Address Ph_Address;
@@ -43,6 +41,7 @@ public  class Peripheral_data {
 	public   Map<String,Object> getPeripheral_data() {
 		Map<String,Object> DataMap=new HashMap<String,Object>();
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
+//		SiemensS7Net siemensPLC = new SiemensS7Net(SiemensPLCS.S1200,"192.168.0.1");
 		if (siemensPLC.ConnectServer().IsSuccess) {
 			//外围数据获取
 			PeripheralData.setWw0(siemensPLC.ReadFloat(Ph_Address.getWW0()).Content);
@@ -151,14 +150,18 @@ public  class Peripheral_data {
 			Peripheral_qt.setWwqt7(siemensPLC.ReadFloat(Ph_Address.getWWQT7()).Content);
 			Peripheral_qt.setWwqt8(siemensPLC.ReadBool(Ph_Address.getWWQT8()).Content);
 			Peripheral_qt.setWwqt9(siemensPLC.ReadBool(Ph_Address.getWWQT9()).Content);
+			
+			siemensPLC.ConnectClose();
+			
 //			Peripheral_serviceimp.setPeripheral_data(Peripheral_Data);
 //			Newly_serviceimp.setNewlyData(Peripheral_qt);
 			DataMap.put("PeripheralData", PeripheralData);
 			DataMap.put("Peripheral_qt", Peripheral_qt);
 		} else {
-			System.out.println("failed:" + siemensPLC.ConnectServer().Message+"干燥机异常");
+			System.out.println("failed:" + siemensPLC.ConnectServer().Message+"外围数据异常");
+			siemensPLC.ConnectClose();
 		}
-		siemensPLC.ConnectClose();
+	
 		// 数据读取完毕 获取当前时间
 //		System.out.println(PeripheralData );
 //		System.out.println(Peripheral_qt );

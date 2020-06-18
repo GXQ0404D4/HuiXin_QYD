@@ -274,7 +274,6 @@ public class MonitoringController {
 				OperateResult write = siemensPLC.Write("DB21.18.6", true);
 				if (write.IsSuccess) {
 					siemensPLC.Write("DB21.18.6", false);
-					System.out.println(write.Message);
 					return write.Message;
 				}
 			} else {

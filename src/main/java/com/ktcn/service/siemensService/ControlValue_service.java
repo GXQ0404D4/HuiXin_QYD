@@ -16,4 +16,6 @@ public interface ControlValue_service {
 
 	void setControlValueDataHour(ControlValue CValue);
 
+	void deleteControlValueReamlData();
+
 }

@@ -63,4 +63,11 @@ public class ScrewMachine_serviceimp implements ScrewMachine_service {
 		ScrewMachine_dao.setBJScrewMachineData(dataMap);
 	}
 
+	//删除当前一个月时间之前的实时数据
+	@Override
+	public void deleteScrewMachineReamlData() {
+		// TODO Auto-generated method stub
+		ScrewMachine_dao.deleteScrewMachineReamlData();
+	}
+
 }

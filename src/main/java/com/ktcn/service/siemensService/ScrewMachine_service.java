@@ -20,5 +20,7 @@ public interface ScrewMachine_service {
 	void setScrewMachineDataHour(Map<String, ScrewMachine> dataMap);
     //空压机报警数据持久化到数据库
 	void setBJScrewMachineData( ScrewMachine dataMap);
+	//删除当前一个月时间之前的数据 实时数据库
+	void deleteScrewMachineReamlData();
 
 }

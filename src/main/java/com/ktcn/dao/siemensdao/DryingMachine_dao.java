@@ -1,5 +1,6 @@
 package com.ktcn.dao.siemensdao;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -27,5 +28,9 @@ public interface DryingMachine_dao {
 	//干燥机报警信息存储
 	@Insert("INSERT INTO drying_machine_bj VALUES(null,'',#{dMac.GZJ0},#{dMac.GZJ1},#{dMac.GZJ2},#{dMac.GZJ3},#{dMac.GZJ4},#{dMac.GZJ5},#{dMac.GZJ6},#{dMac.GZJ7},#{dMac.GZJ8},#{dMac.GZJ9},#{dMac.GZJ10},#{dMac.GZJ11},NOW(),NOW())")
 	void setBJDryingMachineData(@Param("dMac")DryingMachine dMac);
+
+	//删除当前一个月时间之前的数据
+	@Delete("DELETE FROM drying_machine WHERE GZ_time<=DATE_ADD(NOW(),INTERVAL -1 MONTH)")
+	void deleteReamlData();
 
 }

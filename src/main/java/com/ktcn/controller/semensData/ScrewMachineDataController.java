@@ -3,6 +3,7 @@ package com.ktcn.controller.semensData;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ktcn.entity.siemensentity.ScrewMachine;
 import com.ktcn.service.siemensService.ScrewMachine_service;
 import com.ktcn.simens.PLCdata.ScrewMachineDatagain;
+import com.ktcn.simens.utils.EmptyUtil;
 
 /**
 * @author 作者 :Runaway programmer
@@ -25,15 +27,21 @@ public class ScrewMachineDataController {
 	
 	Map<String, ScrewMachine> SMData;
 	
+	@Autowired
+	EmptyUtil emptyUtil;
+	
+	@Async
 	@Scheduled(cron = "0/1 * * * * ?")
 	public void setScrewMachineDataBB() {
+		System.out.println("___"+"空压机实时数据4");
 		Map<String, ScrewMachine> screwMachineData = ScrewMachineDatagain.getScrewMachineData();
-		if (screwMachineData!=null) {
+		//集合对象非空判断
+		if (emptyUtil.isNotEmpty(screwMachineData.get("ScrewMachine1")) && emptyUtil.isNotEmpty(screwMachineData.get("ScrewMachine2")) && emptyUtil.isNotEmpty(screwMachineData.get("ScrewMachine3")) && emptyUtil.isNotEmpty(screwMachineData.get("ScrewMachine4")) && emptyUtil.isNotEmpty(screwMachineData.get("ScrewMachine5"))) {
 			// 空压机数据 存入常量SCmapdata集合里
 			ScrewMachine_serviceimp.setScrewMachineData(screwMachineData);
-		}
-		
+			//
 			SMData=screwMachineData;
+			
 			//低压机 高压机 报警监测
 			Boolean lgjA13 = (Boolean) screwMachineData.get("ScrewMachine1").getLGJ13();
 			Boolean lgjA14 = (Boolean) screwMachineData.get("ScrewMachine1").getLGJ14();
@@ -74,8 +82,9 @@ public class ScrewMachineDataController {
 			if (lgjE13==true || lgjE14==true || lgjE15==true || lgjE16==true) {
 				ScrewMachine_serviceimp.setBJScrewMachineData(screwMachineData.get("ScrewMachine5"));
 			}
-			
+		}
 		
+			
 	}
 	//每小时执行一次
 	@Scheduled(cron = "0 0 * * * ?")
@@ -84,6 +93,14 @@ public class ScrewMachineDataController {
 		Map<String, ScrewMachine> screwMachineData = ScrewMachineDatagain.getScrewMachineData();
 		ScrewMachine_serviceimp.setScrewMachineDataHour(screwMachineData);
 	}
+	
+//  定时删除当前一个月之前的数据
+//	@Scheduled(cron = "0 0 1 ? * L") //每周星期天凌晨1点执行一次
+	@Scheduled(cron = "0 0 1 * * ?") //每天凌晨1点执行一次
+	public void deleteScrewMachineReamlData() {
+		ScrewMachine_serviceimp.deleteScrewMachineReamlData();
+	}
+	
 	//页面刷新获取实时数据
 	@RequestMapping("/screwMachineRealData")
 	public Map<String, ScrewMachine> getRealDataPage(){

@@ -202,5 +202,33 @@ public class ExcelExportController {
 			// TODO 处理异常
 		}
 	}
+	
+	// ----------------------- 分割线, 上面是报表模块, 下面是报警记录 ---------------------------------
 
+	/*
+	 * 空压机报警记录数据导出
+	 */
+	@RequestMapping("alAir")
+	public void exportAlAir(HttpServletResponse response,String eqName,String time1,String time2) {
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		StringBuffer sbBuffer = new StringBuffer();
+		sbBuffer.append("空压机报警记录数据_");
+		sbBuffer.append(format.format(new Date()));
+		sbBuffer.append(".xls");
+		String fileName = sbBuffer.toString();
+
+		// excel 写入数据 service层 TODO 这个自己注入进来
+		HSSFWorkbook wb = excelExportService.downloadExcelAlAir(eqName,time1,time2);
+
+		this.setResponseHeader(response, fileName);
+		try {
+			OutputStream os = response.getOutputStream();
+			wb.write(os);
+			os.flush();
+			os.close();
+		} catch (IOException e) {
+			// TODO 处理异常
+		}
+	}
 }

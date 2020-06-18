@@ -381,4 +381,71 @@ public class ExcelExportServiceImpl implements ExcelExportService {
 		return null;
 	}
 
+	// ----------------------- 分割线, 上面是报表模块, 下面是报警记录 ---------------------------------
+
+	/*
+	 * 空压机报警记录数据导出
+	 */
+	@Override
+	public HSSFWorkbook downloadExcelAlAir(String eqName, String time1, String time2) {
+		// 初始化数据
+		if ("".equals(time1) || time1 == null) {
+			time1 = "1970-01-01";
+		}
+		if ("".equals(time2) || time2 == null) {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			time2 = format.format(new Date());
+		}
+		try {
+			// 获取数据
+			List<ScrewMachine> query = excelExportDao.downloadExcelAlAir(eqName,time1,time2);
+			
+			// 标题
+			Map<String, String> column = new LinkedHashMap<String, String>();
+			column.put("A1", "时间");
+			column.put("A2", "设备名称");
+			column.put("A3", "主机1出口温度");
+			column.put("A4", "空压机出口温度");
+			column.put("A5", "主机1喷油压力");
+			column.put("A6", "冷却水出口温度");
+			column.put("A7", "压缩机出口压力");
+			column.put("A8", "油分离器1压差");
+			column.put("A9", "空气过滤器差");
+			column.put("A10", "停机故障");
+			column.put("A11", "停机报警");
+			column.put("A12", "维护报警");
+			column.put("A13", "综合报警");
+			column.put("A14", "加卸载");
+			// excel内容
+			List<Map<String, Object>> listResult = new ArrayList<Map<String, Object>>();
+			if (query != null && !query.isEmpty()) {
+				for (ScrewMachine vo : query) {
+					Map<String, Object> hashMap = new LinkedHashMap<String, Object>();
+					hashMap.put("A1", vo.getLGJ_datatime());
+					hashMap.put("A2", vo.getScrewMachine_name());
+					hashMap.put("A3", vo.getLGJ5());
+					hashMap.put("A4", vo.getLGJ4());
+					hashMap.put("A5", vo.getLGJ2());
+					hashMap.put("A6", vo.getLGJ6());
+					hashMap.put("A7", vo.getLGJ0());
+					hashMap.put("A8", vo.getLGJ3());
+					hashMap.put("A9", vo.getLGJ1());
+					hashMap.put("A10", ("0".equals(vo.getLGJ13().toString())?"正常":"报警"));
+					hashMap.put("A11", ("0".equals(vo.getLGJ14().toString())?"正常":"报警"));
+					hashMap.put("A12", ("0".equals(vo.getLGJ15().toString())?"正常":"报警"));
+					hashMap.put("A13", ("0".equals(vo.getLGJ16().toString())?"正常":"报警"));
+					hashMap.put("A14", ("0".equals(vo.getLGJ17().toString())?"加载":"卸载"));
+
+					listResult.add(hashMap);
+				}
+			}
+			// 去调用工具类的方法
+			HSSFWorkbook wb = Export.getHSSFWorkbook(listResult, column);
+			return wb;
+		} catch (Exception e) {
+			// TODO处理异常
+		}
+		return null;
+	}
+
 }

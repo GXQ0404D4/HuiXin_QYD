@@ -72,4 +72,16 @@ public interface ExcelExportDao {
 			@Param("time1") String time1, 
 			@Param("time2") String time2);
 
+	// ----------------------- 分割线, 上面是报表模块, 下面是报警记录 ---------------------------------
+
+	/*
+	 * 空压机报警记录数据导出
+	 */
+	@Select("SELECT * FROM `screw_machine_bj` WHERE ScrewMachine_name LIKE '%${eqName}%' AND LGJ_time BETWEEN #{time1} AND #{time2} ORDER BY LGJ_datatime DESC")
+	List<ScrewMachine> downloadExcelAlAir(
+			@Param("eqName") String eqName, 
+			@Param("time1") String time1, 
+			@Param("time2") String time2);
+
+
 }

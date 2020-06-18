@@ -41,4 +41,12 @@ public interface ExcelExportService {
 	 */
 	HSSFWorkbook downloadExcelMeterh(String time1, String time2);
 
+	// ----------------------- 分割线, 上面是报表模块, 下面是报警记录 ---------------------------------
+
+	/*
+	 * 空压机报警记录数据导出
+	 */
+	HSSFWorkbook downloadExcelAlAir(String eqName, String time1, String time2);
+
+
 }

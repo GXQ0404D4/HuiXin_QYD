@@ -1,5 +1,6 @@
 package com.ktcn.controller.excelController;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
@@ -14,6 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.service.excelService.ExcelExportService;
+
+import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
 
 
 /**
@@ -209,18 +215,17 @@ public class ExcelExportController {
 	 * 空压机报警记录数据导出
 	 */
 	@RequestMapping("alAir")
-	public void exportAlAir(HttpServletResponse response,String eqName,String time1,String time2) {
-		
+	public void exportAlAir(HttpServletResponse response,String eqName,String time1,String time2) throws InterruptedException {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		StringBuffer sbBuffer = new StringBuffer();
 		sbBuffer.append("空压机报警记录_");
 		sbBuffer.append(format.format(new Date()));
 		sbBuffer.append(".xls");
 		String fileName = sbBuffer.toString();
-
+		
 		// excel 写入数据 service层 TODO 这个自己注入进来
 		HSSFWorkbook wb = excelExportService.downloadExcelAlAir(eqName,time1,time2);
-
+		
 		this.setResponseHeader(response, fileName);
 		try {
 			OutputStream os = response.getOutputStream();

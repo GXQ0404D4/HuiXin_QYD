@@ -56,6 +56,7 @@ public class Export {
 		int pageNum = PAGE_NUM;//每页数量
 		int size = list.size();//数据数量
 		int pages = (size % pageNum > 0) ? (size / pageNum + 1) : (size / pageNum);//导出页数
+		int x = size;
 		
 		HSSFCellStyle cs = null;//单元格样式
 		HSSFSheet sheet = null;//页面
@@ -81,14 +82,34 @@ public class Export {
 				columnTitle = columnMap.get(keyColumn);
 				createStringCell(row, (short) row.getLastCellNum() == -1 ? 0 : (short) row.getLastCellNum(), columnTitle, cs);
 			}
-			for(int j = 0; j < size; j++){
-				dataMap = list.get(j);
-				row = sheet.createRow(j + 1 - (pageNum * i));
-				for(String keyColumn : keySet){
-					columnvalue = dataMap.get(keyColumn);
-					createStringCell(row, (short) row.getLastCellNum() == -1 ? 0 : (short) row.getLastCellNum(), columnvalue, cs);
+			if ((i+1) == pages) {
+				for(int j = 0; j < x; j++){
+					dataMap = list.get(j+i*pageNum);
+					row = sheet.createRow(j + 1);
+					for(String keyColumn : keySet){
+						columnvalue = dataMap.get(keyColumn);
+						createStringCell(row, (short) row.getLastCellNum() == -1 ? 0 : (short) row.getLastCellNum(), columnvalue, cs);
+					}
+				}
+			} else {
+				x = x-pageNum;
+				for(int j = 0; j < pageNum; j++){
+					dataMap = list.get(j+i*pageNum);
+					row = sheet.createRow(j + 1);
+					for(String keyColumn : keySet){
+						columnvalue = dataMap.get(keyColumn);
+						createStringCell(row, (short) row.getLastCellNum() == -1 ? 0 : (short) row.getLastCellNum(), columnvalue, cs);
+					}
 				}
 			}
+//			for(int j = 0; j < size; j++){
+//				dataMap = list.get(j);
+//				row = sheet.createRow(j + 1 - (pageNum * i));
+//				for(String keyColumn : keySet){
+//					columnvalue = dataMap.get(keyColumn);
+//					createStringCell(row, (short) row.getLastCellNum() == -1 ? 0 : (short) row.getLastCellNum(), columnvalue, cs);
+//				}
+//			}
 		}
 		return wb;
 		

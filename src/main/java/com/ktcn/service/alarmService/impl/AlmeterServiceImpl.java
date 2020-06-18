@@ -11,28 +11,27 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ktcn.dao.alarmDao.AlairDao;
-import com.ktcn.entity.siemensentity.DryingMachine;
-import com.ktcn.entity.siemensentity.ScrewMachine;
-import com.ktcn.service.alarmService.AlairService;
+import com.ktcn.dao.alarmDao.AlmeterDao;
+import com.ktcn.entity.Peripheral_Alarm;
+import com.ktcn.service.AlmeterService;
 import com.ktcn.utils.PageReade;
 /**
- * 空压机报警记录业务层实现类
+ * 外围仪表报警记录业务层实现类
  * @author Administrator
  *
  */
 @Service
 @Transactional
-public class AlairServiceImpl implements AlairService {
+public class AlmeterServiceImpl implements AlmeterService {
 
 	@Resource
-	private AlairDao alairDao;
+	private AlmeterDao almeterDao;
 
 	/*
 	 * 查询方法
 	 */
 	@Override
-	public Map<String, Object> find(String pageSize,int sizeNum,String eqName,String time1,String time2) {
+	public Map<String, Object> find(String pageSize, int sizeNum, String eqName, String time1, String time2) {
 		// 判断如果pageSize为NULL则pageSize为0
 		if (pageSize == null) {
 			pageSize = "1";
@@ -54,13 +53,13 @@ public class AlairServiceImpl implements AlairService {
 		int countPage = 0;
 		
 		// 查询数据总条数
-		count = alairDao.findTotal(eqName,time1,time2);
+		count = almeterDao.findTotal(eqName,time1,time2);
 		// 获取总页数
 		countPage = PageReade.getCountPage(count, sizeNum);
 		// 获取查询起始条数
 		x = PageReade.getPageSize(i, count, sizeNum);
 		// 获取数据
-		List<ScrewMachine> list = alairDao.find(eqName,time1,time2,x,sizeNum);
+		List<Peripheral_Alarm> list = almeterDao.find(eqName,time1,time2,x,sizeNum);
 		
 		// 新建一个map集合承接返回数据
 		Map<String,Object> reMap = new HashMap<String,Object>();

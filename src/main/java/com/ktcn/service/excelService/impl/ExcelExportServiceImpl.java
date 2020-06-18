@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ktcn.dao.excelExportDao.ExcelExportDao;
+import com.ktcn.entity.Peripheral_Alarm;
 import com.ktcn.entity.siemensentity.DryingMachine;
 import com.ktcn.entity.siemensentity.Peripheral_entity;
 import com.ktcn.entity.siemensentity.ScrewMachine;
@@ -435,6 +436,117 @@ public class ExcelExportServiceImpl implements ExcelExportService {
 					hashMap.put("A12", ("0".equals(vo.getLGJ15().toString())?"正常":"报警"));
 					hashMap.put("A13", ("0".equals(vo.getLGJ16().toString())?"正常":"报警"));
 					hashMap.put("A14", ("0".equals(vo.getLGJ17().toString())?"加载":"卸载"));
+
+					listResult.add(hashMap);
+				}
+			}
+			// 去调用工具类的方法
+			HSSFWorkbook wb = Export.getHSSFWorkbook(listResult, column);
+			return wb;
+		} catch (Exception e) {
+			// TODO处理异常
+		}
+		return null;
+	}
+
+	/*
+	 * 干燥机报警记录数据导出
+	 */
+	@Override
+	public HSSFWorkbook downloadExcelAlDry(String time1, String time2) {
+		// 初始化数据
+		if ("".equals(time1) || time1 == null) {
+			time1 = "1970-01-01";
+		}
+		if ("".equals(time2) || time2 == null) {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			time2 = format.format(new Date());
+		}
+		try {
+			// 获取数据
+			List<DryingMachine> query = excelExportDao.downloadExcelAlDry(time1,time2);
+			
+			// 标题
+			Map<String, String> column = new LinkedHashMap<String, String>();
+			column.put("A1", "时间");
+			column.put("A2", "容器A压力");
+			column.put("A3", "容器B压力");
+			column.put("A4", "容器A底端温度");
+			column.put("A5", "容器B底端温度");
+			column.put("A6", "加热器出口温度");
+			column.put("A7", "干燥器压力露点");
+			column.put("A8", "运行状态");
+			column.put("A9", "报警");
+			// excel内容
+			List<Map<String, Object>> listResult = new ArrayList<Map<String, Object>>();
+			if (query != null && !query.isEmpty()) {
+				for (DryingMachine vo : query) {
+					Map<String, Object> hashMap = new LinkedHashMap<String, Object>();
+					hashMap.put("A1", vo.getGZ_datatime());
+					hashMap.put("A2", vo.getGZJ0());
+					hashMap.put("A3", vo.getGZJ1());
+					hashMap.put("A4", vo.getGZJ3());
+					hashMap.put("A5", vo.getGZJ4());
+					hashMap.put("A6", vo.getGZJ2());
+					hashMap.put("A7", vo.getGZJ5());
+					hashMap.put("A8", ("0".equals(vo.getGZJ10().toString())?"运行":"停止"));
+					hashMap.put("A9", ("0".equals(vo.getGZJ11().toString())?"正常":"报警"));
+
+					listResult.add(hashMap);
+				}
+			}
+
+			// 去调用工具类的方法
+			HSSFWorkbook wb = Export.getHSSFWorkbook(listResult, column);
+			return wb;
+		} catch (Exception e) {
+			// TODO处理异常
+		}
+		return null;
+	}
+
+	/*
+	 * 外围仪表报警记录数据导出
+	 */
+	@Override
+	public HSSFWorkbook downloadExcelAlMeter(String eqName, String time1, String time2) {
+		// 初始化数据
+		if ("".equals(time1) || time1 == null) {
+			time1 = "1970-01-01";
+		}
+		if ("".equals(time2) || time2 == null) {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			time2 = format.format(new Date());
+		}
+		try {
+			// 获取数据
+			List<Peripheral_Alarm> query = excelExportDao.downloadExcelAlMeter(eqName,time1,time2);
+			
+			// 标题
+			Map<String, String> column = new LinkedHashMap<String, String>();
+			column.put("A1", "时间");
+			column.put("A2", "名称");
+			column.put("A3", "AI");
+			column.put("A4", "DOWN");
+			column.put("A5", "UP");
+			column.put("A6", "LAMARM");
+			column.put("A7", "HAMARM");
+			column.put("A8", "L");
+			column.put("A9", "H");
+			// excel内容
+			List<Map<String, Object>> listResult = new ArrayList<Map<String, Object>>();
+			if (query != null && !query.isEmpty()) {
+				for (Peripheral_Alarm vo : query) {
+					Map<String, Object> hashMap = new LinkedHashMap<String, Object>();
+					hashMap.put("A1", vo.getPdjdatetime());
+					hashMap.put("A2", vo.getPdjname());
+					hashMap.put("A3", vo.getPbj0());
+					hashMap.put("A4", vo.getPbj1());
+					hashMap.put("A5", vo.getPbj2());
+					hashMap.put("A6", vo.getPbj3());
+					hashMap.put("A7", vo.getPbj4());
+					hashMap.put("A8", ("0".equals(vo.getPbj5().toString())?"正常":"报警"));
+					hashMap.put("A9", ("0".equals(vo.getPbj6().toString())?"正常":"报警"));
 
 					listResult.add(hashMap);
 				}

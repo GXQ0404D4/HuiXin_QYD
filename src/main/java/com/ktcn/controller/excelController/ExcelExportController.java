@@ -213,13 +213,65 @@ public class ExcelExportController {
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		StringBuffer sbBuffer = new StringBuffer();
-		sbBuffer.append("空压机报警记录数据_");
+		sbBuffer.append("空压机报警记录_");
 		sbBuffer.append(format.format(new Date()));
 		sbBuffer.append(".xls");
 		String fileName = sbBuffer.toString();
 
 		// excel 写入数据 service层 TODO 这个自己注入进来
 		HSSFWorkbook wb = excelExportService.downloadExcelAlAir(eqName,time1,time2);
+
+		this.setResponseHeader(response, fileName);
+		try {
+			OutputStream os = response.getOutputStream();
+			wb.write(os);
+			os.flush();
+			os.close();
+		} catch (IOException e) {
+			// TODO 处理异常
+		}
+	}
+	
+	/*
+	 * 干燥机报警记录数据导出
+	 */
+	@RequestMapping("alDry")
+	public void exportAlDry(HttpServletResponse response,String time1,String time2) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		StringBuffer sbBuffer = new StringBuffer();
+		sbBuffer.append("干燥机报警记录_");
+		sbBuffer.append(format.format(new Date()));
+		sbBuffer.append(".xls");
+		String fileName = sbBuffer.toString();
+
+		// excel 写入数据 service层 TODO 这个自己注入进来
+		HSSFWorkbook wb = excelExportService.downloadExcelAlDry(time1,time2);
+
+		this.setResponseHeader(response, fileName);
+		try {
+			OutputStream os = response.getOutputStream();
+			wb.write(os);
+			os.flush();
+			os.close();
+		} catch (IOException e) {
+			// TODO 处理异常
+		}
+	}
+	
+	/*
+	 * 外围仪表报警记录数据导出
+	 */
+	@RequestMapping("alMeter")
+	public void exportAlMeter(HttpServletResponse response,String eqName,String time1,String time2) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		StringBuffer sbBuffer = new StringBuffer();
+		sbBuffer.append("外围仪表报警记录_");
+		sbBuffer.append(format.format(new Date()));
+		sbBuffer.append(".xls");
+		String fileName = sbBuffer.toString();
+
+		// excel 写入数据 service层 TODO 这个自己注入进来
+		HSSFWorkbook wb = excelExportService.downloadExcelAlMeter(eqName,time1,time2);
 
 		this.setResponseHeader(response, fileName);
 		try {

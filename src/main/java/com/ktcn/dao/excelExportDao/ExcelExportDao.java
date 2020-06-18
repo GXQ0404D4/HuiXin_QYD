@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
+import com.ktcn.entity.Peripheral_Alarm;
 import com.ktcn.entity.siemensentity.DryingMachine;
 import com.ktcn.entity.siemensentity.Peripheral_entity;
 import com.ktcn.entity.siemensentity.ScrewMachine;
@@ -83,5 +84,21 @@ public interface ExcelExportDao {
 			@Param("time1") String time1, 
 			@Param("time2") String time2);
 
+	/*
+	 * 干燥机报警记录数据导出
+	 */
+	@Select("SELECT * FROM `drying_machine_bj` WHERE GZ_time BETWEEN #{time1} AND #{time2} ORDER BY GZ_datatime DESC")
+	List<DryingMachine> downloadExcelAlDry(
+			@Param("time1") String time1, 
+			@Param("time2") String time2);
+
+	/*
+	 * 外围仪表报警记录数据导出
+	 */
+	@Select("SELECT * FROM `peripheral_bj` WHERE pdjname LIKE '%${eqName}%' AND pdjtime BETWEEN #{time1} AND #{time2} ORDER BY pdjdatetime DESC")
+	List<Peripheral_Alarm> downloadExcelAlMeter(
+			@Param("eqName") String eqName, 
+			@Param("time1") String time1, 
+			@Param("time2") String time2);
 
 }

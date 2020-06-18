@@ -48,5 +48,15 @@ public interface ExcelExportService {
 	 */
 	HSSFWorkbook downloadExcelAlAir(String eqName, String time1, String time2);
 
+	/*
+	 * 干燥机报警记录数据导出
+	 */
+	HSSFWorkbook downloadExcelAlDry(String time1, String time2);
+
+	/*
+	 * 外围仪表报警记录数据导出
+	 */
+	HSSFWorkbook downloadExcelAlMeter(String eqName, String time1, String time2);
+
 
 }

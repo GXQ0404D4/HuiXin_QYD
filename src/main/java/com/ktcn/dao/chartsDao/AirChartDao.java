@@ -31,8 +31,8 @@ public interface AirChartDao {
 			"SUM(LGJ5) LGJ5," + 
 			"SUM(LGJ6) LGJ6 " + 
 			"FROM screw_machine e "
-			+ "WHERE e.LGJ_time = '2020-06-10' "
-//			+ "WHERE TO_DAYS(LGJ_datatime) = TO_DAYS(NOW()) "
+//			+ "WHERE e.LGJ_time = '2020-06-10' "
+			+ "WHERE TO_DAYS(LGJ_datatime) = TO_DAYS(NOW()) "
 			+ "AND ScrewMachine_name = #{eqName} "
 			+ "GROUP BY HOUR(e.LGJ_datatime) "
 			+ "ORDER BY Hour(e.LGJ_datatime)")

@@ -1,5 +1,7 @@
 package com.ktcn.controller.semensData;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,22 +27,24 @@ public class ScrewMachineDataController {
 	@Autowired
 	ScrewMachine_service ScrewMachine_serviceimp;
 	
-	Map<String, ScrewMachine> SMData;
+//	Map<String, ScrewMachine> SMData;
 	
 	@Autowired
 	EmptyUtil emptyUtil;
 	
-	@Async
-	@Scheduled(cron = "0/1 * * * * ?")
+//	@Async
+	@Scheduled(cron = "0/15 * * * * ?")
+//	方法执行完成后50毫秒再启动
+//	@Scheduled(fixedDelay = 500)
 	public void setScrewMachineDataBB() {
-		System.out.println("___"+"空压机实时数据4");
+//		System.out.println("___"+"空压机实时数据4"+  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		Map<String, ScrewMachine> screwMachineData = ScrewMachineDatagain.getScrewMachineData();
 		//集合对象非空判断
 		if (emptyUtil.isNotEmpty(screwMachineData.get("ScrewMachine1")) && emptyUtil.isNotEmpty(screwMachineData.get("ScrewMachine2")) && emptyUtil.isNotEmpty(screwMachineData.get("ScrewMachine3")) && emptyUtil.isNotEmpty(screwMachineData.get("ScrewMachine4")) && emptyUtil.isNotEmpty(screwMachineData.get("ScrewMachine5"))) {
 			// 空压机数据 存入常量SCmapdata集合里
 			ScrewMachine_serviceimp.setScrewMachineData(screwMachineData);
 			//
-			SMData=screwMachineData;
+//			SMData=screwMachineData;
 			
 			//低压机 高压机 报警监测
 			Boolean lgjA13 = (Boolean) screwMachineData.get("ScrewMachine1").getLGJ13();
@@ -104,7 +108,7 @@ public class ScrewMachineDataController {
 	//页面刷新获取实时数据
 	@RequestMapping("/screwMachineRealData")
 	public Map<String, ScrewMachine> getRealDataPage(){
-		return SMData;
+		return ScrewMachineDatagain.getScrewMachineData();
 
 	}
 }

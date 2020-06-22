@@ -32,5 +32,10 @@ public class Monitoring_AddressB {
 	private String QT10;
 	private String QT11;
 	private String QT12;
+	private String QT13;
+	private String QT14;
+	private String QT15;
+	private String QT16;
+	private String QT17;
 
 }

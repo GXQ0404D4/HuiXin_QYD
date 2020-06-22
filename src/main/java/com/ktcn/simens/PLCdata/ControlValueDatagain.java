@@ -15,6 +15,7 @@ import com.ktcn.entity.siemensentity.ControlValue;
 import com.ktcn.service.siemensService.ControlValue_service;
 import com.ktcn.simens.utils.SiemensPlcConfig;
 
+import HslCommunication.Core.Types.OperateResult;
 import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
@@ -58,28 +59,30 @@ public final  class ControlValueDatagain {
 //	@Async
 //	@Scheduled(cron = "0/1 * * * * ?")
 	public  ControlValue getControlValueData() {
-		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
+		SiemensS7Net siemensPLCA = SiemensPlcConfig.getSiemensPLC();
 //		SiemensS7Net siemensPLC = new SiemensS7Net(SiemensPLCS.S1200,"192.168.0.1");
-		if (siemensPLC.ConnectServer().IsSuccess) {
-			controlValue.setTJF0((siemensPLC.ReadFloat(TJF0).Content));
-			controlValue.setTJF1((siemensPLC.ReadFloat(TJF1).Content));
-			controlValue.setTJF2((siemensPLC.ReadFloat(TJF2).Content));
-			controlValue.setTJF3((siemensPLC.ReadFloat(TJF3).Content));
-			controlValue.setTJF4((siemensPLC.ReadFloat(TJF4).Content));
-			controlValue.setTJF5((siemensPLC.ReadFloat(TJF5).Content));
-			controlValue.setTJF6((siemensPLC.ReadFloat(TJF6).Content));
-			controlValue.setTJF7((siemensPLC.ReadBool(TJF7).Content));
+//		开启长连接
+		OperateResult connectServer = siemensPLCA.ConnectServer();
+		if (connectServer.IsSuccess) {
+			controlValue.setTJF0((siemensPLCA.ReadFloat(TJF0).Content));
+			controlValue.setTJF1((siemensPLCA.ReadFloat(TJF1).Content));
+			controlValue.setTJF2((siemensPLCA.ReadFloat(TJF2).Content));
+			controlValue.setTJF3((siemensPLCA.ReadFloat(TJF3).Content));
+			controlValue.setTJF4((siemensPLCA.ReadFloat(TJF4).Content));
+			controlValue.setTJF5((siemensPLCA.ReadFloat(TJF5).Content));
+			controlValue.setTJF6((siemensPLCA.ReadFloat(TJF6).Content));
+			controlValue.setTJF7((siemensPLCA.ReadBool(TJF7).Content));
 			
-			siemensPLC.ConnectClose();
+			siemensPLCA.ConnectClose();
 			
 //			ControlValue_serviceimp.setControlValueData(controlValue);
 		} else {
-			System.out.println("failed:" +siemensPLC.ConnectServer().Message+"___调节阀异常");
-			siemensPLC.ConnectClose();
+			System.out.println("failed:" +siemensPLCA.ConnectServer().Message+"___调节阀异常");
+			siemensPLCA.ConnectClose();              
 		}
 		// 数据读取完毕 获取当前时间
-//		System.out.println(controlValue);
-//		System.out.println("持久化到调节阀+444" +  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+//		System.out.println(controlValue); 
+//		System.out.println("调节阀数据持久化+444" +  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 //		System.out.println(" ");
 		return controlValue;
 	}

@@ -60,6 +60,17 @@ public class Monitoring_Address {
 	private String MD39;
 	private String MD40;
 	private String MD41;
+	private String MD42;
+	private String MD43;
+	private String MD44;
+	private String MD45;
+	private String MD46;
+	private String MD47;
+	private String MD48;
+	private String MD49;
+	private String MD50;
+	private String MD51;
+	private String MD52;
 	
 
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.ktcn.entity.siemensentity.DryingMachine;
 import com.ktcn.simens.utils.SiemensPlcConfig;
 
+import HslCommunication.Core.Types.OperateResult;
 import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
@@ -63,30 +64,32 @@ public final class DryingMachineDatagain {
 //	@Async
 //	@Scheduled(cron = "0/1 * * * * ?")
 	public  DryingMachine getDryingMachineData() {
-		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
+		SiemensS7Net siemensPLCB = SiemensPlcConfig.getSiemensPLC();
 //		SiemensS7Net siemensPLC = new SiemensS7Net(SiemensPLCS.S1200,"192.168.0.1");
-		
-		if (siemensPLC.ConnectServer().IsSuccess) {
+		//开启长连接
+		OperateResult connectServer = siemensPLCB.ConnectServer();
+		if (connectServer.IsSuccess) {
 			//制氧干燥机数据获取
-			DryingMachine.setGZJ0(siemensPLC.ReadFloat(GZJ0).Content);
-			DryingMachine.setGZJ1(siemensPLC.ReadFloat(GZJ1).Content);
-			DryingMachine.setGZJ2(siemensPLC.ReadFloat(GZJ2).Content);
-			DryingMachine.setGZJ3(siemensPLC.ReadFloat(GZJ3).Content);
-			DryingMachine.setGZJ4(siemensPLC.ReadFloat(GZJ4).Content);
-			DryingMachine.setGZJ5(siemensPLC.ReadFloat(GZJ5).Content);
-			DryingMachine.setGZJ6(siemensPLC.ReadInt32(GZJ6).Content);
-			DryingMachine.setGZJ7(siemensPLC.ReadInt32(GZJ7).Content);
-			DryingMachine.setGZJ8(siemensPLC.ReadBool(GZJ8).Content);
-			DryingMachine.setGZJ9(siemensPLC.ReadBool(GZJ9).Content);
-			DryingMachine.setGZJ10(siemensPLC.ReadBool(GZJ10).Content);
-			DryingMachine.setGZJ11(siemensPLC.ReadBool(GZJ11).Content);
+			DryingMachine.setGZJ0(siemensPLCB.ReadFloat(GZJ0).Content);
+			DryingMachine.setGZJ1(siemensPLCB.ReadFloat(GZJ1).Content);
+			DryingMachine.setGZJ2(siemensPLCB.ReadFloat(GZJ2).Content);
+			DryingMachine.setGZJ3(siemensPLCB.ReadFloat(GZJ3).Content);
+			DryingMachine.setGZJ4(siemensPLCB.ReadFloat(GZJ4).Content);
+			DryingMachine.setGZJ5(siemensPLCB.ReadFloat(GZJ5).Content);
+			DryingMachine.setGZJ6(siemensPLCB.ReadInt32(GZJ6).Content);
+			DryingMachine.setGZJ7(siemensPLCB.ReadInt32(GZJ7).Content);
+			DryingMachine.setGZJ8(siemensPLCB.ReadBool(GZJ8).Content);
+			DryingMachine.setGZJ9(siemensPLCB.ReadBool(GZJ9).Content);
+			DryingMachine.setGZJ10(siemensPLCB.ReadBool(GZJ10).Content);
+			DryingMachine.setGZJ11(siemensPLCB.ReadBool(GZJ11).Content);
 			
-			siemensPLC.ConnectClose();
+			siemensPLCB.ConnectClose();
 			
 //			DryingMachine_serviceimp.setDryingMachineData(DryingMachine);
 		} else {
-			System.out.println("failed:" + siemensPLC.ConnectServer().Message+"干燥机异常");
-		}
+			System.out.println("failed:" + siemensPLCB.ConnectServer().Message+"干燥机异常");
+			siemensPLCB.ConnectClose();
+		}                                            
 
 		// 数据读取完毕 获取当前时间
 //		System.out.println(DryingMachine );

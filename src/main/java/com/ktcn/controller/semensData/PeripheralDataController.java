@@ -45,10 +45,12 @@ public class PeripheralDataController {
 		@Autowired
 		EmptyUtil emptyUtil;
 
-		@Async
-		@Scheduled(cron = "0/1 * * * * ?")
+//		@Async
+		@Scheduled(cron = "0/15 * * * * ?")
+//		方法执行完成后50毫秒再启动
+//		@Scheduled(fixedDelay = 500)
 		public  void setPeripheral_dataBB() {
-			System.out.println("___"+"外围数据实时数据3");
+//			System.out.println("___"+"外围数据实时数据3");
 			Map<String, Object> map = Peripheral_data.getPeripheral_data();
 			Peripheral_entity Peripheral_entity =(Peripheral_entity) map.get("PeripheralData");
 			Peripheral_qt Peripheral_qt =(Peripheral_qt) map.get("Peripheral_qt");
@@ -224,12 +226,16 @@ public class PeripheralDataController {
 		//页面刷新获取实时数据
 		@RequestMapping("/getPeripheralRealData")
 		public Peripheral_entity getPeripheralRealData() {
+			Map<String, Object> map = Peripheral_data.getPeripheral_data();
+			Peripheral_entity Peripheral_entity =(Peripheral_entity) map.get("PeripheralData");
 			return Peripheral_entity;
 		}
 		
 		//页面刷新获取其他实时数据
 		@RequestMapping("/getNewLyRealData")
 		public Peripheral_qt getNewLyRealData() {
+			Map<String, Object> map = Peripheral_data.getPeripheral_data();
+			Peripheral_qt Peripheral_qt =(Peripheral_qt) map.get("Peripheral_qt");
 			return Peripheral_qt;
 		}
 }

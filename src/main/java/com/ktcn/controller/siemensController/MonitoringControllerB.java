@@ -15,6 +15,7 @@ import com.ktcn.entity.siemensentity.Peripheral_entity;
 import com.ktcn.entity.siemensentity.Peripheral_qt;
 import com.ktcn.entity.siemensentity.ScrewMachine;
 import com.ktcn.entity.simensaddress.Monitoring_AddressB;
+import com.ktcn.simens.utils.EmptyUtil;
 import com.ktcn.simens.utils.SiemensPlcConfig;
 
 import HslCommunication.Core.Types.OperateResult;
@@ -35,6 +36,11 @@ public class MonitoringControllerB {
 	PeripheralDataController PDReaml;
 	@Autowired
 	SiemensPlcConfig SiemensPlcConfig;
+	@Autowired
+	EmptyUtil emptyUtil;
+
+	@Autowired
+	Monitoring_AddressB Mt_AddressB;
 	
     private final short data1=1;
     private final short data2=2;
@@ -42,39 +48,44 @@ public class MonitoringControllerB {
 	//监控页面2实时数据展示
 	@RequestMapping("/monitoringPageB")
 	public Map<String, Object> getMonitoringBData() {
+//		System.out.println("方法开始时间————————————"+new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		Map<String, Object> MMDataB = new HashMap<String, Object>();
-		Peripheral_qt nLRealData = PDReaml.getNewLyRealData();
-		Peripheral_entity ppRealData = PDReaml.getPeripheralRealData();
-		Map<String, ScrewMachine> smReamldata = SMDReaml.getRealDataPage();
-		if (nLRealData!=null && ppRealData!=null && smReamldata!=null) {
-			MMDataB.put("QT0",nLRealData.getWwqt2());
-			MMDataB.put("QT1",ppRealData.getWw44());
-			MMDataB.put("QT2",nLRealData.getWwqt0());
-			MMDataB.put("QT3",nLRealData.getWwqt1());
-
-			MMDataB.put("QT4",nLRealData.getWwqt5());
-			MMDataB.put("QT5",ppRealData.getWw37());
-			MMDataB.put("QT6",nLRealData.getWwqt3());
-			MMDataB.put("QT7",nLRealData.getWwqt4());
-
-			MMDataB.put("QT8",smReamldata.get("ScrewMachine1").getLGJ19());
-			MMDataB.put("QT9",smReamldata.get("ScrewMachine2").getLGJ19());
-			MMDataB.put("QT10",smReamldata.get("ScrewMachine3").getLGJ19());
-			MMDataB.put("QT11",smReamldata.get("ScrewMachine4").getLGJ19());
-			MMDataB.put("QT12",smReamldata.get("ScrewMachine5").getLGJ19());
+		SiemensS7Net siemensPLCm = SiemensPlcConfig.getSiemensPLC();
+//		开启长连接
+		OperateResult connectServer = siemensPLCm.ConnectServer();
+		if (connectServer.IsSuccess) {
+			MMDataB.put("QT0", siemensPLCm.ReadFloat(Mt_AddressB.getQT0()).Content);
+			MMDataB.put("QT1", siemensPLCm.ReadFloat(Mt_AddressB.getQT1()).Content);
+			MMDataB.put("QT2", siemensPLCm.ReadFloat(Mt_AddressB.getQT2()).Content);
+			MMDataB.put("QT3", siemensPLCm.ReadFloat(Mt_AddressB.getQT3()).Content);
 			
-			MMDataB.put("QT13",smReamldata.get("ScrewMachine1").getLGJ12());
-			MMDataB.put("QT14",smReamldata.get("ScrewMachine2").getLGJ12());
-			MMDataB.put("QT15",smReamldata.get("ScrewMachine3").getLGJ12());
-			MMDataB.put("QT16",smReamldata.get("ScrewMachine4").getLGJ12());
-			MMDataB.put("QT17",smReamldata.get("ScrewMachine5").getLGJ12());
-		return MMDataB;
+			MMDataB.put("QT4", siemensPLCm.ReadFloat(Mt_AddressB.getQT4()).Content);
+			MMDataB.put("QT5", siemensPLCm.ReadFloat(Mt_AddressB.getQT5()).Content);
+			MMDataB.put("QT6", siemensPLCm.ReadFloat(Mt_AddressB.getQT6()).Content);
+			MMDataB.put("QT7", siemensPLCm.ReadFloat(Mt_AddressB.getQT7()).Content);
+//          空压机运行状态
+			MMDataB.put("QT8", siemensPLCm.ReadBool(Mt_AddressB.getQT8()).Content);
+			MMDataB.put("QT9", siemensPLCm.ReadBool(Mt_AddressB.getQT9()).Content);
+			MMDataB.put("QT10", siemensPLCm.ReadBool(Mt_AddressB.getQT10()).Content);
+			MMDataB.put("QT11", siemensPLCm.ReadBool(Mt_AddressB.getQT11()).Content);
+			MMDataB.put("QT12", siemensPLCm.ReadBool(Mt_AddressB.getQT12()).Content);
+//          空压机 切机  主机 备机
+			MMDataB.put("QT13", siemensPLCm.ReadInt16(Mt_AddressB.getQT12()).Content);
+			MMDataB.put("QT14", siemensPLCm.ReadInt16(Mt_AddressB.getQT12()).Content);
+			MMDataB.put("QT15", siemensPLCm.ReadInt16(Mt_AddressB.getQT12()).Content);
+			MMDataB.put("QT16", siemensPLCm.ReadInt16(Mt_AddressB.getQT12()).Content);
+			MMDataB.put("QT17", siemensPLCm.ReadInt16(Mt_AddressB.getQT12()).Content);
+			siemensPLCm.ConnectClose();
+//			System.out.println("方法获取完数据的时间————————————"+new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+			return MMDataB;
+			
 		}else {
-			MMDataB.put("state", "loading");
+			siemensPLCm.ConnectClose();
+			System.out.println("failed:" +siemensPLCm.ConnectServer().Message+"___监控界面222222222222实时数据链接失败");
+
 			return MMDataB;
 		}
 			
-
 	}
 //  5台空压机 切除 主机 备机 按钮操作
 	@RequestMapping("/montoringButtion")

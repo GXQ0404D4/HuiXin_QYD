@@ -30,10 +30,12 @@ public class DryingMachineDataController {
 	@Autowired
 	EmptyUtil emptyUtil;
 
-	@Async
-	@Scheduled(cron = "0/1 * * * * ?")
+//	@Async
+	@Scheduled(cron = "0/15 * * * * ?")
+//	方法执行完成后50毫秒再启动
+//	@Scheduled(fixedDelay = 500)
 	public void setDryingMachineDataBB() {
-		System.out.println("___"+"干燥机实时数据2");
+//		System.out.println("___"+"干燥机实时数据2");
 		DryingMachine DryingMachine = DryingMachineDatagain.getDryingMachineData();
 		if (emptyUtil.isNotEmpty(DryingMachine)) {
 			DryingMachine_serviceimp.setDryingMachineData(DryingMachine);
@@ -41,8 +43,6 @@ public class DryingMachineDataController {
 			if ( (Boolean)DryingMachine.getGZJ11()==true) {
 				DryingMachine.setDryingMachine_name("干燥机");
 				DryingMachine_serviceimp.setBJDryingMachineData(DryingMachine);
-			}else {
-				System.out.println("干燥机控制判断+++++");
 			}
 		}
 		
@@ -65,7 +65,7 @@ public class DryingMachineDataController {
 	//页面刷新获取实时数据
 	@RequestMapping("/getDryingMachineRealData")
 	public DryingMachine getDryingMachineRealDataPage() {
-		return DryingMachine;
+		return DryingMachineDatagain.getDryingMachineData();
 
 	}
 }

@@ -16,6 +16,7 @@ import com.ktcn.entity.siemensentity.DryingMachine;
 import com.ktcn.entity.siemensentity.Peripheral_entity;
 import com.ktcn.entity.siemensentity.ScrewMachine;
 import com.ktcn.entity.simensaddress.Monitoring_Address;
+import com.ktcn.simens.utils.EmptyUtil;
 import com.ktcn.simens.utils.SiemensPlcConfig;
 import com.ktcn.simens.PLCdata.DryingMachineDatagain;
 
@@ -39,88 +40,89 @@ public class MonitoringController {
 	PeripheralDataController PDReaml;
 	@Autowired
 	DryingMachineDataController DMReaml;
+	@Autowired
+	EmptyUtil emptyUtil;
+	
+	@Autowired
+	Monitoring_Address Mt_Address;
 
 	//监控页面1实时数据展示
 	@RequestMapping("/monitoringPage")
 	public Map<String, Object> getMonitoringData() {
+//		System.out.println("方法开始时间————————————"+new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		Map<String, Object> MMData = new HashMap<String, Object>();
-		Map<String, ScrewMachine> smReamlData = SMDReaml.getRealDataPage();
-		Peripheral_entity ppReamlData = PDReaml.getPeripheralRealData();
-		DryingMachine dmReamlData = DMReaml.getDryingMachineRealDataPage();
-		if (smReamlData!=null && ppReamlData!=null && dmReamlData!=null) {
-//			五台空压机数据
-		MMData.put("MD0", smReamlData.get("ScrewMachine1").getLGJ0());
-		MMData.put("MD1", smReamlData.get("ScrewMachine1").getLGJ2());
-		MMData.put("MD2", smReamlData.get("ScrewMachine1").getLGJ4());
-
-		MMData.put("MD3", smReamlData.get("ScrewMachine2").getLGJ0());
-		MMData.put("MD4", smReamlData.get("ScrewMachine2").getLGJ2());
-		MMData.put("MD5", smReamlData.get("ScrewMachine2").getLGJ4());
-
-		MMData.put("MD6", smReamlData.get("ScrewMachine3").getLGJ0());
-		MMData.put("MD7", smReamlData.get("ScrewMachine3").getLGJ2());
-		MMData.put("MD8", smReamlData.get("ScrewMachine3").getLGJ4());
-
-		MMData.put("MD9", smReamlData.get("ScrewMachine4").getLGJ0());
-		MMData.put("MD10", smReamlData.get("ScrewMachine4").getLGJ2());
-		MMData.put("MD11", smReamlData.get("ScrewMachine4").getLGJ4());
-
-		MMData.put("MD12", smReamlData.get("ScrewMachine5").getLGJ0());
-		MMData.put("MD13", smReamlData.get("ScrewMachine5").getLGJ2());
-		MMData.put("MD14", smReamlData.get("ScrewMachine5").getLGJ4());
-//          干燥机数据
-		MMData.put("MD15", ppReamlData.getWw65());
-		MMData.put("MD16", ppReamlData.getWw79());
-		MMData.put("MD17", ppReamlData.getWw58());
-		MMData.put("MD18", ppReamlData.getWw72());
-		//干燥机运行状态、报警
-		MMData.put("MD19", dmReamlData.getGZJ10());
-		MMData.put("MD20", dmReamlData.getGZJ11());
-//          外围数据
-		MMData.put("MD21", ppReamlData.getWw92());
-		MMData.put("MD22", ppReamlData.getWw93());
-		MMData.put("MD23", ppReamlData.getWw27());
-		MMData.put("MD24", ppReamlData.getWw44());
-
-		MMData.put("MD25", ppReamlData.getWw89());
-		MMData.put("MD26", ppReamlData.getWw90());
-		MMData.put("MD27", ppReamlData.getWw24());
-		MMData.put("MD28", ppReamlData.getWw37());
-
-		MMData.put("MD29", ppReamlData.getWw86());
-		MMData.put("MD30", ppReamlData.getWw87());
-		MMData.put("MD31", ppReamlData.getWw21());
-		MMData.put("MD32", ppReamlData.getWw30());
-////          冷却水
-		MMData.put("MD33", ppReamlData.getWw0());
-		MMData.put("MD34", ppReamlData.getWw7());
-		MMData.put("MD35", ppReamlData.getWw14());
-//      空压机运行状态
-		MMData.put("MD36", smReamlData.get("ScrewMachine1").getLGJ19());
-		MMData.put("MD37", smReamlData.get("ScrewMachine2").getLGJ19());
-		MMData.put("MD38", smReamlData.get("ScrewMachine3").getLGJ19());
-		MMData.put("MD39", smReamlData.get("ScrewMachine4").getLGJ19());
-		MMData.put("MD40", smReamlData.get("ScrewMachine5").getLGJ19());
-//		空压机综合报警状态
-		MMData.put("MD41", smReamlData.get("ScrewMachine1").getLGJ16());
-		MMData.put("MD42", smReamlData.get("ScrewMachine2").getLGJ16());
-		MMData.put("MD43", smReamlData.get("ScrewMachine3").getLGJ16());
-		MMData.put("MD44", smReamlData.get("ScrewMachine4").getLGJ16());
-		MMData.put("MD45", smReamlData.get("ScrewMachine5").getLGJ16());
-//		空压机综合报警状态
-		MMData.put("MD46", smReamlData.get("ScrewMachine1").getLGJ17());
-		MMData.put("MD47", smReamlData.get("ScrewMachine2").getLGJ17());
-		MMData.put("MD48", smReamlData.get("ScrewMachine3").getLGJ17());
-		MMData.put("MD49", smReamlData.get("ScrewMachine4").getLGJ17());
-		MMData.put("MD50", smReamlData.get("ScrewMachine5").getLGJ17());
-//		干燥机容器压力
-		MMData.put("MD51", dmReamlData.getGZJ0());
-		MMData.put("MD52", dmReamlData.getGZJ1());
-		return MMData;
+		SiemensS7Net siemensPLCm = SiemensPlcConfig.getSiemensPLC();
+//		开启长连接
+		OperateResult connectServer = siemensPLCm.ConnectServer();
+		if (connectServer.IsSuccess) {
+			MMData.put("MD0",siemensPLCm.ReadFloat(Mt_Address.getMD0()).Content);
+			MMData.put("MD1",siemensPLCm.ReadFloat(Mt_Address.getMD1()).Content);
+			MMData.put("MD2",siemensPLCm.ReadFloat(Mt_Address.getMD2()).Content);
+			MMData.put("MD3",siemensPLCm.ReadFloat(Mt_Address.getMD3()).Content);
+			MMData.put("MD4",siemensPLCm.ReadFloat(Mt_Address.getMD4()).Content);
+			MMData.put("MD5",siemensPLCm.ReadFloat(Mt_Address.getMD5()).Content);
+			MMData.put("MD6",siemensPLCm.ReadFloat(Mt_Address.getMD6()).Content);
+			MMData.put("MD7",siemensPLCm.ReadFloat(Mt_Address.getMD7()).Content);
+			MMData.put("MD8",siemensPLCm.ReadFloat(Mt_Address.getMD8()).Content);
+			MMData.put("MD9",siemensPLCm.ReadFloat(Mt_Address.getMD9()).Content);
+			MMData.put("MD10",siemensPLCm.ReadFloat(Mt_Address.getMD10()).Content);
+			MMData.put("MD11",siemensPLCm.ReadFloat(Mt_Address.getMD11()).Content);
+			MMData.put("MD12",siemensPLCm.ReadFloat(Mt_Address.getMD12()).Content);
+			MMData.put("MD13",siemensPLCm.ReadFloat(Mt_Address.getMD13()).Content);
+			MMData.put("MD14",siemensPLCm.ReadFloat(Mt_Address.getMD14()).Content);
+			//干燥机排气 进气
+			MMData.put("MD15",siemensPLCm.ReadFloat(Mt_Address.getMD15()).Content);
+			MMData.put("MD16",siemensPLCm.ReadFloat(Mt_Address.getMD16()).Content);
+			MMData.put("MD17",siemensPLCm.ReadFloat(Mt_Address.getMD17()).Content);
+			MMData.put("MD18",siemensPLCm.ReadFloat(Mt_Address.getMD18()).Content);
+			//干燥机运行状态
+			MMData.put("MD19",siemensPLCm.ReadBool(Mt_Address.getMD19()).Content);
+			MMData.put("MD20",siemensPLCm.ReadBool(Mt_Address.getMD20()).Content);
+			//外围数据
+			MMData.put("MD21",siemensPLCm.ReadFloat(Mt_Address.getMD21()).Content);
+			MMData.put("MD22",siemensPLCm.ReadFloat(Mt_Address.getMD22()).Content);
+			MMData.put("MD23",siemensPLCm.ReadFloat(Mt_Address.getMD23()).Content);
+			MMData.put("MD24",siemensPLCm.ReadFloat(Mt_Address.getMD24()).Content);
+			
+			MMData.put("MD25",siemensPLCm.ReadFloat(Mt_Address.getMD25()).Content);
+			MMData.put("MD26",siemensPLCm.ReadFloat(Mt_Address.getMD26()).Content);
+			MMData.put("MD27",siemensPLCm.ReadFloat(Mt_Address.getMD27()).Content);
+			MMData.put("MD28",siemensPLCm.ReadFloat(Mt_Address.getMD28()).Content);
+			
+			MMData.put("MD29",siemensPLCm.ReadFloat(Mt_Address.getMD29()).Content);
+			MMData.put("MD30",siemensPLCm.ReadFloat(Mt_Address.getMD30()).Content);
+			MMData.put("MD31",siemensPLCm.ReadFloat(Mt_Address.getMD31()).Content);
+			MMData.put("MD32",siemensPLCm.ReadFloat(Mt_Address.getMD32()).Content);
+			//冷却水
+			MMData.put("MD33",siemensPLCm.ReadFloat(Mt_Address.getMD33()).Content);
+			MMData.put("MD34",siemensPLCm.ReadFloat(Mt_Address.getMD34()).Content);
+			MMData.put("MD35",siemensPLCm.ReadFloat(Mt_Address.getMD35()).Content);
+			//空压机
+			MMData.put("MD36",siemensPLCm.ReadBool(Mt_Address.getMD36()).Content);
+			MMData.put("MD37",siemensPLCm.ReadBool(Mt_Address.getMD37()).Content);
+			MMData.put("MD38",siemensPLCm.ReadBool(Mt_Address.getMD38()).Content);
+			MMData.put("MD39",siemensPLCm.ReadBool(Mt_Address.getMD39()).Content);
+			MMData.put("MD40",siemensPLCm.ReadBool(Mt_Address.getMD40()).Content);
+			MMData.put("MD41",siemensPLCm.ReadBool(Mt_Address.getMD41()).Content);
+			MMData.put("MD42",siemensPLCm.ReadBool(Mt_Address.getMD42()).Content);
+			MMData.put("MD43",siemensPLCm.ReadBool(Mt_Address.getMD43()).Content);
+			MMData.put("MD44",siemensPLCm.ReadBool(Mt_Address.getMD44()).Content);
+			MMData.put("MD45",siemensPLCm.ReadBool(Mt_Address.getMD45()).Content);
+			MMData.put("MD46",siemensPLCm.ReadBool(Mt_Address.getMD46()).Content);
+			MMData.put("MD47",siemensPLCm.ReadBool(Mt_Address.getMD47()).Content);
+			MMData.put("MD48",siemensPLCm.ReadBool(Mt_Address.getMD48()).Content);
+			MMData.put("MD49",siemensPLCm.ReadBool(Mt_Address.getMD49()).Content);
+			MMData.put("MD50",siemensPLCm.ReadBool(Mt_Address.getMD50()).Content);
+			//干燥机压力容力
+			MMData.put("MD51",siemensPLCm.ReadFloat(Mt_Address.getMD51()).Content);
+			MMData.put("MD52",siemensPLCm.ReadFloat(Mt_Address.getMD52()).Content);
+//			System.out.println("方法获取完数据的时间————————————"+new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
+			siemensPLCm.ConnectClose();
 		}else {
-			MMData.put("state", "loading");
-			return MMData;
+			System.out.println("failed:" +siemensPLCm.ConnectServer().Message+"___监控界面1111111111实时数据链接失败");
+			siemensPLCm.ConnectClose();  
 		}
+		return MMData;
 		
 
 	}

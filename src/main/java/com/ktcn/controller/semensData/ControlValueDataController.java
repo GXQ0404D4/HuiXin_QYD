@@ -29,11 +29,13 @@ public class ControlValueDataController {
 	@Autowired
 	EmptyUtil emptyUtil;
 
-	// 定时任务调用点位数据存入数据库中
-	@Async
-	@Scheduled(cron = "0/1 * * * * ?")
+// 定时任务调用点位数据存入数据库中
+//	@Async
+	@Scheduled(cron = "0/15 * * * * ?")
+//	方法执行完成后50毫秒再启动
+//	@Scheduled(fixedDelay = 500)
 	public void setControlValueDataBB() {
-		System.out.println("___"+"调节阀实时数据1");
+//		System.out.println("___"+"调节阀实时数据1");
 		ControlValue controlValue = ControlValueDatagain.getControlValueData();
 		if (emptyUtil.isNotEmpty(controlValue)) {
 			ControlValue_serviceimp.setControlValueData(controlValue);
@@ -60,7 +62,7 @@ public class ControlValueDataController {
 	
 	@RequestMapping("/getControlVlueRealData")
 	public ControlValue getControlValueRealDataPage() {
-		return controlValue;
+		return ControlValueDatagain.getControlValueData();
 	}
 
 }

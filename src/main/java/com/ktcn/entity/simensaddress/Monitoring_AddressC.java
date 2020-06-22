@@ -19,7 +19,7 @@ import lombok.Data;
 @ConfigurationProperties(prefix = "plc",ignoreInvalidFields = false)
 @PropertySource("classpath:config/PlcRealAddress/monitoringpageC.properties")
 public class Monitoring_AddressC {
-
+//外围数据
 	private String DATA0;
 	private String DATA1;
 	private String DATA2;
@@ -84,5 +84,74 @@ public class Monitoring_AddressC {
 	private String DATA61;
 	private String DATA62;
 	private String DATA63;
-	private String DATA64;
+//	五台空压机数据
+	private String SMDATA1;
+	private String SMDATA2;
+	private String SMDATA3;
+	private String SMDATA4;
+	private String SMDATA5;
+	private String SMDATA6;
+	private String SMDATA7;
+	private String SMDATA8;
+	private String SMDATA9;
+	private String SMDATA10;
+	private String SMDATA11;
+	private String SMDATA12;
+	private String SMDATA13;
+	private String SMDATA14;
+	private String SMDATA15;
+	private String SMDATA16;
+	private String SMDATA17;
+	private String SMDATA18;
+	private String SMDATA19;
+	private String SMDATA20;
+	private String SMDATA21;
+	private String SMDATA22;
+	private String SMDATA23;
+	private String SMDATA24;
+	private String SMDATA25;
+	private String SMDATA26;
+	private String SMDATA27;
+	private String SMDATA28;
+	private String SMDATA29;
+	private String SMDATA30;
+	private String SMDATA31;
+	private String SMDATA32;
+	private String SMDATA33;
+	private String SMDATA34;
+	private String SMDATA35;
+	private String SMDATA36;
+	private String SMDATA37;
+	private String SMDATA38;
+	private String SMDATA39;
+	private String SMDATA40;
+	private String SMDATA41;
+	private String SMDATA42;
+	private String SMDATA43;
+	private String SMDATA44;
+	private String SMDATA45;
+	private String SMDATA46;
+	private String SMDATA47;
+	private String SMDATA48;
+	private String SMDATA49;
+	private String SMDATA50;
+	private String SMDATA51;
+	private String SMDATA52;
+	private String SMDATA53;
+	private String SMDATA54;
+	private String SMDATA55;
+	private String SMDATA56;
+	private String SMDATA57;
+	private String SMDATA58;
+	private String SMDATA59;
+	private String SMDATA60;
+//干燥机数据	
+	private String DMDATA0;
+	private String DMDATA1;
+	private String DMDATA2;
+	private String DMDATA3;
+	private String DMDATA4;
+	private String DMDATA5;
+	private String DMDATA6;
+	private String DMDATA7;
 }

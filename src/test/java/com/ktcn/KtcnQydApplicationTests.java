@@ -33,6 +33,14 @@ import jxl.write.biff.RowsExceededException;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class KtcnQydApplicationTests {
+	
+	@Test
+	public void round() {
+		String[] str = new String[] {"香菇","打卤","香辣"};
+		double random = Math.random();
+		int round = (int)Math.round(random*2);
+		System.out.println(str[round]);
+	}
 
 	@Test
 	public void contextLoads() throws IOException, RowsExceededException, WriteException {

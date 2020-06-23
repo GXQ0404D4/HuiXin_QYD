@@ -46,7 +46,6 @@ public class MonitoringControllerC {
 	// 监控页面3实时数据展示
 	@RequestMapping("/monitoringPageC")
 	public Map<String, Object> getMonitoringCData() {
-		System.out.println("方法开始时间11111111111————————————" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		Map<String, Object> MTCdat = new HashMap<String, Object>();
 		SiemensS7Net siemensPLCm = SiemensPlcConfig.getSiemensPLC();
 		Map<String, ScrewMachine> smReamlDataPage = new HashMap<String, ScrewMachine>();
@@ -150,91 +149,90 @@ public class MonitoringControllerC {
 				dryingMachine.setGZJ4(dmData1.Content[4]);
 				dryingMachine.setGZJ5(dmData1.Content[5]);
 				
-				dryingMachine.setGZJ6(dmData1.Content[0]);
-				dryingMachine.setGZJ7(dmData1.Content[1]);
+				dryingMachine.setGZJ6(dmData2.Content[0]);
+				dryingMachine.setGZJ7(dmData2.Content[1]);
 				
 			}
 			OperateResultExOne<float[]> ppData1 = siemensPLCm.ReadFloat("DB11.8", (short) 14);
 			OperateResultExOne<float[]> ppData2 = siemensPLCm.ReadFloat("DB12.8", (short) 14);
 			OperateResultExOne<float[]> ppData3 = siemensPLCm.ReadFloat("DB13.8", (short) 14);
-			OperateResultExOne<float[]> ppData4 = siemensPLCm.ReadFloat("DB14.8", (short) 11);
-			OperateResultExOne<float[]> ppData5 = siemensPLCm.ReadFloat("DB15.8", (short) 11);
+			OperateResultExOne<float[]> ppData4 = siemensPLCm.ReadFloat("DB14.8", (short) 14);
+			OperateResultExOne<float[]> ppData5 = siemensPLCm.ReadFloat("DB15.8", (short) 14);
 			if (ppData1.IsSuccess) {
 				Peripheral_entity.setWw0(ppData1.Content[0]);
-				Peripheral_entity.setWw7(ppData1.Content[1]);
-				Peripheral_entity.setWw14(ppData1.Content[2]);
-				Peripheral_entity.setWw21(ppData1.Content[3]);
-				Peripheral_entity.setWw24(ppData1.Content[4]);
-				Peripheral_entity.setWw27(ppData1.Content[5]);
-				Peripheral_entity.setWw30(ppData1.Content[6]);
-				Peripheral_entity.setWw37(ppData1.Content[7]);
-				Peripheral_entity.setWw44(ppData1.Content[8]);
-				Peripheral_entity.setWw51(ppData1.Content[9]);
-				Peripheral_entity.setWw58(ppData1.Content[10]);
-				Peripheral_entity.setWw65(ppData1.Content[11]);
-				Peripheral_entity.setWw72(ppData1.Content[12]);
-				Peripheral_entity.setWw79(ppData1.Content[13]);
+				Peripheral_entity.setWw7(ppData1.Content[4]);
+				Peripheral_entity.setWw14(ppData1.Content[13]);
+				Peripheral_entity.setWw21(ppData1.Content[1]);
+				Peripheral_entity.setWw24(ppData1.Content[2]);
+				Peripheral_entity.setWw27(ppData1.Content[3]);
+				Peripheral_entity.setWw30(ppData1.Content[5]);
+				Peripheral_entity.setWw37(ppData1.Content[6]);
+				Peripheral_entity.setWw44(ppData1.Content[7]);
+				Peripheral_entity.setWw51(ppData1.Content[8]);
+				Peripheral_entity.setWw58(ppData1.Content[9]);
+				Peripheral_entity.setWw65(ppData1.Content[10]);
+				Peripheral_entity.setWw72(ppData1.Content[11]);
+				Peripheral_entity.setWw79(ppData1.Content[12]);
 			}
             if (ppData2.IsSuccess) {
             	Peripheral_entity.setWw1(ppData2.Content[0]);
-            	Peripheral_entity.setWw8(ppData2.Content[1]);
-            	Peripheral_entity.setWw15(ppData2.Content[2]);
-            	Peripheral_entity.setWw22(ppData2.Content[3]);
-            	Peripheral_entity.setWw25(ppData2.Content[4]);
-            	Peripheral_entity.setWw28(ppData2.Content[5]);
-            	Peripheral_entity.setWw31(ppData2.Content[6]);
-            	Peripheral_entity.setWw38(ppData2.Content[7]);
-            	Peripheral_entity.setWw45(ppData2.Content[8]);
-            	Peripheral_entity.setWw52(ppData2.Content[9]);
-            	Peripheral_entity.setWw59(ppData2.Content[10]);
-            	Peripheral_entity.setWw66(ppData2.Content[11]);
-            	Peripheral_entity.setWw73(ppData2.Content[12]);
-            	Peripheral_entity.setWw80(ppData2.Content[13]);
+            	Peripheral_entity.setWw8(ppData2.Content[4]);
+            	Peripheral_entity.setWw15(ppData2.Content[13]);
+            	Peripheral_entity.setWw22(ppData2.Content[1]);
+            	Peripheral_entity.setWw25(ppData2.Content[2]);
+            	Peripheral_entity.setWw28(ppData2.Content[3]);
+            	Peripheral_entity.setWw31(ppData2.Content[5]);
+            	Peripheral_entity.setWw38(ppData2.Content[6]);
+            	Peripheral_entity.setWw45(ppData2.Content[7]);
+            	Peripheral_entity.setWw52(ppData2.Content[8]);
+            	Peripheral_entity.setWw59(ppData2.Content[9]);
+            	Peripheral_entity.setWw66(ppData2.Content[10]);
+            	Peripheral_entity.setWw73(ppData2.Content[11]);
+            	Peripheral_entity.setWw80(ppData2.Content[12]);
 			}
             if (ppData3.IsSuccess) {
             	Peripheral_entity.setWw2(ppData3.Content[0]);
-            	Peripheral_entity.setWw9(ppData3.Content[1]);
-            	Peripheral_entity.setWw16(ppData3.Content[2]);
-            	Peripheral_entity.setWw23(ppData3.Content[3]);
-            	Peripheral_entity.setWw26(ppData3.Content[4]);
-            	Peripheral_entity.setWw29(ppData3.Content[5]);
-            	Peripheral_entity.setWw32(ppData3.Content[6]);
-            	Peripheral_entity.setWw39(ppData3.Content[7]);
-            	Peripheral_entity.setWw46(ppData3.Content[8]);
-            	Peripheral_entity.setWw53(ppData3.Content[9]);
-            	Peripheral_entity.setWw60(ppData3.Content[10]);
-            	Peripheral_entity.setWw67(ppData3.Content[11]);
-            	Peripheral_entity.setWw74(ppData3.Content[12]);
-            	Peripheral_entity.setWw81(ppData3.Content[13]);
+            	Peripheral_entity.setWw9(ppData3.Content[4]);
+            	Peripheral_entity.setWw16(ppData3.Content[13]);
+            	Peripheral_entity.setWw23(ppData3.Content[1]);
+            	Peripheral_entity.setWw26(ppData3.Content[2]);
+            	Peripheral_entity.setWw29(ppData3.Content[3]);
+            	Peripheral_entity.setWw32(ppData3.Content[5]);
+            	Peripheral_entity.setWw39(ppData3.Content[6]);
+            	Peripheral_entity.setWw46(ppData3.Content[7]);
+            	Peripheral_entity.setWw53(ppData3.Content[8]);
+            	Peripheral_entity.setWw60(ppData3.Content[9]);
+            	Peripheral_entity.setWw67(ppData3.Content[10]);
+            	Peripheral_entity.setWw74(ppData3.Content[11]);
+            	Peripheral_entity.setWw81(ppData3.Content[12]);
 			}
             if (ppData4.IsSuccess) {
             	Peripheral_entity.setWw3(ppData4.Content[0]);
-            	Peripheral_entity.setWw10(ppData4.Content[1]);
-            	Peripheral_entity.setWw17(ppData4.Content[2]);
-            	Peripheral_entity.setWw33(ppData4.Content[3]);
-            	Peripheral_entity.setWw40(ppData4.Content[4]);
-            	Peripheral_entity.setWw47(ppData4.Content[5]);
-            	Peripheral_entity.setWw54(ppData4.Content[6]);
-            	Peripheral_entity.setWw61(ppData4.Content[7]);
-            	Peripheral_entity.setWw68(ppData4.Content[8]);
-            	Peripheral_entity.setWw75(ppData4.Content[9]);
-            	Peripheral_entity.setWw82(ppData4.Content[10]);
+            	Peripheral_entity.setWw10(ppData4.Content[4]);
+            	Peripheral_entity.setWw17(ppData4.Content[13]);
+            	Peripheral_entity.setWw33(ppData4.Content[5]);
+            	Peripheral_entity.setWw40(ppData4.Content[6]);
+            	Peripheral_entity.setWw47(ppData4.Content[7]);
+            	Peripheral_entity.setWw54(ppData4.Content[8]);
+            	Peripheral_entity.setWw61(ppData4.Content[9]);
+            	Peripheral_entity.setWw68(ppData4.Content[10]);
+            	Peripheral_entity.setWw75(ppData4.Content[11]);
+            	Peripheral_entity.setWw82(ppData4.Content[12]);
 			}
             if (ppData5.IsSuccess) {
             	Peripheral_entity.setWw4(ppData5.Content[0]);
-            	Peripheral_entity.setWw11(ppData5.Content[1]);
-            	Peripheral_entity.setWw18(ppData5.Content[2]);
-            	Peripheral_entity.setWw34(ppData5.Content[3]);
-            	Peripheral_entity.setWw41(ppData5.Content[4]);
-            	Peripheral_entity.setWw48(ppData5.Content[5]);
-            	Peripheral_entity.setWw55(ppData5.Content[6]);
-            	Peripheral_entity.setWw62(ppData5.Content[7]);
-            	Peripheral_entity.setWw69(ppData5.Content[8]);
-            	Peripheral_entity.setWw76(ppData5.Content[9]);
-            	Peripheral_entity.setWw83(ppData5.Content[10]);
+            	Peripheral_entity.setWw11(ppData5.Content[4]);
+            	Peripheral_entity.setWw18(ppData5.Content[13]);
+            	Peripheral_entity.setWw34(ppData5.Content[5]);
+            	Peripheral_entity.setWw41(ppData5.Content[6]);
+            	Peripheral_entity.setWw48(ppData5.Content[7]);
+            	Peripheral_entity.setWw55(ppData5.Content[8]);
+            	Peripheral_entity.setWw62(ppData5.Content[9]);
+            	Peripheral_entity.setWw69(ppData5.Content[10]);
+            	Peripheral_entity.setWw76(ppData5.Content[11]);
+            	Peripheral_entity.setWw83(ppData5.Content[12]);
 			}
 			
-			System.out.println("方法获取完数据的时间1111111111————————————"+new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 			smReamlDataPage.put("ScrewMachine1", ScrewMachine1);
 			smReamlDataPage.put("ScrewMachine2", ScrewMachine2);
 			smReamlDataPage.put("ScrewMachine3", ScrewMachine3);

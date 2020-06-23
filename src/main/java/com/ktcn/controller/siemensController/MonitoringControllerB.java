@@ -48,18 +48,17 @@ public class MonitoringControllerB {
 	//监控页面2实时数据展示
 	@RequestMapping("/monitoringPageB")
 	public Map<String, Object> getMonitoringBData() {
-//		System.out.println("方法开始时间————————————"+new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		Map<String, Object> MMDataB = new HashMap<String, Object>();
 		SiemensS7Net siemensPLCm = SiemensPlcConfig.getSiemensPLC();
 //		开启长连接
 		OperateResult connectServer = siemensPLCm.ConnectServer();
 		if (connectServer.IsSuccess) {
-			MMDataB.put("QT0", siemensPLCm.ReadFloat(Mt_AddressB.getQT0()).Content);
+			MMDataB.put("QT0", siemensPLCm.ReadBool(Mt_AddressB.getQT0()).Content);
 			MMDataB.put("QT1", siemensPLCm.ReadFloat(Mt_AddressB.getQT1()).Content);
 			MMDataB.put("QT2", siemensPLCm.ReadFloat(Mt_AddressB.getQT2()).Content);
 			MMDataB.put("QT3", siemensPLCm.ReadFloat(Mt_AddressB.getQT3()).Content);
 			
-			MMDataB.put("QT4", siemensPLCm.ReadFloat(Mt_AddressB.getQT4()).Content);
+			MMDataB.put("QT4", siemensPLCm.ReadBool(Mt_AddressB.getQT4()).Content);
 			MMDataB.put("QT5", siemensPLCm.ReadFloat(Mt_AddressB.getQT5()).Content);
 			MMDataB.put("QT6", siemensPLCm.ReadFloat(Mt_AddressB.getQT6()).Content);
 			MMDataB.put("QT7", siemensPLCm.ReadFloat(Mt_AddressB.getQT7()).Content);
@@ -70,19 +69,16 @@ public class MonitoringControllerB {
 			MMDataB.put("QT11", siemensPLCm.ReadBool(Mt_AddressB.getQT11()).Content);
 			MMDataB.put("QT12", siemensPLCm.ReadBool(Mt_AddressB.getQT12()).Content);
 //          空压机 切机  主机 备机
-			MMDataB.put("QT13", siemensPLCm.ReadInt16(Mt_AddressB.getQT12()).Content);
-			MMDataB.put("QT14", siemensPLCm.ReadInt16(Mt_AddressB.getQT12()).Content);
-			MMDataB.put("QT15", siemensPLCm.ReadInt16(Mt_AddressB.getQT12()).Content);
-			MMDataB.put("QT16", siemensPLCm.ReadInt16(Mt_AddressB.getQT12()).Content);
-			MMDataB.put("QT17", siemensPLCm.ReadInt16(Mt_AddressB.getQT12()).Content);
+			MMDataB.put("QT13", siemensPLCm.ReadInt16(Mt_AddressB.getQT13()).Content);
+			MMDataB.put("QT14", siemensPLCm.ReadInt16(Mt_AddressB.getQT14()).Content);
+			MMDataB.put("QT15", siemensPLCm.ReadInt16(Mt_AddressB.getQT15()).Content);
+			MMDataB.put("QT16", siemensPLCm.ReadInt16(Mt_AddressB.getQT16()).Content);
+			MMDataB.put("QT17", siemensPLCm.ReadInt16(Mt_AddressB.getQT17()).Content);
 			siemensPLCm.ConnectClose();
-//			System.out.println("方法获取完数据的时间————————————"+new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 			return MMDataB;
 			
 		}else {
 			siemensPLCm.ConnectClose();
-			System.out.println("failed:" +siemensPLCm.ConnectServer().Message+"___监控界面222222222222实时数据链接失败");
-
 			return MMDataB;
 		}
 			
@@ -188,7 +184,7 @@ public class MonitoringControllerB {
 						}
 					}
 					if ("BTC".equals(MMDbuttion)) {
-						OperateResult result = siemensPLC.Write("M309", data2);
+						OperateResult result = siemensPLC.Write("M308", data4);
 						if (result.IsSuccess) {
 							return result.Message;
 						}
@@ -252,13 +248,13 @@ public class MonitoringControllerB {
 		try {
 			if (siemensPLC.ConnectServer().IsSuccess) {
 				if ("DYsmotion".equals(GYDYname)) {
-					if ("true".equals(QTvalue) || QTvalue == true) {
+					if ( QTvalue == true) {
 						OperateResult result = siemensPLC.Write("DB21.18.4", false);
 						if (result.IsSuccess) {
 							return result.Message;
 						}
 					}
-					if ("false".equals(QTvalue) || QTvalue == false) {
+					if ( QTvalue == false) {
 						OperateResult result = siemensPLC.Write("DB21.18.4", true);
 						if (result.IsSuccess) {
 							return result.Message;
@@ -267,13 +263,13 @@ public class MonitoringControllerB {
 
 				}
 				if ("GYsmotion".equals(GYDYname)) {
-					if ("true".equals(QTvalue) || QTvalue == true) {
+					if ( QTvalue == true) {
 						OperateResult result = siemensPLC.Write("DB21.18.5", false);
 						if (result.IsSuccess) {
 							return result.Message;
 						}
 					}
-					if ("false".equals(QTvalue) || QTvalue == false) {
+					if ( QTvalue == false) {
 						OperateResult result = siemensPLC.Write("DB21.18.5", true);
 						if (result.IsSuccess) {
 							return result.Message;

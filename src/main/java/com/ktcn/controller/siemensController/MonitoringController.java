@@ -49,7 +49,6 @@ public class MonitoringController {
 	//监控页面1实时数据展示
 	@RequestMapping("/monitoringPage")
 	public Map<String, Object> getMonitoringData() {
-//		System.out.println("方法开始时间————————————"+new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 		Map<String, Object> MMData = new HashMap<String, Object>();
 		SiemensS7Net siemensPLCm = SiemensPlcConfig.getSiemensPLC();
 //		开启长连接
@@ -116,13 +115,13 @@ public class MonitoringController {
 			//干燥机压力容力
 			MMData.put("MD51",siemensPLCm.ReadFloat(Mt_Address.getMD51()).Content);
 			MMData.put("MD52",siemensPLCm.ReadFloat(Mt_Address.getMD52()).Content);
-//			System.out.println("方法获取完数据的时间————————————"+new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
 			siemensPLCm.ConnectClose();
+			return MMData;
 		}else {
-			System.out.println("failed:" +siemensPLCm.ConnectServer().Message+"___监控界面1111111111实时数据链接失败");
-			siemensPLCm.ConnectClose();  
+			siemensPLCm.ConnectClose(); 
+			return MMData;
 		}
-		return MMData;
+		
 		
 
 	}
@@ -240,16 +239,16 @@ public class MonitoringController {
 				}
 				if ("MDE".equals(MDname)) {
 					if (MDTF.equals(true)) {
-						OperateResult write9 = siemensPLC.Write("DB21.0.6", true);
+						OperateResult write9 = siemensPLC.Write("DB21.1.0", true);
 						if (write9.IsSuccess) {
-							siemensPLC.Write("DB21.0.6", false);
+							siemensPLC.Write("DB21.1.0", false);
 							return write9.Message;
 						}
 					}
 					if (MDTF.equals(false)) {
-						OperateResult write10 = siemensPLC.Write("DB21.0.7", true);
+						OperateResult write10 = siemensPLC.Write("DB21.1.1", true);
 						if (write10.IsSuccess) {
-							siemensPLC.Write("DB21.0.7", false);
+							siemensPLC.Write("DB21.1.1", false);
 							return write10.Message;
 						}
 					}

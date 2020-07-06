@@ -211,9 +211,7 @@ public class PeripheralDataController {
 //		@Scheduled(cron = "0/1 * * * * ?")
 		public  void setPeripheralData() {
 			Map<String, Object> map = Peripheral_data.getPeripheral_data();
-			Peripheral_entity Peripheral_entity =(Peripheral_entity) map.get("PeripheralData");
-			Peripheral_serviceimp.setPeripheral_data_hour(Peripheral_entity);
-			
+			Peripheral_serviceimp.setPeripheral_data_hour((Peripheral_entity) map.get("PeripheralData"));
 		}
 		
 //      定时删除当前一个月之前的数据

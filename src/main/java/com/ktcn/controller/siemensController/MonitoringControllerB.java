@@ -86,7 +86,6 @@ public class MonitoringControllerB {
 //  5台空压机 切除 主机 备机 按钮操作
 	@RequestMapping("/montoringButtion")
 	public String knobControl(String MMDname, String MMDbuttion) {
-		System.out.println(MMDname+"_____"+MMDbuttion);
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
 		try {
 			if (siemensPLC.ConnectServer().IsSuccess) {
@@ -203,7 +202,6 @@ public class MonitoringControllerB {
 	@RequestMapping("/setParameters")
 	public String setUpParameters(String PtName,float PtValue) {
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
-		System.out.println(PtName+"________"+PtValue);
 		try {
 			if (siemensPLC.ConnectServer().IsSuccess) {
 				if ("QT2".equals(PtName)) {
@@ -244,7 +242,6 @@ public class MonitoringControllerB {
 	@RequestMapping("/updataSelfMotion")
 	public String updataSelfMotion(String GYDYname,Boolean QTvalue) {
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
-		System.out.println(GYDYname+"_____"+QTvalue);
 		try {
 			if (siemensPLC.ConnectServer().IsSuccess) {
 				if ("DYsmotion".equals(GYDYname)) {

@@ -1,7 +1,5 @@
 package com.ktcn.simens.PLCdata;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,13 +8,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.ktcn.entity.siemensentity.ScrewMachine;
 import com.ktcn.simens.utils.SiemensPlcConfig;
 
 import HslCommunication.Core.Types.OperateResult;
-import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
@@ -262,11 +258,8 @@ public final class ScrewMachineDatagain {
 	@Autowired
 	SiemensPlcConfig SiemensPlcConfig;
 	
-//	@Async
-//	@Scheduled(cron = "0/1 * * * * ?")
 	public  Map<String, ScrewMachine> getScrewMachineData() {
 		SiemensS7Net siemensPLCD = SiemensPlcConfig.getSiemensPLC();
-//		SiemensS7Net siemensPLC = new SiemensS7Net(SiemensPLCS.S1200,"192.168.0.1");
 		 Map<String, ScrewMachine> DataMap = new HashMap<String, ScrewMachine>();
 		ScrewMachine ScrewMachine1 =new ScrewMachine();
 		ScrewMachine ScrewMachine2 =new ScrewMachine();
@@ -412,14 +405,8 @@ public final class ScrewMachineDatagain {
 			DataMap.put("ScrewMachine4", ScrewMachine4);
 			DataMap.put("ScrewMachine5", ScrewMachine5);
 		} else {
-			System.out.println("failed:" + siemensPLCD.ConnectServer().Message + "螺杆机异常");
 			siemensPLCD.ConnectClose();
 		}
-		// 数据读取完毕 获取当前时间
-//		System.out.println(DataMap);
-//		System.out.println("螺杆机数据获取+777" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
-//		System.out.println(" ");
-		
 		return DataMap;
 	}
 	

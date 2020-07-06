@@ -40,7 +40,7 @@ public class DryingMachineDataController {
 		if (emptyUtil.isNotEmpty(DryingMachine)) {
 			DryingMachine_serviceimp.setDryingMachineData(DryingMachine);
 			//报警信息判断存储
-			if ( (Boolean)DryingMachine.getGZJ11()==true) {
+			if ( (Boolean)DryingMachine.getGZJ11()==true && emptyUtil.isNotEmpty((Boolean)DryingMachine.getGZJ11())) {
 				DryingMachine.setDryingMachine_name("干燥机");
 				DryingMachine_serviceimp.setBJDryingMachineData(DryingMachine);
 			}
@@ -48,12 +48,11 @@ public class DryingMachineDataController {
 		
 	}
 
-//	@RequestMapping("/getDryingMachineRealData")
 	@Scheduled(cron = "0 0 * * * ?")
 //	@Scheduled(cron = "0/1 * * * * ?")
 	public void setDryingMachineRealData() {
-		DryingMachine DryingMachine = DryingMachineDatagain.getDryingMachineData();
-		DryingMachine_serviceimp.setDryingMachineDataHour(DryingMachine);
+//		DryingMachine DryingMachine = DryingMachineDatagain.getDryingMachineData();
+		DryingMachine_serviceimp.setDryingMachineDataHour(DryingMachineDatagain.getDryingMachineData());
 	}
 //  定时删除当前一个月之前的数据
 //	@Scheduled(cron = "0 0 1 ? * L") //每周星期天凌晨1点执行一次

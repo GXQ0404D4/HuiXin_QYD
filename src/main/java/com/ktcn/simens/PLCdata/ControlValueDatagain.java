@@ -56,11 +56,8 @@ public final  class ControlValueDatagain {
 	ControlValue  controlValue;
 	
 	
-//	@Async
-//	@Scheduled(cron = "0/1 * * * * ?")
 	public  ControlValue getControlValueData() {
 		SiemensS7Net siemensPLCA = SiemensPlcConfig.getSiemensPLC();
-//		SiemensS7Net siemensPLC = new SiemensS7Net(SiemensPLCS.S1200,"192.168.0.1");
 //		开启长连接
 		OperateResult connectServer = siemensPLCA.ConnectServer();
 		if (connectServer.IsSuccess) {
@@ -72,18 +69,11 @@ public final  class ControlValueDatagain {
 			controlValue.setTJF5((siemensPLCA.ReadFloat(TJF5).Content));
 			controlValue.setTJF6((siemensPLCA.ReadFloat(TJF6).Content));
 			controlValue.setTJF7((siemensPLCA.ReadBool(TJF7).Content));
-			
 			siemensPLCA.ConnectClose();
-			
-//			ControlValue_serviceimp.setControlValueData(controlValue);
 		} else {
-			System.out.println("failed:" +siemensPLCA.ConnectServer().Message+"___调节阀异常");
 			siemensPLCA.ConnectClose();              
 		}
 		// 数据读取完毕 获取当前时间
-//		System.out.println(controlValue); 
-//		System.out.println("调节阀数据持久化+444" +  new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
-//		System.out.println(" ");
 		return controlValue;
 	}
 	

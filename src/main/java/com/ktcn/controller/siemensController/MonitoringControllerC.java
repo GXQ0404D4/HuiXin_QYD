@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ktcn.controller.semensData.DryingMachineDataController;
 import com.ktcn.controller.semensData.PeripheralDataController;
 import com.ktcn.controller.semensData.ScrewMachineDataController;
+import com.ktcn.entity.siemensentity.ControlValue;
 import com.ktcn.entity.siemensentity.DryingMachine;
 import com.ktcn.entity.siemensentity.Peripheral_entity;
 import com.ktcn.entity.siemensentity.ScrewMachine;
@@ -38,11 +39,12 @@ public class MonitoringControllerC {
 	SiemensPlcConfig SiemensPlcConfig;
 	@Autowired
 	EmptyUtil emptyUtil;
-	@Autowired
-	Monitoring_AddressC Mt_AddressC;
+//	@Autowired
+//	Monitoring_AddressC Mt_AddressC;
 	@Autowired
 	Peripheral_entity Peripheral_entity;
-
+	@Autowired
+	ControlValue controlValue;
 	// 监控页面3实时数据展示
 	@RequestMapping("/monitoringPageC")
 	public Map<String, Object> getMonitoringCData() {
@@ -232,13 +234,26 @@ public class MonitoringControllerC {
             	Peripheral_entity.setWw76(ppData5.Content[11]);
             	Peripheral_entity.setWw83(ppData5.Content[12]);
 			}
-			
+            
+            OperateResultExOne<float[]> cvData = siemensPLCm.ReadFloat("DB30.0", (short) 7);
+            
+            if (cvData.IsSuccess) {
+            	controlValue.setTJF0(cvData.Content[0]);
+            	controlValue.setTJF1(cvData.Content[1]);
+            	controlValue.setTJF2(cvData.Content[2]);
+            	controlValue.setTJF3(cvData.Content[3]);
+            	controlValue.setTJF4(cvData.Content[4]);
+            	controlValue.setTJF5(cvData.Content[5]);
+            	controlValue.setTJF6(cvData.Content[6]);
+			}
+            
 			smReamlDataPage.put("ScrewMachine1", ScrewMachine1);
 			smReamlDataPage.put("ScrewMachine2", ScrewMachine2);
 			smReamlDataPage.put("ScrewMachine3", ScrewMachine3);
 			smReamlDataPage.put("ScrewMachine4", ScrewMachine4);
 			smReamlDataPage.put("ScrewMachine5", ScrewMachine5);
 			
+			MTCdat.put("ControlValue", controlValue);
 			MTCdat.put("Peripheral_entity", Peripheral_entity);
 			MTCdat.put("ScrewMachineData", smReamlDataPage);
 			MTCdat.put("DryingMachineData", dryingMachine);
@@ -253,17 +268,35 @@ public class MonitoringControllerC {
 	// 监控界面3 外围数据点击修改数值
 	@RequestMapping("/updataPeripheralValue")
 	public String updataPeripheralValue(String PLCip, float ppValue) {
-		System.out.println(PLCip + "____" + ppValue);
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
-		if (siemensPLC.ConnectServer().IsSuccess) {
-			OperateResult result = siemensPLC.Write(PLCip, ppValue);
+		try {
+			if (siemensPLC.ConnectServer().IsSuccess) {
+				OperateResult result = siemensPLC.Write(PLCip, ppValue);
+				return result.Message;
+			} else {
+				return "ununited";
+			} 
+		} finally {
 			siemensPLC.ConnectClose();
-			return result.Message;
-		} else {
-			siemensPLC.ConnectClose();
-			return "ununited";
 		}
 
+	}
+	
+	//监控页面3 调节阀数据操作
+	@RequestMapping("/updataControlValueData")
+	public String updataControlValueData(String PLCcvip,float cvValue) {
+		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
+		try {
+			if (siemensPLC.ConnectServer().IsSuccess) {
+				OperateResult result = siemensPLC.Write(PLCcvip, cvValue);
+				return result.Message;
+			} else {
+				
+				return "ununited";
+			} 
+		} finally {
+			siemensPLC.ConnectClose();
+		}
 	}
 
 }

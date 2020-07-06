@@ -115,6 +115,17 @@ public class MonitoringController {
 			//干燥机压力容力
 			MMData.put("MD51",siemensPLCm.ReadFloat(Mt_Address.getMD51()).Content);
 			MMData.put("MD52",siemensPLCm.ReadFloat(Mt_Address.getMD52()).Content);
+			//调节阀
+			MMData.put("MD53",siemensPLCm.ReadFloat(Mt_Address.getMD53()).Content);
+			MMData.put("MD54",siemensPLCm.ReadFloat(Mt_Address.getMD54()).Content);
+			MMData.put("MD55",siemensPLCm.ReadFloat(Mt_Address.getMD55()).Content);
+			MMData.put("MD56",siemensPLCm.ReadFloat(Mt_Address.getMD56()).Content);
+			MMData.put("MD57",siemensPLCm.ReadFloat(Mt_Address.getMD57()).Content);
+			MMData.put("MD58",siemensPLCm.ReadBool(Mt_Address.getMD58()).Content);
+			//其他数据
+			MMData.put("MD59",siemensPLCm.ReadFloat(Mt_Address.getMD59()).Content);
+			MMData.put("MD60",siemensPLCm.ReadBool(Mt_Address.getMD60()).Content);
+			MMData.put("MD61",siemensPLCm.ReadBool(Mt_Address.getMD61()).Content);
 			siemensPLCm.ConnectClose();
 			return MMData;
 		}else {
@@ -129,7 +140,6 @@ public class MonitoringController {
 //    	监控界面三个重置按钮
 	@RequestMapping("/resetButtion")
 	public String setFUWEI(String MDname) {
-		System.out.println(MDname);
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
 		try {
 			if (siemensPLC.ConnectServer().IsSuccess) {
@@ -159,7 +169,6 @@ public class MonitoringController {
 			} 
 			return "ununited";
 		} finally {
-			System.out.println("结束连接池");
 			siemensPLC.ConnectClose();
 		}
 		
@@ -169,7 +178,6 @@ public class MonitoringController {
 //	监控界面5台空压机控制按钮
 	@RequestMapping("/compressButtion")
 	public String setCompressorButton(String MDname, Boolean MDTF) {
-		System.out.println(MDname + "__________" + MDTF);
 		SiemensS7Net siemensPLC =  SiemensPlcConfig.getSiemensPLC();
 		try {
 			if (siemensPLC.ConnectServer().IsSuccess) {
@@ -259,7 +267,6 @@ public class MonitoringController {
 			} 
 			return "ununited";
 		} finally {
-			System.out.println("结束连接池");
 			siemensPLC.ConnectClose();
 		}
 	
@@ -282,7 +289,6 @@ public class MonitoringController {
 			} 
 			return "ununited";
 		} finally {
-			System.out.println("结束连接池");
 			siemensPLC.ConnectClose();
 		}
 	
@@ -294,7 +300,6 @@ public class MonitoringController {
 	@RequestMapping("/dryingMachineQT")
 	public String setDryingMachine(String MDname) {
 		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
-		System.out.println(MDname);
 		try {
 			if (siemensPLC.ConnectServer().IsSuccess) {
 				// 获取到干燥机的运行状态 如果
@@ -318,7 +323,26 @@ public class MonitoringController {
 			} 
 			return "ununited";
 		} finally {
-			System.out.println("结束连接池");
+			siemensPLC.ConnectClose();
+		}
+	}
+	
+	//监控页面1 调节阀的手自动
+	@RequestMapping("/updataControlValueSZD")
+	public String updataControlValueSZD(Boolean CVszd) {
+		SiemensS7Net siemensPLC = SiemensPlcConfig.getSiemensPLC();
+		try {
+			if (siemensPLC.ConnectServer().IsSuccess) {
+				if (CVszd==true) {
+					OperateResult write = siemensPLC.Write("DB30.32.0", false);
+					return write.Message;
+				}if (CVszd==false) {
+					OperateResult write = siemensPLC.Write("DB30.32.0", true);
+					return write.Message;
+				} 
+			} 
+			return "ununited";
+		} finally {
 			siemensPLC.ConnectClose();
 		}
 		

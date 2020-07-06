@@ -35,7 +35,6 @@ public class ControlValueDataController {
 //	方法执行完成后50毫秒再启动
 //	@Scheduled(fixedDelay = 500)
 	public void setControlValueDataBB() {
-//		System.out.println("___"+"调节阀实时数据1");
 		ControlValue controlValue = ControlValueDatagain.getControlValueData();
 		if (emptyUtil.isNotEmpty(controlValue)) {
 			ControlValue_serviceimp.setControlValueData(controlValue);
@@ -43,14 +42,12 @@ public class ControlValueDataController {
 		
 	}
 
-//	@RequestMapping("/getControlVlueRealData")
-//  @Scheduled(cron = "0 0/15 * * * ?")   //每15分钟触发一次
 //  每小时执行一次
 	@Scheduled(cron = "0 0 * * * ?")
 //	@Scheduled(cron = "0/1 * * * * ?")
 	public void setControlValueRealData() {
-		ControlValue controlValueData = ControlValueDatagain.getControlValueData();
-		ControlValue_serviceimp.setControlValueDataHour(controlValueData);
+//		ControlValue controlValueData = ControlValueDatagain.getControlValueData();
+		ControlValue_serviceimp.setControlValueDataHour(ControlValueDatagain.getControlValueData());
 	}
 	
 //  定时删除周报表数据

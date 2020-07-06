@@ -28,32 +28,21 @@ public class ScrewMachine_serviceimp implements ScrewMachine_service {
 	//空压机实时数据持久化到数据库
 	public void setScrewMachineData(Map<String, ScrewMachine> dataMap) {
 		// TODO Auto-generated method stub
-		ScrewMachine sMC1 = dataMap.get("ScrewMachine1");
-		ScrewMachine sMC2 = dataMap.get("ScrewMachine2");
-		ScrewMachine sMC3 = dataMap.get("ScrewMachine3");
-		ScrewMachine sMC4 = dataMap.get("ScrewMachine4");
-		ScrewMachine sMC5 = dataMap.get("ScrewMachine5");
-		ScrewMachine_dao.setScrewMachineData(sMC1);
-		ScrewMachine_dao.setScrewMachineData(sMC2);
-		ScrewMachine_dao.setScrewMachineData(sMC3);
-		ScrewMachine_dao.setScrewMachineData(sMC4);
-		ScrewMachine_dao.setScrewMachineData(sMC5);
+		ScrewMachine_dao.setScrewMachineData(dataMap.get("ScrewMachine1"));
+		ScrewMachine_dao.setScrewMachineData(dataMap.get("ScrewMachine2"));
+		ScrewMachine_dao.setScrewMachineData(dataMap.get("ScrewMachine3"));
+		ScrewMachine_dao.setScrewMachineData(dataMap.get("ScrewMachine4"));
+		ScrewMachine_dao.setScrewMachineData(dataMap.get("ScrewMachine5"));
 	}
 
 	@Override
   //每小时执行一次
 	public void setScrewMachineDataHour(Map<String, ScrewMachine> dataMap) {
-		ScrewMachine sMC1 = dataMap.get("ScrewMachine1");
-		ScrewMachine sMC2 = dataMap.get("ScrewMachine2");
-		ScrewMachine sMC3 = dataMap.get("ScrewMachine3");
-		ScrewMachine sMC4 = dataMap.get("ScrewMachine4");
-		ScrewMachine sMC5 = dataMap.get("ScrewMachine5");
-		ScrewMachine_dao.setScrewMachineDataHour(sMC1);
-		ScrewMachine_dao.setScrewMachineDataHour(sMC2);
-		ScrewMachine_dao.setScrewMachineDataHour(sMC3);
-		ScrewMachine_dao.setScrewMachineDataHour(sMC4);
-		ScrewMachine_dao.setScrewMachineDataHour(sMC5);
-
+		ScrewMachine_dao.setScrewMachineDataHour(dataMap.get("ScrewMachine1"));
+		ScrewMachine_dao.setScrewMachineDataHour(dataMap.get("ScrewMachine2"));
+		ScrewMachine_dao.setScrewMachineDataHour(dataMap.get("ScrewMachine3"));
+		ScrewMachine_dao.setScrewMachineDataHour(dataMap.get("ScrewMachine4"));
+		ScrewMachine_dao.setScrewMachineDataHour(dataMap.get("ScrewMachine5"));
 	}
 
 	@Override

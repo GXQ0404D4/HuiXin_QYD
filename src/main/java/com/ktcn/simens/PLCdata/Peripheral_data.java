@@ -1,7 +1,5 @@
 package com.ktcn.simens.PLCdata;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +13,6 @@ import com.ktcn.entity.simensaddress.Peripheral_Address;
 import com.ktcn.simens.utils.SiemensPlcConfig;
 
 import HslCommunication.Core.Types.OperateResult;
-import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
@@ -44,7 +41,6 @@ public final  class Peripheral_data {
 	public   Map<String,Object> getPeripheral_data() {
 		Map<String,Object> DataMap=new HashMap<String,Object>();
 		SiemensS7Net siemensPLCC = SiemensPlcConfig.getSiemensPLC();
-//		SiemensS7Net siemensPLC = new SiemensS7Net(SiemensPLCS.S1200,"192.168.0.1");
 		//开启长连接
 		OperateResult connectServer = siemensPLCC.ConnectServer();
 		if (connectServer.IsSuccess) {
@@ -158,20 +154,11 @@ public final  class Peripheral_data {
 			
 			siemensPLCC.ConnectClose();
 			          
-//			Peripheral_serviceimp.setPeripheral_data(Peripheral_Data);
-//			Newly_serviceimp.setNewlyData(Peripheral_qt);
 			DataMap.put("PeripheralData", PeripheralData);
 			DataMap.put("Peripheral_qt", Peripheral_qt);
 		} else {
-			System.out.println("failed:" + siemensPLCC.ConnectServer().Message+"外围数据异常");
 			siemensPLCC.ConnectClose();
 		}
-	
-		// 数据读取完毕 获取当前时间
-//		System.out.println(PeripheralData );
-//		System.out.println(Peripheral_qt );
-//		System.out.println("外围数据持久化+555" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
-//		System.out.println(" ");
 		return DataMap;
 	}
 

@@ -43,9 +43,7 @@ public class ScrewMachineDataController {
 		if (emptyUtil.isNotEmpty(screwMachineData.get("ScrewMachine1")) && emptyUtil.isNotEmpty(screwMachineData.get("ScrewMachine2")) && emptyUtil.isNotEmpty(screwMachineData.get("ScrewMachine3")) && emptyUtil.isNotEmpty(screwMachineData.get("ScrewMachine4")) && emptyUtil.isNotEmpty(screwMachineData.get("ScrewMachine5"))) {
 			// 空压机数据 存入常量SCmapdata集合里
 			ScrewMachine_serviceimp.setScrewMachineData(screwMachineData);
-			//
 //			SMData=screwMachineData;
-			
 			//低压机 高压机 报警监测
 			Boolean lgjA13 = (Boolean) screwMachineData.get("ScrewMachine1").getLGJ13();
 			Boolean lgjA14 = (Boolean) screwMachineData.get("ScrewMachine1").getLGJ14();
@@ -94,8 +92,8 @@ public class ScrewMachineDataController {
 	@Scheduled(cron = "0 0 * * * ?")
 //	@Scheduled(cron = "0/1 * * * * ?")
 	public void setRealData(){
-		Map<String, ScrewMachine> screwMachineData = ScrewMachineDatagain.getScrewMachineData();
-		ScrewMachine_serviceimp.setScrewMachineDataHour(screwMachineData);
+//		Map<String, ScrewMachine> screwMachineData = ScrewMachineDatagain.getScrewMachineData();
+		ScrewMachine_serviceimp.setScrewMachineDataHour(ScrewMachineDatagain.getScrewMachineData());
 	}
 	
 //  定时删除当前一个月之前的数据

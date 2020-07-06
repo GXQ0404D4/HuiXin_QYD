@@ -1,8 +1,5 @@
 package com.ktcn.simens.PLCdata;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -13,7 +10,6 @@ import com.ktcn.entity.siemensentity.DryingMachine;
 import com.ktcn.simens.utils.SiemensPlcConfig;
 
 import HslCommunication.Core.Types.OperateResult;
-import HslCommunication.Profinet.Siemens.SiemensPLCS;
 import HslCommunication.Profinet.Siemens.SiemensS7Net;
 
 /**
@@ -61,11 +57,8 @@ public final class DryingMachineDatagain {
 	DryingMachine DryingMachine;
 	
 	
-//	@Async
-//	@Scheduled(cron = "0/1 * * * * ?")
 	public  DryingMachine getDryingMachineData() {
 		SiemensS7Net siemensPLCB = SiemensPlcConfig.getSiemensPLC();
-//		SiemensS7Net siemensPLC = new SiemensS7Net(SiemensPLCS.S1200,"192.168.0.1");
 		//开启长连接
 		OperateResult connectServer = siemensPLCB.ConnectServer();
 		if (connectServer.IsSuccess) {
@@ -85,16 +78,9 @@ public final class DryingMachineDatagain {
 			
 			siemensPLCB.ConnectClose();
 			
-//			DryingMachine_serviceimp.setDryingMachineData(DryingMachine);
 		} else {
-			System.out.println("failed:" + siemensPLCB.ConnectServer().Message+"干燥机异常");
 			siemensPLCB.ConnectClose();
 		}                                            
-
-		// 数据读取完毕 获取当前时间
-//		System.out.println(DryingMachine );
-//		System.out.println("干燥机数据持久化+555" + new SimpleDateFormat("yyyy/MM/dd-HH:mm:ss:SSS").format(new Date()));
-//		System.out.println(" ");
 		return DryingMachine;
 	}
 	

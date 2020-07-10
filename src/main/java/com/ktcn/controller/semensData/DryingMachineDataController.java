@@ -54,7 +54,7 @@ public class DryingMachineDataController {
 //		DryingMachine DryingMachine = DryingMachineDatagain.getDryingMachineData();
 		DryingMachine_serviceimp.setDryingMachineDataHour(DryingMachineDatagain.getDryingMachineData());
 	}
-//  定时删除当前一个月之前的数据
+//  定时删除周报表数据
 //	@Scheduled(cron = "0 0 1 ? * L") //每周星期天凌晨1点执行一次
 	@Scheduled(cron = "0 0 1 * * ?") //每天凌晨1点执行一次
 	public void deleteReamlData() {

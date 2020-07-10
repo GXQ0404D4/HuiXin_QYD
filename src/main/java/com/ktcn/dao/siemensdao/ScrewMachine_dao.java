@@ -40,8 +40,10 @@ public interface ScrewMachine_dao {
 	void setBJScrewMachineData(@Param("sMC") ScrewMachine sMC);
 
 
-	//删除当前一个月时间之前的数据
-	@Delete("DELETE FROM screw_machine WHERE LGJ_time<=DATE_ADD(NOW(),INTERVAL -1 MONTH)")
+	//定时删除当前一个月时间之前的数据
+//	@Delete("DELETE FROM screw_machine WHERE LGJ_time<=DATE_ADD(NOW(),INTERVAL -1 MONTH)")
+	//定时删除当前一周之前的数据
+	@Delete("DELETE FROM screw_machine WHERE LGJ_time<=DATE_ADD(NOW(),INTERVAL -2 WEEK)")
 	void deleteScrewMachineReamlData();
 
 }

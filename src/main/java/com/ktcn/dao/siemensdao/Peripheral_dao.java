@@ -50,7 +50,9 @@ public interface Peripheral_dao {
 	void setBJPeripheral_data(@Param("pp_Alarm") Peripheral_Alarm pp_Alarm);
 
 //	删除当前一个月之前的数据
-	@Delete("DELETE FROM peripheral_data WHERE pddate<=DATE_ADD(NOW(),INTERVAL -1 MONTH)")
+//	@Delete("DELETE FROM peripheral_data WHERE pddate<=DATE_ADD(NOW(),INTERVAL -1 MONTH)")
+//	定时删除当前一周时间之前的数据
+	@Delete("DELETE FROM peripheral_data WHERE pddate<=DATE_ADD(NOW(),INTERVAL -2 WEEK)")
 	void deletePeripheralReamlData();
 
 }

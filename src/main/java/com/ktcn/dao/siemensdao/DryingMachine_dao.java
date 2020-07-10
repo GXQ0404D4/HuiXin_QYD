@@ -30,7 +30,9 @@ public interface DryingMachine_dao {
 	void setBJDryingMachineData(@Param("dMac")DryingMachine dMac);
 
 	//删除当前一个月时间之前的数据
-	@Delete("DELETE FROM drying_machine WHERE GZ_time<=DATE_ADD(NOW(),INTERVAL -1 MONTH)")
+//	@Delete("DELETE FROM drying_machine WHERE GZ_time<=DATE_ADD(NOW(),INTERVAL -1 MONTH)")
+	//删除当前一个周时间之前的数据
+	@Delete("DELETE FROM drying_machine WHERE GZ_time<=DATE_ADD(NOW(),INTERVAL -2 WEEK)")
 	void deleteReamlData();
 
 }

@@ -24,7 +24,9 @@ public interface ControlValue_dao {
     @Insert("insert INTO control_valve_hour VALUES (null,#{cValue.TJF0},#{cValue.TJF1},#{cValue.TJF2},#{cValue.TJF3},#{cValue.TJF4},#{cValue.TJF5},#{cValue.TJF6},#{cValue.TJF7},NOW(),NOW(),1)")
 	void setControlValueDataHour(@Param("cValue") ControlValue cValue);
 //  定时删除一个月之前的数据
-    @Delete("DELETE FROM control_valve WHERE TJF_time<=DATE_ADD(NOW(),INTERVAL -1 MONTH)")
+//  @Delete("DELETE FROM control_valve WHERE TJF_time<=DATE_ADD(NOW(),INTERVAL -1 MONTH)")
+//  定时删除一周之前的数据
+    @Delete("DELETE FROM control_valve WHERE TJF_time<=DATE_ADD(NOW(),INTERVAL -2 WEEK)")
 	void deleteControlValueReamlData();
 
 }
